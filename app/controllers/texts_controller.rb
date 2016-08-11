@@ -15,5 +15,11 @@ class TextsController < ApplicationController
     def how_you_can_help
         @how_you_can_help_text = Text.find_by_id(4)
     end
+
+    def privacy_policy
+    end
+
+    def terms_of_service
+    end
 end
   

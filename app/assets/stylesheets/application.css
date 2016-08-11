@@ -362,3 +362,24 @@ h3.mission-text {
 .container-main {
     margin-top: 80px;
 }
+
+
+/* Terms of Service and Privacy Policy  */
+
+.para {
+    width: 100%;
+}
+
+.para li {
+    padding-left: 20px;
+    list-style: none;
+}
+
+.para .sub-list li {
+    list-style: none;
+    padding-left: 40px;
+}
+
+.para .address-div {
+    padding-left: 40px;
+}
