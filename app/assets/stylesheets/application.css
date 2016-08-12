@@ -368,18 +368,40 @@ h3.mission-text {
 
 .para {
     width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .para li {
-    padding-left: 20px;
     list-style: none;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .para .sub-list li {
     list-style: none;
     padding-left: 40px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .para .address-div {
     padding-left: 40px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.sub-list .sub-list-content {
+    margin-left: 80px;
+}
+
+.sub-list .sub-list-tag {
+    float: left;
+    width: 40px;
+    overflow: hidden;
+    clear: left;
+    text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
