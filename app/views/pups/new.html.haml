@@ -53,7 +53,7 @@
     %h4{:class => "explanation"} What do you feel are the most important positive or negative aspects of your dog? (140 chars limit)
     %br
     %div{:class => "form-group col-sm-12"}
-      = text_field :pup, 'comments', :class => "form-control", :placeholder => "Comments"
+      = text_field :pup, 'comments', :maxlength => 140, :class => "form-control", :placeholder => "Comments"
     
     %br
 
