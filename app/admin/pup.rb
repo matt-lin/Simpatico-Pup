@@ -45,6 +45,33 @@ ActiveAdmin.register Pup, as: "Dogs" do
     # column :created_at
     # column :updated_at
   end
+
+  action_item only: :show do
+    link_to 'Delete dog for user', admin_dog_path(type: :user), method: :delete, data: { confirm: 'Are you sure you want to delete ?'}
+  end
+
+  controller do
+
+    def destroy
+      dog = Pup.find(params["id"])
+      breeder = Breeder.find(dog.breeder_id)
+      if params[:type].present?
+        if params[:type] == "user"
+          if dog.destroy
+            old_value = breeder.removed_reviews
+            breeder.removed_reviews = old_value + 1
+            breeder.save
+          end
+        end
+      else
+        dog.destroy
+      end
+      redirect_to admin_dogs_path
+    end
+
+  end
+
+
   form do |f|
     f.semantic_errors # shows errors on :base
     f.inputs          # builds an input field for every attribute

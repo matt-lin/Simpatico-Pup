@@ -44,10 +44,11 @@ class Breeder < ActiveRecord::Base
     end
   end
 
-  def increment_deleted_reviews
-    update_attributes(:removed_reviews => removed_reviews + 1)
-    save!
-  end
+  # Info - Commented by Mallow-Tech developer and same logic implemented in dogs controller
+  # def increment_deleted_reviews
+  #   update_attributes(:removed_reviews => removed_reviews + 1)
+  #   save!
+  # end
 
   def Breeder.find_by_substring(name, limit = 0)
     breeders = Breeder.skip_one

@@ -22,7 +22,8 @@ class Pup < ActiveRecord::Base
                   :hashtag_1, :hashtag_2, :hashtag_3
 
 
-  before_destroy { |pup| pup.breeder ? pup.breeder.increment_deleted_reviews : nil }
+  # Info - Commented by Mallow-Tech developer and same logic implemented in dogs controller
+  # before_destroy { |pup| pup.breeder ? pup.breeder.increment_deleted_reviews : nil }
 
 
 

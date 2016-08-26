@@ -6,8 +6,8 @@ var RatingPaws = {
     naColor: "#ff3333",
     setupCategory: function(label) {
         for (var i = 0; i < RatingPaws.pos.length; i++) {
-            $("#"+label).val("1");
-            $("#" + label + "-first").css("color", RatingPaws.selectedColor);
+            $('#'+label).val("N/A");
+            $("#" + label + "-sixth").css("color", RatingPaws.naColor);
             $("#"+label+"-"+RatingPaws.pos[i]).on(
                 "mouseover", RatingPaws.changeColors(label, RatingPaws.pos[i])
             );
