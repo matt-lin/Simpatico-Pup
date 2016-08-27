@@ -15,7 +15,7 @@ var PupSlider = {
         myIndex++;
         if (myIndex > x.length) {myIndex = 1}
         x[myIndex-1].style.display = "block";
-        setTimeout(PupSlider.carousel, 3000); // Change image every 3 seconds
+        setTimeout(PupSlider.carousel, 5000); // Change image every 5 seconds
     },
     // setup sets a callback for #breeder_find keyup
     setup: function() {

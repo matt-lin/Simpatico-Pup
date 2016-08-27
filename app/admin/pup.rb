@@ -46,8 +46,21 @@ ActiveAdmin.register Pup, as: "Dogs" do
     # column :updated_at
   end
 
+  config.action_items.delete_if { |item|
+    # item is an ActiveAdmin::ActionItem
+    item.display_on?(:show)
+  }
+
+  action_item :only => :show do |dog|
+    link_to "Edit Dog" , edit_admin_dog_path
+  end
+
+  action_item :only => :show do
+    link_to "Delete Dog" , admin_dog_path, method: :delete, data: { confirm: 'Are you sure you want to delete ?'}
+  end
+
   action_item only: :show do
-    link_to 'Delete dog for user', admin_dog_path(type: :user), method: :delete, data: { confirm: 'Are you sure you want to delete ?'}
+    link_to 'Delete Dog At Breeder Request', admin_dog_path(type: :user), method: :delete, data: { confirm: 'Are you sure you want to delete ?'}
   end
 
   controller do
