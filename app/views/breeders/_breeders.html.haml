@@ -15,6 +15,6 @@
           %td= breeder.name
           %td= breeder.city
           %td= breeder.state
-          %td= breeder.distance.round(2)
+          %td= (breeder.distance.to_i).round(2)
 - else
   %p No Breeders Available :(
