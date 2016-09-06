@@ -1,47 +1,43 @@
 .price-slider.row
-    .col-sm-10
+    .col-sm-12
         .row
             .col-sm-5
                 %h4{:class => "great"}=label :pup, var, title
                 %br
                 %span #{description}
-            .col-sm-2
+            %div{:class =>"col-sm-4", :style => "padding-left: 50px;"}
                 %br
                 %br
                 %br
-                %h5 #{des1}
-            .col-sm-3
-                %br
-                %br
-                %br
-                %div{:class => "paw"}
-                    %div{:class => "pull-left"}
+                %div{:class =>"row paw-custom-color"}
+                    %div{:class => "col-sm-2", :style => "width: 20%"}
                         %i{:class =>"fa fa-paw fa-2x", :id => "#{id}-first"}
-                    %div{:class => "pull-left"}
+                    %div{:class => "col-sm-2", :style => "width: 20%"}
                         %i{:class =>"fa fa-paw fa-2x", :id => "#{id}-second"}
-                    %div{:class => "pull-left"}
+                    %div{:class => "col-sm-2", :style => "width: 20%"}
                         %i{:class => "fa fa-paw fa-2x", :id => "#{id}-third"}
-                    %div{:class => "pull-left"}
+                    %div{:class => "col-sm-2", :style => "width: 20%"}
                         %i{:class =>"fa fa-paw fa-2x", :id => "#{id}-fourth"}
-                    %div{:class => "pull-left"}
+                    %div{:class => "col-sm-2", :style => "width: 20%"}
                         %i{:class => "fa fa-paw fa-2x", :id => "#{id}-fifth"}
-                    %div{:class=>"text-left"}
-                        = text_field :pup, var, :class => "read", :id => id, :value => "0", :readonly => true
+                    %div{:class => "row"}
+                        %div{:class => "col-sm-2", :style => "float: left; width: 20%; font-size: 12px; margin-left: 10px;"}
+                            #{des1}
+                        %div{:class => "col-sm-2", :style => "float: right; width: 20%; font-size: 12px; margin-right: 20px;"}
+                            #{des5}
             .col-sm-2
                 %br
                 %br
                 %br
-                %h5 #{des5}
+                %div{:class => "row"}
+                    %div{:class => "col-sm-12", :style => "padding-left: 80px"}
+                        %i{:class => "fa fa-paw fa-2x", :id => "#{id}-sixth", :style => "padding-bottom: 10px;"}
+                        %p{:style => "font-size: 12px; margin-left: -10px;"} Unknown
 
-    .col-sm-2
-        .row
-            %br
-            %br
-            %br
-            .pull-left.paw
-                .col-sm-8
-                .col-sm-4
-                    %i{:class => "fa fa-paw fa-2x", :id => "#{id}-sixth"}
+            %div{:class=>"col-sm-1"}
+                %br
+                %br
+                %br
+                = text_field :pup, var, :class => "read", :id => id, :value => "0", :readonly => true
 
-        %br
-        &nbsp;&nbsp;&nbsp;&nbsp;Unknown
+

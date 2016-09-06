@@ -405,3 +405,7 @@ h3.mission-text {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+.paw-custom-color i {
+    color: rgb(187, 187, 187);
+}
