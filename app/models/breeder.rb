@@ -5,7 +5,7 @@ class Breeder < ActiveRecord::Base
   before_destroy { |breeder| breeder.dismentle_pups }
 
   geocoded_by :address
-  # after_validation :geocode
+  after_validation :geocode
 
   def address
     if self.city and self.state

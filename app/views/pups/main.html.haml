@@ -9,14 +9,14 @@
                     Find a pup from a <strong>reliable</strong> source
                     //First Row 
             %div{:class => "row col-lg-12"}
-                %div{:class => "col-lg-4 box-a text-center"}
+                %div{:class => "col-sm-3 box-a text-center"}
                     %a{:class => "main-button-link button-a", :href => "pups/dog_name"}
                         %div{:class => "main-button"}
                             %div{:class => "main-button-small-text"}
                                 Rate your
                             %div{:class => "main-button-large-text"}
                                 Dog
-                %div{:class => "col-lg-4 box-b box-move hidden"}
+                %div{:class => "col-sm-3 box-b box-move hidden"}
                     %div{:class => "panel panel-default"}
                         %div{:class => "panel-heading"}
                             %h3{:class => "panel-title"}
@@ -31,14 +31,14 @@
                                 %div{:id => 'breed_autofills', :class => "form-group col-md-12"}
                                 %div{:class => "form-group", :class => "button-positioning"}
                                     = submit_tag 'Find ratings for this breed', :id => 'Find Breed', :class => "form-control"
-                %div{:class => "col-lg-4 box-b text-center"}
+                %div{:class => "col-sm-3 box-b text-center"}
                     %a{:class => "main-button-link button-b"}
                         %div{:class => "main-button"}
                             %div{:class => "main-button-small-text"}
                                 Find Ratings for a
                             %div{:class => "main-button-large-text"}
                                 Breed
-                %div{:class => "col-lg-4 box-c box-move hidden"}
+                %div{:class => "col-sm-3 box-c box-move hidden"}
                     %div{:class => "panel panel-default"}
                         %div{:class => "panel-heading"}
                             %h3{:class => "panel-title"}
@@ -52,11 +52,18 @@
                                     %div{:id => 'breeder_find_autofills', :class => "list-group"}
                                     %div{:class => "form-group", :class => "button-positioning"}
                                         = submit_tag 'Find ratings for this breeder', :id => 'Find Breeder', :class => "form-control"
-                %div{:class => "col-lg-4 box-c text-center"}
+                %div{:class => "col-sm-3 box-c text-center"}
                     %a{:class => "main-button-link button-c"}
                         %div{:class => "main-button"}
                             %div{:class => "main-button-small-text"}
-                                Find Ratings for a 
+                                Find Ratings for a
+                            %div{:class => "main-button-large-text"}
+                                Breeder
+                %div{:class => "col-sm-3 box-a text-center"}
+                    %a{:class => "main-button-link button-a", :href => "/search_nearer_breeders"}
+                        %div{:class => "main-button"}
+                            %div{:class => "main-button-small-text"}
+                                Search
                             %div{:class => "main-button-large-text"}
                                 Breeder
         %div{:class => "bg-page row"}

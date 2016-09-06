@@ -1,0 +1,20 @@
+%h1 Breeders
+- if @breeders.present?
+  %table.table
+    %thead
+      %tr
+        %th #
+        %th Breeder Name
+        %th City
+        %th State
+        %th Distance  (miles)
+    %tbody
+      - @breeders.each_with_index do |breeder, index|
+        %tr
+          %th{:scope => "row"}= index + 1
+          %td= breeder.name
+          %td= breeder.city
+          %td= breeder.state
+          %td= breeder.distance.round(2)
+- else
+  %p No Breeders Available :(

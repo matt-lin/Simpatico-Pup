@@ -1,5 +1,6 @@
 class BreedersController < ApplicationController
   skip_before_filter :delete_pup_from_session, :except => [:index, :substring_match, :search_name]
+  before_filter :set_states, only: [:search_nearer_breeders, :new]
 
   def index
     if request.xhr?
@@ -25,7 +26,37 @@ class BreedersController < ApplicationController
     @pups = @breeder.all_pups
   end
 
+
+  def search_nearer_breeders
+
+    @breeds = Breed.all
+
+  end
+
+  def nearer_breeders
+
+    @breeders = Breeder.joins(pups: :breed).where("breeds.name = ?", params[:breeder][:breed_name]).near("#{params[:breeder][:city]} ,#{params[:breeder][:state]}, US", 100)
+
+
+  end
+
   def new
+
+
+  end
+
+  def create
+    name, city, state = params[:breeder][:name], params[:breeder][:city], params[:breeder][:state]
+    breeder, message = Breeder.create!(:name => name, :city => city, :state => state)
+    if !breeder
+      flash[:message] = message
+    end
+    redirect_to dog_breeder_path
+  end
+
+  private
+
+  def set_states
 
     @states = ['AL - Alabama', 'AK - Alaska', 'AZ - Arizona', 'AR - Arkansas',
                'CA - California', 'CO - Colorado', 'CT - Connecticut', 'DE - Delaware',
@@ -40,15 +71,7 @@ class BreedersController < ApplicationController
                'SD - South Dakota', 'TN - Tennessee', 'TX - Texas', 'UT - Utah',
                'VT - Vermont', 'VA - Virginia', 'WA - Washington', 'WV - West Virginia',
                'WI - Wisconsin', 'WY -  Wyoming']
-  end
 
-  def create
-    name, city, state = params[:breeder][:name], params[:breeder][:city], params[:breeder][:state]
-    breeder, message = Breeder.create!(:name => name, :city => city, :state => state)
-    if !breeder
-      flash[:message] = message
-    end
-    redirect_to dog_breeder_path
   end
 
 end
