@@ -35,8 +35,13 @@ class BreedersController < ApplicationController
 
   def nearer_breeders
 
-    @breeders = Breeder.joins(pups: :breed).where("breeds.name = ?", params[:breeder][:breed_name]).near("#{params[:breeder][:city]} ,#{params[:breeder][:state]}, US", 100)
+    if params[:breeder][:breed_name].present?
+      @breeders = Breeder.joins(pups: :breed).where("breeds.name = ?", params[:breeder][:breed_name]).near("#{params[:breeder][:state]}", 100)
+    else
+      @breeders = Breeder.joins(pups: :breed).near("#{params[:breeder][:state]}", 100)
+    end
 
+    @breeders = @breeders.uniq
 
   end
 

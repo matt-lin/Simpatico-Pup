@@ -409,3 +409,12 @@ h3.mission-text {
 .paw-custom-color i {
     color: rgb(187, 187, 187);
 }
+
+.breeders-list .form-group {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.page-links {
+    padding-top: 80px;
+}
