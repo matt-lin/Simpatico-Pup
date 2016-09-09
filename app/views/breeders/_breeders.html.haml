@@ -12,7 +12,8 @@
       - @breeders.each_with_index do |breeder, index|
         %tr
           %th{:scope => "row"}= index + 1
-          %td= breeder.name
+          %td
+            = link_to breeder.name, breeder_search_path(id: breeder.id)
           %td= breeder.city
           %td= breeder.state
           %td= (breeder.distance.to_f).round(2)

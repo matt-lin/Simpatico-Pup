@@ -16,15 +16,33 @@ class BreedersController < ApplicationController
   end
 
   def search_name
-    search_str = params[:breeder][:name]
-    @breeder = Breeder.find_by_formatted_string(search_str)
-    if !@breeder
-      flash[:notice] = "Sorry, we do not yet have any ratings for #{search_str}"
-      redirect_to root_path and return
+
+    if params[:breeder].present?
+
+      search_str = params[:breeder][:name]
+
+      @breeder = Breeder.find_by_formatted_string(search_str)
+      if !@breeder
+        flash[:notice] = "Sorry, we do not yet have any ratings for #{search_str}"
+        redirect_to root_path and return
+      end
+      @avg_ratings = @breeder.avg_pup_rating
+      @pups = @breeder.all_pups
+
+    elsif params[:id].present?
+
+      @breeder = Breeder.find_by_id(params[:id])
+      @avg_ratings = @breeder.avg_pup_rating
+      @pups = @breeder.all_pups
+
+    else
+
+      redirect_to root_path
+
     end
-    @avg_ratings = @breeder.avg_pup_rating
-    @pups = @breeder.all_pups
+
   end
+
 
 
   def search_nearer_breeders

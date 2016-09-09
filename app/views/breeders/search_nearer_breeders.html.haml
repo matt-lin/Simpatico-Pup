@@ -1,6 +1,6 @@
 %div{:class => "container breeders-list"}
 
-  %h1 Search Breeder
+  %h1 Search for a Breeder
 
   - flash.each do |key, value|
     %p= value
@@ -14,7 +14,7 @@
       = select :breeder, :state, options_for_select(@states.collect{ |s| [s, s[0,2]] }), {prompt: 'Select state'}, :class => "form-control"
       %br
     %div{:class => "form-group col-sm-5"}
-      = submit_tag 'Search Breeder', :id => 'Search Breeder', :class => "form-control"
+      = submit_tag 'Search for a Breeder', :id => 'Search Breeder', :class => "form-control"
     .col-sm-1
     .col-sm-5.form-group
       = link_to 'Cancel', dog_breeder_path, :class => "form-control cancel"
