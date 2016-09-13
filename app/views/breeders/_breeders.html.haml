@@ -1,5 +1,6 @@
 %h1 Breeders
 - if @breeders.present?
+  %p Find breeders/kennels within "#{params[:breeder][:search_distance]}" miles of "#{params[:breeder][:city].present? ? (params[:breeder][:city].to_s + ', ' + params[:breeder][:state].to_s) : params[:breeder][:state]}"
   %table.table
     %thead
       %tr

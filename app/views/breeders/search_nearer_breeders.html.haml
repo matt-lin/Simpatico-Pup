@@ -10,8 +10,14 @@
       = label :breeder, :breed_name, "Select Breed"
       = select :breeder, :breed_name,  @breeds.collect {|p| p.name }, {prompt: 'Any Breed'}, :class => "form-control"
     %div{:class => "form-group"}
-      = label :breeder, :state, "Enter Breeder/Kennel's State"
+      = label :breeder, :state, "Find Breeder/Kennel's Near"
+      = text_field :breeder, :city, :maxlength => 140, :class => "form-control", :placeholder => "Enter City"
+      %br
+      %br
       = select :breeder, :state, options_for_select(@states.collect{ |s| [s, s[0,2]] }), {prompt: 'Select state'}, :class => "form-control"
+    %div{:class => "form-group"}
+      = label :breeder, :search_distance, "Search Breeder/Kennel's within Range (miles)"
+      = select :breeder, :search_distance, options_for_select([100, 250, 500], 200), {}, :class => "form-control"
       %br
     %div{:class => "form-group col-sm-5"}
       = submit_tag 'Search for a Breeder', :id => 'Search Breeder', :class => "form-control"
