@@ -33,6 +33,7 @@ class PupsController < ApplicationController
     if !session[:step1] || !session[:step2] || !session[:step3]
       redirect_to root_path and return
     end
+    session.delete(:breeder_id)
     if !session[:breeder_id]
       breeder_str = params[:breeder][:name]
       if breeder_str.empty?
@@ -41,8 +42,17 @@ class PupsController < ApplicationController
       end
       breeder = Breeder.find_by_formatted_string(breeder_str)
       if breeder
-        session[:breeder_id] = breeder.id
-        return
+        @same_breeder = Pup.where("user_id = ? and breeder_id = ?", current_user.id, breeder.id)
+        if @same_breeder.length >= 2
+          redirect_to root_path, flash: {notice: 'SimpaticoPup is a website designed to collect information from dog lovers about their own
+companion dogs. To ensure that our rating summaries accurately reflect input from a wide variety of dog owners, we are
+currently limiting the number of ratings made by any individual dog owner to eight, and limiting each individual to
+rating only two dogs that come from the same dog breeder. Thank you for your contributions to our database.'}
+          return
+        else
+          session[:breeder_id] = breeder.id
+          return
+        end
       end
       flash[:notice] = "The dog breeder or kennel you entered is not yet in our database.
       Please click here to add it to our database."
@@ -219,7 +229,7 @@ rating only two dogs that come from the same dog breeder. Thank you for your con
   def breed
     name = params[:breed][:name]
     if !Breed.is_valid_breed(name)
-      flash[:notice] = "Please enter a vild breed name."
+      flash[:notice] = "Please enter a valid breed name."
       redirect_to root_path
     end
     @pups = Pup.find_by_breed(name)
