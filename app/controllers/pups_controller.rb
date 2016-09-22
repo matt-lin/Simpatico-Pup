@@ -85,6 +85,15 @@ class PupsController < ApplicationController
     new_comment = {:content => params[:pup][:comments]}
     @Comment = Comment.new(new_comment)
 
+
+    if @pup.user.pups(:reload).size > 8
+      flash[:notice] = 'SimpaticoPup is a website designed to collect information from dog lovers about their own
+companion dogs. To ensure that our rating summaries accurately reflect input from a wide variety of dog owners, we are
+currently limiting the number of ratings made by any individual dog owner to eight, and limiting each individual to
+rating only two dogs that come from the same dog breeder. Thank you for your contributions to our database.'
+      redirect_to new_pup_path and return
+    end
+
     if !@pup.valid?
       flash[:notice] = 'Please make sure all fields are complete!'
       redirect_to new_pup_path and return
@@ -121,6 +130,12 @@ class PupsController < ApplicationController
 
   # step 0
   def dog_name
+    if current_user.pups.count >= 8
+      redirect_to root_path, flash: {notice: 'SimpaticoPup is a website designed to collect information from dog lovers about their own
+companion dogs. To ensure that our rating summaries accurately reflect input from a wide variety of dog owners, we are
+currently limiting the number of ratings made by any individual dog owner to eight, and limiting each individual to
+rating only two dogs that come from the same dog breeder. Thank you for your contributions to our database.'}
+    end
   end
 
   # step 1
