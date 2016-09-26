@@ -7,19 +7,25 @@ if RUBY_VERSION =~ /2.2/ # default encoding for db:seed
   Encoding.default_internal = Encoding::UTF_8
 end
 
-gem 'rails', '3.2.16'
+gem 'rails', '~> 4.2.4'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'haml'
 gem 'rake'
 gem 'jasmine'
-gem 'devise'
+gem 'devise', '~> 3.2'
 gem 'figaro'
 gem "font-awesome-rails"
 gem 'geocoder'
 # gem "activeadmin", :git => "git://github.com/gregbell/active_admin.git"
 gem 'activeadmin', "1.0.0.pre1"
 gem 'test-unit', '~> 3.0'
+# forum
+gem 'thredded'
+
+gem 'protected_attributes'
+
+
 
 group :development, :test do
   gem 'sqlite3'

@@ -1,13 +1,17 @@
 Ratemypup::Application.routes.draw do
+
+  mount Thredded::Engine => '/forum'
+
+
   root :to => 'pups#main'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
   devise_for :users
-  ActiveAdmin.routes(self)
+  # ActiveAdmin.routes(self)
 
-  match '/pups/create' => 'pups#create', :as => :create_pup
+  match '/pups/create' => 'pups#create', :as => :create_pup, via: [:get, :post]
   # match '/breeders/create' => 'breeders#create', :as => :create_breeder
   post 'breeders' => 'breeders#create', :as => :create_breeder
   get 'pups/dog_name' => 'pups#dog_name', :as => :dog_name
@@ -33,6 +37,7 @@ Ratemypup::Application.routes.draw do
   get '/text/privacy_policy' => 'texts#privacy_policy', :as => :privacy_policy
   get '/text/terms_of_service' => 'texts#terms_of_service', :as => :terms_of_service
   get '/welcome' => 'texts#welcome', :as => :welcome
+
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -9,4 +9,13 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   has_many :pups
+
+  def admin
+    return true if self.id == 1
+    false
+  end
+
+  def to_s
+    email
+  end
 end
