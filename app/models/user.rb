@@ -11,8 +11,9 @@ class User < ActiveRecord::Base
   has_many :pups
 
   def admin
-    return true if self.id == 1
-    false
+    # return true if self.id == 1
+    # false
+    true
   end
 
   def to_s
