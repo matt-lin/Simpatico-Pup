@@ -11,9 +11,8 @@ class User < ActiveRecord::Base
   has_many :pups
 
   def admin
-    # return true if self.id == 1
-    # false
-    true
+    return true if self.email == "lhsdvm@aol.com"
+    false
   end
 
   def to_s

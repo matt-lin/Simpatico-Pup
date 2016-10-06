@@ -44,10 +44,10 @@ class PupsController < ApplicationController
       if breeder
         @same_breeder = Pup.where("user_id = ? and breeder_id = ?", current_user.id, breeder.id)
         if @same_breeder.length >= 2
-          redirect_to root_path, flash: {notice: 'SimpaticoPup is a website designed to collect information from dog lovers about their own
-companion dogs. To ensure that our rating summaries accurately reflect input from a wide variety of dog owners, we are
-currently limiting the number of ratings made by any individual dog owner to eight, and limiting each individual to
-rating only two dogs that come from the same dog breeder. Thank you for your contributions to our database.'}
+          redirect_to root_path, flash: {notice: 'SimpaticoPup is a website designed to collect information from dog
+lovers about their own companion dogs. To ensure that our rating summaries accurately reflect input from a wide variety
+of dog owners, we are currently limiting the number of ratings made by each dog owner to eight, and limiting each dog
+owner to rating only two dogs that come from the same dog breeder. Thank you for your contributions to our database.'}
           return
         else
           session[:breeder_id] = breeder.id
@@ -99,8 +99,8 @@ rating only two dogs that come from the same dog breeder. Thank you for your con
     if @pup.user.pups(:reload).size > 8
       flash[:notice] = 'SimpaticoPup is a website designed to collect information from dog lovers about their own
 companion dogs. To ensure that our rating summaries accurately reflect input from a wide variety of dog owners, we are
-currently limiting the number of ratings made by any individual dog owner to eight, and limiting each individual to
-rating only two dogs that come from the same dog breeder. Thank you for your contributions to our database.'
+currently limiting the number of ratings made by each dog owner to eight, and limiting each dog owner to rating only two
+ dogs that come from the same dog breeder. Thank you for your contributions to our database.'
       redirect_to new_pup_path and return
     end
 
@@ -141,10 +141,10 @@ rating only two dogs that come from the same dog breeder. Thank you for your con
   # step 0
   def dog_name
     if current_user.pups.count >= 8
-      redirect_to root_path, flash: {notice: 'SimpaticoPup is a website designed to collect information from dog lovers about their own
-companion dogs. To ensure that our rating summaries accurately reflect input from a wide variety of dog owners, we are
-currently limiting the number of ratings made by any individual dog owner to eight, and limiting each individual to
-rating only two dogs that come from the same dog breeder. Thank you for your contributions to our database.'}
+      redirect_to root_path, flash: {notice: 'SimpaticoPup is a website designed to collect information from dog lovers
+ about their own companion dogs. To ensure that our rating summaries accurately reflect input from a wide variety of dog
+ owners, we are currently limiting the number of ratings made by each dog owner to eight, and limiting each dog owner to
+ rating only two dogs that come from the same dog breeder. Thank you for your contributions to our database.'}
     end
   end
 

@@ -9,7 +9,7 @@ Thredded.user_class = 'User'
 
 # User name column, used in @mention syntax and should be unique.
 # This is the column used to search for users' names if/when someone is @ mentioned.
-Thredded.user_name_column = :name
+Thredded.user_name_column = :username
 
 # The path (or URL) you will use to link to your users' profiles.
 # When linking to a user, Thredded will use this lambda to spit out
@@ -55,7 +55,7 @@ Thredded.content_visible_while_pending_moderation = true
 
 # ==> View Configuration
 # Set the layout for rendering the thredded views.
-Thredded.layout = 'thredded/application'
+Thredded.layout = 'application'
 
 # ==> Post Content Formatting
 # Customize the way Thredded handles post formatting.

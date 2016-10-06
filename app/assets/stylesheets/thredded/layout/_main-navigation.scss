@@ -1,0 +1,39 @@
+.thredded--main-navigation {
+  @extend %thredded--list-unstyled;
+  @include thredded--clearfix;
+  display: block;
+  @include thredded-media-desktop-and-up {
+    margin-top: $thredded-small-spacing;
+  }
+}
+
+.thredded--navigation-breadcrumbs {
+  @extend %thredded--list-unstyled;
+
+  li {
+    display: inline-block;
+    font-weight: bold;
+
+    a {
+      display: inline-block;
+      padding: $thredded-small-spacing 0;
+    }
+
+    &:after {
+      background: image-url("thredded/breadcrumb-chevron.svg") no-repeat center center;
+      content: "";
+      display: inline-block;
+      height: 10px;
+      margin: 0 ($thredded-small-spacing - 0.3rem) 0 $thredded-small-spacing;
+      width: 6px;
+    }
+
+    &:last-child:after {
+      display: none;
+    }
+  }
+
+  a {
+    @extend %thredded--nav-link;
+  }
+}

@@ -65,7 +65,7 @@ class Pup < ActiveRecord::Base
   private
   def limit_ratings
     if self.user.pups(:reload).size > 8
-      errors.add(:base, "SimpaticoPup is a website designed to collect information from dog lovers about their own companion dogs. To ensure that our rating summaries accurately reflect input from a wide variety of dog owners, we are currently limiting the number of ratings made by any individual dog owner to eight, and limiting each individual to rating only two dogs that come from the same dog breeder. Thank you for your contributions to our database.")
+      errors.add(:base, "SimpaticoPup is a website designed to collect information from dog lovers about their own companion dogs. To ensure that our rating summaries accurately reflect input from a wide variety of dog owners, we are currently limiting the number of ratings made by each dog owner to eight, and limiting each dog owner to rating only two dogs that come from the same dog breeder. Thank you for your contributions to our database.")
     end
   end
 

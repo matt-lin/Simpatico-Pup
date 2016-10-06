@@ -25,13 +25,15 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
+<br>
 
   <div>
-    <a href='/welcome'>User Agreement</a>
+    <span>By clicking “I agree” below you agree to SimpaticoPup’s <%= link_to "Terms of Service", terms_of_service_path %> and our <%= link_to "Privacy Policy", privacy_policy_path %>, which describes how we process your information.</span>
   </div>
   <div>
-    <%= f.check_box :agreement %> I agree
+    <%= f.check_box :agreement, :required => true %> I agree
   </div>
+   <br>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
