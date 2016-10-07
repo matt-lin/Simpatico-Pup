@@ -10,8 +10,9 @@
 .thredded--topics--title {
   @extend %thredded--heading;
   display: inline;
-  font-size: 1.125rem; // 18px
+  font-size: 2.125rem; // 18px
   line-height: 1.5;
+  font-weight: 700;
 
   a {
     @extend %thredded--link;

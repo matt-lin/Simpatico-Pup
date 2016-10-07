@@ -37,7 +37,7 @@
 .thredded--post--user-and-topic {
   @extend %thredded--heading;
   display: inline;
-  font-size: 1.125rem; // 18px
+  font-size: 1.425rem; // 18px
   line-height: 1.2;
   margin-right: $thredded-inline-spacing;
 
@@ -70,7 +70,7 @@
 }
 
 .thredded--post--content {
-  font-size: 1.063rem; // 17px
+  font-size: 1.563rem; // 17px
   line-height: 1.65;
   word-break: break-word;
   a {
