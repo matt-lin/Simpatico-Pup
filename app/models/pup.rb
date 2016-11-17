@@ -38,7 +38,7 @@ class Pup < ActiveRecord::Base
 
   # class methods
   def Pup.find_by_breed(breed_name)
-    breed_id = Breed.where("name = ?", breed_name)
+    breed_id = Breed.find_by_name(breed_name)
     Pup.where("breed_id = ?", breed_id).order("created_at DESC")
   end
 
