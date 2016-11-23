@@ -33,7 +33,10 @@
   <div>
     <%= f.check_box :agreement, :required => true %> I agree
   </div>
-   <br>
+  <div>
+    <%= check_box_tag 'subscribe_newsletter', 'yes' %> Subscribe newsletter
+  </div>
+  <br>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
