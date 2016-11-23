@@ -1,5 +1,6 @@
 ActiveAdmin.register NewsletterUser do
   filter :email
+  menu :label => 'Newsletter Subscribers'
 
   index do
     column :id
