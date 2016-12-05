@@ -7,7 +7,7 @@ var MainButtons = {
     // setup sets a callback for #breeder_find keyup   
     setup: function() {
         $('.button-a').hover( function() {
-            $('#tagline-text').html("Find Dog Breeders Near You");
+            $('#tagline-text').html("Contribute Information About Your Dog to our Database");
         });
 
         $('.button-b').click( function() {
@@ -29,6 +29,12 @@ var MainButtons = {
         $('#cancel-c').click( function() {
             $('.box-c').toggleClass("hidden");
         });
+
+        $('.button-d').hover( function() {
+            $('#tagline-text').html("Find Dog Breeders Near You");
+        });
+
+
     }
 };
 
