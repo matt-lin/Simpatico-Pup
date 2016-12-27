@@ -14,60 +14,60 @@
 ActiveRecord::Schema.define(version: 20161123051626) do
 
   create_table "active_admin_comments", force: :cascade do |t|
-    t.string   "resource_id",   limit: 255, null: false
-    t.string   "resource_type", limit: 255, null: false
+    t.string   "resource_id",   null: false
+    t.string   "resource_type", null: false
     t.integer  "author_id"
-    t.string   "author_type",   limit: 255
+    t.string   "author_type"
     t.text     "body"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.string   "namespace",     limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "namespace"
   end
 
   add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
-  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_admin_notes_on_resource_type_and_resource_id"
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
 
   create_table "admin_users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
   create_table "breeders", force: :cascade do |t|
-    t.string  "name",            limit: 255
-    t.string  "location",        limit: 255
-    t.string  "website",         limit: 255
-    t.string  "city",            limit: 255
-    t.string  "state",           limit: 255
+    t.string  "name"
+    t.string  "location"
+    t.string  "website"
+    t.string  "city"
+    t.string  "state"
     t.float   "latitude"
     t.float   "longitude"
-    t.integer "removed_reviews",             default: 0
+    t.integer "removed_reviews", default: 0
   end
 
   create_table "breeds", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
     t.integer  "pup_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 20161123051626) do
   end
 
   create_table "pups", force: :cascade do |t|
-    t.string   "pup_name",               limit: 255
+    t.string   "pup_name"
     t.integer  "breeder_responsibility"
     t.integer  "overall_health"
     t.integer  "trainability"
@@ -99,9 +99,9 @@ ActiveRecord::Schema.define(version: 20161123051626) do
     t.integer  "simpatico_rating"
     t.integer  "breeder_id"
     t.integer  "breed_id"
-    t.string   "hashtag_1",              limit: 255
-    t.string   "hashtag_2",              limit: 255
-    t.string   "hashtag_3",              limit: 255
+    t.string   "hashtag_1"
+    t.string   "hashtag_2"
+    t.string   "hashtag_3"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
@@ -112,14 +112,14 @@ ActiveRecord::Schema.define(version: 20161123051626) do
 
   create_table "selected_comments", force: :cascade do |t|
     t.text     "content"
-    t.string   "user",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "user"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "texts", force: :cascade do |t|
-    t.string "title", limit: 255, default: ""
-    t.text   "body",              default: ""
+    t.string "title", default: ""
+    t.text   "body",  default: ""
   end
 
   create_table "thredded_categories", force: :cascade do |t|
@@ -335,19 +335,19 @@ ActiveRecord::Schema.define(version: 20161123051626) do
   add_index "thredded_user_topic_read_states", ["user_id", "postable_id"], name: "thredded_user_topic_read_states_user_postable", unique: true
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
-    t.string   "username",               limit: 255, default: "", null: false
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "username",               default: "", null: false
     t.boolean  "agreement"
   end
 
