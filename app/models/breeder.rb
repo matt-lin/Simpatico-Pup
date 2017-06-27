@@ -1,5 +1,5 @@
 class Breeder < ActiveRecord::Base
-  has_many :pups
+  has_many :pups, dependent: :destroy
   attr_accessible :name, :city, :state, :website, :removed_reviews
 
   before_destroy { |breeder| breeder.dismentle_pups }
