@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/hyu596/simpatico-pup2.svg?branch=master)](https://travis-ci.org/hyu596/simpatico-pup2) [![Code Climate](https://codeclimate.com/github/hyu596/simpatico-pup2/badges/gpa.svg)](https://codeclimate.com/github/hyu596/simpatico-pup2) [![Test Coverage](https://codeclimate.com/github/hyu596/simpatico-pup2/badges/coverage.svg)](https://codeclimate.com/github/hyu596/simpatico-pup2/coverage)
+[![Build Status](https://travis-ci.org/hyu596/Simpatico-Pup.svg?branch=master)](https://travis-ci.org/hyu596/Simpatico-Pup) [![Code Climate](https://codeclimate.com/github/hyu596/Simpatico-Pup/badges/gpa.svg)](https://codeclimate.com/github/hyu596/Simpatico-Pup) [![Test Coverage](https://codeclimate.com/github/hyu596/Simpatico-Pup/badges/coverage.svg)](https://codeclimate.com/github/hyu596/Simpatico-Pup/coverage)
 
 
 ===================Team Info============================
@@ -12,6 +12,6 @@ SimpaticoPup
 
 
 ####Past Contributors (in no particular order)
-*Cady Xu, Jianzhong Chen, Justin Sun, Joranson Wu, Bill Zhu*
+*Jeff Yu, Gilbert Lo, Licong Wang, Jack Chen, ALex Ho, Zipei Wang*
 
 
