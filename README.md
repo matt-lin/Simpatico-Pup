@@ -23,7 +23,8 @@ SimpaticoPup
 ####Current Contributors (in no particular order)
 <br />*Jeff Yu, Gilbert Lo, Licong Wang, Jack Chen, Alex Ho, Zipei Wang*
 
-How the app addresses customer's need
+
+####How the app addresses customer's need
 <br />SimpaticoPup is a website that collect crowd sourced data about the health, 
 temperament and suitability of pet dogs of various breeds, and from various 
 sources (dog breeders). This site can reduce and discourage irresponsible dog 
