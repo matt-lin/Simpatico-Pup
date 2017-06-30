@@ -55,7 +55,7 @@ engines:
   csslint:
     enabled: true
   coffeelint:
-    enabled: true
+    enabled: false
   duplication:
     enabled: true
     config:
