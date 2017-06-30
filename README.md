@@ -2,16 +2,17 @@
 
 
 ===================Team Info============================
+<br />
 ####Dependencies - 
   1. [rvm](https://rvm.io)
   2. Ruby: 2.2.2
 
 SimpaticoPup
 
-**after cloning run cd . && bin/setup to set up environment**
+<br />**after cloning run cd . && bin/setup to set up environment**
 
 
 ####Past Contributors (in no particular order)
-**Jeff Yu, Gilbert Lo, Licong Wang, Jack Chen, Alex Ho, Zipei Wang**
+<br />*Jeff Yu, Gilbert Lo, Licong Wang, Jack Chen, Alex Ho, Zipei Wang*
 
 
