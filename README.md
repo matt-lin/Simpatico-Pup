@@ -2,17 +2,25 @@
 
 
 ===================Team Info============================
-<br />
-####Dependencies - 
+
+Pivotal Tracker
+https://www.pivotaltracker.com/n/projects/2068531
+
+Heroku
+https://simpatico-pup.herokuapp.com/
+
+Customer's website
+http://www.simpaticopup.com/
+
+<br />####Dependencies - 
   1. [rvm](https://rvm.io)
   2. Ruby: 2.2.2
 
 SimpaticoPup
-
 <br />**after cloning run cd . && bin/setup to set up environment**
 
 
-####Past Contributors (in no particular order)
+####Current Contributors (in no particular order)
 <br />*Jeff Yu, Gilbert Lo, Licong Wang, Jack Chen, Alex Ho, Zipei Wang*
 
 
