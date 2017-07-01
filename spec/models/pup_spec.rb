@@ -38,7 +38,7 @@ describe Pup do
       dog_5 = FactoryGirl.create(:pup)
       ratings_hash = Pup.avg_ratings_by_breeds('poodle')
       ratings_hash.each do |rating, value|
-        assert(value == 0)
+        assert(value == 1)
       end
     end
     it "should find the correct average ratings for a single breed dog" do
@@ -48,19 +48,10 @@ describe Pup do
       dog_4 = FactoryGirl.create(:pup, :breed_1 => 'boxer')
       dog_5 = FactoryGirl.create(:pup)
       
-      puts '*'*80
-      
-      Pup.all.each do |p|
-        puts p.breed_1
-      end
-      
-      puts Pup.find_by_breed('boxer').length
-      puts '*'*80
-      
       ratings_hash = Pup.avg_ratings_by_breeds('boxer')
       correct_hash = {:overall_health => 2, :trainability => 5.0/3.0, :social_behavior => 1,
-                      :energy_level => 1, :simpatico_rating => 1}
-
+                      :dog_behavior => 1, :energy_level => 1, :simpatico_rating => 1}
+                      
       assert(correct_hash == ratings_hash)
     end
     it "should find the average ratings for a mixed breed dog" do

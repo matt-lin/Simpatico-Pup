@@ -14,5 +14,6 @@ FactoryGirl.define do
     comments "Wow. Such doge. Very pup."
     breed_id 1
     breeder_id 1
+    dog_behavior 1
   end
 end

@@ -59,17 +59,17 @@ class Pup < ActiveRecord::Base
     count = 0.0
     pups_by_breed.each do |pup|
       results_hash.each do |rating, value|
-        # unless pup.send(rating) == 0
-        #   results_hash[rating] += pup.send(rating)
-        #   results_num[rating] += 1
-        # end
-        results_hash[rating] += pup.send(rating)
+        unless pup.send(rating) == nil
+          results_hash[rating] += pup.send(rating)
+          results_num[rating] += 1
+        end
+        # results_hash[rating] += pup.send(rating)
       end
       count += 1.0
     end
     results_hash.each do |k,v|
-      # results_hash[k] = 1.0 * results_hash[k]/results_num[k] if results_num[k] > 0
-      results_hash[k] /= count
+      results_hash[k] = 1.0 * results_hash[k]/results_num[k] if results_num[k] > 0
+      # results_hash[k] /= count
     end
     results_hash
   end
