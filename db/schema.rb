@@ -108,6 +108,10 @@ ActiveRecord::Schema.define(version: 20161123051626) do
     t.integer  "dog_behavior"
     t.integer  "year"
     t.integer  "month"
+    t.string   "owner_name"
+    t.string   "breed_1"
+    t.string   "breed_2"
+    t.string   "comments"
   end
 
   create_table "selected_comments", force: :cascade do |t|

@@ -25,7 +25,7 @@ describe PupsController do
   end
   describe "looking at a single pup review" do
     it "should find the pup" do
-      temp_pup = FactoryGirl.build(:pup)
+      temp_pup = Pup.new()
       Pup.should_receive(:find).with('1').and_return(temp_pup)
       get :show, :id => 1
     end
@@ -34,7 +34,7 @@ describe PupsController do
     before :each do
       @user = FactoryGirl.create(:user)
       sign_in :user, @user
-      @temp_pup = FactoryGirl.build(:pup)
+      @temp_pup = Pup.new()
       @breeder = FactoryGirl.create(:breeder)
       @pup_hash = {:pup =>
         {
@@ -212,7 +212,7 @@ with you for a minimum of six months. Thank you.")
     it "should find the pup and update it's attributes" do
       @user = FactoryGirl.create(:user)
       sign_in :user, @user
-      temp_pup = FactoryGirl.build(:pup)
+      temp_pup = Pup.new()
       Pup.should_receive(:find).with('1').and_return(temp_pup)
       temp_pup.should_receive(:update_attributes).with({})
       put :update, {:id => 1, :pup => {}}
@@ -223,7 +223,7 @@ with you for a minimum of six months. Thank you.")
     it "should find the pup and destroy it's review" do
       @user = FactoryGirl.create(:user)
       sign_in :user, @user
-      temp_pup = FactoryGirl.build(:pup)
+      temp_pup = Pup.new()
       Pup.should_receive(:find).with('1').and_return(temp_pup)
       temp_pup.should_receive(:destroy)
       delete :destroy, :id => 1
