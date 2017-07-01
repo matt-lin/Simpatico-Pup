@@ -37,7 +37,7 @@ describe PupsController do
       @temp_pup = FactoryGirl.build(:pup)
       @breeder = FactoryGirl.create(:breeder)
       @pup_hash = {:pup =>
-         {
+        {
           :breeder_id => @breeder.id,
           :breeder_responsibility => "1",
           :pup_name => "Doge",
@@ -50,14 +50,14 @@ describe PupsController do
           :simpatico_rating => "1",
           :comments => "DOPE CITY"
         },
-         :breeder => {
-             :name => @breeder.name,
-             :city => @breeder.city,
-             :state => @breeder.state
-         }
+        :breeder => {
+            :name => @breeder.name,
+            :city => @breeder.city,
+            :state => @breeder.state
+        }
       }
       @breeder_nonexist_hash = {:pup =>
-         {
+        {
           :breeder_id => -1,
           :breeder_responsibility => "1",
           :pup_name => "Doge",
@@ -70,11 +70,11 @@ describe PupsController do
           :simpatico_rating => "1",
           :comments => "DOPE CITY"
         },
-         :breeder => {
-             :name => "John",
-             :city => "Seattle",
-             :state => "WA"
-         }
+        :breeder => {
+            :name => "John",
+            :city => "Seattle",
+            :state => "WA"
+        }
       }
     end
     it "should redirect to new pup page if fields are incomplete" do
