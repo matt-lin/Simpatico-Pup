@@ -12,7 +12,7 @@ https://simpatico-pup.herokuapp.com/
 Customer's website
 http://www.simpaticopup.com/
 
-###How the app addresses customer's need<br/>
+<br/>###How the app addresses customer's need<br/>
 <br/>SimpaticoPup is a website that collect crowd sourced data about the health, 
 temperament and suitability of pet dogs of various breeds, and from various 
 sources (dog breeders). This site can reduce and discourage irresponsible dog 
