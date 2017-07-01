@@ -12,8 +12,8 @@ https://simpatico-pup.herokuapp.com/
 Customer's website
 http://www.simpaticopup.com/
 
-###How the app addresses customer's need
-<br />SimpaticoPup is a website that collect crowd sourced data about the health, 
+###How the app addresses customer's need<br/>
+<br/>SimpaticoPup is a website that collect crowd sourced data about the health, 
 temperament and suitability of pet dogs of various breeds, and from various 
 sources (dog breeders). This site can reduce and discourage irresponsible dog 
 breeding (by giving dog lovers a clear and superior way to identify responsibly 
@@ -21,15 +21,15 @@ raised, healthy puppies) and can even ultimately improve the health and
 temperament of the pet dogs being produced.
 
 
-<br />####Dependencies - 
+<br/>####Dependencies - 
   1. [rvm](https://rvm.io)
   2. Ruby: 2.2.2
 
 SimpaticoPup
-<br />**after cloning run cd . && bin/setup to set up environment**
+<br/>**after cloning run cd . && bin/setup to set up environment**
 
 
 ####Current Contributors (in no particular order)
-<br />*Jeff Yu, Gilbert Lo, Licong Wang, Jack Chen, Alex Ho, Zipei Wang*
+<br/>*Jeff Yu, Gilbert Lo, Licong Wang, Jack Chen, Alex Ho, Zipei Wang*
 
 
