@@ -43,15 +43,13 @@ class Pup < ActiveRecord::Base
     result += Pup.where("breed_2 = ?", breed_name).order("created_at DESC")
   end
   
-  def Pup.find_by_breeds(*breed_names)
-    result = []
-    breed_names.each do |breed_name|
-          result += find_by_breed(breed_name)
-    end
+  def Pup.find_by_breeds(breed1, breed2='None')
+      result = Pup.where("breed_1 = ? and breed_2 = ?", breed1, breed2).order("created_at DESC")
+      result += Pup.where("breed_1 = ? and breed_2 = ?", breed2, breed1).order("created_at DESC")
   end
 
-  def Pup.avg_ratings_by_breeds(breed_name)
-    pups_by_breed = Pup.find_by_breed(breed_name)
+  def Pup.avg_ratings_by_breeds(breed1, breed2='None')
+    pups_by_breed = Pup.find_by_breeds(breed1, breed2)
     results_hash = {:overall_health => 0, :trainability => 0, :social_behavior => 0,
                     :dog_behavior => 0, :energy_level => 0, :simpatico_rating => 0}
     results_num = {:overall_health => 0, :trainability => 0, :social_behavior => 0,
@@ -74,9 +72,12 @@ class Pup < ActiveRecord::Base
     results_hash
   end
   
+  #Check whether a breed is legal one
+  def Pup.legal_dog(breed_name)
+    not Breed.find_by_name(breed_name) == nil
+  end
   
-    
-
+  
   private
   def limit_ratings
     # if self.user.pups(:reload).size > 8

@@ -38,7 +38,7 @@ describe Pup do
       dog_5 = FactoryGirl.create(:pup)
       ratings_hash = Pup.avg_ratings_by_breeds('poodle')
       ratings_hash.each do |rating, value|
-        assert(value == 1)
+        assert(value == 0)
       end
     end
     it "should find the correct average ratings for a single breed dog" do
@@ -61,9 +61,11 @@ describe Pup do
       dog_4 = FactoryGirl.create(:pup, :breed_2 => 'German Short Hair')
       dog_5 = FactoryGirl.create(:pup)
       ratings_hash = Pup.avg_ratings_by_breeds('poodle', 'shiba inu')
+      
       ratings_hash.each do |rating, value|
         assert(value == 1)
       end
+
     end
   end
   describe "returning a safe hashtag no matter what the values of hashtags_1-3 are" do
