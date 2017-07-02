@@ -53,8 +53,10 @@ class Breeder < ActiveRecord::Base
   def Breeder.find_by_substring(name, limit = 0)
     breeders = Breeder.skip_one
     query_str ="name LIKE ? OR name LIKE ?"
-    if name.length >= 1
+    if name.length > 1
       name = name[0].upcase + name[1..-1].downcase
+    elsif name.length == 1
+      name = name[0].upcase
     end
     query_values = ["#{name}%"] + ["% #{name}%"]
     limit == 0 ? breeders.where(query_str, *query_values) : breeders.where(query_str, *query_values).limit(limit)
@@ -99,7 +101,7 @@ class Breeder < ActiveRecord::Base
 
   private
   def Breeder.skip_one
-    Breeder.where("id > 1")
+    Breeder.where("id >= 1")
   end
 
 end
