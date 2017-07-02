@@ -57,7 +57,7 @@ end
 
 Then /^I should( not)? see twice "(.*)"/ do |not_see, text|
   if not_see != nil
-		assert !page.has_content?(text, count: 2)
+		assert_no_text(text, count: 2)
   else
 		assert_text(text, count: 2)
 	end	
