@@ -49,9 +49,9 @@ end
 
 Then /^I should( not)? see "(.*)"/ do |not_see, text|
   if not_see != nil
-		assert page.has_no_content?(text)
+		assert_no_text(text)
   else
-		assert page.has_content?(text)
+		assert_text(text)
 	end	
 end
 
