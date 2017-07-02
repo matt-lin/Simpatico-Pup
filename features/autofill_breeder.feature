@@ -8,12 +8,12 @@ Feature: autofill breeder name into breeder forms
 
     Given the following breeders exist:
       | name            | city     | state |
+      | Chris            | Berkeley | CA    |
+      | Alex           | Berkeley | CA    |
       | Carl            | Berkeley | CA    |
-      | Chris           | Berkeley | CA    |
-      | Alex            | Berkeley | CA    |
       | Alexander       | Berkeley | CA    |
       | Michael Jackson | Berkeley | CA    |
-      | Jamieee         | Berkeley | CA    |
+      | Chan            | Berkeley | CA    |
 
 
     And I am on the RateMyPup home page
@@ -21,12 +21,14 @@ Feature: autofill breeder name into breeder forms
 
   Scenario: fill all breeders that start with C
     When I enter "C" into autocomplete "breeder_find" with "keyup"
-    Then I should see "Carl"
+    Then I should see "Chris"
+    And I should see "Carl"
+    And I should see "Chan"
     And I should not see "Alex"
-    And I should see "Chris"
+    
 
   Scenario: fill all breeders that start with a substring
-    When I enter "Alex" into autocomplete "breeder_find" with "keyup"
+    When I enter "A" into autocomplete "breeder_find" with "keyup"
     Then I should see "Alex"
     And I should see "Alexander"
     And I should not see "Carl"
