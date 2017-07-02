@@ -1,6 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :delete_pup_from_session, :set_titles 
+  
+  ##### :set_titles deleted from before_filter to stop undfined method being created
+  before_filter :delete_pup_from_session
+  ##########################################
+  
+  
   def delete_pup_from_session
     if session[:pup]
       session.delete(:pup)
