@@ -49,9 +49,9 @@ end
 
 Then /^I should( not)? see "(.*)"/ do |not_see, text|
   if not_see != nil
-		assert page.has_no_content?(text)
+		assert_no_text(text)
   else
-		assert page.has_content?(text)
+		assert_text(text)
 	end	
 end
 
@@ -59,7 +59,7 @@ Then /^I should( not)? see twice "(.*)"/ do |not_see, text|
   if not_see != nil
 		assert !page.has_content?(text, count: 2)
   else
-		assert page.has_content?(text, count: 2)
+		assert_text(text, count: 2)
 	end	
 end
 
@@ -148,7 +148,7 @@ When(/^I am logged in$/) do
   fill_in(:user_email, :with => "lolright@aol.com")
   fill_in(:user_password, :with => "lolright")
   click_button("Log in")
-  assert page.has_content?("Logout")
+  assert_text("Logout")
 end
 
 def set_hidden_field(field, value)
