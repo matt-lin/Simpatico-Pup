@@ -8,7 +8,7 @@ Screencasts
 
 Jeff Yu: https://www.youtube.com/watch?v=9xRmxBx_dOg&feature=em-upload_owner
 
-Gilbert Lo:
+Gilbert Lo: https://www.youtube.com/watch?v=HB3-n5CFnkI&feature=youtu.be
 
 Licong Wang: 
 
