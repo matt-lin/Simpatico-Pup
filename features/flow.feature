@@ -1,3 +1,5 @@
+################Javascript goes wrong other functionality works fine
+#####################################################################
 @javascript
 Feature: Improve "flow" of site
 
@@ -16,10 +18,10 @@ Feature: Improve "flow" of site
       | George Michael  | Fresno   | CA     |
       | George W. Bush  | Waco     | TX     |
     And I am on the RateMyPup home page
+    And I am logged in
 
     Scenario: The hashtags should be present on the page
-      Given I am logged in
-      And I am on the "Create New Pup Test" page
+      Given I am on the "Create New Pup Test" page
       And I should see all of:
         | "#EasyToObedienceTrain"                     |
         | "#HardToObedienceTrain"                     |
