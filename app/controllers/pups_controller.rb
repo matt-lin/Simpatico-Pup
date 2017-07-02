@@ -89,7 +89,7 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
     new_pup[:hashtag_2] = params[:pup][:hashtag_2]
     new_pup[:hashtag_3] = params[:pup][:hashtag_3]
     new_pup[:breed_id] = Breed.find_by_name(session[:breed]).id
-    new_pup[:breeder_id] = session[:breeder_id]
+    new_pup[:breeder_id] = params[:pup][:breeder_id]
     new_pup[:user_id] = current_user.id
     @pup = Pup.new(new_pup)
     new_comment = {:content => params[:pup][:comments]}
@@ -105,12 +105,14 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     end
 
     if !@pup.valid?
+      puts '*'*80
       flash[:notice] = 'Please make sure all fields are complete!'
       redirect_to new_pup_path and return
     end
     if !@Comment.valid?
-        flash[:notice] = 'Please make sure the comment is less than 140 characters.'
-        redirect_to new_pup_path and return
+      puts '%'*80
+      flash[:notice] = 'Please make sure the comment is less than 140 characters.'
+      redirect_to new_pup_path and return
     end
 
     @pup.save
@@ -188,10 +190,14 @@ currently limiting the number of ratings made by each dog owner to eight, and li
       session[:step2] = true
       return
     else
-      flash[:modal] = "modal"
+      flash[:modal] = "To keep our database as accurate as possible,
+we are collecting information only for dogs that have been residing 
+in their current home for six months or more. Please come back to our 
+site and rate your dog after s/he has lived 
+with you for a minimum of six months. Thank you."
     end
     session[:step2] = false
-    redirect_to dog_how_long_path
+    redirect_to dog_how_long_path(:pup => {:pup_name => session[:pup_name]})
   end
 
   #step3
@@ -233,7 +239,7 @@ currently limiting the number of ratings made by each dog owner to eight, and li
       redirect_to root_path
     end
     @pups = Pup.find_by_breed(name)
-    @avg_ratings = Pup.avg_ratings_by_breed(name)
+    @avg_ratings = Pup.avg_ratings_by_breeds(name)
   end
 
 
