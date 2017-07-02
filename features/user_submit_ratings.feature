@@ -1,4 +1,4 @@
-@javascript
+#javascript
 Feature: only users with a user profile should be able to submit a rating
 
   As a current dog owner
