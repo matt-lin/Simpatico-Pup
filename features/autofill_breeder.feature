@@ -1,4 +1,3 @@
-
 @javascript
 Feature: autofill breeder name into breeder forms
   As a potential dog owner
@@ -14,6 +13,7 @@ Feature: autofill breeder name into breeder forms
       | Alex            | Berkeley | CA    |
       | Alexander       | Berkeley | CA    |
       | Michael Jackson | Berkeley | CA    |
+      | Jamieee         | Berkeley | CA    |
 
 
     And I am on the RateMyPup home page
@@ -21,9 +21,9 @@ Feature: autofill breeder name into breeder forms
 
   Scenario: fill all breeders that start with C
     When I enter "C" into autocomplete "breeder_find" with "keyup"
-    Then I should see "Chris"
-    And I should see "Carl"
+    Then I should see "Carl"
     And I should not see "Alex"
+    And I should see "Chris"
 
   Scenario: fill all breeders that start with a substring
     When I enter "Alex" into autocomplete "breeder_find" with "keyup"
@@ -31,4 +31,5 @@ Feature: autofill breeder name into breeder forms
     And I should see "Alexander"
     And I should not see "Carl"
     And I should not see "Michael Jackson"
+    
 
