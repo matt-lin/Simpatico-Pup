@@ -8,10 +8,10 @@ describe Breeder do
       @breeder.pups.should == pups
     end
     it "should get the average ratings for each pup" do
-      results_hash = {:overall_health => 1, :trainability => 1, :social_behavior => 1,
-                      :energy_level => 1, :simpatico_rating => 1, :breeder_responsibility => 1}
+      results_hash = {:overall_health => 1.0, :trainability => 1.0, :social_behavior => 1.0,
+                      :dog_behavior => 1.0, :energy_level => 1.0, :simpatico_rating => 1.0, :breeder_responsibility => 1.0}
       @breeder.pups.each do |pup|
-        results_hash.each{|k,v| pup.should_receive(k).and_return(1)}
+        results_hash.each{|k,v| pup.send(k).should == 1.0}
       end
       @breeder.avg_pup_rating.should == results_hash
     end
@@ -37,6 +37,9 @@ describe Breeder do
         Breeder.find_by_substring("Teddy").each do |breeder|
           assert(@breeders.include?(breeder), "Breeder not in the 'Teddy' breeders array")
         end
+      end
+      it "should find every breeders with substr T" do
+        Breeder.find_by_substring("T").should == @breeders + @other_breeders
       end
     end
     describe "find by type of dog breed" do
@@ -70,6 +73,9 @@ describe Breeder do
   describe "increment deleted reviews for breeder" do
     it "should increase by 1" do
       breeder = FactoryGirl.create(:breeder)
+      puts "*" * 80
+      puts breeder.removed_reviews
+      puts "*" * 80
       initial = breeder.removed_reviews
       breeder.increment_deleted_reviews
       breeder.removed_reviews.should == (initial + 1)

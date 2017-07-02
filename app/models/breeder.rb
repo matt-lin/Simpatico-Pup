@@ -53,8 +53,10 @@ class Breeder < ActiveRecord::Base
   def Breeder.find_by_substring(name, limit = 0)
     breeders = Breeder.skip_one
     query_str ="name LIKE ? OR name LIKE ?"
-    if name.length >= 1
-      name = name[0].upcase + name[1..-1]
+    if name.length > 1
+      name = name[0].upcase + name[1..-1].downcase
+    elsif name.length == 1
+      name = name[0].upcase
     end
     query_values = ["#{name}%"] + ["% #{name}%"]
     limit == 0 ? breeders.where(query_str, *query_values) : breeders.where(query_str, *query_values).limit(limit)
@@ -73,10 +75,46 @@ class Breeder < ActiveRecord::Base
       breeders.where("name = ? AND city = ? AND state = ?", m[1], m[2], m[3]).first
     end
   end
+  
+  def Breeder.find_breeders_by_breed(breed1, breed2)
+    breeders = Breeder.skip_one
+    result = []
+    breeders.each do |breeder|
+      pups = Pup.where("breeder_id = ?", breeder.id)
+      pups.each do |pup|
+        if (pup.breed_1 == breed1 and pup.breed_2 == breed2)
+          result << breeder
+        end
+      end
+    end
+    result
+  end
+  
+  def increment_deleted_reviews
+    self.update(removed_reviews: self.removed_reviews+1)
+  end
+  
+  def Breeder.intersect_by_substring_and_breed(query, limit=0)
+    breeders = Breeder.skip_one.where("city = ? and state = ?", query[:city], query[:state])
+    breeders = breeders & find_by_substring(query[:name])
+    result = []
+    breeders.each do |breeder|
+      pups = Pup.where("breeder_id = ?", breeder.id)
+      pups.each do |pup|
+        if (pup.breed_1 == query[:breed_1] and pup.breed_2 == query[:breed_2] and (!result.include? breeder))
+          result << breeder
+        end
+        if result.length == limit
+          return result
+        end
+      end
+    end
+    result
+  end
 
   private
   def Breeder.skip_one
-    Breeder.where("id > 1")
+    Breeder.where("id >= 1")
   end
 
 end
