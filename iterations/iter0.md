@@ -12,7 +12,7 @@ Gilbert Lo: https://www.youtube.com/watch?v=HB3-n5CFnkI&feature=youtu.be
 
 Licong Wang: 
 
-Jack Chen:
+Jack Chen:https://youtu.be/5AsnpbP4cvE
 
 Gung Hiu, Ho:
 
