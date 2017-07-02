@@ -7,5 +7,5 @@ class Text < ActiveRecord::Base
   #   statement_ids = Hash[statements.map{|statement| [statement.section_order, statement]}]
   #   statement_ids.values
   # end
-
+  
 end
