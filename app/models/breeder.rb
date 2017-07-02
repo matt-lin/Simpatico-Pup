@@ -93,13 +93,26 @@ class Breeder < ActiveRecord::Base
   end
   
   def Breeder.intersect_by_substring_and_breed(query, limit=0)
-    query.has_key? :name ? breeders = Breeder.find_by_substring(query[:name], limit) : breeders = Breeder.skip_one
-    breeders.where("city = ? and state = ? and breed_1 = ? and breed_2 = ?", query[:city], query[:state], query[:breed_1], query[:breed_2])
+    breeders = Breeder.skip_one.where("city = ? and state = ?", query[:city], query[:state])
+    breeders = breeders & find_by_substring(query[:name])
+    result = []
+    breeders.each do |breeder|
+      pups = Pup.where("breeder_id = ?", breeder.id)
+      pups.each do |pup|
+        if (pup.breed_1 == query[:breed_1] and pup.breed_2 == query[:breed_2] and (!result.include? breeder))
+          result << breeder
+        end
+        if result.length == limit
+          return result
+        end
+      end
+    end
+    result
   end
 
   private
   def Breeder.skip_one
-    Breeder.where("id > 1")
+    Breeder.where("id >= 1")
   end
 
 end

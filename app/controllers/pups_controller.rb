@@ -151,14 +151,14 @@ currently limiting the number of ratings made by each dog owner to eight, and li
   # step 1
   def dog_how_long
     if params[:pup]
-      pup_name = params[:pup][:name]
+      pup_name = params[:pup][:pup_name]
     else
       pup_name = session[:pup_name]
     end
     if pup_name.nil? || pup_name.empty?
       flash[:notice] = "Please input a name"
       session[:step1] = false
-      redirect_to dog_name_path and return
+      redirect_to dog_name_path and return      
     else
       session[:pup_name] = pup_name
       session[:step1] = true
