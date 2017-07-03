@@ -26,20 +26,20 @@
           </ul>
             <ul class="nav navbar-nav navbar-right">
               <li> 
-                <%= link_to @mission, text_mission_path %>
+                <%= link_to @mission, "Mission" %>
               </li>
               <li> 
-                <%= link_to @background, text_background_path %>
+                <%= link_to @background, "Background" %>
               </li>
               <li> 
-                <%= link_to @goals, text_goals_path %>
+                <%= link_to @goals, "SimpaticoPup's Goals" %>
               </li>
               <li> 
-                <%= link_to @how_you_can_help, text_how_you_can_help_path %>
+                <%= link_to @how_you_can_help, "How You Can Help" %>
               </li>
-              <li> 
-                <%= link_to "Community Forum", "/forum" %>
-              </li>
+              <!--<li> -->
+              <!--  <%= link_to "Community Forum", "Community Forum" %>-->
+              <!--</li>-->
               
               <% if user_signed_in? %>
 
