@@ -1,7 +1,7 @@
 class Pup < ActiveRecord::Base
 
   belongs_to :user
-  validate :limit_ratings
+  # validate :limit_ratings
   belongs_to :breeder
   belongs_to :breed
 
