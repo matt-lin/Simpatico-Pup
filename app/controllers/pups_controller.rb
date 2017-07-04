@@ -197,7 +197,7 @@ site and rate your dog after s/he has lived
 with you for a minimum of six months. Thank you."
     end
     session[:step2] = false
-    redirect_to dog_how_long_path(:pup => {:pup_name => session[:pup_name]})
+    redirect_to dog_how_long_path(:pup => {:name => session[:pup_name]})
   end
 
   #step3

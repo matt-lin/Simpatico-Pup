@@ -8,11 +8,51 @@
     %div{:class => "sub-header"}
       %h3 How long have you owned your dog?
     %br
-    %div{:class => "form-group great text-center", :class => "sub-title"}
-      = render 'text_input', title: "Years", var: 'years', placeholder: "Years", explanation: "Enter the number of years you have owned your dog."
-      %br
-      = render 'text_input', title: "Months", var: 'months', placeholder: "Months", explanation: "And/or enter the number of months you have owned your dog."
 
+    %div{:class => "form-group great text-center", :class => "sub-title"}
+      %label{ :for => 'pup_years'}Years
+      %div{:class => 'explanation'}Enter the number of years you have owned your dog.
+      %select{ :name => 'pup[years]', :class => 'form-control', :id => 'pup_years' }
+        %option{:value => 0}= "0"
+        %option{:value => 1}= "1"
+        %option{:value => 2}= "2" 
+        %option{:value => 3}= "3"
+        %option{:value => 4}= "4" 
+        %option{:value => 5}= "5"
+        %option{:value => 6}= "6" 
+        %option{:value => 7}= "7"
+        %option{:value => 8}= "8"     
+        %option{:value => 9}= "9"
+        %option{:value => 10}= "10" 
+        %option{:value => 11}= "11"
+        %option{:value => 12}= "12" 
+        %option{:value => 13}= "13"
+        %option{:value => 14}= "14" 
+        %option{:value => 15}= "15"
+        %option{:value => 16}= "16"  
+        %option{:value => 17}= "17"
+        %option{:value => 18}= "18" 
+        %option{:value => 19}= "19"
+        %option{:value => 20}= "20"
+        
+      %br  
+        
+      %label{ :for => 'pup_months'}Months
+      %div{:class => 'explanation'}And/or enter the number of months you have owned your dog.
+      %select{ :name => 'pup[months]', :class => 'form-control', :id => 'pup_months' }
+        %option{:value => 0}= "0"
+        %option{:value => 1}= "1"
+        %option{:value => 2}= "2" 
+        %option{:value => 3}= "3"
+        %option{:value => 4}= "4" 
+        %option{:value => 5}= "5"
+        %option{:value => 6}= "6" 
+        %option{:value => 7}= "7"
+        %option{:value => 8}= "8"     
+        %option{:value => 9}= "9"
+        %option{:value => 10}= "10" 
+        %option{:value => 11}= "11"
+     
     %br
     %br
 
