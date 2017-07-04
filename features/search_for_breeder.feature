@@ -23,8 +23,8 @@ Background: reviews have been added to the database
     And I click ".button-c"
 
  Scenario: searching for a breeder
-     When I enter "Alex McGourty" into autocomplete "breeder_find" with "keyup"
-     And I should see "Alex McGourty - San Francisco, CA"
+     When I enter "George W. Bush " into autocomplete "breeder_find" with "keyup"
+     And I should see "George W. Bush"
      And I click on "George W. Bush"
     
      And I click "submit"

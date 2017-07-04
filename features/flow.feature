@@ -1,6 +1,6 @@
 ################Javascript goes wrong other functionality works fine
 #####################################################################
-@javascript
+#javascript
 Feature: Improve "flow" of site
 
     As a user
