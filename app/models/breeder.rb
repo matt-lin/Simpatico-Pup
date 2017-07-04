@@ -69,6 +69,9 @@ class Breeder < ActiveRecord::Base
   end
   
   def Breeder.find_by_formatted_string(search_str)
+    # puts '*'*80
+    # puts search_str
+    # puts '*'*80
     m = /^([a-zA-Z ]+) - ([a-zA-Z ]+), ([a-zA-Z ]+)$/.match(search_str)
     if m
       breeders = Breeder.skip_one

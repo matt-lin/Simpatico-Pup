@@ -55,8 +55,8 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
         end
       end
       flash[:notice] = "The dog breeder or kennel you entered is not yet in our database.
-      Please click here to add it to our database."
-      redirect_to dog_breeder_path and return
+      Please add the name of the dog breeder, city and state to our database."
+      redirect_to new_breeder_path and return
     end
   end
 
@@ -106,9 +106,6 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     end
 
     #Problem 2
-    puts '*'*80
-    puts new_pup
-    puts '*'*80
     if !@pup.valid?
       flash[:notice] = 'Please make sure all fields are complete!'
       redirect_to new_pup_path and return
@@ -221,7 +218,6 @@ with you for a minimum of six months. Thank you."
     end
     session[:breed] = breed
     session[:step3] = true
-
   end
 
   #################### End Questionnaire ####################

@@ -36,9 +36,10 @@ describe PupsController do
       sign_in :user, @user
       @temp_pup = Pup.new()
       @breeder = FactoryGirl.create(:breeder)
+      session[:breeder_id] = @breeder.id
       @pup_hash = {:pup =>
         {
-          :breeder_id => @breeder.id,
+          # :breeder_id => @breeder.id,
           :breeder_responsibility => "1",
           :name => "Doge",
           :breed_1 => "Shiba Inu",
