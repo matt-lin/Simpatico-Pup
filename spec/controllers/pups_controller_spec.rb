@@ -135,7 +135,7 @@ describe PupsController do
       session[:step1] = true
       session[:pup_name] = "Doggie"
       get :dog_breed, {:pup=>{:years=>"",:months=>"3"}}
-      expect(response).to redirect_to dog_how_long_path(:pup=>{:pup_name=>"Doggie"})
+      expect(response).to redirect_to dog_how_long_path(:pup=>{:name=>"Doggie"})
       expect(flash[:modal]).to eq("To keep our database as accurate as possible,
 we are collecting information only for dogs that have been residing 
 in their current home for six months or more. Please come back to our 
@@ -147,7 +147,7 @@ with you for a minimum of six months. Thank you.")
       session[:step1] = true
       session[:pup_name] = "Doggie"
       get :dog_breed, {:pup=>{:years=>"",:months=>""}}
-      expect(response).to redirect_to dog_how_long_path(:pup=>{:pup_name=>session[:pup_name]})
+      expect(response).to redirect_to dog_how_long_path(:pup=>{:name=>session[:pup_name]})
       expect(session[:step2]).to be_false
     end
     it "should redirect to root page if any previous step not finished(step breed)" do
