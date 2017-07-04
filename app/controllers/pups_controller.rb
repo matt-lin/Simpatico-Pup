@@ -75,14 +75,6 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
   def create
     # gather pup ifo
     
-    # puts '*'*80
-    # puts 'Params:'
-    # puts params
-    # puts 'Session:'
-    # puts session[:pup_name]
-    # # ptus session[:year]
-    # puts '*'*80
-    
     new_pup = {}
     new_pup[:pup_name] = session[:pup_name]
     new_pup[:year] = session[:years] || 0
@@ -98,7 +90,7 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
     new_pup[:hashtag_2] = params[:pup][:hashtag_2]
     new_pup[:hashtag_3] = params[:pup][:hashtag_3]
     new_pup[:breed_id] = Breed.find_by_name(session[:breed]).id
-    new_pup[:breeder_id] = params[:pup][:breeder_id]
+    new_pup[:breeder_id] = session[:breeder_id]
     new_pup[:user_id] = current_user.id
     @pup = Pup.new(new_pup)
     new_comment = {:content => params[:pup][:comments]}
@@ -110,18 +102,18 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
 companion dogs. To ensure that our rating summaries accurately reflect input from a wide variety of dog owners, we are
 currently limiting the number of ratings made by each dog owner to eight, and limiting each dog owner to rating only two
  dogs that come from the same dog breeder. Thank you for your contributions to our database.'
-      puts '&'*80
       redirect_to new_pup_path and return
     end
 
     #Problem 2
+    puts '*'*80
+    puts new_pup
+    puts '*'*80
     if !@pup.valid?
-      puts '*'*80
       flash[:notice] = 'Please make sure all fields are complete!'
       redirect_to new_pup_path and return
     end
     if !@Comment.valid?
-      puts '%'*80
       flash[:notice] = 'Please make sure the comment is less than 140 characters.'
       redirect_to new_pup_path and return
     end
