@@ -74,6 +74,15 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
 
   def create
     # gather pup ifo
+    
+    # puts '*'*80
+    # puts 'Params:'
+    # puts params
+    # puts 'Session:'
+    # puts session[:pup_name]
+    # # ptus session[:year]
+    # puts '*'*80
+    
     new_pup = {}
     new_pup[:pup_name] = session[:pup_name]
     new_pup[:year] = session[:years] || 0
@@ -101,9 +110,11 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
 companion dogs. To ensure that our rating summaries accurately reflect input from a wide variety of dog owners, we are
 currently limiting the number of ratings made by each dog owner to eight, and limiting each dog owner to rating only two
  dogs that come from the same dog breeder. Thank you for your contributions to our database.'
+      puts '&'*80
       redirect_to new_pup_path and return
     end
 
+    #Problem 2
     if !@pup.valid?
       puts '*'*80
       flash[:notice] = 'Please make sure all fields are complete!'
@@ -153,7 +164,7 @@ currently limiting the number of ratings made by each dog owner to eight, and li
   # step 1
   def dog_how_long
     if params[:pup]
-      pup_name = params[:pup][:pup_name]
+      pup_name = params[:pup][:name]
     else
       pup_name = session[:pup_name]
     end

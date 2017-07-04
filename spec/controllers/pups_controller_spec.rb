@@ -40,7 +40,7 @@ describe PupsController do
         {
           :breeder_id => @breeder.id,
           :breeder_responsibility => "1",
-          :pup_name => "Doge",
+          :name => "Doge",
           :breed_1 => "Shiba Inu",
           :breed_2 => "None",
           :overall_health => "1",
@@ -60,7 +60,7 @@ describe PupsController do
         {
           :breeder_id => -1,
           :breeder_responsibility => "1",
-          :pup_name => "Doge",
+          :name => "Doge",
           :breed_1 => "Shiba Inu",
           :breed_2 => "None",
           :overall_health => "1",
@@ -113,13 +113,13 @@ describe PupsController do
     #   response.should redirect_to root_path
     # end
     it "should go to dog_how_long if name is provided" do
-      get :dog_how_long, {:pup=>{:pup_name=>"Doggie"}}
+      get :dog_how_long, {:pup=>{:name=>"Doggie"}}
       expect(response).to render_template(:dog_how_long)
       expect(session[:pup_name]).to eq("Doggie")
       expect(session[:step1]).to be_true
     end
     it "should redirect to do_name if name is not provided" do
-      get :dog_how_long, {:pup=>{:pup_name=>""}}
+      get :dog_how_long, {:pup=>{:name=>""}}
       expect(response).to redirect_to dog_name_path
       expect(session[:step1]).to be_false
     end
