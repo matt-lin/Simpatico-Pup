@@ -22,10 +22,14 @@ Background: reviews have been added to the database
     And I am on the RateMyPup home page
     And I click ".button-c"
 
-# Scenario: searching for a breeder
-#     When I enter "George W. Bush" into autocomplete "breeder_find" with "keyup"
-#     And I follow "George W. Bush"
-#     Then I should see "3.33"
-#     And I should see "The greatest dog I've ever owned"
-#     And I should see "Super chiller dog."
-#     And I should see "Another great dog."
+ Scenario: searching for a breeder
+     When I enter "Alex McGourty" into autocomplete "breeder_find" with "keyup"
+     And I should see "Alex McGourty - San Francisco, CA"
+     And I click on "George W. Bush"
+    
+     And I click "submit"
+    
+     Then I should see "3.33"
+     And I should see "The greatest dog I've ever owned"
+     And I should see "Super chiller dog."
+     And I should see "Another great dog."
