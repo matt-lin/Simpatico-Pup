@@ -1,4 +1,4 @@
-@javascript
+#@javascript
 Feature: Split rating process into a few steps
   As a dog owner, when I rate my puppy
   So that I can make sure I am allowed to rate my puppy before I enter too much information

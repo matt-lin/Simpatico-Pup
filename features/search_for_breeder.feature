@@ -23,13 +23,11 @@ Background: reviews have been added to the database
     And I click ".button-c"
 
  Scenario: searching for a breeder
-     When I enter "George W. Bush " into autocomplete "breeder_find" with "keyup"
-     And I should see "George W. Bush"
-     And I click on "George W. Bush"
+     When I enter "Justin MacMillin - Porterville, CA" into "breeder_find"
+     And I send "/n" to "breeder_find"
+     And I press "Find Breeder"
     
-     And I click "submit"
-    
-     Then I should see "3.33"
-     And I should see "The greatest dog I've ever owned"
-     And I should see "Super chiller dog."
-     And I should see "Another great dog."
+     Then I should see "There are 2 ratings for Justin MacMillin pups"
+     And I should see "very well behaved!"
+     And I should see "love my dog!"
+     And I should see "3.5"
