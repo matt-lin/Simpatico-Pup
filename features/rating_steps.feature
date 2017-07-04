@@ -1,4 +1,4 @@
-@javascript
+#@javascript
 Feature: Split rating process into a few steps
   As a dog owner, when I rate my puppy
   So that I can make sure I am allowed to rate my puppy before I enter too much information
@@ -20,20 +20,20 @@ Background: User already logged in
 
   Scenario: step1->2(happy), submit form with valid dog name
     Given I am on the "Dog Name" page
-    When I fill in "pup_pup_name" with "Doggie"
+    When I fill in "pup_name" with "Doggie"
     And I press "next_button"
     Then I should be on the "Dog How Long" page
     And I should see "How long have you owned your dog?"
 
   Scenario: step1->1(sad), submit form with invalid dog name
     Given I am on the "Dog Name" page
-    When I fill in "pup_pup_name" with ""
+    When I fill in "pup_name" with ""
     And I press "next_button"
     Then I should be on the "Dog Name" page
     And I should see "Please input a name"
 
   Scenario: step2->3(happy), submit with valid years and months
-    Given I am on the "Dog How Long Test" page
+    Given I am on the "Dog How Long" page
     When I fill in "pup_years" with "1"
     And I fill in "pup_months" with "1"
     And I press "next_button"
@@ -41,7 +41,7 @@ Background: User already logged in
     And I should see "Please indicate your dog's breed."
   
   Scenario: step2->0(sad), submit form with invalid years and months
-    Given I am on the "Dog How Long Test" page
+    Given I am on the "Dog How Long" page
     When I fill in "pup_years" with "0"
     And I fill in "pup_months" with "4"
     And I press "next_button"
