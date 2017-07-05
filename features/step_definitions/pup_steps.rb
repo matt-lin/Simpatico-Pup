@@ -122,6 +122,12 @@ Given(/^the following breeders exist:$/) do |table|
   end
 end
 
+Given(/^the following breeds exist:$/) do |table|
+  table.hashes.each do |breed|
+    FactoryGirl.create(:breed, :name => breed[:name])
+  end
+end
+
 When(/^I enter "(.*?)" into "(.*?)"$/) do |value, field|
   fill_in(field, :with => value)
 end
