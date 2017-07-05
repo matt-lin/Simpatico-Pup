@@ -92,6 +92,7 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
     new_pup[:breed_id] = Breed.find_by_name(session[:breed]).id
     new_pup[:breeder_id] = session[:breeder_id]
     new_pup[:user_id] = current_user.id
+    # new_pup[:breeder_1] = session[:breed]
     @pup = Pup.new(new_pup)
     new_comment = {:content => params[:pup][:comments]}
     @Comment = Comment.new(new_comment)
