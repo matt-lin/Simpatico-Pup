@@ -105,8 +105,10 @@ When /^I fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
   fill_in(field, :with => value)
 end
 
-When /^I select "([^"]*)" in the dropdown list "([^"]*)"$/ do |field, value|
-  find(field).select(value)
+When /^(?:|I )select "([^"]*)" in the dropdown menu "([^"]*)"$/ do |field, value|
+  within field do
+  find("option[value= value]").click
+  end
 end
 
 #NEW
