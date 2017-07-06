@@ -105,6 +105,10 @@ When /^I fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
   fill_in(field, :with => value)
 end
 
+When /^I select "([^"]*)" in the dropdown list "([^"]*)"$/ do |field, value|
+  find(field).select(value)
+end
+
 #NEW
 When /^I click on "([^\"]+)"$/ do |text|
   matcher = ['*', { :text => text }]
