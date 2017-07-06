@@ -105,9 +105,32 @@ When /^I fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
   fill_in(field, :with => value)
 end
 
+When /^(?:|I )select "([^"]*)" in the dropdown menu "([^"]*)"$/ do |field, value|
+  within field do
+  find("option[value= value]").click
+  end
+end
+
+#NEW
+When /^I click on "([^\"]+)"$/ do |text|
+  matcher = ['*', { :text => text }]
+  element = page.find(:css, *matcher)
+  while better_match = element.first(:css, *matcher)
+    element = better_match
+  end
+  element.click
+end
+#END OF NEW
+
 Given(/^the following breeders exist:$/) do |table|
   table.hashes.each do |breeder|
     FactoryGirl.create(:breeder, :name => breeder[:name], :city => breeder[:city], :state => breeder[:state])
+  end
+end
+
+Given(/^the following breeds exist:$/) do |table|
+  table.hashes.each do |breed|
+    FactoryGirl.create(:breed, :name => breed[:name])
   end
 end
 
@@ -219,3 +242,4 @@ Given(/^I finished previous steps$/) do
   page.set_rack_session(step2: true)
   page.set_rack_session(step3: true)
 end
+

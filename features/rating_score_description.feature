@@ -1,4 +1,4 @@
-@javascript
+#javascript
 Feature: Add description to rating display page for each score
 
     As a user, for better understanding of the meaning of each score

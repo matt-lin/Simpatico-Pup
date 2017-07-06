@@ -4,6 +4,7 @@
 
 
 
+
 var myIndex = 0;
 var PupSlider = {
     carousel: function() {

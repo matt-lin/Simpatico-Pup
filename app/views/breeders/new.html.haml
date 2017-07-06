@@ -1,9 +1,10 @@
 %div{:class => "container"}
 
-  %h1 Create New Breeder
+  %div{:class => "header"}
+    %h1 Create New Breeder
 
-  - flash.each do |key, value|
-    %p= value
+  // - flash.each do |key, value|
+  //   %p= value
 
   = form_tag create_breeder_path, :class => "form-horizontal", :autocomplete => "off" do
     %div{:class => "form-group"}
