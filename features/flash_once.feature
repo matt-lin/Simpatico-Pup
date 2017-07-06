@@ -13,9 +13,13 @@ Background: User already logged in
       | Alex            | Berkeley | CA    |
 
   Scenario: show error/warning once on dog_how_long
-    Given I am on the "Dog How Long Test" page
-    When I fill in "pup_years" with "0"
+    Given I am on the RateMyPup home page
+    When I follow "Rate your Dog"
+    And I fill in "pup_name" with "Alex"
+    And I press "next_button"
+    When I select "0" in the dropdown list "pup_years"
     And I fill in "pup_months" with "1"
+    And I press "next_button"
     Then I should see "To keep our database as accurate as possible, we are collecting information only for dogs that have been residing in their current home for six months or more. Please come back to our site and rate your dog after s/he has lived with you for a minimum of six months. Thank you."
     And I should not see twice "To keep our database as accurate as possible, we are collecting information only for dogs that have been residing in their current home for six months or more. Please come back to our site and rate your dog after s/he has lived with you for a minimum of six months. Thank you."
     
