@@ -7,13 +7,22 @@ Feature: select dog breed using when using rating
   I want to enter a dog breed
   
 Background: User already logged in
+  
+    Given the following breeds exist:
+    | name            | 
+    | Affenpinscher   |
+    | Afghan     Hound|
+    | Akita           |
+    | Bobq            |
+    | Michael Jackson |
+    | Chan            |
+  
   Given I am on the RateMyPup home page
-  And I am logged in
-  And I finished previous steps
-  And I am on the "Dog Breed Test" page
 
+#This test should pass
   Scenario: fill in partial of the name
-    When I enter "af" into autocomplete "breed_find" with "keyup"
+    When I click ".button_b"
+    When I enter "Af" into autocomplete "breed_find" with "keyup"
     Then I should see "Affenpinscher"
     And I should see "Afghan Hound"
     And I should not see "Akita"
