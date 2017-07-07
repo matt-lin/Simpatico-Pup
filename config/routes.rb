@@ -6,6 +6,7 @@ Ratemypup::Application.routes.draw do
   root :to => 'pups#main'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
+  match "/admin/user_comments/:id" => 'admin/comments#destroy', via: :delete, as: "admin_user_comment"
   ActiveAdmin.routes(self)
 
   devise_for :users, controllers: { registrations: 'users/registrations'}
