@@ -44,7 +44,11 @@ When /^I press "(.*)"/ do |button|
 end
 
 When /^I follow "(.*)"$/ do |link|
-  click_link(link)
+  clink_link(link)
+end
+
+When /^I press a hidden button "(.*)"$/ do |link|
+  find(link, visible: false).click
 end
 
 Then /^I should( not)? see "(.*)"/ do |not_see, text|
