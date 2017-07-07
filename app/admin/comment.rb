@@ -1,5 +1,5 @@
 ActiveAdmin.register Comment, as: "User Comments" do
-  actions :all, except: [:update, :destroy]
+  actions :all, except: [:update, :edit, :show]
   # filter :pup
   filter :content
   filter :created_at
@@ -12,12 +12,6 @@ ActiveAdmin.register Comment, as: "User Comments" do
     end
     column :content
     column :created_at
-
-    column "" do |resource|
-      links = ''.html_safe
-      links += link_to I18n.t('active_admin.delete'), resource_path(resource), :method => :delete, :confirm => I18n.t('active_admin.delete_confirmation'), :class => "member_link delete_link"
-      links
-    end
-    
+    actions
   end
 end
