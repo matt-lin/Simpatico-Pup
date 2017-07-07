@@ -44,7 +44,7 @@ When /^I press "(.*)"/ do |button|
 end
 
 When /^I follow "(.*)"$/ do |link|
-  clink_link(link)
+  click_link(link)
 end
 
 When /^I press a hidden button "(.*)"$/ do |link|

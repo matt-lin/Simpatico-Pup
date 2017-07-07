@@ -20,7 +20,7 @@ Background: reviews have been added to the database
     | Shiba Inu 	  	| None 			 | 3 					  | 4 			   | 4 			  | 5 				| 4 		   | 2 				  | Such review. Wow. 				  | 1   |
 
     And I am on the RateMyPup home page
-    And I click ".button-b"
+    And I press a hidden button ".button-b"
 
 Scenario: search for single breed of dog
     When I fill in "breed_find" with "Shiba Inu"

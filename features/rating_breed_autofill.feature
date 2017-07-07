@@ -21,7 +21,7 @@ Background: User already logged in
 
 #This test should pass
   Scenario: fill in partial of the name
-    When I click ".button_b"
+    When I press a hidden button ".button-b"
     When I enter "Af" into autocomplete "breed_find" with "keyup"
     Then I should see "Affenpinscher"
     And I should see "Afghan Hound"

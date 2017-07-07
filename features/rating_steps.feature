@@ -36,8 +36,8 @@ Background: User already logged in
     Given I am on the "Dog Name" page
     When I fill in "pup_name" with "Doggie"
     And I press "next_button"
-    When I fill in "pup_years" with "1"
-    And I fill in "pup_months" with "1"
+    When I select "1" in the dropdown menu "pup_years"
+    And I select "1" in the dropdown menu "pup_months"
     And I press "next_button"
     Then I should be on the "Dog Breed" page
     And I should see "Please indicate your dog's breed."
@@ -46,8 +46,8 @@ Background: User already logged in
     Given I am on the "Dog Name" page
     When I fill in "pup_name" with "Doggie"
     And I press "next_button"
-    When I fill in "pup_years" with "0"
-    And I fill in "pup_months" with "4"
+    When I select "0" in the dropdown menu "pup_years"
+    And I select "4" in the dropdown menu "pup_months"
     And I press "next_button"
     
     #WAITING FOR NEWER CODE
