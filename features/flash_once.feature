@@ -14,7 +14,7 @@ Background: User already logged in
 
   Scenario: show error/warning once on dog_how_long
     Given I am on the RateMyPup home page
-    When I follow "Rate your Dog"
+    When I press a hidden button ".button-a"
     And I fill in "pup_name" with "Alex"
     And I press "next_button"
     When I select "10" in the dropdown menu "pup_years"
