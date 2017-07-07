@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 require 'uri'
 require 'cgi'
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
@@ -247,4 +245,4 @@ Given(/^I finished previous steps$/) do
   page.set_rack_session(step3: true)
 end
 
->>>>>>> f37dc763e9391d35c64fdfdd576500216b1a8074
+
