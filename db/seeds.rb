@@ -283,3 +283,4 @@ texts.each do |text|
 end
 
 AdminUser.create!(:email => 'admin@berkeley.edu', :password => 'password', :password_confirmation => 'password')
+AdminUser.create!(:email => 'admin', :password => 'password', :password_confirmation => 'password')

@@ -1,4 +1,3 @@
-
 ActiveAdmin.register Comment, as: "User Comments" do
   actions :all, except: [:update, :destroy]
   # filter :pup
