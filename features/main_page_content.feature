@@ -1,4 +1,4 @@
-@javascript
+#@javascript
 Feature: see content on the main page 
     As a user of RateMyPup
     So that I can use the site 
@@ -6,7 +6,7 @@ Feature: see content on the main page
 
 Background:
     Given I am on the RateMyPup home page
-    And I am logged in
+
 
 Scenario: information content on main page 
     Given I am on the RateMyPup home page
@@ -14,14 +14,15 @@ Scenario: information content on main page
 
 Scenario: Hover over buttons should show hidden div 
     Given I am on the RateMyPup home page
-    When I click ".button-b"
+    When I press a hidden button ".button-b"
     Then I should see "Search for ratings by breed:"
-    When I click ".button-c"
+    When I press a hidden button ".button-c"
     Then I should see "Find a breeder or kennel by name:"
 
 Scenario: Direct to rate your pup 
     Given I am on the RateMyPup home page
-    When I follow "Rate your Dog"
+    And I am logged in
+    When I press a hidden button ".button-a"
     Then I should be on the "Dog Name" page
 
 Scenario: Add nav tabs in navbar

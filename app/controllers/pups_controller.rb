@@ -55,8 +55,8 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
         end
       end
       flash[:notice] = "The dog breeder or kennel you entered is not yet in our database.
-      Please click here to add it to our database."
-      redirect_to dog_breeder_path and return
+      Please add the name of the dog breeder, city and state to our database."
+      redirect_to new_breeder_path and return
     end
   end
 
@@ -74,6 +74,7 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
 
   def create
     # gather pup ifo
+    
     new_pup = {}
     new_pup[:pup_name] = session[:pup_name]
     new_pup[:year] = session[:years] || 0
@@ -89,8 +90,9 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
     new_pup[:hashtag_2] = params[:pup][:hashtag_2]
     new_pup[:hashtag_3] = params[:pup][:hashtag_3]
     new_pup[:breed_id] = Breed.find_by_name(session[:breed]).id
-    new_pup[:breeder_id] = params[:pup][:breeder_id]
+    new_pup[:breeder_id] = session[:breeder_id]
     new_pup[:user_id] = current_user.id
+    # new_pup[:breeder_1] = session[:breed]
     @pup = Pup.new(new_pup)
     new_comment = {:content => params[:pup][:comments]}
     @Comment = Comment.new(new_comment)
@@ -104,13 +106,12 @@ currently limiting the number of ratings made by each dog owner to eight, and li
       redirect_to new_pup_path and return
     end
 
+    #Problem 2
     if !@pup.valid?
-      puts '*'*80
       flash[:notice] = 'Please make sure all fields are complete!'
       redirect_to new_pup_path and return
     end
     if !@Comment.valid?
-      puts '%'*80
       flash[:notice] = 'Please make sure the comment is less than 140 characters.'
       redirect_to new_pup_path and return
     end
@@ -153,7 +154,7 @@ currently limiting the number of ratings made by each dog owner to eight, and li
   # step 1
   def dog_how_long
     if params[:pup]
-      pup_name = params[:pup][:pup_name]
+      pup_name = params[:pup][:name]
     else
       pup_name = session[:pup_name]
     end
@@ -197,7 +198,7 @@ site and rate your dog after s/he has lived
 with you for a minimum of six months. Thank you."
     end
     session[:step2] = false
-    redirect_to dog_how_long_path(:pup => {:pup_name => session[:pup_name]})
+    redirect_to dog_how_long_path(:pup => {:name => session[:pup_name]})
   end
 
   #step3
@@ -218,7 +219,6 @@ with you for a minimum of six months. Thank you."
     end
     session[:breed] = breed
     session[:step3] = true
-
   end
 
   #################### End Questionnaire ####################

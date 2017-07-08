@@ -78,7 +78,8 @@ class BreedersController < ApplicationController
     if !breeder
       flash[:message] = message
     end
-    redirect_to dog_breeder_path
+    flash[:notice] = 'You have been added to our database!'
+    redirect_to new_pup_path(:breeder => {:name => (name+' - '+city+', '+state)})
   end
 
   private

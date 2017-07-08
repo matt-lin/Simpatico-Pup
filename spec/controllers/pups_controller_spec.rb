@@ -36,11 +36,12 @@ describe PupsController do
       sign_in :user, @user
       @temp_pup = Pup.new()
       @breeder = FactoryGirl.create(:breeder)
+      session[:breeder_id] = @breeder.id
       @pup_hash = {:pup =>
         {
-          :breeder_id => @breeder.id,
+          # :breeder_id => @breeder.id,
           :breeder_responsibility => "1",
-          :pup_name => "Doge",
+          :name => "Doge",
           :breed_1 => "Shiba Inu",
           :breed_2 => "None",
           :overall_health => "1",
@@ -60,7 +61,7 @@ describe PupsController do
         {
           :breeder_id => -1,
           :breeder_responsibility => "1",
-          :pup_name => "Doge",
+          :name => "Doge",
           :breed_1 => "Shiba Inu",
           :breed_2 => "None",
           :overall_health => "1",
@@ -113,13 +114,13 @@ describe PupsController do
     #   response.should redirect_to root_path
     # end
     it "should go to dog_how_long if name is provided" do
-      get :dog_how_long, {:pup=>{:pup_name=>"Doggie"}}
+      get :dog_how_long, {:pup=>{:name=>"Doggie"}}
       expect(response).to render_template(:dog_how_long)
       expect(session[:pup_name]).to eq("Doggie")
       expect(session[:step1]).to be_true
     end
     it "should redirect to do_name if name is not provided" do
-      get :dog_how_long, {:pup=>{:pup_name=>""}}
+      get :dog_how_long, {:pup=>{:name=>""}}
       expect(response).to redirect_to dog_name_path
       expect(session[:step1]).to be_false
     end
@@ -134,7 +135,7 @@ describe PupsController do
       session[:step1] = true
       session[:pup_name] = "Doggie"
       get :dog_breed, {:pup=>{:years=>"",:months=>"3"}}
-      expect(response).to redirect_to dog_how_long_path(:pup=>{:pup_name=>"Doggie"})
+      expect(response).to redirect_to dog_how_long_path(:pup=>{:name=>"Doggie"})
       expect(flash[:modal]).to eq("To keep our database as accurate as possible,
 we are collecting information only for dogs that have been residing 
 in their current home for six months or more. Please come back to our 
@@ -146,7 +147,7 @@ with you for a minimum of six months. Thank you.")
       session[:step1] = true
       session[:pup_name] = "Doggie"
       get :dog_breed, {:pup=>{:years=>"",:months=>""}}
-      expect(response).to redirect_to dog_how_long_path(:pup=>{:pup_name=>session[:pup_name]})
+      expect(response).to redirect_to dog_how_long_path(:pup=>{:name=>session[:pup_name]})
       expect(session[:step2]).to be_false
     end
     it "should redirect to root page if any previous step not finished(step breed)" do

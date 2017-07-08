@@ -15,11 +15,7 @@
       %div{:class => "explanation", :style => "font-size: 16px;"}
         Type the name of the dog breeder or kennel from which you acquired your dog below,
         and then click on the correct breeder/kennel from the drop down list.
-        If the name does not appear, please add the name of the dog breeder, city and state
-        to our database by clicking
-        %strong
-          = link_to  %"here", new_breeder_path
-        \. If you do not know the name, city and state of your dog's breeder, simply click "Next".
+        If you do not know the name, city and state of your dog's breeder, simply click "Next".
 
       %div{:class => 'collapse in', :id => 'breeder_form_collapse'}
         = text_field :breeder, :name, :class => "form-control", :id => "breeder_form", :placeholder => "Breeder Name"
