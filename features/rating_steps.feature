@@ -7,10 +7,6 @@ Feature: Split rating process into a few steps
 Background: User already logged in, and databse is loaded with breed and breeder
   Given I am on the RateMyPup home page
   And I am logged in
-  And the following breeders exist:
-      | name            | city     | state |
-      | Carl            | Berkeley | CA    |
-      | Alex            | Berkeley | CA    |
   
   And the following breeds exist:
       | name            |
@@ -71,39 +67,6 @@ Background: User already logged in, and databse is loaded with breed and breeder
     Then I should be on the "Dog Breed" page
     And I should see "Please select a breed in the list."
     And I should see "Close"
-
-  Scenario: step4->new(happy), submit with either breeder name or kennel name
-    Given I finished previous steps
-    And I am on the "Dog Breeder Test" page
-    When I fill in "breeder_form" with "Alex - Berkeley, CA"
-    And I press "next_button"
-    Then I should be on the "Create New Pup" page
-    And I should see "Rate Your Dog"
-    
-  # Summer 17 iteration 1 Scenario
-  Scenario: step4->new(happy), submit with empty breeder name and kennel name
-    Given I finished previous steps
-    And I am on the "Dog Breeder Test" page
-    And I press "next_button"
-    Then I should be on the "Create New Pup" page
-    
-  Scenario: step4->create_new_breeder(sad), submit with breeder or kennel name not in database
-    Given I finished previous steps
-    And I am on the "Dog Breeder Test" page
-    When I fill in "breeder_form" with "random breeder"
-    And I press "next_button"
-    Then I should be on the "Add breeder" page
-    And I should see "Create New Breeder"
-    
-  Scenario: Create new breeder during the rating process
-    Given I finished previous steps
-    And I am on the "Add breeder" page
-    When I fill in "breeder_name" with "random breeder"
-    And I fill in "breeder_city" with "Berkeley"
-    And I select "CA" in the dropdown menu "breeder_state"
-    And I press "Add_Breeder"
-    Then I should be on the "Create New Pup" page
-    And I should see "Rate Your Dog"
     
   Scenario: Rate my dog
     Given I finished previous steps
