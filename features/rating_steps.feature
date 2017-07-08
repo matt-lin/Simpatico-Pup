@@ -80,6 +80,7 @@ Background: User already logged in, and databse is loaded with breed and breeder
     Then I should be on the "Create New Pup" page
     And I should see "Rate Your Dog"
     
+  # Summer 17 iteration 1 Scenario
   Scenario: step4->new(happy), submit with empty breeder name and kennel name
     Given I finished previous steps
     And I am on the "Dog Breeder Test" page
@@ -107,7 +108,7 @@ Background: User already logged in, and databse is loaded with breed and breeder
   Scenario: Rate my dog
     Given I finished previous steps
     And I am on the "Create New Pup Test" page
-    #When I fill in the rating form
+    # When I fill in the rating form
     And I press "Add_Pup"
     Then I should be on the RateMyPup home page
     
