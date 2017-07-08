@@ -71,14 +71,6 @@ Background: User already logged in, and databse is loaded with breed and breeder
     Then I should be on the "Dog Breed" page
     And I should see "Please select a breed in the list."
     And I should see "Close"
-
-  Scenario: step4->new(happy), submit with either breeder name or kennel name
-    Given I finished previous steps
-    And I am on the "Dog Breeder Test" page
-    When I fill in "breeder_form" with "Alex - Berkeley, CA"
-    And I press "next_button"
-    Then I should be on the "Create New Pup" page
-    And I should see "Rate Your Dog"
     
   # Summer 17 iteration 1 Scenario
   Scenario: step4->new(happy), submit with empty breeder name and kennel name
@@ -86,6 +78,14 @@ Background: User already logged in, and databse is loaded with breed and breeder
     And I am on the "Dog Breeder Test" page
     And I press "next_button"
     Then I should be on the "Create New Pup" page
+    
+  Scenario: step4->new(happy), submit with either breeder name or kennel name
+    Given I finished previous steps
+    And I am on the "Dog Breeder Test" page
+    When I fill in "breeder_form" with "Alex - Berkeley, CA"
+    And I press "next_button"
+    Then I should be on the "Create New Pup" page
+    And I should see "Rate Your Dog"
     
   Scenario: step4->create_new_breeder(sad), submit with breeder or kennel name not in database
     Given I finished previous steps

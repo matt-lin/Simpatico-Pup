@@ -45,12 +45,12 @@ helper_method :subscribed?
 
   # PUT /resource
   def update
-    if params[:subscribe_newsletter].present? and params[:current_password] == resource.email
+    super
+    if params[:subscribe_newsletter].present? 
       NewsletterUser.find_or_create_by(email: resource.email)
     elsif params[:unsubscribe_newsletter].present?
-      NewsletterUser.destroy(NewsletterUser.where("email = ?", resource.email).first.id)
+      NewsletterUser.where(email: resource.email).destroy_all
     end
-    super
   end
 
   # DELETE /resource
