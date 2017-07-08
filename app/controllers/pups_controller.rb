@@ -26,8 +26,6 @@ class PupsController < ApplicationController
     end
   end
 
-
-
   # The true rating page
   def new
     if !session[:step1] || !session[:step2] || !session[:step3]
@@ -59,8 +57,6 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
       redirect_to new_breeder_path and return
     end
   end
-
-
 
   # Rails default methods
   def index
@@ -96,6 +92,8 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
     @pup = Pup.new(new_pup)
     new_comment = {:content => params[:pup][:comments]}
     @Comment = Comment.new(new_comment)
+    
+    @SelectedComment = SelectedComment.new(new_comment)
 
 
     if @pup.user.pups(:reload).size > 8
@@ -119,6 +117,9 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     @pup.save
     @Comment.pup_id = @pup.id
     @Comment.save
+    
+    @SelectedComment.user = current_user
+    @SelectedComment.save
 
     # Successfully save pup & comment
     flash[:notice] = "Thank You! #{@pup.pup_name} was successfully added to our database."

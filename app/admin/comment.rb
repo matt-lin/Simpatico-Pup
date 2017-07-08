@@ -1,5 +1,5 @@
 ActiveAdmin.register Comment, as: "User Comments" do
-  actions :all, except: [:update, :edit, :show]
+  actions :all, except: [:update, :show]
   # filter :pup
   filter :content
   filter :created_at
@@ -12,6 +12,13 @@ ActiveAdmin.register Comment, as: "User Comments" do
     end
     column :content
     column :created_at
+    column :checked
     actions
+  end
+  
+  show do
+    attributes_table do
+      row :checked
+    end
   end
 end
