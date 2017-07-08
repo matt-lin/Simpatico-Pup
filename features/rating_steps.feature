@@ -4,13 +4,17 @@ Feature: Split rating process into a few steps
   So that I can make sure I am allowed to rate my puppy before I enter too much information
   I want to provide information interactively
   
-Background: User already logged in
+Background: User already logged in, and databse is loaded with breed and breeder
   Given I am on the RateMyPup home page
   And I am logged in
   And the following breeders exist:
       | name            | city     | state |
       | Carl            | Berkeley | CA    |
       | Alex            | Berkeley | CA    |
+  
+  And the following breeds exist:
+      | name            |
+      | Affenpinscher   |
 
   Scenario: step0->1, direct to dog name page
     Given I am on the RateMyPup home page
@@ -36,8 +40,8 @@ Background: User already logged in
     Given I am on the "Dog Name" page
     When I fill in "pup_name" with "Doggie"
     And I press "next_button"
-    When I fill in "pup_years" with "1"
-    And I fill in "pup_months" with "1"
+    When I select "1" in the dropdown menu "pup_years"
+    And I select "1" in the dropdown menu "pup_months"
     And I press "next_button"
     Then I should be on the "Dog Breed" page
     And I should see "Please indicate your dog's breed."
@@ -46,13 +50,11 @@ Background: User already logged in
     Given I am on the "Dog Name" page
     When I fill in "pup_name" with "Doggie"
     And I press "next_button"
-    When I fill in "pup_years" with "0"
-    And I fill in "pup_months" with "4"
+    When I select "0" in the dropdown menu "pup_years"
+    And I select "4" in the dropdown menu "pup_months"
     And I press "next_button"
-    
-    #WAITING FOR NEWER CODE
-    #Then I should see "Go Back to Homepage"
-    #And I should see "To keep our database as accurate as possible, we are collecting information only for dogs that have been residing in their current home for six months or more. Please come back to our site and rate your dog after s/he has lived with you for a minimum of six months. Thank you."
+    Then I should see "Go Back to Homepage"
+    And I should see "To keep our database as accurate as possible, we are collecting information only for dogs that have been residing in their current home for six months or more. Please come back to our site and rate your dog after s/he has lived with you for a minimum of six months. Thank you."
 
   Scenario: step3->4(happy), submit with valid breed input
     Given I finished previous steps
@@ -73,16 +75,41 @@ Background: User already logged in
   Scenario: step4->new(happy), submit with either breeder name or kennel name
     Given I finished previous steps
     And I am on the "Dog Breeder Test" page
-    
-    
     When I fill in "breeder_form" with "Alex - Berkeley, CA"
     And I press "next_button"
     Then I should be on the "Create New Pup" page
     And I should see "Rate Your Dog"
     
-  Scenario: step4->4(sad), submit with empty breeder name and kennel name
-    # Given I finished previous steps
-    # And I am on the "Dog Breeder Test" page
-    # And I press "next_button"
-    # Then I should be on the "Create New Pup" page
+  # Summer 17 iteration 1 Scenario
+  Scenario: step4->new(happy), submit with empty breeder name and kennel name
+    Given I finished previous steps
+    And I am on the "Dog Breeder Test" page
+    And I press "next_button"
+    Then I should be on the "Create New Pup" page
+    
+  Scenario: step4->create_new_breeder(sad), submit with breeder or kennel name not in database
+    Given I finished previous steps
+    And I am on the "Dog Breeder Test" page
+    When I fill in "breeder_form" with "random breeder"
+    And I press "next_button"
+    Then I should be on the "Add breeder" page
+    And I should see "Create New Breeder"
+    
+  Scenario: Create new breeder during the rating process
+    Given I finished previous steps
+    And I am on the "Add breeder" page
+    When I fill in "breeder_name" with "random breeder"
+    And I fill in "breeder_city" with "Berkeley"
+    And I select "CA" in the dropdown menu "breeder_state"
+    And I press "Add_Breeder"
+    Then I should be on the "Create New Pup" page
+    And I should see "Rate Your Dog"
+    
+  Scenario: Rate my dog
+    Given I finished previous steps
+    And I am on the "Create New Pup Test" page
+    # When I fill in the rating form
+    And I press "Add_Pup"
+    Then I should be on the RateMyPup home page
+    
     

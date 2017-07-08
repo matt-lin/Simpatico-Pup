@@ -47,6 +47,10 @@ When /^I follow "(.*)"$/ do |link|
   click_link(link)
 end
 
+When /^I press a hidden button "(.*)"$/ do |link|
+  find(link, visible: false).click
+end
+
 Then /^I should( not)? see "(.*)"/ do |not_see, text|
   if not_see != nil
 		assert_no_text(text)
@@ -105,10 +109,8 @@ When /^I fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
   fill_in(field, :with => value)
 end
 
-When /^(?:|I )select "([^"]*)" in the dropdown menu "([^"]*)"$/ do |field, value|
-  within field do
-  find("option[value= value]").click
-  end
+When /^(?:|I )select "([^"]*)" in the dropdown menu "([^"]*)"$/ do |value, field|
+  select(value, :from => field)
 end
 
 #NEW
@@ -242,4 +244,5 @@ Given(/^I finished previous steps$/) do
   page.set_rack_session(step2: true)
   page.set_rack_session(step3: true)
 end
+
 
