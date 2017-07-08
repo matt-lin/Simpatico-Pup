@@ -88,14 +88,15 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
     new_pup[:breed_id] = Breed.find_by_name(session[:breed]).id
     new_pup[:breeder_id] = session[:breeder_id]
     new_pup[:user_id] = current_user.id
+    
+    #NEW
+    new_pup[:username] = current_user.username
+    #END OF NEW
+    
     # new_pup[:breeder_1] = session[:breed]
     @pup = Pup.new(new_pup)
     new_comment = {:content => params[:pup][:comments]}
     @Comment = Comment.new(new_comment)
-    
-    
-    @SelectedComment = SelectedComment.new(new_comment)
-
 
     if @pup.user.pups(:reload).size > 8
       flash[:notice] = 'SimpaticoPup is a website designed to collect information from dog lovers about their own
@@ -117,11 +118,10 @@ currently limiting the number of ratings made by each dog owner to eight, and li
 
     @pup.save
     @Comment.pup_id = @pup.id
+    @Comment.username = current_user.username
     @Comment.save
     
-    @SelectedComment.user = current_user
-    @SelectedComment.save
-
+    
     # Successfully save pup & comment
     flash[:notice] = "Thank You! #{@pup.pup_name} was successfully added to our database."
     redirect_to root_path

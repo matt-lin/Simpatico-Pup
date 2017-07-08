@@ -1,8 +1,8 @@
 ActiveAdmin.register Comment, as: "User Comments" do
-  batch_action :flag do |ids|
+  batch_action :approve do |ids|
     batch_action_collection.find(ids).each do |c|
       @SelectedComment = SelectedComment.new({:content => c.content})
-      @SelectedComment.user = c.pup.user
+      @SelectedComment.user = c.pup.user.username
       @SelectedComment.save
     end
     redirect_to collection_path, alert: "The posts have been flagged."
@@ -24,13 +24,6 @@ ActiveAdmin.register Comment, as: "User Comments" do
     end
     column :content
     column :created_at
-    column :checked
     actions
-  end
-  
-  show do
-    attributes_table do
-      row :checked
-    end
   end
 end

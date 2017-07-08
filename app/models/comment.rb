@@ -2,7 +2,7 @@ class Comment < ActiveRecord::Base
 
   belongs_to :pup
 
-  attr_accessible :content, :pup_id
+  attr_accessible :content, :pup_id, :username
 
   validate :comment_length
 
