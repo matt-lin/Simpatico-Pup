@@ -6,15 +6,12 @@ class PupsController < ApplicationController
   # Devise. Methods not in the list below will require a user to be logged in.
   before_filter :authenticate_user!, except: [:index, :new, :main, :show, :breed, :search_breed]
 
-
   def breeder_exists
     if params[:pup][:breeder_id].to_i == -1
       breeder = Breeder.find_or_create(params[:breeder][:name], params[:breeder][:city], params[:breeder][:state])
       params[:pup][:breeder_id] = breeder.id
     end
   end
-
-
 
   # The Root Path
   def main
@@ -63,7 +60,6 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
     @pups = Pup.all
   end
 
-
   def show
     @pup = Pup.find params[:id]
   end
@@ -88,11 +84,6 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
     new_pup[:breed_id] = Breed.find_by_name(session[:breed]).id
     new_pup[:breeder_id] = session[:breeder_id]
     new_pup[:user_id] = current_user.id
-    
-    #NEW
-    new_pup[:username] = current_user.username
-    #END OF NEW
-    
     # new_pup[:breeder_1] = session[:breed]
     @pup = Pup.new(new_pup)
     new_comment = {:content => params[:pup][:comments]}
