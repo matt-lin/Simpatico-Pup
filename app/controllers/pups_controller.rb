@@ -109,7 +109,6 @@ currently limiting the number of ratings made by each dog owner to eight, and li
 
     @pup.save
     @Comment.pup_id = @pup.id
-    @Comment.username = current_user.username
     @Comment.save
     
     
