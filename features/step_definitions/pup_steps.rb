@@ -223,13 +223,16 @@ Given /^I click "(.*)"$/ do |click|
   page.evaluate_script("$('#{click}').click()")
 end
 
+When(/^I visit "([^"]*)"$/) do |url|
+  visit(url)
+end
 
 Given (/^I login as an admin$/) do
   @admin_user = FactoryGirl.create(:admin_user)
   visit('/admin/login')
   fill_in(:admin_user_email, :with => 'admin@berkeley.edu')
   fill_in(:admin_user_password, :with => 'password')
-  find('#admin_user_submit_action').click
+  find("#admin_user_submit_action").find("input").click
 end
 
 When(/^I hover over "(.*?)"$/) do |element_name|
