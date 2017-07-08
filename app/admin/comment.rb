@@ -8,7 +8,7 @@ ActiveAdmin.register Comment, as: "User Comments" do
     redirect_to collection_path, alert: "The posts have been flagged."
   end
   
-  actions :all, except: [:update, :show, :edit]
+  actions :all, except: [:update, :show, :edit, :new]
   # filter :pup
   filter :content
   filter :created_at
