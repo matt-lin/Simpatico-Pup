@@ -93,6 +93,7 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
     new_comment = {:content => params[:pup][:comments]}
     @Comment = Comment.new(new_comment)
     
+    
     @SelectedComment = SelectedComment.new(new_comment)
 
 
