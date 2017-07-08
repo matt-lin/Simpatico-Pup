@@ -11,6 +11,11 @@ Background: User already logged in, and databse is loaded with breed and breeder
   And the following breeds exist:
       | name            |
       | Affenpinscher   |
+  
+  And the following breeders exist:
+      | name            | city     | state |
+      | Carl            | Berkeley | CA    |
+      | Alex            | Berkeley | CA    |
 
   Scenario: step0->1, direct to dog name page
     Given I am on the RateMyPup home page
@@ -75,4 +80,8 @@ Background: User already logged in, and databse is loaded with breed and breeder
     And I press "Add_Pup"
     Then I should be on the RateMyPup home page
     
-    
+  Scenario: step4->new(happy), submit with empty breeder name and kennel name
+    Given I finished previous steps
+    And I am on the "Dog Breeder Test" page
+    And I press "next_button"
+    Then I should be on the "Create New Pup" page
