@@ -283,3 +283,6 @@ Given(/^I finished previous steps$/) do
   page.set_rack_session(step3: true)
 end
 
+When /^I check "([^"]*)"$/ do |field|
+  check(field)
+end

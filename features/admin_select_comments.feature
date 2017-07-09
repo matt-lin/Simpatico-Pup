@@ -14,7 +14,7 @@ Feature: choose comments from all suer comments
     And I go to "user_comments"
     Then I should see "The greatest dog I've ever owned"
     Then I should see "Testing User"
-    And I choose "batch_action_item_1"
+    When I check "batch_action_item_1"
      
   
   #Scenario: An admin
