@@ -1,3 +1,5 @@
+#Newly added feature file for Iter1-1
+
 Feature: choose comments from all suer comments
   As an administrator 
   I want to select appropiate comments at user comments page and sent them to selected comments page

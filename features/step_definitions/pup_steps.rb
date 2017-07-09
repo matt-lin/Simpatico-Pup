@@ -275,6 +275,8 @@ Given(/^I finished previous steps$/) do
   page.set_rack_session(step3: true)
 end
 
+#Newly added step definitions for Iter1-1
+
 And(/^the following users exist:/) do |table|
   table.hashes.each do |user|
     User.create!(user)

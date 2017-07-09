@@ -1,3 +1,5 @@
+#Newly added feature file for Iter1-1
+
 Feature: Admin should be able to see all the users who are subscribing newsletters and be able to process group emailing
     As an admin
     I want to be able to process group emailing to all the users who are subscribing newsletter
