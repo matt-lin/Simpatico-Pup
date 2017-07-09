@@ -284,8 +284,6 @@ Given(/^I finished previous steps$/) do
 end
 
 
-
-
 Then /^I (should|should not) see the batch action (button|selector)$/ do |maybe, type|
   selector = "div.table_tools .batch_actions_selector"
   selector << ' .dropdown_menu_button' if maybe == 'should' && type == 'button'
