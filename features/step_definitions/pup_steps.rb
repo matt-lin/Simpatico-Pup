@@ -10,6 +10,10 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
+When /^I go to "(.*)"$/ do |link|
+  find("#"+link).click
+end
+
 Given /the following ratings exist/ do |pups_table|
   breeder = FactoryGirl.create(:breeder, :name => "George W. Bush")
   pups_table.hashes.each do |rating|
@@ -26,7 +30,37 @@ Given /the following ratings exist/ do |pups_table|
     	energy_level: rating['energy_level'],
     	simpatico_rating: rating['simpatico_rating'],
     	comments: rating['comments'],
+    	user_id: "Testing User",
     	breeder_id: breeder.id)
+  end
+end
+
+Given /the following comments exist/ do |pups_table|
+  breeder = FactoryGirl.create(:breeder, :name => "George W. Bush")
+  pups_table.hashes.each do |rating|
+    # each returned element will be a hash whose key is the table header.
+    # you should arrange to add that movie to the database here.
+    Pup.create!(
+      pup_name: 'Thor',
+    	breed_1: rating['breed_1'],
+    	breed_2: rating['breed_2'],
+    	breeder_responsibility: rating['breeder_responsibility'],
+    	overall_health: rating['overall_health'],
+    	trainability: rating['trainability'],
+    	social_behavior: rating['social_behavior'],
+    	energy_level: rating['energy_level'],
+    	simpatico_rating: rating['simpatico_rating'],
+    	comments: rating['comments'],
+    	user_id: 1,
+    	breeder_id: breeder.id)
+    Comment.create!(
+      content: rating['comments'],
+      pup_id: '1')
+    User.create!(
+      username: "Testing User",
+      email: "testing@berkeley.edu",
+      password: "123456789"
+  )
   end
 end
 
@@ -223,6 +257,10 @@ Given /^I click "(.*)"$/ do |click|
   page.evaluate_script("$('#{click}').click()")
 end
 
+When(/^I visit "([^"]*)"$/) do |url|
+  visit(url)
+end
+
 When(/^I hover over "(.*?)"$/) do |element_name|
   page.evaluate_script("$('#{element_name}').trigger('mouseover')")
 end
@@ -284,3 +322,4 @@ end
 Then (/^All the users should receive an email with "([^"]*)"$/) do |email_body|
   pending
 end
+

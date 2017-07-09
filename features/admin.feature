@@ -1,9 +1,6 @@
-@javascript
-
-
 #########################################################
 ### Test info: 
-### 1. disable enforced breed id for Pup creation [pup.rb:15]
+### 1. 
 ### 2. disable set_title in before_filter[application_controller:5]
 ##########################################################
 
