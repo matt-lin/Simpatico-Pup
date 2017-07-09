@@ -421,3 +421,37 @@ h3.mission-text {
 .page-links {
     padding-top: 80px;
 }
+
+    html,
+    body,
+    .view {
+    height: 100%;
+}
+.bg-page{
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+/*.view {*/
+/*    background: url("/assets/pup2.jpg"), url("/assets/pup3.jpg");*/
+              
+/*    -webkit-background-size: cover;*/
+/*    -moz-background-size: cover;*/
+/*    -o-background-size: cover;*/
+/*    background-size: cover;*/
+/*}*/
+.h1-responsive{
+     word-wrap: break-word;
+     -webkit-hyphens: auto;
+     -moz-hyphens: auto;
+     -ms-hyphens: auto;
+     -o-hyphens: auto;
+     hyphens: auto;
+}
+.mySlides{
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
