@@ -283,6 +283,13 @@ Given(/^I finished previous steps$/) do
   page.set_rack_session(step3: true)
 end
 
-When /^I check "([^"]*)"$/ do |field|
-  check(field)
+
+
+
+Then /^I (should|should not) see the batch action (button|selector)$/ do |maybe, type|
+  selector = "div.table_tools .batch_actions_selector"
+  selector << ' .dropdown_menu_button' if maybe == 'should' && type == 'button'
+
+  verb = maybe == 'should' ? :to : :to_not
+  expect(page).send verb, have_css(selector)
 end
