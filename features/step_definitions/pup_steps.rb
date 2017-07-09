@@ -284,3 +284,7 @@ end
 Given (/^Not yet implemented$/) do
   pending
 end
+
+Then (/^All the users should recieve an email with "([^"]*)"$/) do |email_body|
+  pending
+end
