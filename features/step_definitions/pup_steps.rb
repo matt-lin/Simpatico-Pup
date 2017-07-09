@@ -275,7 +275,7 @@ Given(/^I finished previous steps$/) do
   page.set_rack_session(step3: true)
 end
 
-#Newly added step definitions for Iter1-1
+#Newly added step definitions for Iter1-1.
 
 And(/^the following users exist:/) do |table|
   table.hashes.each do |user|
@@ -324,4 +324,6 @@ end
 Then (/^All the users should receive an email with "([^"]*)"$/) do |email_body|
   pending
 end
+
+#End of all newly added step definitions.
 

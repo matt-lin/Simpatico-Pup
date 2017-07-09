@@ -1,4 +1,4 @@
-#Newly added feature file for Iter1-1
+#Newly added feature file for Iter1-1.
 
 Feature: Indicate dog breeder when rating a pup
   As a dog owner
@@ -43,3 +43,4 @@ Background: User already login, filled out pup name, how long the user owned the
     Then I should be on the "Create New Pup" page
     And I should see "Rate Your Dog"
     
+#End of this feature file

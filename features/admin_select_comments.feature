@@ -1,4 +1,4 @@
-#Newly added feature file for Iter1-1
+#Newly added feature file for Iter1-1.
 
 Feature: choose comments from all suer comments
   As an administrator 
@@ -31,3 +31,5 @@ Feature: choose comments from all suer comments
     And I follow "Rate your Dog"
     Then I should see "Testing User"
     And I should see "The greatest dog I've ever owned"
+    
+#End of this feature file

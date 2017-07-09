@@ -1,4 +1,4 @@
-#Newly added feature file for Iter1-1
+#Newly added feature file for Iter1-1.
 
 Feature: Admin should be able to see all the users who are subscribing newsletters and be able to process group emailing
     As an admin
@@ -46,3 +46,4 @@ Background: Admin already login
       Then I press "send"
       Then All the users should receive an email with "simpatico-pup"
       
+#End of this feature file
