@@ -14,7 +14,7 @@ Background: User already login, filled out pup name, how long the user owned the
       | Alex            | Berkeley | CA    |
 
   Scenario: step4->new(happy), submit with empty breeder name and kennel name
-    And I am on the "Dog Breeder" page
+    And I am on the "Dog Breeder Test" page
     And I press "next_button"
     Then I should be on the "Create New Pup" page
 
