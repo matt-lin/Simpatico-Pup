@@ -1,13 +1,9 @@
-Then(/^I click hidden button "([^"]*)"$/) do |arg1|
-  pending
-end
-
-When(/^I check batch checkbox "([^"]*)"$/) do |arg1|
-  pending
-end
-
 When(/^(?:admin )go to (.+)$/) do |page_name|
     visit "/admin/"+page_name
+end
+
+When /^I reload the page$/ do
+  visit [ current_path, page.driver.request.env['QUERY_STRING'] ].reject(&:blank?).join('?')
 end
 
 

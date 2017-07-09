@@ -8,26 +8,24 @@ Feature: choose comments from all suer comments
     | breed_1 			| breed_2 		 | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating | comments 						  | breeder_id 	   |
     | German Short Hair | None 			 | 4 					  | 5 			   | 5 			  | 4 				| 5 		   | 5 				  | The greatest dog I've ever owned. | 2 |
    
-  Scenario: login and check all user comments
+  Scenario: login and expect to see a user comments
     Given I login as an admin
     When admin go to user_comments
     Then admin should see "Testing User"
     And admin should see "The greatest dog I've ever owned"
     
-  Scenario: step0->1, select comment from all user comments
+  Scenario: step0->1, select a comment and expect to see that comments on selected comment
     Given I login as an admin
     When admin go to user_comments
     And I check "batch_action_item_1"
     And admin toggle the collection selection
-    #Then admin should see the batch action approve
-    
-    Then I click hidden button "dropdown_menu_button"
-    And I should see "Approve"
-    And I click "Approve Selected"
-    And I go to "selected_comments"
-    #Then I should see "The greatest dog I've ever owned"
+    Then I should see the batch action button
+    Then I submit the batch action form with "approve"
+    When admin go to selected_comments
+    Then I should see "The greatest dog I've ever owned"
     
   Scenario: step1->2, display selected comments on home page
     Given I am on the RateMyPup home page
-    #Then I should see "Testing User"
-    #And I should see "The greatest dog I've ever owned"
+    And I follow "Rate your Dog"
+    Then I should see "Testing User"
+    And I should see "The greatest dog I've ever owned"
