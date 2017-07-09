@@ -280,3 +280,7 @@ end
 When /^I go to "(.*)"$/ do |link|
   find("#"+link).click
 end
+
+Given (/^Not yet implemented$/) do
+  pending
+end
