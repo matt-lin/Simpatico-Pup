@@ -297,9 +297,9 @@ Given(/^I log in as "([^"]*)"/) do |user_name|
   assert_text("Logout")
 end
 
-When /^(?:|I )check "([^"]*)"$/ do |field|
-  check(field)
-end
+# When /^(?:|I )check "([^"]*)"$/ do |field|
+#   check(field)
+# end
 
 And /^"([^"]*)" is( not)? in the subscribing group/ do |username, not_in|
   if not_in.nil?
