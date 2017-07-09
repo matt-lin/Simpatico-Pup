@@ -14,7 +14,12 @@ Feature: choose comments from all suer comments
     And I go to "user_comments"
     Then I should see "The greatest dog I've ever owned"
     Then I should see "Testing User"
-    When I check "batch_action_item_1"
+    When I click "batch_action_item_1"
+    Then I press a hidden button "dropdown_menu_button"
+    Then I should see "Approve Selected"
+    Then I click "Approve Selected"
+    And I go to "selected_comments"
+    Then I should see "The greatest dog I've ever owned"
      
   
   #Scenario: An admin
