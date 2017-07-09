@@ -6,6 +6,10 @@ When(/^I check batch checkbox "([^"]*)"$/) do |arg1|
   pending
 end
 
+When(/^(?:admin )go to (.+)$/) do |page_name|
+    visit "/admin/"+page_name
+end
+
 
 # require 'uri'
 # require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
@@ -51,18 +55,19 @@ end
 #   select(value, from: field)
 # end
 
-# When /^(?:I )(check|uncheck|choose) "([^"]*)"$/ do |action, field|
-#   send action, field
-# end
+When /^(?:I )(check|uncheck|choose) "([^"]*)"$/ do |action, field|
+  send action, field
+end
+
 # When /^(?:I )attach the file "([^"]*)" to "([^"]*)"$/ do |path, field|
 #   attach_file(field, File.expand_path(path))
 # end
 
-# # Then /^(?:I )should( not)? see( the element)? "([^"]*)"$/ do |negate, is_css, text|
-# #   should = negate ? :not_to        : :to
-# #   have   = is_css ? have_css(text) : have_content(text)
-# #   expect(page).send should, have
-# # end
+Then /^(?:admin )should( not)? see( the element)? "([^"]*)"$/ do |negate, is_css, text|
+  should = negate ? :not_to        : :to
+  have   = is_css ? have_css(text) : have_content(text)
+  expect(page).send should, have
+end
 
 # Then /^the "([^"]*)" field(?: within (.*))? should( not)? contain "([^"]*)"$/ do |field, parent, negate, value|
 #   with_scope(parent) do

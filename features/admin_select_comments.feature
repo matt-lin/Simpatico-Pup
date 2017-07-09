@@ -10,14 +10,17 @@ Feature: choose comments from all suer comments
    
   Scenario: login and check all user comments
     Given I login as an admin
-    And I go to "user_comments"
-    #Then I should see "Testing User"
-    #And I should see "The greatest dog I've ever owned"
+    When admin go to user_comments
+    Then admin should see "Testing User"
+    And admin should see "The greatest dog I've ever owned"
     
   Scenario: step0->1, select comment from all user comments
     Given I login as an admin
-    And I go to "user_comments"
-    When I check batch checkbox "batch_action_item_1"
+    When admin go to user_comments
+    And I check "batch_action_item_1"
+    And admin toggle the collection selection
+    #Then admin should see the batch action approve
+    
     Then I click hidden button "dropdown_menu_button"
     And I should see "Approve"
     And I click "Approve Selected"
