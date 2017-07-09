@@ -427,12 +427,12 @@ h3.mission-text {
     .view {
     height: 100%;
 }
-.bg-page{
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
+/*.bg-page{*/
+/*    -webkit-background-size: cover;*/
+/*    -moz-background-size: cover;*/
+/*    -o-background-size: cover;*/
+/*    background-size: cover;*/
+/*}*/
 /*.view {*/
 /*    background: url("/assets/pup2.jpg"), url("/assets/pup3.jpg");*/
               
