@@ -2,7 +2,7 @@
     %section{:class => "find_pup"}
         //TOP PART (Tagline, Buttons)
         %div{:class => "row top", :style => "position: absolute; width: 100%"}
-            %div{:class => "row tagline col-lg-12"}
+            %div{:class => "row tagline"}
                 %h1{:id => "titleline"}
                     A Better Way to Find a Great Dog
                 %h2{:id => "tagline-text"} 
@@ -67,6 +67,7 @@
                             %div{:class => "main-button-large-text"}
                                 Breeder
         %div{:class => "bg-page row"}
+            %img{:class => "mySlides", :src => "/assets/pup.jpg", :style => "width:100%; display:none"}
             %img{:class => "mySlides", :src => "/assets/pup1.jpg", :style => "width:100%; display:none"}
             %img{:class => "mySlides", :src => "/assets/pup2.jpg", :style => "width:100%; display:none"}
             %img{:class => "mySlides", :src => "/assets/pup3.jpg", :style => "width:100%; display:none"}
@@ -77,9 +78,9 @@
             %img{:class => "mySlides", :src => "/assets/pup8.jpg", :style => "width:100%; display:none"}
     //Second Row
     %div{:class => "row"}
-        %section{:class => "comment-of-the-day"}
+        %section{:class => "featured-comment"}
             %header{:class => "span12"}
-                %h2 Comment of the Day
+                %h2 Featured Comment
                 %h3= "\"#{@comment_content}\""
                 %h3= "---- #{@comment_user}"
 

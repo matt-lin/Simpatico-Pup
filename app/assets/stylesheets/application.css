@@ -103,13 +103,14 @@ body {
 .box-move {
     margin-top: -100px;
 }
-.comment-of-the-day{
+.featured-comment{
     background-color: white;
     opacity: 0.6;
     width: 100%;
-    height: 200px;
     text-align: center;
     color: black;
+    margin-top:200px;
+    padding-top: 10px;
 }
     
 .ads{
@@ -137,8 +138,7 @@ body {
     margin-top: 8px;
     margin-bottom: 8px;
     display: inline-block;
-    padding: 6px 12px;
-    width: 50%;
+    width: 150px;
     height: 100px;
     line-height: 1.42857143;
     text-align: center;
@@ -206,9 +206,13 @@ body {
     font-size: 28px;
 }
 
-.titleline {
+#titleline {
     margin: 50px;
     text-align: center;
+}
+#tagline-text {
+    margin: 50px;
+    text-align:center;
 }
 .tagline {
     margin: 40px 100px 100px 100px;
@@ -324,7 +328,7 @@ h3.mission-text {
 
 .contact {
     background: #337ab7;
-    opacity: 0.95;
+    opacity: 1.0;
     width: 100%;
     padding-bottom: 10px;
     padding-top: 10px;
@@ -420,16 +424,143 @@ h3.mission-text {
     padding-top: 80px;
 }
 
+
+
+
 /*Mobile friendly */
+
 @media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 600px) {
+    and (max-device-width: 767px) {
       
     .contact-text-sm {
         color: white;
-        font-size: 5px;
+        font-size: 6px;
         text-align: center;
-        padding-bottom: 10px;
+    }
+    
+    #titleline{
+        font-size: 150%;
+    }
+    
+    #tagline-text {
+        font-size: 135%;
+    }
+    
+}
+    
+/* For iPhone 6 size mobile phone */
+@media only screen
+    and (max-device-height: 700px)
+    and (max-device-width: 500px)
+    and (min-device-height: 570px){
+        
+    .navbar .navbar-text {
+    margin-left: 15px;
+    }
+    
+    .main-button {
+        color: #337ab7;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        border-radius: 15px;
+        width:100px;
+        height:60px;
+        margin-left: 30px
+    }
+    
+    .main-button-small-text {
+        font-size: 10px;
     }
 
+    .main-button-large-text {
+        font-size: 20px;
+    }
+    
+    .tagline {
+        margin:40px 0px -90px 0px;
+        text-align: center;
+    }
+    
+   .featured-comment {
+        background-color: white;
+        opacity: 0.6;
+        width: 100%;
+        height: 100%;
+        font-size: 20px;
+        text-align: center;
+        color: black;
+        margin-top: -190px
+    }
+}
+    
+/* For iPhone 6P size mobile phone */
+@media only screen
+    and (max-device-height: 736px )
+    and (max-device-width: 414px)
+    and (min-device-height: 680px){
+        
+    .tagline {
+        margin:40px 0px -20px 0px;
+        text-align: center;
+    }
+    
+    .main-button {
+        margin-left: 10px
+    }
+    
+    .featured-comment {
+        margin-top: -50px;
+    }
+}
+
+
+/* For iPhone 5 size mobile */
+@media only screen
+    and (max-device-height:570px)
+    and (max-device-width: 320px) {
+        
+    .navbar .navbar-text {
+    margin-left: 15px;
+    }
+    
+    .main-button {
+        color: #337ab7;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        border-radius: 15px;
+        width:100px;
+        height:50px;
+        margin-left: 15px
+    }
+    
+    .main-button-small-text {
+        font-size: 10px;
+    }
+
+    .main-button-large-text {
+        font-size: 20px;
+    }
+    
+    .tagline {
+        margin:20px 0px -90px 0px;
+        text-align: center;
+    }
+    
+   .featured-comment {
+        background-color: white;
+        opacity: 0.6;
+        width: 100%;
+        height: 100%;
+        font-size: 20px;
+        text-align: center;
+        color: black;
+        margin-top: -200px
+    }
+        
 }

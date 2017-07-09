@@ -8,21 +8,20 @@
   <title>SimpaticoPup</title>
   
   <!-- mobile friendly tag -->
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width">
     
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
-    
-  <!-- might be not necessary -->
-  <!-- %= csrf_meta_tags % -->
-  
+  <%= csrf_meta_tags %>
   
 </head>
+
+
 <body>
 
   <!-- Devise user login buttons -->
   <div class="container-fluid" style="padding-top:50px; padding-bottom: 50px">
-    <nav class="navbar navbar-default navbar-fixed-top custom-navbar">
+    <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         
         <div class="navbar-header">
@@ -54,8 +53,8 @@
               
               <% if user_signed_in? %>
 
-                  <li>
-                    <span class="navbar-text"><%= "Logged in as " + current_user.username %></span>
+                  <li class="navbar-text">
+                    <%= "Logged in as " + current_user.username %>
                   </li>
 
                   <li>
@@ -86,7 +85,7 @@
     <%= yield %>
   </div>
   
-  <div class="row navbar-fixed-bottom">
+  <div class="row navbar-fixed-bottom"  style="padding-top:100px">
     <div class="col-md-12 contact contact-text-sm">
       <div class="col-sm-4">
         <p>For More Information on Breed Health:</p>
