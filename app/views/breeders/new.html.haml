@@ -18,7 +18,7 @@
       %br
       = select :breeder, :state, options_for_select(@states.collect{ |s| [s, s[0,2]] })
     %div{:class => "form-group col-sm-5"}
-      = submit_tag 'Add Breeder', :id => 'Add Breeder', :class => "form-control"
+      = submit_tag 'Add Breeder', :id => 'Add_Breeder', :class => "form-control"
     .col-sm-1
     .col-sm-5
       = link_to 'Cancel', dog_breeder_path, :class => "form-control cancel"
