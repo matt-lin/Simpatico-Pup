@@ -7,11 +7,7 @@ Background: User already login, filled out pup name, how long the user owned the
   Given I am on the RateMyPup home page
   Given I am logged in
   And I finished previous steps
-  
-  And the following breeds exist:
-      | name            |
-      | Affenpinscher   |
-  
+
   And the following breeders exist:
       | name            | city     | state |
       | Carl            | Berkeley | CA    |
@@ -23,7 +19,6 @@ Background: User already login, filled out pup name, how long the user owned the
     Then I should be on the "Create New Pup" page
 
   Scenario: step4->new(happy), submit with either breeder name or kennel name that is in db
-    Given I finished previous steps
     And I am on the "Dog Breeder Test" page
     When I fill in "breeder_form" with "Alex - Berkeley, CA"
     And I press "next_button"
