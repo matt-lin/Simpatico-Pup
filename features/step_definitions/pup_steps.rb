@@ -223,14 +223,6 @@ Given /^I click "(.*)"$/ do |click|
   page.evaluate_script("$('#{click}').click()")
 end
 
-
-Given (/^I login as an admin$/) do
-  visit('/admin/login')
-  fill_in(:admin_user_email, :with => 'admin@example.com')
-  fill_in(:admin_user_password, :with => 'password')
-  find('#admin_user_submit_action').click
-end
-
 When(/^I hover over "(.*?)"$/) do |element_name|
   page.evaluate_script("$('#{element_name}').trigger('mouseover')")
 end
@@ -245,4 +237,46 @@ Given(/^I finished previous steps$/) do
   page.set_rack_session(step3: true)
 end
 
+And(/^the following users exist:/) do |table|
+  table.hashes.each do |user|
+    User.create!(user)
+  end
+end
 
+And(/^the following newsletter_user exist:/) do |table|
+  table.hashes.each do |newsletter_user|
+    NewsletterUser.create!(newsletter_user)
+  end
+end
+
+Given(/^I log in as "([^"]*)"/) do |user_name|
+  click_link("Login")
+  fill_in(:user_email, :with => "#{user_name}@berkeley.edu")
+  fill_in(:user_password, :with => "12345678")
+  click_button("Log in")
+  assert_text("Logout")
+end
+
+When /^(?:|I )check "([^"]*)"$/ do |field|
+  check(field)
+end
+
+And /^"([^"]*)" is( not)? in the subscribing group/ do |username, not_in|
+  if not_in.nil?
+    NewsletterUser.where("email = ?", "#{username}@berkeley.edu").empty?.should == false
+  else
+    NewsletterUser.where("email = ?", "#{username}@berkeley.edu").empty?.should == true
+  end
+end
+
+Given (/^I login as an admin$/) do
+  @admin_user = FactoryGirl.create(:admin_user)
+  visit('/admin/login')
+  fill_in(:admin_user_email, :with => 'admin@berkeley.edu')
+  fill_in(:admin_user_password, :with => 'password')
+  find("#admin_user_submit_action").find("input").click
+end
+
+When /^I go to "(.*)"$/ do |link|
+  find("#"+link).click
+end
