@@ -17,8 +17,8 @@ When(/^(?:admin )go to (.+)$/) do |page_name|
     visit "/admin/"+page_name
 end
 
-Given /^I am on (.+)/ do |page_name|
-	visit path_to(page_name)
+Given /^(?:I )am on (.+)$/ do |page_name|
+  visit path_to(page_name)
 end
 
 When /^I reload the page$/ do
@@ -35,9 +35,7 @@ end
 #   with_scope(parent) { step "#{step_name}:", table_or_string }
 # end
 
-Given /^(?:I )am on (.+)$/ do |page_name|
-  visit path_to(page_name)
-end
+
 
 # # When /^(?:I )go to (.+)$/ do |page_name|
 # #   visit path_to(page_name)
