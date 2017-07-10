@@ -1,4 +1,4 @@
-#Newly added feature file for Iter1-1.
+#Newly added feature file for Iter1-1!
 
 Feature: Dog owners should be able to subscribe or unsubscribe newsletters 
     As a user
@@ -37,4 +37,4 @@ Background: User already login
       Then I should be on the RateMyPup home page
       And "jeff" is not in the subscribing group
       
-#End of this feature file
+#End of this feature file!
