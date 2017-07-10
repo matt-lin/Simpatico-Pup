@@ -265,9 +265,9 @@ When(/^I hover over "(.*?)"$/) do |element_name|
   page.evaluate_script("$('#{element_name}').trigger('mouseover')")
 end
 
-When(/^I choose "([^"]*)"$/) do |check_box_id|
-  choose(check_box_id)
-end
+# When(/^I choose "([^"]*)"$/) do |check_box_id|
+#   choose(check_box_id)
+# end
 
 Given(/^I finished previous steps$/) do
   page.set_rack_session(step1: true)
@@ -317,9 +317,6 @@ Given (/^I login as an admin$/) do
   find("#admin_user_submit_action").find("input").click
 end
 
-When /^I go to "(.*)"$/ do |link|
-  find("#"+link).click
-end
 
 Then (/^All the users should receive an email with "([^"]*)"$/) do |email_body|
   pending

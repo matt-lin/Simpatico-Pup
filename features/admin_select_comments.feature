@@ -1,5 +1,3 @@
-#Newly added feature file for Iter1-1
-
 Feature: choose comments from all suer comments
   As an administrator 
   I want to select appropiate comments at user comments page and sent them to selected comments page
@@ -16,7 +14,7 @@ Feature: choose comments from all suer comments
     Then admin should see "Testing User"
     And admin should see "The greatest dog I've ever owned"
     
-  Scenario: approve a comment and expect to see that comments on selected comment and the homepage
+  Scenario: select a comment and expect to see that comments on selected comment and the home page
     Given I login as an admin
     When admin go to user_comments
     And I check "batch_action_item_1"
