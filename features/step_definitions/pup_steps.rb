@@ -265,9 +265,9 @@ When(/^I hover over "(.*?)"$/) do |element_name|
   page.evaluate_script("$('#{element_name}').trigger('mouseover')")
 end
 
-When(/^I choose "([^"]*)"$/) do |check_box_id|
-  choose(check_box_id)
-end
+# When(/^I choose "([^"]*)"$/) do |check_box_id|
+#   choose(check_box_id)
+# end
 
 Given(/^I finished previous steps$/) do
   page.set_rack_session(step1: true)
@@ -297,9 +297,9 @@ Given(/^I log in as "([^"]*)"/) do |user_name|
   assert_text("Logout")
 end
 
-When /^(?:|I )check "([^"]*)"$/ do |field|
-  check(field)
-end
+# When /^(?:|I )check "([^"]*)"$/ do |field|
+#   check(field)
+# end
 
 And /^"([^"]*)" is( not)? in the subscribing group/ do |username, not_in|
   if not_in.nil?
@@ -317,9 +317,6 @@ Given (/^I login as an admin$/) do
   find("#admin_user_submit_action").find("input").click
 end
 
-When /^I go to "(.*)"$/ do |link|
-  find("#"+link).click
-end
 
 Then (/^All the users should receive an email with "([^"]*)"$/) do |email_body|
   pending
