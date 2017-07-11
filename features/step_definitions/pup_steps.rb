@@ -59,7 +59,6 @@ Given /the following comments exist/ do |pups_table|
   end
 end
 
-
 Given(/^the following breeders exist:$/) do |table|
   table.hashes.each do |breeder|
     FactoryGirl.create(:breeder, :name => breeder[:name], :city => breeder[:city], :state => breeder[:state])
@@ -106,4 +105,28 @@ And(/^the following newsletter_user exist:/) do |table|
   table.hashes.each do |newsletter_user|
     NewsletterUser.create!(newsletter_user)
   end
+end
+
+When /^I fill out the form with the following attributes:$/ do |pups_table|
+  page.evaluate_script "$('#multiple_breeds').trigger('click');"
+  pups_table.hashes.each do |rating|
+    choose('multiple_breeds_Mixed_Breed')
+    page.select rating['breed_1'], :from => 'pup_breed_1'
+    page.select rating['breed_2'], :from => 'pup_breed_2'
+    slide('slider-breeder', rating['breeder_responsibility'])
+    slide('slider-health', rating['overall_health'])
+    slide('slider-train', rating['trainability'])
+    slide('slider-social', rating['social_behavior'])
+    slide('slider-energy', rating['energy_level'])
+    slide('slider-simpatico', rating['simpatico_rating'])
+    fill_in 'Comments', :with => rating['comments']
+    fill_in 'Name', :with => rating['pup_name']
+  end
+end
+
+When /^I select "(.*)" and "(.*)" and search/ do |breed1, breed2|
+  choose('multiple_breeds_Mixed_Breed')
+  page.select(breed1, :from => 'pup_breed_1')
+  page.select(breed2, :from => 'pup_breed_2')
+  click_button "Find a Breed"
 end
