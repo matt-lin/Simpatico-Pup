@@ -6,6 +6,23 @@ And /^"([^"]*)" is( not)? in the subscribing group/ do |username, not_in|
   end
 end
 
-Then (/^All the users should receive an email with "([^"]*)"$/) do |email_body|
-  pending
+Then (/^all the users should receive an email$/) do 
+  emails = ActionMailer::Base.deliveries
+  emails.length.should == NewsletterUser.all.length
+  NewsletterUser.all.each do |user|
+    user_email = emails.select{|email| email.to.include? user.email}.size
+    user_email.should == 1
+  end
+end
+
+Given (/^there is no subscribers/) do
+  NewsletterUser.delete_all
+end
+
+Then (/^check all subscribers/) do 
+  (1..NewsletterUser.all.length).each do |index|
+    calling_step = 'I check "batch_action_item_"'
+    calling_step.insert(-2, index.to_s)
+    step calling_step
+  end
 end
