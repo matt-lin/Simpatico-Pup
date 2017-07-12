@@ -1,3 +1,5 @@
+#Newly added feature file for Iter1-1
+
 Feature: Indicate dog breeder when rating a pup
   As a dog owner
   I want to indicate my dog's breeder
@@ -7,11 +9,7 @@ Background: User already login, filled out pup name, how long the user owned the
   Given I am on the RateMyPup home page
   Given I am logged in
   And I finished previous steps
-  
-  And the following breeds exist:
-      | name            |
-      | Affenpinscher   |
-  
+
   And the following breeders exist:
       | name            | city     | state |
       | Carl            | Berkeley | CA    |

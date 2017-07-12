@@ -95,6 +95,7 @@ def fill_and_trigger(field, value, event_type)
   page.execute_script "s.val('#{value}').#{event_type}();"
 end
 
+<<<<<<< HEAD
 And(/^the following users exist:/) do |table|
   table.hashes.each do |user|
     User.create!(user)
@@ -106,6 +107,42 @@ And(/^the following newsletter_user exist:/) do |table|
     NewsletterUser.create!(newsletter_user)
   end
 end
+=======
+Given /^a confirmation box saying "(.*)" should pop up$/ do |message|
+  @expected_message = message
+end
+
+Given /^I want to click "(.*)"$/ do |option|
+  retval = (option == "Ok") ? "true" : "false"
+
+  page.evaluate_script("window.confirm = function (msg) {
+    $.cookie('confirm_message', msg)
+    return #{retval}
+  }")
+end
+
+Then /^the confirmation box should have been displayed$/ do
+  page.evaluate_script("$.cookie('confirm_message')").should_not be_nil
+  page.evaluate_script("$.cookie('confirm_message')").should eq(@expected_message)
+  page.evaluate_script("$.cookie('confirm_message', null)")
+end
+
+Given /^I click "(.*)"$/ do |click|
+  page.evaluate_script("$('#{click}').click()")
+end
+
+When(/^I visit "([^"]*)"$/) do |url|
+  visit(url)
+end
+
+When(/^I hover over "(.*?)"$/) do |element_name|
+  page.evaluate_script("$('#{element_name}').trigger('mouseover')")
+end
+
+# When(/^I choose "([^"]*)"$/) do |check_box_id|
+#   choose(check_box_id)
+# end
+>>>>>>> master
 
 When /^I fill out the form with the following attributes:$/ do |pups_table|
   page.evaluate_script "$('#multiple_breeds').trigger('click');"
@@ -124,9 +161,59 @@ When /^I fill out the form with the following attributes:$/ do |pups_table|
   end
 end
 
+<<<<<<< HEAD
 When /^I select "(.*)" and "(.*)" and search/ do |breed1, breed2|
   choose('multiple_breeds_Mixed_Breed')
   page.select(breed1, :from => 'pup_breed_1')
   page.select(breed2, :from => 'pup_breed_2')
   click_button "Find a Breed"
 end
+=======
+#Newly added step definitions for Iter1-1
+
+And(/^the following users exist:/) do |table|
+  table.hashes.each do |user|
+    User.create!(user)
+  end
+end
+
+And(/^the following newsletter_user exist:/) do |table|
+  table.hashes.each do |newsletter_user|
+    NewsletterUser.create!(newsletter_user)
+  end
+end
+
+Given(/^I log in as "([^"]*)"/) do |user_name|
+  click_link("Login")
+  fill_in(:user_email, :with => "#{user_name}@berkeley.edu")
+  fill_in(:user_password, :with => "12345678")
+  click_button("Log in")
+  assert_text("Logout")
+end
+
+# When /^(?:|I )check "([^"]*)"$/ do |field|
+#   check(field)
+# end
+
+And /^"([^"]*)" is( not)? in the subscribing group/ do |username, not_in|
+  if not_in.nil?
+    NewsletterUser.where("email = ?", "#{username}@berkeley.edu").empty?.should == false
+  else
+    NewsletterUser.where("email = ?", "#{username}@berkeley.edu").empty?.should == true
+  end
+end
+
+Given (/^I login as an admin$/) do
+  @admin_user = FactoryGirl.create(:admin_user)
+  visit('/admin/login')
+  fill_in(:admin_user_email, :with => 'admin@berkeley.edu')
+  fill_in(:admin_user_password, :with => 'password')
+  find("#admin_user_submit_action").find("input").click
+end
+
+
+Then (/^All the users should receive an email with "([^"]*)"$/) do |email_body|
+  pending
+end
+
+>>>>>>> master
