@@ -57,7 +57,6 @@ class Pup < ActiveRecord::Base
       # result += Pup.where("breed_1 = ? and breed_2 = ?", breed2, breed1).order("created_at DESC")
     if Breed.is_valid_breed breed1
       result = Pup.where("breed_id = ?", Breed.find_by_name( breed1 ).id)
-      
       if breed2 != 'None'
         result = Pup.where("breed_id = ?", Breed.find_by_name( breed2 ).id)
       end
@@ -70,6 +69,9 @@ class Pup < ActiveRecord::Base
 
   def Pup.avg_ratings_by_breeds(breed1, breed2='None')
     pups_by_breed = Pup.find_by_breeds(breed1, breed2)
+    puts '*'*80
+    puts pups_by_breed.count
+    puts '*'*80
     results_hash = {:overall_health => 0, :trainability => 0, :social_behavior => 0,
                     :dog_behavior => 0, :energy_level => 0, :simpatico_rating => 0}
     results_num = {:overall_health => 0, :trainability => 0, :social_behavior => 0,

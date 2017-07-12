@@ -237,6 +237,7 @@ with you for a minimum of six months. Thank you.")
   describe "searching a dog by breed" do
     it "should find dogs with the single breed submitted" do
       fake_dogs = [double('pup1'), double('pup2'), double('pup3')]
+      FactoryGirl.create(:breed, :name => "Chinese Shar-Pei")
       Pup.should_receive(:find_by_breed).with("Chinese Shar-Pei").and_return(fake_dogs)
       avg_ratings = {
         'breeder_responsibility'=> 1,
