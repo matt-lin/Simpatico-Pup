@@ -65,8 +65,6 @@ describe Pup do
       dog_5 = FactoryGirl.create(:pup, :breed_id => @affenpinscher_id)
       
       ratings_hash = Pup.avg_ratings_by_breeds('Affenpinscher')
-      p "*" * 80
-      p ratings_hash
       ratings_hash.each do |rating, value|
         assert(value == 1)
       end
