@@ -80,12 +80,22 @@
         
     //Second Row
     %div{:class => "row"}
+<<<<<<< HEAD
         %section{:class => "featured-comment"}
             %header{:class => "span12"}
                 %h2 Featured Comment
                 %h3= "\"#{@comment_content}\""
                 %h3= "---- #{@comment_user}"
 
+=======
+        %section{:class => "comment-of-the-day"}
+            %div{:class => "row col-lg-12"}
+                %header{:class => "span24"}
+                    %h2 Featured Comment
+                    //Problem 1
+                    %h3= "\"#{@comment_content}\"" 
+                    %h3= "---- #{@comment_user}"
+>>>>>>> b542283309e72235040f3ccc263011458d5c20db
     //Third Row
     -#%div{:class => "row"}
     -#    %section{:class => "ads"}
