@@ -79,6 +79,7 @@ describe PupsController do
       }
     end
     it "should redirect to new pup page if fields are incomplete" do
+      FactoryGirl.create(:breed, :name => 'Affenpinscher')
       session[:step1] = true
       session[:pup_name] = "Doggie"
       session[:step2] = true
@@ -91,6 +92,7 @@ describe PupsController do
       flash[:notice].should eq("Please make sure all fields are complete!")
     end
     it "should redirect to root page if correct fields are provided" do
+      FactoryGirl.create(:breed, :name => 'Affenpinscher')
       session[:step1] = true
       session[:pup_name] = "Doggie"
       session[:step2] = true
@@ -156,6 +158,7 @@ with you for a minimum of six months. Thank you.")
       expect(response).to redirect_to root_path
     end
     it "should go to dog_breeder if Purebred " do
+      FactoryGirl.create(:breed, :name => 'Affenpinscher')
       session[:step1] = true
       session[:pup_name] = "Doggie"
       session[:step2] = true
