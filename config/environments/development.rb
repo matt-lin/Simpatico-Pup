@@ -38,5 +38,19 @@ Ratemypup::Application.configure do
 
   # Devise setup
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # config.action_mailer.raise_delivery_errors = true
+  # config.action_mailer.perform_deliveries = true 
+  # ActionMailer::Base.delivery_method = :smtp
+  # ActionMailer::Base.smtp_settings = {
+  #   :address => "smtp.gmail.com",
+  #   :port => 587,
+  #   :domain => "gmail.com",
+  #   :authentication => :plain,
+  #   :user_name => "lhygilbert@gmail.com",
+  #   :password => "gi961LO:749",
+  #   :enable_starttls_auto => true
+  # }
+  # ActionMailer::Base.smtp_settings[:address] = 'lhygilbert@gmail.com'
+  # ActionMailer::Base.smtp_settings[:password] = 'gi961LO:749'
 
 end

@@ -1,3 +1,5 @@
+#Newly added feature file for Iter1-1
+
 Feature: Dog owners should be able to subscribe or unsubscribe newsletters 
     As a user
     I want to be able to subscribe or unsubscribe newsletters

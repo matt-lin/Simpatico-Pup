@@ -1,5 +1,5 @@
 class ContactBatchMailer < ActionMailer::Base
-  default from: "simpatico@example.com"
+  default from: 'from@example.com'
   def contact_batch_email(name, email, message, subject, recipient)
     @message = message
     @name = name
@@ -7,6 +7,10 @@ class ContactBatchMailer < ActionMailer::Base
     @subject = subject
     @recipient = recipient
     #mail(to: recipient, :reply_to => email, name: @name, subject: @subject)
-    mail(to: "lhygilbert@gmail.com", subject: "Test email", body: "Testing email")
+
+    mail(to: 'hyu596@berkeley.edu', subject: "Test email", body: "Testing email")
   end
+  # def test_email
+  #   mail(to: 'hyu596@berkeley.edu', subject: "Test email", body: "Testing email")
+  # end
 end
