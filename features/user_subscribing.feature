@@ -36,3 +36,21 @@ Background: User already login
       And I press "update_button"
       Then I should be on the RateMyPup home page
       And "jeff" is not in the subscribing group
+      
+    Scenario: users can not subscribe with wrong password
+      Given I log in as "gilbert"
+      And I am on the "Edit Profile" page
+      Then I check "subscribe_newsletter"
+      And I fill in "user_current_password" with "incorrect"
+      And I press "update_button"
+      Then I should be on the "Correct Back" page
+      And I should see "Current password is invalid"
+      
+    Scenario: users can not unsubscribe with wrong password
+      Given I log in as "jeff"
+      And I am on the "Edit Profile" page
+      Then I check "unsubscribe_newsletter"
+      And I fill in "user_current_password" with "incorrect"
+      And I press "update_button"
+      Then I should be on the "Correct Back" page
+      And I should see "Current password is invalid"
