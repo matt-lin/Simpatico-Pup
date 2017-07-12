@@ -425,7 +425,24 @@ h3.mission-text {
 }
 
 
+html,
+body,
+.view {
+    height: 100%;
+}
 
+
+.view {
+    background: url("/assets/pup7.jpg")no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+/**************************************/
+    
+
+/************************************/
 
 /*Mobile friendly */
 
