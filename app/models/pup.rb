@@ -45,17 +45,27 @@ class Pup < ActiveRecord::Base
     # breed_id = Breed.find_by_name(breed_name)
     # result = Pup.where("breed_1 = ?", breed_name).order("created_at DESC")
     # result += Pup.where("breed_2 = ?", breed_name).order("created_at DESC")
-    result = Pup.where("breed_id = ?", Breed.find_by_name( breed_name ).id).order("created_at DESC")
+    if Breed.find_by_name(breed_name).nil?
+      []
+    else
+      result = Pup.where("breed_id = ?", Breed.find_by_name( breed_name ).id).order("created_at DESC")
+    end
   end
   
   def Pup.find_by_breeds(breed1, breed2='None')
       # result = Pup.where("breed_1 = ? and breed_2 = ?", breed1, breed2).order("created_at DESC")
       # result += Pup.where("breed_1 = ? and breed_2 = ?", breed2, breed1).order("created_at DESC")
-    result = Pup.where("breed_id = ?", Breed.find_by_name( breed1 ).id)
-    if breed2 != 'None'
-      result = Pup.where("breed_id = ?", Breed.find_by_name( breed2 ).id)
+    if Breed.is_valid_breed breed1
+      result = Pup.where("breed_id = ?", Breed.find_by_name( breed1 ).id)
+      
+      if breed2 != 'None'
+        result = Pup.where("breed_id = ?", Breed.find_by_name( breed2 ).id)
+      end
+      result.order("created_at DESC")
+    else
+      []
     end
-    result.order("created_at DESC")
+    
   end
 
   def Pup.avg_ratings_by_breeds(breed1, breed2='None')
