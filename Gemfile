@@ -18,7 +18,6 @@ gem 'figaro'
 gem "font-awesome-rails"
 gem 'geocoder'
 # gem "activeadmin", :git => "git://github.com/gregbell/active_admin.git"
-
 gem 'activeadmin', "1.0.0.pre1"
 gem 'test-unit', '~> 3.0'
 # forum
