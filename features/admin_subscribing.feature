@@ -50,3 +50,24 @@ Background: Admin already login
       Then I submit the batch action form with "email"
       Then all the users should receive an email
       
+    Scenario: admins process emailing to checked subscribers
+      And admin go to newsletter_users
+      And I check "batch_action_item_1"
+      And I submit the batch action form with "email"
+      Then "jeff" should receive an email
+      And "gilbert" should not receive an email
+      
+    Scenario: admins process group emailing with subject and message
+      And admin go to newsletter_users
+      And check all subscribers
+      And I send emails with subject as "subject" and message as "message"
+      Then all the users should get an email with "subject" and "message"
+      
+    Scenario: admins process emailing with subject and message to checked subscribers
+      And admin go to newsletter_users
+      And I check "batch_action_item_1"
+      And I send emails with subject as "subject" and message as "message"
+      Then "jeff" should get an email with "subject" and "message"
+      And "gilbert" should not receive an email
+      
+      
