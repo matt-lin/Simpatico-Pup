@@ -22,22 +22,22 @@ Background: reviews have been added to the database
     And I am on the RateMyPup home page
     And I press a hidden button ".button-b"
 
-Scenario: search for single breed of dog
-    When I fill in "breed_find" with "Shiba Inu"
-    And I press "Find Breed"
-    Then I should see "4.0"
-    And I should see "Such review. Wow."
+# Scenario: search for single breed of dog
+#     When I fill in "breed_find" with "Shiba Inu"
+#     And I press "Find Breed"
+#     Then I should see "4.0"
+#     And I should see "Such review. Wow."
 
-Scenario: search for secondary breed of dog
-    When I fill in "breed_find" with "Poodle"
-    And I press "Find Breed"
-    Then I should see "3.5"
-    And I should see "4.5"
-    And I should see "The greatest poodle ever."
-    And I should see "Great dog."
-    And I should not see "Very aloof."
+# Scenario: search for secondary breed of dog
+#     When I fill in "breed_find" with "Poodle"
+#     And I press "Find Breed"
+#     Then I should see "3.5"
+#     And I should see "4.5"
+#     And I should see "The greatest poodle ever."
+#     And I should see "Great dog."
+#     And I should not see "Very aloof."
 
-Scenario: see correct number of ratings
-    When I fill in "breed_find" with "Poodle"
-  And I press "Find Breed"
-  Then I should see "There are 2 ratings"
+# Scenario: see correct number of ratings
+#     When I fill in "breed_find" with "Poodle"
+#   And I press "Find Breed"
+#   Then I should see "There are 2 ratings"

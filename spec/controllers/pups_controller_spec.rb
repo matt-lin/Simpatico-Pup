@@ -15,14 +15,14 @@ describe PupsController do
   #     get :new
   #   end
   # end
-  describe "serving main page" do
-    it "should get all of the breeds for the page", :pending => true do
-      Pup.should_receive(:all_breeds).and_return([])
-      Pup.should_receive(:all_breeds_none).and_return([])
-      Breeder.should_receive(:all).and_return([])
-      get :main
-    end
-  end
+  # describe "serving main page" do
+  #   it "should get all of the breeds for the page" do
+  #     Pup.should_receive(:all_breeds).and_return([])
+  #     Pup.should_receive(:all_breeds_none).and_return([])
+  #     Breeder.should_receive(:all).and_return([])
+  #     get :main
+  #   end
+  # end
   describe "looking at a single pup review" do
     it "should find the pup" do
       temp_pup = Pup.new()
@@ -79,6 +79,7 @@ describe PupsController do
       }
     end
     it "should redirect to new pup page if fields are incomplete" do
+      FactoryGirl.create(:breed, :name => 'Affenpinscher')
       session[:step1] = true
       session[:pup_name] = "Doggie"
       session[:step2] = true
@@ -91,6 +92,7 @@ describe PupsController do
       flash[:notice].should eq("Please make sure all fields are complete!")
     end
     it "should redirect to root page if correct fields are provided" do
+      FactoryGirl.create(:breed, :name => 'Affenpinscher')
       session[:step1] = true
       session[:pup_name] = "Doggie"
       session[:step2] = true
@@ -156,6 +158,7 @@ with you for a minimum of six months. Thank you.")
       expect(response).to redirect_to root_path
     end
     it "should go to dog_breeder if Purebred " do
+      FactoryGirl.create(:breed, :name => 'Affenpinscher')
       session[:step1] = true
       session[:pup_name] = "Doggie"
       session[:step2] = true
@@ -232,9 +235,10 @@ with you for a minimum of six months. Thank you.")
     end
   end
   describe "searching a dog by breed" do
-    it "should find dogs with the single breed submitted", :pending => true do
+    it "should find dogs with the single breed submitted" do
       fake_dogs = [double('pup1'), double('pup2'), double('pup3')]
-      Pup.should_receive(:find_by_breeds).with('shiba inu', 'None').and_return(fake_dogs)
+      FactoryGirl.create(:breed, :name => "Chinese Shar-Pei")
+      Pup.should_receive(:find_by_breed).with("Chinese Shar-Pei").and_return(fake_dogs)
       avg_ratings = {
         'breeder_responsibility'=> 1,
         'overall_health' => 1,
@@ -243,11 +247,11 @@ with you for a minimum of six months. Thank you.")
         'energy_level' => 1,
         'simpatico_rating' => 1
       }
-      Pup.should_receive(:avg_ratings_by_breeds).with('shiba inu', 'None').and_return(avg_ratings)
-      get :breed, {:breed => {:name => 'shiba inu'}}
+      Pup.should_receive(:avg_ratings_by_breeds).with("Chinese Shar-Pei").and_return(avg_ratings)
+      get :breed, {:breed => {:name => "Chinese Shar-Pei"}}
       assert true
     end
-    it "should redirect to the main page when there are no results", :pending => true do
+    it "should redirect to the main page when there are no results" do
       Pup.stub(:find_by_breeds).with('shiba inu', 'None').and_return([])
       Pup.should_receive(:avg_ratings_by_breeds).never
       get :breed, {:breed => {:name => 'shiba inu'}}
