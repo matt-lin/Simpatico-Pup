@@ -85,14 +85,11 @@ GEM
       execjs (~> 2.0)
     bbcoder (1.1.1)
     bcrypt (3.1.11)
-<<<<<<< HEAD
+    bourbon (4.3.4)
     bootstrap (4.0.0.alpha6)
       autoprefixer-rails (>= 6.0.3)
       sass (>= 3.4.19)
     bourbon (4.2.7)
-=======
-    bourbon (4.3.4)
->>>>>>> 710075ceade61427ab375a0a53d2eecbb6bdaff6
       sass (~> 3.4)
       thor (~> 0.19)
     builder (3.2.2)
