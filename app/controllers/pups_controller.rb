@@ -230,9 +230,10 @@ with you for a minimum of six months. Thank you."
     if !Breed.is_valid_breed(name)
       flash[:notice] = "Please enter a valid breed name."
       redirect_to root_path
+    else
+      @pups = Pup.find_by_breed(name)
+      @avg_ratings = Pup.avg_ratings_by_breeds(name)
     end
-    @pups = Pup.find_by_breed(name)
-    @avg_ratings = Pup.avg_ratings_by_breeds(name)
   end
 
 

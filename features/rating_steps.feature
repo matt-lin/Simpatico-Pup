@@ -73,12 +73,12 @@ Background: User already logged in, and databse is loaded with breed and breeder
     And I should see "Please select a breed in the list."
     And I should see "Close"
 
-  Scenario: Rate my dog
-    Given I finished previous steps
-    And I am on the "Create New Pup Test" page
-    # When I fill in the rating form
-    And I press "Add_Pup"
-    Then I should be on the RateMyPup home page
+  # Scenario: Rate my dog
+  #   Given I finished previous steps
+  #   And I am on the "Create New Pup Test" page
+  #   # When I fill in the rating form
+  #   And I press "Add_Pup"
+  #   Then I should be on the RateMyPup home page
     
   Scenario: step4->new(happy), submit with empty breeder name and kennel name
     Given I finished previous steps
