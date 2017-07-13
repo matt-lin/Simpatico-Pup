@@ -6,15 +6,12 @@ class PupsController < ApplicationController
   # Devise. Methods not in the list below will require a user to be logged in.
   before_filter :authenticate_user!, except: [:index, :new, :main, :show, :breed, :search_breed]
 
-
   def breeder_exists
     if params[:pup][:breeder_id].to_i == -1
       breeder = Breeder.find_or_create(params[:breeder][:name], params[:breeder][:city], params[:breeder][:state])
       params[:pup][:breeder_id] = breeder.id
     end
   end
-
-
 
   # The Root Path
   def main
@@ -25,8 +22,6 @@ class PupsController < ApplicationController
       @comment_user = selected_comment.user
     end
   end
-
-
 
   # The true rating page
   def new
@@ -60,13 +55,10 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
     end
   end
 
-
-
   # Rails default methods
   def index
     @pups = Pup.all
   end
-
 
   def show
     @pup = Pup.find params[:id]
@@ -92,11 +84,11 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
     new_pup[:breed_id] = Breed.find_by_name(session[:breed]).id
     new_pup[:breeder_id] = session[:breeder_id]
     new_pup[:user_id] = current_user.id
+    new_pup[:breed_1] = session[:breed]
     # new_pup[:breeder_1] = session[:breed]
     @pup = Pup.new(new_pup)
     new_comment = {:content => params[:pup][:comments]}
     @Comment = Comment.new(new_comment)
-
 
     if @pup.user.pups(:reload).size > 8
       flash[:notice] = 'SimpaticoPup is a website designed to collect information from dog lovers about their own
@@ -119,7 +111,8 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     @pup.save
     @Comment.pup_id = @pup.id
     @Comment.save
-
+    
+    
     # Successfully save pup & comment
     flash[:notice] = "Thank You! #{@pup.pup_name} was successfully added to our database."
     redirect_to root_path
@@ -237,9 +230,10 @@ with you for a minimum of six months. Thank you."
     if !Breed.is_valid_breed(name)
       flash[:notice] = "Please enter a valid breed name."
       redirect_to root_path
+    else
+      @pups = Pup.find_by_breed(name)
+      @avg_ratings = Pup.avg_ratings_by_breeds(name)
     end
-    @pups = Pup.find_by_breed(name)
-    @avg_ratings = Pup.avg_ratings_by_breeds(name)
   end
 
 

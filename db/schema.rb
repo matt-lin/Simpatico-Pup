@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161123051626) do
+ActiveRecord::Schema.define(version: 20170711064248) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "resource_id",   null: false
@@ -109,9 +109,8 @@ ActiveRecord::Schema.define(version: 20161123051626) do
     t.integer  "year"
     t.integer  "month"
     t.string   "owner_name"
-    t.string   "breed_1"
-    t.string   "breed_2"
-    t.string   "comments"
+    t.integer  "breed_1"
+    t.integer  "breed_2"
   end
 
   create_table "selected_comments", force: :cascade do |t|
@@ -359,3 +358,5 @@ ActiveRecord::Schema.define(version: 20161123051626) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end
+
+AdminUser.create!(:email => 'admin@berkeley.edu', :password => 'password', :password_confirmation => 'password')

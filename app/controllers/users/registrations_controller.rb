@@ -1,6 +1,11 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 before_filter :configure_sign_up_params, only: [:create]
 before_filter :configure_account_update_params, only: [:update]
+helper_method :subscribed?
+
+  def subscribed?
+    not NewsletterUser.where("email = ?", resource.email).empty?
+  end
 
   # GET /resource/sign_up
   def new
@@ -41,6 +46,14 @@ before_filter :configure_account_update_params, only: [:update]
   # PUT /resource
   def update
     super
+    
+    user = User.find_by_email(params[:user][:email])
+    
+    if params[:subscribe_newsletter].present? and user.valid_password?(params[:user][:current_password])
+      NewsletterUser.find_or_create_by(email: resource.email)
+    elsif params[:unsubscribe_newsletter].present? and user.valid_password?(params[:user][:current_password])
+      NewsletterUser.where(email: resource.email).destroy_all
+    end
   end
 
   # DELETE /resource
@@ -78,4 +91,5 @@ before_filter :configure_account_update_params, only: [:update]
   def after_inactive_sign_up_path_for(resource)
     super(resource)
   end
+  
 end

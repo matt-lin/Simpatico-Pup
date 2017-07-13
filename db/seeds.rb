@@ -260,7 +260,17 @@ breeds = [
       { :name => 'Maltipoo (Maltese x Poodle)' },
       { :name => 'Yorkipoo (Yorkshire Terrier x Poodle)' },
       { :name => 'Shihpoo (Shih Tzu x Poodle)' }]
+      
 
+newsletter_users = [
+    {:email => 'nu1@gmail.com', :created_at => DateTime.now, :updated_at => DateTime.now},
+    {:email => 'nu2@gmail.com', :created_at => DateTime.now, :updated_at => DateTime.now},
+    {:email => 'nu3@gmail.com', :created_at => DateTime.now, :updated_at => DateTime.now},
+    {:email => 'nu4@gmail.com', :created_at => DateTime.now, :updated_at => DateTime.now}]
+
+newsletter_users.each do |nl_user|
+  NewsletterUser.create!(nl_user)
+end
 
 breeders.each do |breed|
   Breeder.create!(breed)
@@ -282,3 +292,4 @@ texts.each do |text|
   Text.create!(text)
 end
 
+AdminUser.create!(:email => 'admin@berkeley.edu', :password => 'password', :password_confirmation => 'password')

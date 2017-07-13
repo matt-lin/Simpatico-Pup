@@ -2,7 +2,7 @@
     %section{:class => "find_pup"}
         //TOP PART (Tagline, Buttons)
         %div{:class => "row top", :style => "position: absolute; width: 100%"}
-            %div{:class => "row tagline col-lg-12"}
+            %div{:class => "row tagline"}
                 %h1{:id => "titleline"}
                     A Better Way to Find a Great Dog
                 %h2{:id => "tagline-text"} 
@@ -69,10 +69,16 @@
                                 Search for a
                             %div{:class => "main-button-large-text"}
                                 Breeder
+<<<<<<< HEAD
         
 
 
         %div{:class => "bg-page row view "}
+=======
+        %div{:class => "bg-page row view "}
+        
+            // %img{:class => "mySlides", :src => "/assets/pup.jpg", :style => "width:100%; display:none"}
+>>>>>>> 710075ceade61427ab375a0a53d2eecbb6bdaff6
             // %img{:class => "mySlides", :src => "/assets/pup1.jpg", :style => "width:100%; display:none"}
             // %img{:class => "mySlides", :src => "/assets/pup2.jpg", :style => "width:100%; display:none"}
             // %img{:class => "mySlides", :src => "/assets/pup3.jpg", :style => "width:100%; display:none"}
@@ -81,15 +87,18 @@
             // %img{:class => "mySlides", :src => "/assets/pup6.jpg", :style => "width:100%; display:none"}
             // %img{:class => "mySlides", :src => "/assets/pup7.jpg", :style => "width:100%; display:none"}
             // %img{:class => "mySlides", :src => "/assets/pup8.jpg", :style => "width:100%; display:none"}
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 710075ceade61427ab375a0a53d2eecbb6bdaff6
     //Second Row
     %div{:class => "row"}
-        %section{:class => "comment-of-the-day"}
-            %div{:class => "row col-lg-12"}
-                %header{:class => "span24"}
-                    %h2 Comment of the Day
-                    //Problem 1
-                    %h3= "\"#{@comment_content}\"" 
-                    %h3= "---- #{@comment_user}"
+        %section{:class => "featured-comment"}
+            %header{:class => "span12"}
+                %h2 Featured Comment
+                %h3= "\"#{@comment_content}\""
+                %h3= "---- #{@comment_user}"
+
     //Third Row
     -#%div{:class => "row"}
     -#    %section{:class => "ads"}

@@ -1,9 +1,6 @@
-@javascript
-
-
 #########################################################
 ### Test info: 
-### 1. disable enforced breed id for Pup creation [pup.rb:15]
+### 1. 
 ### 2. disable set_title in before_filter[application_controller:5]
 ##########################################################
 
@@ -29,4 +26,4 @@ Feature: An admin should be able to edit, delete, and change comments
 
   Scenario: A user that is an admin should be able to see the admin page button and go to the admin page home
     Given I login as an admin
-    And I click "pups"
+    # And I click "pups"
