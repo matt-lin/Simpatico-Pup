@@ -10,6 +10,7 @@ script:
   - CODECLIMATE_REPO_TOKEN=f048e9b7147365e2d4d864acbca2e2820d218432cd4c741b9592f43512ac5b43 bundle exec rake
 
 after_script:
+  - gem install codeclimate-test-reporter
   - bundle exec codeclimate-test-reporter
 
 addons:
