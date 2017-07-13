@@ -359,3 +359,5 @@ ActiveRecord::Schema.define(version: 20161123051626) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end
+
+AdminUser.create!(:email => 'admin@berkeley.edu', :password => 'password', :password_confirmation => 'password')

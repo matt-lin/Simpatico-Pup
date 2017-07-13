@@ -6,24 +6,34 @@
 <head>
   <link rel="icon" href="/assets/icon.png">
   <title>SimpaticoPup</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  
+  <!-- mobile friendly tag -->
+    <meta name="viewport" content="width=device-width">
+    
+  <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  
 </head>
+
+
 <body>
 
   <!-- Devise user login buttons -->
-  <div class="container-fluid" style="padding-top:50px; padding-bottom: 80px">
-    <nav class="navbar navbar-default navbar-fixed-top custom-navbar">
+  <div class="container-fluid" style="padding-top:50px; padding-bottom: 50px">
+    <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
-          <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-              <li>
-                <div class="navbar-header">
-                  <a class="navbar-brand" href="/" style="font-size: 24px; padding-left:50px;">SimpaticoPup</a>
-                </div>
-              </li>
-          </ul>
+        
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#Navbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>                        
+          </button>
+          <a class="navbar-brand" href="/" style="font-size: 24px;padding-left:25px;">SimpaticoPup</a>
+        </div>
+                
+        <div class="collapse navbar-collapse" id="Navbar">
             <ul class="nav navbar-nav navbar-right">
               <li> 
                 <%= link_to "Mission", text_mission_path %>
@@ -43,8 +53,8 @@
               
               <% if user_signed_in? %>
 
-                  <li>
-                    <span class="navbar-text"><%= "Logged in as " + current_user.username %></span>
+                  <li class="navbar-text">
+                    <%= "Logged in as " + current_user.username %>
                   </li>
 
                   <li>
@@ -73,15 +83,15 @@
     <% end %>
 
     <%= yield %>
-
   </div>
-
+  
   <div class="row navbar-fixed-bottom">
     <div class="col-md-12 contact contact-text-sm">
       <div class="col-sm-4">
         <p>For More Information on Breed Health:</p>
         <%= link_to 'Canine Health Information Center', 'http://www.caninehealthinfo.org/', :class => "contact-link" %>
       </div>
+    
       <div class="col-sm-4">
         <p>
           <%= link_to "Privacy Policy", privacy_policy_path, :class=>"contact-link" %>
@@ -89,14 +99,16 @@
         <p>
           <%= link_to "Terms of Service", terms_of_service_path, :class=>"contact-link" %>
         </p>
-
       </div>
+    
       <div class="col-sm-4">
         <p>Contact Info</p>
         <%= link_to "LSandersDVM@gmail.com", 'mailto:LSandersDVM@gmail.com', :class=>"contact-link" %>
       </div>
+    
     </div>
   </div>
+  
 
 </body>
 </html>
