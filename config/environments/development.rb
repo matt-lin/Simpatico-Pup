@@ -39,7 +39,7 @@ Ratemypup::Application.configure do
   # Devise setup
 require "#{Rails.root}/lib/smtp_tls"
 
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { :host => 'cs169-intro-hyu596.c9users.io' }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true 
   ActionMailer::Base.delivery_method = :smtp
@@ -52,6 +52,8 @@ require "#{Rails.root}/lib/smtp_tls"
     :password => "Jeff4728",
     :enable_starttls_auto => false
   }
+  
+
 
 
 end

@@ -16,5 +16,10 @@ class PasswordresetsController < ApplicationController
   end
 
   def edit
+    puts '*'*80
+  end
+  
+  def reset
+    redirect_to root_path
   end
 end

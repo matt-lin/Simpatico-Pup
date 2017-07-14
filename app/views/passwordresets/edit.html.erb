@@ -1,2 +1,23 @@
-<h1>Passwordresets#edit</h1>
-<p>Find me in app/views/passwordresets/edit.html.erb</p>
+<h2>Password Reset</h2>
+
+<%= form_for(:reset) do |f| %>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+<br>
+
+  <div class="actions">
+    <%= f.submit "Reset" %>
+  </div>
+<% end %>
+

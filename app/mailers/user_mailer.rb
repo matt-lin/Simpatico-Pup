@@ -6,6 +6,7 @@ class UserMailer < ApplicationMailer
 
   def password_reset(user)
     @user = user
-    ContactBatchMailer.contact_batch_email('reset', 'your_address_to_reply_to@example.com', "passwordreset", "passwordreset", user.email).deliver_now
+    @url = "cs169-intro-hyu596.c9users.io/passwordresets/#{@user.id}/edit"
+    mail(to: user.email,  subject: 'Reset Password')
   end
 end
