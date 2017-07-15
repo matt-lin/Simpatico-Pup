@@ -1,4 +1,4 @@
-Feature: choose comments from all suer comments
+Feature: choose comments from all user comments
   As an administrator 
   I want to select appropiate comments at user comments page and sent them to selected comments page
   So that I can display them on the home page
