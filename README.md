@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/hyu596/Simpatico-Pup.svg?branch=master)](https://travis-ci.org/hyu596/Simpatico-Pup) 
 [![Code Climate](https://codeclimate.com/github/hyu596/simpatico-pup2/badges/gpa.svg)](https://codeclimate.com/github/hyu596/simpatico-pup2) 
-[![Test Coverage](https://codeclimate.com/github/hyu596/Simpatico-Pup/badges/coverage.svg)](https://codeclimate.com/github/hyu596/Simpatico-Pup/coverage)
+[![Test Coverage](https://codeclimate.com/github/hyu596/simpatico-pup2/badges/coverage.svg)](https://codeclimate.com/github/hyu596/simpatico-pup2/coverage)
 
 
 ===================Team Info============================
