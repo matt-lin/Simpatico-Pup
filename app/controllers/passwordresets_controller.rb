@@ -21,20 +21,21 @@ class PasswordresetsController < ApplicationController
       flash[:notice] = "Email sent with password reset instructions"
       redirect_to root_url
     else
-      flash.now[:danger] = "Email address not found"
+      flash[:notice] = "Email address not found"
       render 'new'
     end
   end
   
   def update
     if params[:user][:password].empty?                  # Case (3)
-      @user.errors.add(:password, "can't be empty")
+      flash[:notice] = 'Password can not be empty'
       render 'edit'
     elsif @user.update_attributes(user_params)          # Case (4)
       # log_in @user
       flash[:success] = "Password has been reset."
-      redirect_to "https://proj-zipei.c9users.io/"
+      redirect_to root_path
     else
+      flash[:notice] = 'Password must contain more than 8 characters'
       render 'edit'                                     # Case (2)
     end
   end
