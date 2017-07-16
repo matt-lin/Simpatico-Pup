@@ -5,7 +5,7 @@ describe TextsController do
         @mission = FactoryGirl.create(:text, :title => "Mission", :body => "Mission Body")
         @background = FactoryGirl.create(:text, :title => "Background", :body => "Background Body")
         @goals = FactoryGirl.create(:text, :title => "Goals", :body => "Goals Body")
-        @help = FactoryGirl.create(:text, :title => "Help", :body => "Help Body")
+        @help = FactoryGirl.create(:text, :title => "How You Can Help", :body => "Help Body")
     end
     
     describe "Render the template and find text" do
