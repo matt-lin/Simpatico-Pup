@@ -33,7 +33,7 @@ Ratemypup::Application.routes.draw do
   resources :breeders
   resources :texts
   # resources :password_resets
-  resources :passwordresets,     only: [:new, :create, :edit, :update]
+  resources :passwordresets,  only: [:new, :create, :edit, :update]
 
   get '/breed' => 'pups#breed', :as => :breed
   get '/breed/match' => 'pups#search_breed', :as => :breed_search
