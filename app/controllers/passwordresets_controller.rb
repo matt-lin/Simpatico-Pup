@@ -4,28 +4,38 @@ class PasswordresetsController < ApplicationController
   def new
   end
   
+  #dummy create
+  def index
+    @user = User.find_by(email: params[:email].downcase)
+    @user.create_reset_digest
+    @user.send_password_reset_email
+    flash[:notice] = "Email sent with password reset instructions"
+    redirect_to root_url
+  end
+  
   def create
     @user = User.find_by(email: params[:password_reset][:email].downcase)
     if @user
       @user.create_reset_digest
       @user.send_password_reset_email
-      flash[:info] = "Email sent with password reset instructions"
+      flash[:notice] = "Email sent with password reset instructions"
       redirect_to root_url
     else
-      flash.now[:danger] = "Email address not found"
+      flash[:notice] = "Email address not found"
       render 'new'
     end
   end
   
   def update
     if params[:user][:password].empty?                  # Case (3)
-      @user.errors.add(:password, "can't be empty")
+      flash[:notice] = 'Password can not be empty'
       render 'edit'
     elsif @user.update_attributes(user_params)          # Case (4)
       # log_in @user
       flash[:success] = "Password has been reset."
-      redirect_to "https://proj-zipei.c9users.io/"
+      redirect_to root_path
     else
+      flash[:notice] = 'Password must contain more than 8 characters'
       render 'edit'                                     # Case (2)
     end
   end
@@ -34,8 +44,19 @@ class PasswordresetsController < ApplicationController
       params.require(:user).permit(:password, :password_confirmation)
   end
   
+  # only allow users to reset pw if 
+  # 1) within 30 mins
+  # 2) must be the last sent reset password url
+  # 3) that url has not been used yet 
   def edit
-    puts '*'*80
+    @user = User.find_by(email: params[:email].downcase)
+    if ((Time.zone.now - @user.reset_password_sent_at) > 1800) || params[:token] != @user.reset_password_token
+      puts '$'*80
+      flash[:notice] = 'Your request to reset password has expired. Refill the form if you want to reset password.'
+      render 'new'
+    else
+      @user.update_attribute(:reset_password_token,  '')
+    end
   end
   
   def reset
