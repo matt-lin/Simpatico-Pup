@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe SelectedComment do
 <<<<<<< HEAD
+<<<<<<< HEAD
   describe "select comments from selected comments" do
     before :each do
       @comment1 = FactoryGirl.create(:selected_comment, :content => 'good dog')
@@ -14,6 +15,8 @@ describe SelectedComment do
     end
   end
 =======
+=======
+>>>>>>> 5eee49e0d4ebe94e5c570a40b64d9b8e348bb131
     describe "find_randomly should return a random selected_comment" do
         before :each do 
             @comment1 = FactoryGirl.create(:selected_comment, :content => "comment1")
@@ -60,5 +63,8 @@ describe SelectedComment do
     it "find_randomly should return nil if no selected_comment" do
         expect(SelectedComment.find_randomly).to eq nil
     end
+<<<<<<< HEAD
 >>>>>>> a4ac70bdc6ff7ed75fd8b1a4108e1383d1da6c1e
+=======
+>>>>>>> 5eee49e0d4ebe94e5c570a40b64d9b8e348bb131
 end
