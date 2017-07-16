@@ -422,10 +422,30 @@ h3.mission-text {
 
 .page-links {
     padding-top: 80px;
+    margin: auto;
+    text-align: center;
+}
+
+/**************************************full img background**********/
+html,
+body,
+.view {
+    height: 100%;
 }
 
 
+.view {
+    background: url("/assets/Refresh every 4s.gif")no-repeat center center fixed;
+   
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
 
+    
+
+/************************************/
 
 /*Mobile friendly */
 

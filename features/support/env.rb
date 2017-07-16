@@ -6,6 +6,7 @@
 
 require 'capybara/poltergeist'
 
+options = {:js => true}
 Capybara.register_driver :poltergeist do |app|
     Capybara::Poltergeist::Driver.new(app, {debug: false})
 end
@@ -14,6 +15,8 @@ Capybara.javascript_driver = :poltergeist
 
 require 'cucumber/rails'
 require "rack_session_access/capybara"
+
+
 
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any
@@ -36,6 +39,7 @@ require "rack_session_access/capybara"
 # recommended as it will mask a lot of errors for you!
 #
 ActionController::Base.allow_rescue = false
+
 
 # Remove/comment out the lines below if your app doesn't have a database.
 # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.

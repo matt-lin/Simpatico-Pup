@@ -37,9 +37,9 @@ ActiveAdmin.register_page "Dashboard" do
             column :dog_name do |p|
               link_to p.pup_name, admin_dog_path(p)
             end
-            column :comment do |p|
-              p.comment.content
-            end
+            #column :comment do |p|
+              #p.comment.content
+            #end
             column :breeder_responsibility
             column :overall_health
             column :trainability
