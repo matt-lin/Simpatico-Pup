@@ -106,7 +106,7 @@ describe Breeder do
     before :each do
      @breeder_with_address = FactoryGirl.create(:breeder, :name=>"John", :city=>"Berkeley", :state=>"CA")
     end
-    Breeder.find_by_formatted_string("(John) - (Berkeley), (CA)").should == @breeder_with_address
+    Breeder.find_by_formatted_string("John - Berkeley, CA").should == @breeder_with_address
   end
   
   describe "dismentle some pups" do

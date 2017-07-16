@@ -13,7 +13,12 @@ class Breed < ActiveRecord::Base
   end
 
   def Breed.find_by_name(breed_name)
-    Breed.where("name = ?", breed_name).first
+    result = Breed.where("name = ?", breed_name).first
+    # Added on 7/15/17
+    if !result
+      return nil
+    end
+    return result
   end
 
   private

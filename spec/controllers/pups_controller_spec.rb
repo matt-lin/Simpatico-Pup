@@ -1,6 +1,27 @@
 require 'spec_helper'
 
 describe PupsController do
+  describe "showing home page" do
+    it "should set up for main page" do
+      content = "Comment content"
+      user = "RandomUser"
+      FactoryGirl.create(:selected_comment, :content => content, :user => user)
+      get :main
+      response.should render_template 'main'
+      expect(assigns(:comment_content)).to eq content
+      expect(assigns(:comment_user)).to eq user
+      
+      expect(session[:step1]).to be false
+      expect(session[:step2]).to be false
+      expect(session[:step3]).to be false
+      expect(session[:pup_name]).to be_nil
+      expect(session[:breed]).to be_nil
+      expect(session[:years]).to be_nil
+      expect(session[:months]).to be_nil
+      expect(session[:breeder_id]).to be_nil
+    end
+  end
+  
   describe "looking at all pups" do
     it "should get all of the dogs" do
       Pup.should_receive(:all)
@@ -23,6 +44,7 @@ describe PupsController do
   #     get :main
   #   end
   # end
+  
   describe "looking at a single pup review" do
     it "should find the pup" do
       temp_pup = Pup.new()
@@ -30,6 +52,34 @@ describe PupsController do
       get :show, :id => 1
     end
   end
+  
+  describe "creating a pup review without logging in" do 
+    it "calling dog name should redirect to welcome_path" do
+      get :dog_name
+      expect(response).to redirect_to welcome_path
+    end
+    
+    it "calling dog how long should redirect to welcome_path" do
+      post :dog_how_long
+      expect(response).to redirect_to welcome_path
+    end
+    
+    it "calling dog breed should redirect to welcome_path" do
+      post :dog_breed
+      expect(response).to redirect_to welcome_path
+    end
+    
+    it "calling dog breeder should redirect to welcome_path" do
+      post :dog_breeder
+      expect(response).to redirect_to welcome_path
+    end
+    
+    it "calling dog new should redirect to welcome_path" do
+      post :new
+      expect(response).to redirect_to welcome_path
+    end
+  end
+  
   describe "creating a pup review" do
     before :each do
       @user = FactoryGirl.create(:user)
@@ -78,6 +128,7 @@ describe PupsController do
         }
       }
     end
+    
     it "should redirect to new pup page if fields are incomplete" do
       FactoryGirl.create(:breed, :name => 'Affenpinscher')
       session[:step1] = true
@@ -91,6 +142,7 @@ describe PupsController do
       response.should redirect_to new_pup_path
       flash[:notice].should eq("Please make sure all fields are complete!")
     end
+    
     it "should redirect to root page if correct fields are provided" do
       FactoryGirl.create(:breed, :name => 'Affenpinscher')
       session[:step1] = true
@@ -104,6 +156,38 @@ describe PupsController do
       response.should redirect_to root_path
       flash[:notice].should eq("Thank You! Doggie was successfully added to our database.")
     end
+    
+    it "should redirect to rating page if comment is too long" do
+      FactoryGirl.create(:breed, :name => 'Affenpinscher')
+      session[:step1] = true
+      session[:pup_name] = "Doggie"
+      session[:step2] = true
+      session[:years] = "1" 
+      session[:months] = "1"
+      session[:step3] = true
+      session[:breed] = "Affenpinscher"
+      @pup_hash[:pup][:comments] = "*" * 200
+      post :create, @pup_hash
+      response.should redirect_to new_pup_path
+      flash[:notice].should eq('Please make sure the comment is less than 140 characters.')
+    end
+        
+    it "should redirect to main page if same user rate more than 8 dog" do
+      FactoryGirl.create(:breed, :name => 'Affenpinscher')
+      9.times do
+        FactoryGirl.create(:pup, :user_id => @user.id)
+      end
+      session[:step1] = true
+      session[:pup_name] = "Doggie"
+      session[:step2] = true
+      session[:years] = "1" 
+      session[:months] = "1"
+      session[:step3] = true
+      session[:breed] = "Affenpinscher"
+      post :create, @pup_hash
+      expect(response).to redirect_to root_path
+    end
+    
     # it "should auto create one according to input breeder info if breeder not exist" do
     #   session[:step1] = true
     #   session[:pup_name] = "Doggie"
@@ -115,17 +199,34 @@ describe PupsController do
     #   post :create, @breeder_nonexist_hash
     #   response.should redirect_to root_path
     # end
+    
+    it "should go to root_path if user rate to many dog already (step 1)" do
+      9.times do
+        FactoryGirl.create(:pup, :user_id => @user.id)
+      end
+      get :dog_name
+      expect(response).to redirect_to root_path
+    end
+    
     it "should go to dog_how_long if name is provided" do
       get :dog_how_long, {:pup=>{:name=>"Doggie"}}
       expect(response).to render_template(:dog_how_long)
       expect(session[:pup_name]).to eq("Doggie")
       expect(session[:step1]).to be_true
     end
+    
     it "should redirect to do_name if name is not provided" do
       get :dog_how_long, {:pup=>{:name=>""}}
       expect(response).to redirect_to dog_name_path
       expect(session[:step1]).to be_false
     end
+    
+    it "should use session if pup name is not in params" do
+      session[:pup_name] = "doggy"
+      get :dog_how_long
+      expect(response).to render_template(:dog_how_long)
+    end
+    
     it "should go to dog_breed if years and months provided and valid" do
       session[:step1] = true
       session[:pup_name] = "Doggie"
@@ -133,6 +234,15 @@ describe PupsController do
       expect(response).to render_template(:dog_breed)
       expect(session[:step2]).to be_true
     end
+    
+    it "should go to dog_how_long if years and months are not number" do
+      session[:step1] = true
+      session[:pup_name] = "Doggie"
+      get :dog_breed, {:pup=>{:years=>"sad",:months=>"tret"}}
+      expect(response).to redirect_to dog_how_long_path(:pup=>{:name=>"Doggie"})
+      expect(flash[:notice]).to eq("Please enter a valid integer number for year/month.")
+    end
+    
     it "should redirect popup a modal if years and months not valid" do
       session[:step1] = true
       session[:pup_name] = "Doggie"
@@ -145,6 +255,7 @@ site and rate your dog after s/he has lived
 with you for a minimum of six months. Thank you.")
       expect(session[:step2]).to be_false
     end
+    
     it "should redirect to dog_how_long if years and months not provided" do
       session[:step1] = true
       session[:pup_name] = "Doggie"
@@ -152,11 +263,23 @@ with you for a minimum of six months. Thank you.")
       expect(response).to redirect_to dog_how_long_path(:pup=>{:name=>session[:pup_name]})
       expect(session[:step2]).to be_false
     end
+    
     it "should redirect to root page if any previous step not finished(step breed)" do
       session[:step1] = false
       get :dog_breed, {:pup=>{:years=>"1",:months=>"1"}}
       expect(response).to redirect_to root_path
     end
+    
+    it "should use session to store how long if params not available" do
+      session[:step1] = true
+      session[:pup_name] = "Doggie"
+      session[:years] = "1"
+      session[:months] = "2"
+      get :dog_breed
+      expect(response).to render_template(:dog_breed)
+      expect(session[:step2]).to be_true
+    end
+    
     it "should go to dog_breeder if Purebred " do
       FactoryGirl.create(:breed, :name => 'Affenpinscher')
       session[:step1] = true
@@ -184,28 +307,82 @@ with you for a minimum of six months. Thank you.")
       get :dog_breeder, {:button_clicked => "Next", :breed => {:name => "Affenpinscher"}}
       expect(response).to redirect_to root_path
     end
-    # it "should go to new rating page if breeder name provided" do
-    #   session[:step1] = true
-    #   session[:pup_name] = "Doggie"
-    #   session[:step2] = true
-    #   session[:years] = "1" 
-    #   session[:months] = "1"
-    #   session[:step3] = true
-    #   session[:breed] = "Affenpinscher"
-    #   get :new, {:breeder=>{:new=>"new"}, :new_breeder=>{:name=>"BreedMaster", :city=>"Berkeley", :state=>"CA"}}
-    #   expect(response).to render_template(:new)
-    # end
-    # it "should go to new rating even if no breeder provided" do
-    #   session[:step1] = true
-    #   session[:pup_name] = "Doggie"
-    #   session[:step2] = true
-    #   session[:years] = "1" 
-    #   session[:months] = "1"
-    #   session[:step3] = true
-    #   session[:breed] = "Affenpinscher"
-    #   get :new, {:button_clicked => "Next", :breeder=>{:name=>""}}
-    #   expect(response).to render_template(:new)
-    # end
+    
+    it "should use session if params not available" do
+      FactoryGirl.create(:breed, :name => 'Affenpinscher')
+      session[:step1] = true
+      session[:pup_name] = "Doggie"
+      session[:step2] = true
+      session[:years] = "1" 
+      session[:months] = "1"
+      session[:breed] = "Affenpinscher"
+      get :dog_breeder, {:button_clicked => "Next"}
+      expect(response).to render_template(:dog_breeder)
+      expect(session[:step3]).to be_true
+      expect(session[:breed]).to eq("Affenpinscher")
+    end
+    
+    it "should redirect to dog_breed_path if breed is not valid" do
+      session[:step1] = true
+      session[:pup_name] = "Doggie"
+      session[:step2] = true
+      session[:years] = "1" 
+      session[:months] = "1"
+      get :dog_breeder, {:button_clicked => "Next", :breed => {:name => "fake breed"}}
+      expect(response).to redirect_to dog_breed_path
+      expect(session[:step3]).to be_false
+    end
+    
+    it "should go to new rating page if breeder name provided and breeder exist" do
+      session[:step1] = true
+      session[:pup_name] = "Doggie"
+      session[:step2] = true
+      session[:years] = "1" 
+      session[:months] = "1"
+      session[:step3] = true
+      session[:breed] = "Affenpinscher"
+      get :new, {:breeder => {:name => "Teddy Roosevelt - Berkeley, CA"}}
+      expect(response).to render_template(:new)
+    end
+    
+    it "should go to new rating even if no breeder provided" do
+      session[:step1] = true
+      session[:pup_name] = "Doggie"
+      session[:step2] = true
+      session[:years] = "1" 
+      session[:months] = "1"
+      session[:step3] = true
+      session[:breed] = "Affenpinscher"
+      get :new, {:button_clicked => "Next", :breeder=>{:name=>""}}
+      expect(response).to render_template(:new)
+    end
+    
+    it "should redirect to main page if same user rate same breeder more than once" do
+      FactoryGirl.create(:pup, :user_id => @user.id, :breeder_id => @breeder.id)
+      FactoryGirl.create(:pup, :user_id => @user.id, :breeder_id => @breeder.id)
+      session[:step1] = true
+      session[:pup_name] = "Doggie"
+      session[:step2] = true
+      session[:years] = "1" 
+      session[:months] = "1"
+      session[:step3] = true
+      session[:breed] = "Affenpinscher"
+      get :new, {:breeder => {:name => "Teddy Roosevelt - Berkeley, CA"}}
+      expect(response).to redirect_to root_path
+    end
+    
+    it "should ask to add a breeder if breeder doesn't exist" do
+      session[:step1] = true
+      session[:pup_name] = "Doggie"
+      session[:step2] = true
+      session[:years] = "1" 
+      session[:months] = "1"
+      session[:step3] = true
+      session[:breed] = "Affenpinscher"
+      get :new, {:button_clicked => "Next", :breeder=>{:name=>"fake breeder"}}
+      expect(response).to redirect_to new_breeder_path
+    end
+    
     it "should redirect to root page if any previous step not finished(step new)" do
       session[:step1] = false
       get :new, {:button_clicked => "Next", :breeder=>{:name=>""}}
@@ -256,6 +433,24 @@ with you for a minimum of six months. Thank you.")
       Pup.should_receive(:avg_ratings_by_breeds).never
       get :breed, {:breed => {:name => 'shiba inu'}}
       response.should redirect_to root_path
+    end
+  end
+  
+  describe 'find breed by substr for auto-fill' do
+    it 'should call the Breed#find_breed_by_substr' do
+      expect(Breed).to receive(:find_breed_by_substr).with("breed")
+      get :search_breed, {:name => "breed"}
+    end
+    
+    it 'should return json for Breed' do 
+      breed1 = FactoryGirl.create(:breed, :name => 'breed1')
+      breed2 = FactoryGirl.create(:breed, :name => 'breed2')
+      breed3 = FactoryGirl.create(:breed, :name => 'breed3')
+      breed4 = FactoryGirl.create(:breed, :name => 'breed4')
+      expect = [breed1.name, breed2.name, breed3.name, breed4.name].to_json
+      
+      get :search_breed, {:name => "breed"}
+      expect(response.body).to eq(expect)
     end
   end
 end
