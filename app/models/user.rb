@@ -8,9 +8,9 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :agreement
   # attr_accessible :title, :body
-  attr_accessor :remember_token, :activation_token, :reset_token
+  attr_accessor :remember_token, :reset_token
   before_save   :downcase_email
-  before_create :create_activation_digest
+  # before_create :create_activation_digest
   
   has_many :pups
   
