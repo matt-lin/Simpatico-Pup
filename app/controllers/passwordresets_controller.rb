@@ -30,10 +30,16 @@ class PasswordresetsController < ApplicationController
     if params[:user][:password].empty?                  # Case (3)
       flash[:notice] = 'Password can not be empty'
       render 'edit'
+    elsif params[:user][:password_confirmation].empty? 
+      flash[:notice] = 'confirmation can not be empty'
+      render 'edit'
     elsif @user.update_attributes(user_params)          # Case (4)
       # log_in @user
       flash[:success] = "Password has been reset."
       redirect_to root_path
+    elsif params[:user][:password] != params[:user][:password_confirmation]
+      flash[:notice] = "Password not same as Confirmation"
+      render 'edit'
     else
       flash[:notice] = 'Password must contain more than 8 characters'
       render 'edit'                                     # Case (2)
