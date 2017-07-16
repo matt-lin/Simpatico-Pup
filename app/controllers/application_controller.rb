@@ -12,10 +12,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def set_titles
-    @mission = Text.find_by_id(1).title
-    @background = Text.find_by_id(2).title
-    @goals = Text.find_by_id(3).title
-    @how_you_can_help = Text.find_by_id(4).title
-  end
+  # def set_titles
+  #   @mission = Text.find_by_id(1).title
+  #   @background = Text.find_by_id(2).title
+  #   @goals = Text.find_by_id(3).title
+  #   @how_you_can_help = Text.find_by_id(4).title
+  # end
 end
