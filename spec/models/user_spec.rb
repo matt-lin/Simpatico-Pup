@@ -8,10 +8,11 @@ describe User do
     end
     
     it "check the user's email and tell if it is an admin" do
-      expect(@admin_user.admin).to be true
-      expect(@normal_user.admin).to be false
-      expect(@admin_user.to_s).to eq 'lhsdvm@aol.com'
-      expect(@normal_user.to_s).to eq 'lol@berkeley.edu'
+      @admin_user.admin.should eq true
+      @normal_user.admin.should eq false
+      @admin_user.to_s.should eq 'lhsdvm@aol.com'
+      @normal_user.to_s.should eq 'lol@berkeley.edu'
     end
   end
+  
 end
