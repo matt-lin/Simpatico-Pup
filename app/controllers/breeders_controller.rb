@@ -52,7 +52,6 @@ class BreedersController < ApplicationController
   end
 
   def nearer_breeders
-
     if params[:breeder][:breed_name].present? && params[:breeder][:city].present?
       @breeders = Breeder.joins(pups: :breed).where("breeds.name = ?", params[:breeder][:breed_name]).near("#{params[:breeder][:city]}, #{params[:breeder][:state]}", params[:breeder][:search_distance])
     elsif params[:breeder][:breed_name].present?
@@ -62,9 +61,7 @@ class BreedersController < ApplicationController
     else
       @breeders = Breeder.joins(pups: :breed).near("#{params[:breeder][:state]}", params[:breeder][:search_distance])
     end
-
     @breeders = @breeders.uniq
-
   end
 
   def new

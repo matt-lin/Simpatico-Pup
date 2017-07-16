@@ -55,22 +55,46 @@ describe BreedersController do
   end
   
     describe "search a breeder" do
-    it "should display breeder" do
+      before :each do
       @breeder = FactoryGirl.create(:breeder)
+      @breed = FactoryGirl.create(:breed)
       @user = FactoryGirl.create(:user)
       sign_in :user, @user
-      
       post :create, {:breeder => {:name => @breeder.name, :city => @breeder.city, :state => @breeder.state}}
-      
       @temp_pup = Pup.new(:user => @user, :breeder => @breeder, :pup_name => "Doggie", :year => "2", :month => "1",
       :user_id => @user.id, :breeder_id => @breeder.id, :breeder_responsibility => "1", :overall_health => "3",
                   :trainability => "4", :social_behavior => "4",:dog_behavior => "4", :energy_level => "4" , :simpatico_rating => "4")
-      get :nearer_breeders, {:breeder => {:breed_name => @temp_pup.pup_name, :city => @breeder.city, :search_distance => 50, :state => @breeder.state}}
+      end
+      
+      it "gets all breed" do
+      get :search_nearer_breeders
+      expect(assigns(:breeds)).to include @breed
+      end
+      
+    it "joins by breed name and city" do
+      @params = {:breeder => {:breed_name => @temp_pup.pup_name, :city => @breeder.city, :search_distance => 50000, :state => @breeder.state}, :format => 'js'}
+       xhr :get, :nearer_breeders, @params
+      expect(response).to render_template(:nearer_breeders)
+   end
+    
+    it "joins by breed name only" do
+      @params = {:breeder => {:breed_name => @breeder.pups.breed_id, :search_distance => 50, :state => @breeder.state}, :format => 'js'}
+      xhr :get, :nearer_breeders, @params
+      expect(response).to render_template(:nearer_breeders)
     end
     
+    it "joins by city only" do
+      @params = {:breeder => {:city => @breeder.city, :search_distance => 50, :state => @breeder.state}, :format => :js}
+      xhr :get, :nearer_breeders, @params
+      expect(response).to render_template(:nearer_breeders)
+    end
+    
+    it "joins by breed" do
+      @params = {:breeder => {:search_distance => 50, :state => @breeder.state}, :format => :js}
+      xhr :get, :nearer_breeders, @params
+      expect(response).to render_template(:nearer_breeders)
+    end
   end
-
-  
 
   describe "sending json of all breeders" do
     before :each do
