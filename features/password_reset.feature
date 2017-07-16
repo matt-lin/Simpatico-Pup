@@ -12,4 +12,5 @@ Background:
     
     Scenario: uesrs can reset password with all valid info (happy path)
       Given I am on the "Sign in" page
-      And   I follow 
+      And   I follow "Forget your password?"
+      Then  
