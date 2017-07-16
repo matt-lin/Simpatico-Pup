@@ -4,6 +4,7 @@ CodeClimate::TestReporter.start
 require 'simplecov'
 SimpleCov.start 'rails' do
   add_filter "/app/admin/"
+  add_filter "/lib/"
 end
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
