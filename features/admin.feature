@@ -26,4 +26,4 @@ Feature: An admin should be able to edit, delete, and change comments
 
   Scenario: A user that is an admin should be able to see the admin page button and go to the admin page home
     Given I login as an admin
-    And I click "pups"
+    # And I click "pups"

@@ -5,6 +5,7 @@ class Breed < ActiveRecord::Base
 
   def Breed.is_valid_breed(breed)
     Breed.all_breeds.include? breed
+    # !Breed.where(name: breed).empty?
   end
 
   def Breed.find_breed_by_substr(s)

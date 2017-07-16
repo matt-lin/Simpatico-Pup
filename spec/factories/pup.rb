@@ -11,7 +11,7 @@ FactoryGirl.define do
     social_behavior 1
     energy_level 1
     simpatico_rating 1
-    comments "Wow. Such doge. Very pup."
+    # comment "Wow. Such doge. Very pup."
     breed_id 1
     breeder_id 1
     dog_behavior 1

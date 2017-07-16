@@ -130,3 +130,4 @@ When /^I select "(.*)" and "(.*)" and search/ do |breed1, breed2|
   page.select(breed2, :from => 'pup_breed_2')
   click_button "Find a Breed"
 end
+

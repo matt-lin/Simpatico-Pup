@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
   end
 
   #Haven't found usage of it 
-  
   # def set_titles
   #   @mission = Text.find_by_id(1).title
   #   @background = Text.find_by_id(2).title
