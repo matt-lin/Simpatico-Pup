@@ -36,12 +36,13 @@ class PasswordresetsController < ApplicationController
   
   def edit
   end
+  
    private
 
     def get_user
       @user = User.find_by(email: params[:email])
     end
-      # Confirms a valid user.
+    # Confirms a valid user<---TODO
     def valid_user
       # may add && @user.activated? later
       unless (@user  &&

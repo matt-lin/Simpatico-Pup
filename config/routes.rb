@@ -1,14 +1,5 @@
 Ratemypup::Application.routes.draw do
 
-  get 'passwordresets/new'
-
-  get 'passwordresets/edit'
-
-  # resources :password_resets,     only: [:new, :create, :edit, :update]
-
-  # get 'password_resets/new'
-
-  # get 'password_resets/edit'
 
   mount Thredded::Engine => '/forum'
 

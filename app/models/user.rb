@@ -20,18 +20,11 @@ class User < ActiveRecord::Base
     BCrypt::Password.create(string, cost: cost)
   end
   
-  # Activates an account.
-  def activate
-    update_attribute(:activated,    true)
-    update_attribute(:activated_at, Time.zone.now)
-  end
+
   
-  # Sends activation email.
-  def send_activation_email
-    UserMailer.account_activation(self).deliver_now
-  end
+
   
-   # Sets the password reset attributes.
+ # Sets the password reset attributes.
   def create_reset_digest
     self.reset_token = User.new_token
     update_attribute(:reset_digest,  User.digest(reset_token))
@@ -47,11 +40,24 @@ class User < ActiveRecord::Base
     self.email = email.downcase
   end
   
-    # Creates and assigns the activation token and digest.
-  def create_activation_digest
-    self.activation_token  = User.new_token
-    self.activation_digest = User.digest(activation_token)
-  end
+  # #may not need active function
+    ## Activates an account.
+  # def activate
+  #   update_attribute(:activated,    true)
+  #   update_attribute(:activated_at, Time.zone.now)
+  # end
+  
+    # #Sends activation email.
+  # def send_activation_email
+  #   UserMailer.account_activation(self).deliver_now
+  # end
+  
+  
+  # #Creates and assigns the activation token and digest.
+  # def create_activation_digest
+  #   self.activation_token  = User.new_token
+  #   self.activation_digest = User.digest(activation_token)
+  # end
   
 # Returns a random token.
   def self.new_token
