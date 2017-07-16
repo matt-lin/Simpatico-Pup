@@ -1,17 +1,17 @@
 class PupsController < ApplicationController
 
-  before_filter :breeder_exists, :only => :create
+  # before_filter :breeder_exists, :only => :create
   before_filter :check_sign_in, :only => [:new, :dog_name, :dog_how_long, :dog_breed, :dog_breeder]
 
   # Devise. Methods not in the list below will require a user to be logged in.
   before_filter :authenticate_user!, except: [:index, :new, :main, :show, :breed, :search_breed]
 
-  def breeder_exists
-    if params[:pup][:breeder_id].to_i == -1
-      breeder = Breeder.find_or_create(params[:breeder][:name], params[:breeder][:city], params[:breeder][:state])
-      params[:pup][:breeder_id] = breeder.id
-    end
-  end
+  # def breeder_exists
+  #   if params[:pup][:breeder_id].to_i == -1
+  #     breeder = Breeder.find_or_create(params[:breeder][:name], params[:breeder][:city], params[:breeder][:state])
+  #     params[:pup][:breeder_id] = breeder.id
+  #   end
+  # end
 
   # The Root Path
   def main
@@ -95,7 +95,7 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
 companion dogs. To ensure that our rating summaries accurately reflect input from a wide variety of dog owners, we are
 currently limiting the number of ratings made by each dog owner to eight, and limiting each dog owner to rating only two
  dogs that come from the same dog breeder. Thank you for your contributions to our database.'
-      redirect_to new_pup_path and return
+      redirect_to root_path and return
     end
 
     #Problem 2
@@ -111,7 +111,6 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     @pup.save
     @Comment.pup_id = @pup.id
     @Comment.save
-    
     
     # Successfully save pup & comment
     flash[:notice] = "Thank You! #{@pup.pup_name} was successfully added to our database."
