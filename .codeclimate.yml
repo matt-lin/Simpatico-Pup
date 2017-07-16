@@ -46,6 +46,7 @@ exclude_paths:
 - spec/
 - test/
 - vendor/
+- lib/
 ---
 engines:
   brakeman:
