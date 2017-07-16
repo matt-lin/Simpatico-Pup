@@ -437,12 +437,18 @@ with you for a minimum of six months. Thank you.")
   end
   
   describe 'find breed by substr for auto-fill' do
+    it 'should call the Breed#find_breed_by_substr' do
+      expect(Breed).to receive(:find_breed_by_substr).with("breed")
+      get :search_breed, {:name => "breed"}
+    end
+    
     it 'should return json for Breed' do 
       breed1 = FactoryGirl.create(:breed, :name => 'breed1')
       breed2 = FactoryGirl.create(:breed, :name => 'breed2')
       breed3 = FactoryGirl.create(:breed, :name => 'breed3')
       breed4 = FactoryGirl.create(:breed, :name => 'breed4')
       expect = [breed1.name, breed2.name, breed3.name, breed4.name].to_json
+      
       get :search_breed, {:name => "breed"}
       expect(response.body).to eq(expect)
     end
