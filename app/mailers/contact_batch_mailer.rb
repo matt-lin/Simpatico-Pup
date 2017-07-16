@@ -1,3 +1,4 @@
+# Iter 1-2
 class ContactBatchMailer < ActionMailer::Base
   default from: 'yuhongzhan0407@berkeley.edu'
   # default from: 'yo@example.com'
@@ -7,3 +8,4 @@ class ContactBatchMailer < ActionMailer::Base
   end
 
 end
+# End for Iter 1-2

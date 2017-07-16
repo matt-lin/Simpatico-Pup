@@ -30,6 +30,7 @@ Given /the following ratings exist/ do |pups_table|
   end
 end
 
+# Iter 1-2
 Given /the following comments exist/ do |pups_table|
   breeder = FactoryGirl.create(:breeder, :name => "George W. Bush")
   pups_table.hashes.each do |rating|
@@ -71,6 +72,7 @@ Given(/^the following breeds exist:$/) do |table|
     FactoryGirl.create(:breed, :name => breed[:name])
   end
 end
+# End for Iter 1-2
 
 def set_hidden_field(field, value)
   page.execute_script "s=$('##{field}');"
@@ -102,11 +104,13 @@ And(/^the following users exist:/) do |table|
   end
 end
 
+# Iter 1-2
 And(/^the following newsletter_user exist:/) do |table|
   table.hashes.each do |newsletter_user|
     NewsletterUser.create!(newsletter_user)
   end
 end
+# End for Iter 1-2
 
 When /^I fill out the form with the following attributes:$/ do |pups_table|
   page.evaluate_script "$('#multiple_breeds').trigger('click');"
