@@ -78,7 +78,7 @@ describe BreedersController do
    end
     
     it "joins by breed name only" do
-      @params = {:breeder => {:breed_name => @breeder.pups.breed_id, :search_distance => 50, :state => @breeder.state}, :format => 'js'}
+      @params = {:breeder => {:breed_name => @temp_pup.pup_name, :search_distance => 50, :state => @breeder.state}, :format => 'js'}
       xhr :get, :nearer_breeders, @params
       expect(response).to render_template(:nearer_breeders)
     end
