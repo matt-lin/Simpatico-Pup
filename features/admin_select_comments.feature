@@ -27,3 +27,5 @@ Feature: choose comments from all user comments
     Then I should see "Featured Comment"
     Then I should see "Testing User"
     And I should see "The greatest dog I've ever owned"
+    
+#End of this feature file!
