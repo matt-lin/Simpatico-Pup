@@ -109,6 +109,14 @@ Then /^I should( not)? see "(.*)"/ do |not_see, text|
 	end	
 end
 
+Then /^I will( not)? see "(.*)" or "(.*)"/ do |not_see, text1, text2|
+  if not_see != nil
+		expect(page.has_no_content?(text1) && page.has_no_content?(text2)).to be (true)
+  else
+	  expect(page.has_content?(text1) || page.has_content?(text2)).to be (true)
+	end	
+end
+
 Then /^I should see todays date/ do
   assert page.has_no_content?(Date.today)
 end

@@ -51,11 +51,12 @@ Given /the following comments exist/ do |pups_table|
     Comment.create!(
       content: rating['comments'],
       pup_id: '1')
-    User.create!(
-      username: "Testing User",
-      email: "testing@berkeley.edu",
-      password: "123456789"
-  )
+    if User.find_by_email("testing@berkeley.edu").nil?
+      User.create!(
+        username: "Testing User",
+        email: "testing@berkeley.edu",
+        password: "123456789")
+    end
   end
 end
 
