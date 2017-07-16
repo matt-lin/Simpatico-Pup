@@ -110,7 +110,7 @@ body {
     text-align: center;
     color: black;
     margin-top:200px;
-    padding-top: 10px;
+    padding-bottom: 50px;
 }
     
 .ads{
@@ -492,7 +492,7 @@ h3.mission-text {
         font-size: 20px;
         text-align: center;
         color: black;
-        margin-top: -190px
+        margin-top: -190px;
     }
 }
     
