@@ -1,3 +1,4 @@
+# Iter 1-2
 Given (/^I login as an admin$/) do
   @admin_user = FactoryGirl.create(:admin_user)
   visit('/admin/login')
@@ -5,6 +6,7 @@ Given (/^I login as an admin$/) do
   fill_in(:admin_user_password, :with => 'password')
   find("#admin_user_submit_action").find("input").click
 end
+# End for Iter 1-2
 
 Given(/^I log in as "([^"]*)"/) do |user_name|
   click_link("Login")

@@ -41,9 +41,11 @@ When /^(?:I )press "([^"]*)"$/ do |button|
   click_button(button)
 end
 
+# Iter 1-2
 When /^I press a hidden button "(.*)"$/ do |link|
   find(link, visible: false).click
 end
+# End for Iter 1-2
 
 When /^(?:I )follow "([^"]*)"$/ do |link|
   first(:link, link).click
@@ -109,6 +111,7 @@ Then /^I should( not)? see "(.*)"/ do |not_see, text|
 	end	
 end
 
+# Iter 1-2
 Then /^I will( not)? see "(.*)" or "(.*)"/ do |not_see, text1, text2|
   if not_see != nil
 		expect(page.has_no_content?(text1) && page.has_no_content?(text2)).to be (true)
@@ -116,6 +119,7 @@ Then /^I will( not)? see "(.*)" or "(.*)"/ do |not_see, text1, text2|
 	  expect(page.has_content?(text1) || page.has_content?(text2)).to be (true)
 	end	
 end
+# End for Iter 1-2
 
 Then /^I should see todays date/ do
   assert page.has_no_content?(Date.today)
@@ -193,11 +197,13 @@ Given /^a confirmation box saying "(.*)" should pop up$/ do |message|
   @expected_message = message
 end
 
+# Iter 1-2
 Then /^the confirmation box should have been displayed$/ do
   page.evaluate_script("$.cookie('confirm_message')").should_not be_nil
   page.evaluate_script("$.cookie('confirm_message')").should eq(@expected_message)
   page.evaluate_script("$.cookie('confirm_message', null)")
 end
+# End for Iter 1-2
 
 Given(/^I finished previous steps$/) do
   page.set_rack_session(step1: true)

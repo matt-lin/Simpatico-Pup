@@ -2,6 +2,7 @@ ActiveAdmin.register NewsletterUser do
   filter :email
   menu :label => 'Newsletter Subscribers'
   
+  # Iter 1-2
   batch_action :email, form: {subject: :text, message: :textarea}, confirm: "Please enter the subject and the message below" do |ids, inputs|
     batch_action_collection.find(ids).each do |user|
       if params[:test]
@@ -14,6 +15,7 @@ ActiveAdmin.register NewsletterUser do
   end
   
   actions :all, except: [:update, :show, :edit, :new]
+  # End for Iter 1-2
   
   index do
     selectable_column

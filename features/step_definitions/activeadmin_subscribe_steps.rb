@@ -1,3 +1,4 @@
+# Iter 1-2
 And /^"([^"]*)" is( not)? in the subscribing group/ do |username, not_in|
   if not_in.nil?
     NewsletterUser.where("email = ?", "#{username}@berkeley.edu").empty?.should == false
@@ -78,3 +79,4 @@ Then (/^"([^"]*)" (should|should not) get an email with "([^"]*)" and "([^"]*)"$
     user_email.size.should == 0
   end
 end
+# End for Iter 1-2

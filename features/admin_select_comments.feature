@@ -1,3 +1,4 @@
+# Iter 1-2
 Feature: choose comments from all user comments
   As an administrator 
   I want to select appropiate comments at user comments page and sent them to selected comments page
@@ -38,3 +39,4 @@ Feature: choose comments from all user comments
     Then I should see "The worst dog I've ever owned"
     Given I am on the RateMyPup home page
     Then I will see "The greatest dog I've ever owned" or "The worst dog I've ever owned"
+# End for Iter 1-2

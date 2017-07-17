@@ -24,6 +24,7 @@ class PupsController < ApplicationController
   end
 
   # The true rating page
+  # Iter 1-2
   def new
     if !session[:step1] || !session[:step2] || !session[:step3]
       redirect_to root_path and return
@@ -54,6 +55,7 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
       redirect_to new_breeder_path and return
     end
   end
+  # End for Iter 1-2
 
   # Rails default methods
   def index
@@ -84,11 +86,14 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
     new_pup[:breed_id] = Breed.find_by_name(session[:breed]).id
     new_pup[:breeder_id] = session[:breeder_id]
     new_pup[:user_id] = current_user.id
+    
+    # Iter 1-2
     new_pup[:breed_1] = session[:breed]
     # new_pup[:breeder_1] = session[:breed]
     @pup = Pup.new(new_pup)
     new_comment = {:content => params[:pup][:comments]}
     @Comment = Comment.new(new_comment)
+    # End for Iter 1-2
 
     if @pup.user.pups(:reload).size > 8
       flash[:notice] = 'SimpaticoPup is a website designed to collect information from dog lovers about their own
@@ -108,9 +113,11 @@ currently limiting the number of ratings made by each dog owner to eight, and li
       redirect_to new_pup_path and return
     end
 
+    # Iter 1-2
     @pup.save
     @Comment.pup_id = @pup.id
     @Comment.save
+    # End for Iter 1-2
     
     # Successfully save pup & comment
     flash[:notice] = "Thank You! #{@pup.pup_name} was successfully added to our database."
