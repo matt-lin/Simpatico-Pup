@@ -50,7 +50,7 @@ describe BreedersController do
     it "should display breeder" do
       @breeder = FactoryGirl.create(:breeder, :name => "Alex", :city => "Berkeley", :state => "CA")
       post :create, {:breeder => {:name => @breeder.name, :city => @breeder.city, :state => @breeder.state}}
-      expect(flash[:notice]).to match(/Breeder \#{name} have been added to our database!*/)
+      expect(flash[:notice]).to match(/Breeder Alex have been added to our database!*/)
     end
   end
   
