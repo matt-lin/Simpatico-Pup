@@ -3,8 +3,9 @@ ActiveAdmin.register Pup, as: "Dogs" do
   filter :breeder
   filter :breed
   filter :pup_name
-
+  actions :all, except: [:update, :show, :new]
 index do
+  
     selectable_column
     column :name do |p|
       link_to p.pup_name, admin_dog_path(p)
@@ -29,7 +30,7 @@ index do
     column :dog_behavior
     column :energy_level
     column :simpatico_rating
-
+    actions
   end
 
   config.action_items.delete_if { |item|
