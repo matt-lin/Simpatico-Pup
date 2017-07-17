@@ -42,7 +42,7 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
   
-  config.render_views = true 
+  #config.render_views = true 
 
   # For Devise Helpers
   config.include Devise::TestHelpers, type: :controller
