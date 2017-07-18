@@ -1,4 +1,4 @@
-#Iter2-1
+#Iter 2-1
 Feature: Users should be able to reset password
   As a user
   I want to be able to reset my password
@@ -59,4 +59,3 @@ Feature: Users should be able to reset password
       And   I follow "(forgot password)"
       Then  I should be on the RateMyPup home page
       And   I should see "Email sent with password reset instructions"
-

@@ -60,7 +60,7 @@ Then (/^"([^"]*)" (should|should not) get an email with "([^"]*)" and "([^"]*)"$
   end
 end
 
-# Iter 2-2
+#Iter 2-1
 
 When (/^"([^"]*)" go to the link contained by the sent email$/) do |username|
   open_email("#{username}@berkeley.edu")
