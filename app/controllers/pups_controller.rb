@@ -227,11 +227,6 @@ with you for a minimum of six months. Thank you."
   # search for breeds when doing auto-fill
   def search_breed
     name = params[:name]
-    puts '*'*80
-    puts Breed.find_breed_by_substr(name).size
-    puts name
-    puts name
-    puts '*'*80
     render :json => Breed.find_breed_by_substr(name)
   end
 

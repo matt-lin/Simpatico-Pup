@@ -9,6 +9,11 @@ class Breed < ActiveRecord::Base
   end
 
   def Breed.find_breed_by_substr(s)
+    puts '*'*80
+    puts s
+    puts Breed.all_breeds.select { |b| b.downcase.include? s.downcase }
+
+    puts '*'*80
     Breed.all_breeds.select { |b| b.downcase.include? s.downcase }
   end
 
