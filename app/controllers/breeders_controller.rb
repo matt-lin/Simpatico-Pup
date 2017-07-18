@@ -65,13 +65,15 @@ class BreedersController < ApplicationController
   end
 
   def new
-    
   end
 
   def create
     name, city, state = params[:breeder][:name], params[:breeder][:city], params[:breeder][:state]
     breeder, message = Breeder.create!(:name => name, :city => city, :state => state)
-    if !breeder
+    if !CS.cities(state.downcase, :us).include? city
+      flash[:notice] = "The city you entered is not a valid city in the selected state. Please re-enter your infomation."
+      redirect_to new_breeder_path and return
+    elsif !breeder
       flash[:message] = message
     end
     flash[:notice] = "Breeder #{name} have been added to our database!"
