@@ -52,7 +52,6 @@ class BreedersController < ApplicationController
   end
 
   def nearer_breeders
-
     if params[:breeder][:breed_name].present? && params[:breeder][:city].present?
       @breeders = Breeder.joins(pups: :breed).where("breeds.name = ?", params[:breeder][:breed_name]).near("#{params[:breeder][:city]}, #{params[:breeder][:state]}", params[:breeder][:search_distance])
     elsif params[:breeder][:breed_name].present?
@@ -62,14 +61,11 @@ class BreedersController < ApplicationController
     else
       @breeders = Breeder.joins(pups: :breed).near("#{params[:breeder][:state]}", params[:breeder][:search_distance])
     end
-
     @breeders = @breeders.uniq
-
   end
 
   def new
-
-
+    
   end
 
   def create
@@ -78,7 +74,7 @@ class BreedersController < ApplicationController
     if !breeder
       flash[:message] = message
     end
-    flash[:notice] = 'Breeder #{name} have been added to our database!'
+    flash[:notice] = "Breeder #{name} have been added to our database!"
     redirect_to new_pup_path(:breeder => {:name => (name+' - '+city+', '+state)})
   end
 

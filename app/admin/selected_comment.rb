@@ -1,3 +1,4 @@
+# Iter 1-2
 ActiveAdmin.register SelectedComment do
   filter :content
   filter :created_at
@@ -8,3 +9,4 @@ ActiveAdmin.register SelectedComment do
     actions
   end
 end
+# End for Iter 1-2

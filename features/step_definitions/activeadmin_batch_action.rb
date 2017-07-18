@@ -1,3 +1,4 @@
+# Iter 1-2
 Then /^I (should|should not) be asked to confirm "([^"]*)" for "([^"]*)"$/ do |maybe, confirmation, title|
   selector = "#batch_actions_popover a.batch_action:contains('#{title}')"
   selector << "[data-confirm='#{confirmation}']" if maybe == 'should'
@@ -77,3 +78,5 @@ Then /^I should be show a select with name "([^"]*)" with the values "([^"]*)"$/
   selector = ".batch_actions_selector a.batch_action:first"
   expect(JSON[page.find(selector)["data-inputs"]]).to eq Hash[name, values.split(', ')]
 end
+
+# End for Iter 1-2

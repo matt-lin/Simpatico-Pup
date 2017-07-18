@@ -110,8 +110,8 @@ body {
     width: 100%;
     text-align: center;
     color: black;
-    margin-top:200px;
-    padding-top: 10px;
+    /*margin-top:200px;*/
+    padding-bottom: 50px;
 }
     
 .ads{
@@ -428,6 +428,7 @@ h3.mission-text {
     padding-top: 80px;
 }
 
+/*Iter 1-2*/
 /**************************************full img background**********/
 html,
 body,
@@ -513,7 +514,7 @@ body,
         font-size: 20px;
         text-align: center;
         color: black;
-        margin-top: -190px
+        margin-top: -190px;
     }
 }
     
@@ -586,3 +587,5 @@ body,
         
 }
 
+
+/*End for Iter 1-2*/
