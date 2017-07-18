@@ -23,6 +23,10 @@ gem 'test-unit', '~> 3.0'
 # forum
 gem 'thredded'
 
+#Implementing image upload features [iter2]
+gem "paperclip", "~> 5.0.0"
+#end of iter 2
+
 gem 'protected_attributes'
 
 
