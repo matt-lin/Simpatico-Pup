@@ -52,7 +52,15 @@ class BreedersController < ApplicationController
   end
 
   def nearer_breeders
-    if params[:breeder][:breed_name].present? && params[:breeder][:city].present?
+
+    # Iter 2-1
+    cities = CS.cities(params[:breeder][:state].downcase, :us).map(&:downcase)
+    if !cities.include? params[:breeder][:city].downcase
+      flash[:notice] = "The city you entered is not a valid city in the selected state. Please re-enter your infomation."
+      puts '*'*80
+      redirect_to search_nearer_breeders_path and return
+    # End for Iter 2-1
+    elsif params[:breeder][:breed_name].present? && params[:breeder][:city].present?
       @breeders = Breeder.joins(pups: :breed).where("breeds.name = ?", params[:breeder][:breed_name]).near("#{params[:breeder][:city]}, #{params[:breeder][:state]}", params[:breeder][:search_distance])
     elsif params[:breeder][:breed_name].present?
       @breeders = Breeder.joins(pups: :breed).where("breeds.name = ?", params[:breeder][:breed_name]).near("#{params[:breeder][:state]}", params[:breeder][:search_distance])
@@ -70,14 +78,18 @@ class BreedersController < ApplicationController
   def create
     name, city, state = params[:breeder][:name], params[:breeder][:city], params[:breeder][:state]
     breeder, message = Breeder.create!(:name => name, :city => city, :state => state)
-    if !CS.cities(state.downcase, :us).include? city
+    
+    #Iter 2-1
+    cities = CS.cities(state.downcase, :us).map(&:downcase)
+    if !cities.include? city.downcase
       flash[:notice] = "The city you entered is not a valid city in the selected state. Please re-enter your infomation."
       redirect_to new_breeder_path and return
+    #End for Iter 2-1
     elsif !breeder
       flash[:message] = message
     end
     flash[:notice] = "Breeder #{name} have been added to our database!"
-    redirect_to new_pup_path(:breeder => {:name => (name+' - '+city+', '+state)})
+    redirect_to new_pup_path(:breeder => {:name => (name+' - '+city.downcase+', '+state)})
   end
 
   private
