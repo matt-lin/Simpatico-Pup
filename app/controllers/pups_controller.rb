@@ -19,6 +19,7 @@ class PupsController < ApplicationController
     selected_comment = SelectedComment.find_randomly
     if selected_comment
       @comment_content = selected_comment.content
+      @comment_breed = selected_comment.breed
       @comment_user = selected_comment.user
     end
   end
@@ -116,6 +117,8 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     # Iter 1-2
     @pup.save
     @Comment.pup_id = @pup.id
+    @Comment.breed = @pup.breed.name
+    @Comment.breeder = @pup.breeder.name
     @Comment.save
     # End for Iter 1-2
     
