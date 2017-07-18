@@ -17,11 +17,12 @@ class PupsController < ApplicationController
   def main
     start_over
     selected_comment = SelectedComment.find_randomly
+    # Iter 2
     if selected_comment
       @comment_content = selected_comment.content
       @comment_breed = selected_comment.breed
-      @comment_user = selected_comment.user
     end
+    # END of Iter 2
   end
 
   # The true rating page
