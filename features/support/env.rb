@@ -5,6 +5,8 @@
 # files.
 
 require 'capybara/poltergeist'
+require 'capybara/email'
+World(Capybara::Email::DSL)
 
 options = {:js => true}
 Capybara.register_driver :poltergeist do |app|

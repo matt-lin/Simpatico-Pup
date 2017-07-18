@@ -41,6 +41,7 @@ group :development, :test do
 	gem 'poltergeist'
 	gem 'phantomjs', :require => 'phantomjs/poltergeist'
 	gem 'rack_session_access'
+	gem 'capybara-email'
 end
 
 group :production do

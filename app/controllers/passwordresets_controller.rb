@@ -1,3 +1,5 @@
+#Implementation for Iter2-2 (whole file)
+
 class PasswordresetsController < ApplicationController
   before_action :get_user,   only: [:edit, :update]
   # before_action :valid_user, only: [:edit, :update]
@@ -22,7 +24,7 @@ class PasswordresetsController < ApplicationController
       redirect_to root_url
     else
       flash[:notice] = "Email address not found"
-      render 'new'
+      redirect_to new_passwordreset_path
     end
   end
   

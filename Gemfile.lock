@@ -99,6 +99,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-email (2.5.0)
+      capybara (~> 2.4)
+      mail
     cliver (0.3.2)
     codeclimate-engine-rb (0.3.1)
       virtus (~> 1.0)
@@ -414,6 +417,7 @@ DEPENDENCIES
   activeadmin (= 1.0.0.pre1)
   bootstrap (~> 4.0.0.alpha6)
   byebug (= 5.0.0)
+  capybara-email
   codeclimate-test-reporter
   coffee-rails
   cucumber-rails
