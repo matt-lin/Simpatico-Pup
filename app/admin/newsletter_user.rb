@@ -1,5 +1,7 @@
 ActiveAdmin.register NewsletterUser do
   filter :email
+  filter :created_at
+  filter :id
   menu :label => 'Newsletter Subscribers'
   
   batch_action :email, form: {subject: :text, message: :textarea}, confirm: "Please enter the subject and the message below" do |ids, inputs|
