@@ -1,5 +1,7 @@
 ActiveAdmin.register NewsletterUser do
   filter :email
+  filter :created_at
+  filter :id
   menu :label => 'Newsletter Subscribers'
   
   # Iter 1-2
