@@ -14,9 +14,11 @@ ActiveAdmin.register Comment, as: "User Comments" do
   filter :created_at
   index do
     selectable_column
-    
     column :dog_name do |c|
       link_to c.pup.pup_name, admin_dog_path(c.pup)
+    end
+    column :breeder do |c|
+      link_to c.pup.breeder.name
     end
     column :user_name do |c|
       auto_link c.pup.user

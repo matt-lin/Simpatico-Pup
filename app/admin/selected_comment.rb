@@ -5,6 +5,9 @@ ActiveAdmin.register SelectedComment do
     selectable_column
     column :content
     column :user
+    column :breeder do |c|
+      link_to c.name
+    end
     actions
   end
 end
