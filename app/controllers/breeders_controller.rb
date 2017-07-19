@@ -56,7 +56,7 @@ class BreedersController < ApplicationController
     # Iter 2-1
     cities = CS.cities(params[:breeder][:state].downcase, :us).map(&:downcase)
     if !cities.include? params[:breeder][:city].downcase and (!params[:breeder][:state].empty?) 
-      @breeders = []
+      @breeders = ['nope']
     # End for Iter 2-1
     elsif params[:breeder][:breed_name].present? && params[:breeder][:city].present?
       @breeders = Breeder.joins(pups: :breed).where("breeds.name = ?", params[:breeder][:breed_name]).near("#{params[:breeder][:city]}, #{params[:breeder][:state]}", params[:breeder][:search_distance])

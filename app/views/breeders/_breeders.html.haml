@@ -1,5 +1,5 @@
 %h1 Breeders
-- if @breeders.present?
+- if @breeders.present? and @breeders[0]!='nope'
   %p Find breeders/kennels within "#{params[:breeder][:search_distance]}" miles of "#{params[:breeder][:city].present? ? (params[:breeder][:city].to_s + ', ' + params[:breeder][:state].to_s) : params[:breeder][:state]}"
   %table.table
     %thead
@@ -19,4 +19,8 @@
           %td= breeder.state
           %td= (breeder.distance.to_f).round(2)
 - else
-  %p No Breeders Available :(
+  //Iter 2-2
+  - if @breeders[0] == 'nope'
+    %p The city you entered is not a valid city in the selected state
+  - else
+    %p No Breeders Available :(
