@@ -8,10 +8,10 @@ index do
   
     selectable_column
     column :name do |p|
-     p.pup_name
+      p.pup_name
     end
     column :breed do |p|
-      auto_link p.breed
+      p.breed.name
     end
     column "Breeder" do |p|
       link_to p.breeder.name, admin_breeder_path(p.breeder)
