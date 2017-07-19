@@ -4,12 +4,12 @@ describe PupsController do
   describe "showing home page" do
     it "should set up for main page" do
       content = "Comment content"
-      user = "RandomUser"
-      FactoryGirl.create(:selected_comment, :content => content, :user => user)
+      breed = "RandomBreed"
+      FactoryGirl.create(:selected_comment, :content => content, :breed => breed)
       get :main
       response.should render_template 'main'
       expect(assigns(:comment_content)).to eq content
-      expect(assigns(:comment_user)).to eq user
+      expect(assigns(:comment_breed)).to eq breed
       
       expect(session[:step1]).to be false
       expect(session[:step2]).to be false
