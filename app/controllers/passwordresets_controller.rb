@@ -29,22 +29,23 @@ class PasswordresetsController < ApplicationController
   end
   
   def update
-    if params[:user][:password].empty?                  # Case (3)
+    @user = User.find(params[:id])
+    if params[:user][:password].empty?                 
       flash[:notice] = 'Password can not be empty'
       render 'edit'
     elsif params[:user][:password_confirmation].empty? 
       flash[:notice] = 'confirmation can not be empty'
       render 'edit'
-    elsif @user.update_attributes(user_params)          # Case (4)
+    elsif params[:user][:password] != params[:user][:password_confirmation]
+      flash[:notice] = "Password not same as Confirmation"
+      render 'edit'    
+    elsif @user.update_attributes(user_params)         
       # log_in @user
       flash[:success] = "Password has been reset."
       redirect_to root_path
-    elsif params[:user][:password] != params[:user][:password_confirmation]
-      flash[:notice] = "Password not same as Confirmation"
-      render 'edit'
     else
       flash[:notice] = 'Password must contain more than 8 characters'
-      render 'edit'                                     # Case (2)
+      render 'edit'                                    
     end
   end
   
@@ -59,7 +60,6 @@ class PasswordresetsController < ApplicationController
   def edit
     @user = User.find_by(email: params[:email].downcase)
     if ((Time.zone.now - @user.reset_password_sent_at) > 1800) || params[:token] != @user.reset_password_token
-      puts '$'*80
       flash[:notice] = 'Your request to reset password has expired. Refill the form if you want to reset password.'
       render 'new'
     else
@@ -67,9 +67,9 @@ class PasswordresetsController < ApplicationController
     end
   end
   
-  def reset
-    redirect_to root_path
-  end
+  # def reset
+  #   redirect_to root_path
+  # end
   
    private
 
@@ -77,13 +77,13 @@ class PasswordresetsController < ApplicationController
       @user = User.find_by(email: params[:email])
     end
     # Confirms a valid user<---TODO
-    def valid_user
-      # may add && @user.activated? later
-      unless (@user  &&
-              @user.authenticated?(:reset, params[:id]))
-        redirect_to root_url
-      end
-    end
+    # def valid_user
+    #   # may add && @user.activated? later
+    #   unless (@user  &&
+    #           @user.authenticated?(:reset, params[:id]))
+    #     redirect_to root_url
+    #   end
+    # end
   
 
 
