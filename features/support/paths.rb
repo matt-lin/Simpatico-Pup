@@ -33,6 +33,7 @@ module NavigationHelpers
     when /^the "Edit Profile" page$/ then edit_user_registration_path
     when /^the "Admin Dashboard" page$/ then admin_root_path
     when /^the "Correct Back" page$/ then '/users'
+    when /^the "Search Breeder" page$/ then search_nearer_breeders_path
 
       # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
