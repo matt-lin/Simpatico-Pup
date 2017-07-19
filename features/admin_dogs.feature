@@ -26,17 +26,6 @@ Feature: View detailed imformation of all dogs
       | Siberian Husky     |
       | The greatest dog I've ever owned. |
       | The worst dog I've ever owned.    |
-    
-  Scenario: click a dog's name should see its details
-    When admin go to dogs
-    And I follow "Thor"
-    Then I should see all of:
-      | PUP NAME |
-      | BREEDER RESPONSIBILITY |
-      | BREEDER  |
-      | Carl  |
-      | USER  |
-      | YEAR  |
   
   Scenario: click a username should see its details
     When admin go to dogs

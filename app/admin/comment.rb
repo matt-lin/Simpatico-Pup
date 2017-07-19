@@ -4,7 +4,7 @@ ActiveAdmin.register Comment, as: "User Comments" do
     batch_action_collection.find(ids).each do |c|
       @SelectedComment = SelectedComment.new({:content => c.content})
       @SelectedComment.user = c.pup.user.username
-      @SelectedComment.breed = !c.pup.breed.nil? ? c.pup.breed.name : ""
+      @SelectedComment.breed = c.pup.breed.name
       @SelectedComment.breeder =  c.pup.breeder.name
       @SelectedComment.save
     end

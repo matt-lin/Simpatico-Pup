@@ -48,10 +48,12 @@ Given /the following comments exist/ do |pups_table|
     	simpatico_rating: rating['simpatico_rating'],
     	comments: rating['comments'],
     	user_id: 1,
-    	breeder_id: breeder.id)
+    	breeder_id: breeder.id,
+    	breed_id: 1)
     Comment.create!(
       content: rating['comments'],
       pup_id: pup.id)
+    Breed.create!(name: rating['breed_1'])
     if User.find_by_email("testing@berkeley.edu").nil?
       User.create!(
         username: "Testing User",
