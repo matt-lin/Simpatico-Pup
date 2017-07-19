@@ -54,6 +54,7 @@ class BreedersController < ApplicationController
   def nearer_breeders
 
     # Iter 2-1
+<<<<<<< HEAD
     @valid_location = true
     if params[:breeder][:city].present? && params[:breeder][:state] == ""
       @valid_location = false
@@ -69,6 +70,11 @@ class BreedersController < ApplicationController
         return
       end
     end
+=======
+    cities = CS.cities(params[:breeder][:state].downcase, :us).map(&:downcase)
+    if !cities.include? params[:breeder][:city].downcase and (!params[:breeder][:state].empty?) 
+      @breeders = ['nope']
+>>>>>>> d17c8c3c6d38ec054c904ee69731a3a419b1c370
     # End for Iter 2-1
     
     if params[:breeder][:breed_name].present? && params[:breeder][:city].present?
