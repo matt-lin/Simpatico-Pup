@@ -38,7 +38,9 @@ Then (/^check all subscribers/) do
   end
 end
 
-And (/^I send emails with subject as "([^"]*)" and message as "([^"]*)"$/) do |subject, body|
+
+# attachment part not implemented  
+And (/^I send emails with subject as "([^"]*)" and message as "([^"]*)" with(out)? an attachment$/) do |subject, body, attach|
   action = "email"
   page.find("#batch_action", visible: false).set action
   form   = page.find "#collection_selection"
@@ -57,7 +59,7 @@ And (/^I send emails with subject as "([^"]*)" and message as "([^"]*)"$/) do |s
   page.driver.submit form['method'], form['action'], params
 end
 
-Then (/^all the users should get an email with "([^"]*)" and "([^"]*)"$/) do |subject, body|
+Then (/^all the users should get an email with "([^"]*)" and "([^"]*)" with(out)? an attachment$/) do |subject, body, attach|
   emails = ActionMailer::Base.deliveries
   emails.length.should == NewsletterUser.all.length
   NewsletterUser.all.each do |user|
@@ -68,7 +70,7 @@ Then (/^all the users should get an email with "([^"]*)" and "([^"]*)"$/) do |su
   end
 end
 
-Then (/^"([^"]*)" (should|should not) get an email with "([^"]*)" and "([^"]*)"$/) do |username, maybe, subject, body|
+Then (/^"([^"]*)" (should|should not) get an email with "([^"]*)" and "([^"]*)" with(out)? an attachment$/) do |username, maybe, subject, body, attach|
   emails = ActionMailer::Base.deliveries
   user_email = emails.select{|email| email.to.include? "#{username}@berkeley.edu"}
   if maybe == 'should'

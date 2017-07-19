@@ -63,14 +63,14 @@ Background: Admin already login
     Scenario: admins process group emailing with subject and message
       And admin go to newsletter_users
       And check all subscribers
-      And I send emails with subject as "subject" and message as "message"
-      Then all the users should get an email with "subject" and "message"
+      And I send emails with subject as "subject" and message as "message" without an attachment
+      Then all the users should get an email with "subject" and "message" without an attachment
       
     Scenario: admins process emailing with subject and message to checked subscribers
       And admin go to newsletter_users
       And I check "batch_action_item_1"
-      And I send emails with subject as "subject" and message as "message"
-      Then "jeff" should get an email with "subject" and "message"
+      And I send emails with subject as "subject" and message as "message" without an attachment
+      Then "jeff" should get an email with "subject" and "message" without an attachment
       And "gilbert" should not receive an email
     # End for Iter 1-2
       
