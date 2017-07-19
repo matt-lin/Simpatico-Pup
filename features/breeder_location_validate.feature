@@ -1,4 +1,4 @@
-
+@javascript
 Feature: Validate user entered city and state when creating breeder
   As a user, when I enter a location to create or search for a breeder
   I want the location to be validated 
