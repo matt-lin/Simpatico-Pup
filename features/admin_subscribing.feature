@@ -1,4 +1,4 @@
-#Newly added feature file for Iter1-1
+#Newly added feature file for Iter1-1!
 
 Feature: Admin should be able to see all the users who are subscribing newsletters and be able to process group emailing
     As an admin
@@ -33,6 +33,9 @@ Background: Admin already login
       And I should see "gilbert@berkeley.edu"
       And "jeff" is not in the subscribing group
       
+      # End for Iter 1-1
+      
+    # Iter 1-2
     Scenario: admins unsubscribe multiple users
       And admin go to newsletter_users
       When I check "batch_action_item_1"
@@ -69,5 +72,5 @@ Background: Admin already login
       And I send emails with subject as "subject" and message as "message"
       Then "jeff" should get an email with "subject" and "message"
       And "gilbert" should not receive an email
-      
+    # End for Iter 1-2
       

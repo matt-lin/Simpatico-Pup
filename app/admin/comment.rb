@@ -1,3 +1,4 @@
+# Iter 1-2
 ActiveAdmin.register Comment, as: "User Comments" do
   batch_action :approve do |ids|
     batch_action_collection.find(ids).each do |c|
@@ -26,3 +27,5 @@ ActiveAdmin.register Comment, as: "User Comments" do
     actions
   end
 end
+
+# End for Iter 1-2
