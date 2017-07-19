@@ -9,6 +9,7 @@ Feature: choose comments from all user comments
     Given the following breeders exist:
     | name    | city     | state  |
     | Carl    | Berkeley | CA     |
+    
     Given the following comments exist:
     | breed_1 			| breed_2 		 | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating | comments 						  | breeder_id 	   |
     | German Short Hair | None 			 | 4 					  | 5 			   | 5 			  | 4 				| 5 		   | 5 				  | The greatest dog I've ever owned. | 2 |
