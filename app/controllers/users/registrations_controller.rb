@@ -37,7 +37,7 @@ helper_method :subscribed?
       respond_with resource
     end
   end
-
+ 
   # GET /resource/edit
   def edit
     super
