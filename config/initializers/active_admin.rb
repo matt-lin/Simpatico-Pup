@@ -100,10 +100,10 @@ ActiveAdmin.setup do |config|
   # Admin comments are enabled by default.
   #
   # Default:
-  config.comments = false
+  config.comments = true
   
   # for iter 2
-  config.show_comments_in_menu = false
+  config.show_comments_in_menu = true
   
   #
   # You can turn them on and off for any given namespace by using a
