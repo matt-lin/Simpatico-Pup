@@ -98,5 +98,9 @@ When (/^I enter "([^"]*)"'s email and new password and log in$/) do |username|
     click_button("Log in")
 end
 
+And (/^I click on that url again$/) do
+    current_email.click_link 'Reset password'
+end
+
 
 

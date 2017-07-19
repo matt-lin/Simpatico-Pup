@@ -59,3 +59,9 @@ Feature: Users should be able to reset password
       And   I follow "(forgot password)"
       Then  I should be on the RateMyPup home page
       And   I should see "Email sent with password reset instructions"
+      
+    Scenario: one reset-password link sent by email can only be used once
+      Given I am on the "Enter Email" page
+      And   I enter "jeff"'s email and click on the url from the sent email
+      And   I click on that url again
+      Then  I should be on the RateMyPup home page

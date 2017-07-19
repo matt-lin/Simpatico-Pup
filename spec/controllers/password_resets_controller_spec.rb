@@ -5,7 +5,7 @@ describe PasswordresetsController do
   describe "resetting password" do
       before :each do
           5.times.each do |i|
-             FactoryGirl.create(:user, email: "user#{i}@berkeley.edu", password: '12345678', password_confirmation: '12345678')
+             FactoryGirl.create(:user, email: "user#{i}@berkeley.edu", password: '12345678', password_confirmation: '12345678', reset_password_token: "dummy#{i}")
           end
       end
       it "should start with proper page that asks for email" do
@@ -84,6 +84,16 @@ describe PasswordresetsController do
         get :edit, {:id => 2, :email => 'user1@berkeley.edu', :token => 'token'}
         response.should render_template 'edit'      
       end
-  end
+      it "should not be working if users get to update page by swiping to the right" do
+        @user = FactoryGirl.create(:user, email: "user@berkeley.edu", password: '12345678', password_confirmation: '12345678')
+        put :update, {:id => @user.id, :user => {:password => "12345678", :password_confirmation => "12345678"}}
+        response.should render_template 'new'
+        expect(flash[:notice]).to eq 'Your request to reset password has expired. Refill the form if you want to reset password.'
+      end
+      it "request should only be working if users try to go to edit page by typing directly" do
+        @user = User.find(2)
+        get :edit, {:id => 2}
+        response.should redirect_to root_path      
+      end  end
 
 end
