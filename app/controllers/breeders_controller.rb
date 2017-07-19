@@ -65,7 +65,7 @@ class BreedersController < ApplicationController
       cities = CS.cities(params[:breeder][:state].downcase, :us).map(&:downcase)
       if !cities.include? params[:breeder][:city].downcase 
         @valid_location = false
-        @message = "#{params[:breeder][:state]} does not have city #{params[:breeder][:city]}, please enter a valid location"
+        @message = "The city you entered is not a valid city in the selected state"
         return
       end
     end

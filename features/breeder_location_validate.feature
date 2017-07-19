@@ -50,6 +50,12 @@ Background: User already login, filled out pup name, how long the user owned the
   #   When I fill in the search breeder form with following: Any, San Francisco, TX, 250
   #   And I press "Search_Breeder"
   #   Then I should see "The city you entered is not a valid city in the selected state"
+  
+  Scenario: User enter a city but doesn't select a state when searching breeder
+    Given I am on the "Search Breeder" page
+    Then I fill in "breeder_city" with "Berkeley"
+    And I press "Search_Breeder"
+    Then I should see "Please select a state"
     
   Scenario: User enter a valid location when searching breeder
     Given I am on the "Search Breeder" page
