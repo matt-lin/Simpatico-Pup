@@ -4,6 +4,7 @@ ActiveAdmin.register Pup, as: "Dogs" do
   filter :breed
   filter :pup_name
   actions :all, except: [:update, :show, :new]
+  
 index do
   
     selectable_column
@@ -30,7 +31,7 @@ index do
     column :energy_level
     column :simpatico_rating
     actions
-  end
+end
 
   config.action_items.delete_if { |item|
     # item is an ActiveAdmin::ActionItem
