@@ -16,7 +16,7 @@ Feature: View detailed imformation of all dogs
       | Siberian Husky    | None 			 | 1 					  | 2 			   | 3 			  | 2 				| 1 		   | 2 				  | The worst dog I've ever owned.    | 1 |
       
   Scenario: login and expect to see dog information
-    When I go to dogs
+    When admin go to dogs
     Then I should see all of:
       | Thor      |
       | Carl      |
