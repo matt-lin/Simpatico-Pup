@@ -8,7 +8,7 @@ index do
   
     selectable_column
     column :name do |p|
-      link_to p.pup_name, admin_dog_path(p)
+      p.pup_name
     end
     column :breed do |p|
       auto_link p.breed
@@ -22,7 +22,6 @@ index do
     end
     column :created_at
     column :updated_at
-
     column :breeder_responsibility
     column :overall_health
     column :trainability
