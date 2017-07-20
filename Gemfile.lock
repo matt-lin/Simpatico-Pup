@@ -269,6 +269,7 @@ GEM
       mimemagic (~> 0.3.0)
     parser (2.3.1.4)
       ast (~> 2.2)
+    permitted_params (1.0.0)
     pg (0.19.0)
     phantomjs (2.1.1.0)
     pkg-config (1.1.7)
@@ -452,6 +453,7 @@ DEPENDENCIES
   omniauth-facebook!
   omniauth-twitter!
   paperclip (~> 5.0.0)
+  permitted_params
   pg
   phantomjs
   poltergeist

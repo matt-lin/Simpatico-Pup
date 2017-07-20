@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170718220650) do
+ActiveRecord::Schema.define(version: 20170722035132) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "resource_id",   null: false
@@ -46,6 +46,13 @@ ActiveRecord::Schema.define(version: 20170718220650) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
+  create_table "attachments", force: :cascade do |t|
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
+  end
+
   create_table "breeders", force: :cascade do |t|
     t.string  "name"
     t.string  "location"
@@ -66,6 +73,14 @@ ActiveRecord::Schema.define(version: 20170718220650) do
   create_table "comments", force: :cascade do |t|
     t.text     "content"
     t.integer  "pup_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "breed"
+  end
+
+  create_table "firmware_images", force: :cascade do |t|
+    t.string   "firmware_image_filename"
+    t.binary   "firmware_image"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
