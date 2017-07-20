@@ -47,35 +47,46 @@ describe BreedersController do
   end
   
   describe "creating new breeder" do
+    it "should call the city state gem function citites" do
+      expect(CS).to receive(:cities).with("ca", :us).and_return(["Random city"])
+      post :create, {:breeder => {:name => "Alex", :city => "fake city", :state => "CA"}}
+    end
+    
     it "should display breeder" do
-      @breeder = FactoryGirl.create(:breeder, :name => "Alex", :city => "Berkeley", :state => "CA")
-      post :create, {:breeder => {:name => @breeder.name, :city => @breeder.city, :state => @breeder.state}}
+      post :create, {:breeder => {:name => "Alex", :city => "Berkeley", :state => "CA"}}
       expect(flash[:notice]).to match(/Breeder Alex have been added to our database!*/)
+    end
+    
+    it "should block creating breeder if location is not valid" do
+      expect {
+        post :create, {:breeder => {:name => "name", :city => "fake city", :state => "CA"}}
+      }.to_not change(Breeder, :count)
+      expect(flash[:notice]).to eq "The city you entered is not a valid city in the selected state. Please re-enter your infomation."
+      expect(response).to redirect_to new_breeder_path
     end
   end
   
-    describe "search a breeder" do
-      before :each do
+  describe "search a breeder" do
+    before :each do
       @breeder = FactoryGirl.create(:breeder)
       @breed = FactoryGirl.create(:breed)
       @user = FactoryGirl.create(:user)
       sign_in :user, @user
-      post :create, {:breeder => {:name => @breeder.name, :city => @breeder.city, :state => @breeder.state}}
       @temp_pup = Pup.new(:user => @user, :breeder => @breeder, :pup_name => "Doggie", :year => "2", :month => "1",
       :user_id => @user.id, :breeder_id => @breeder.id, :breeder_responsibility => "1", :overall_health => "3",
                   :trainability => "4", :social_behavior => "4",:dog_behavior => "4", :energy_level => "4" , :simpatico_rating => "4")
-      end
+    end
       
-      it "gets all breed" do
+    it "gets all breed" do
       get :search_nearer_breeders
       expect(assigns(:breeds)).to include @breed
-      end
+    end
       
     it "joins by breed name and city" do
       @params = {:breeder => {:breed_name => @temp_pup.pup_name, :city => @breeder.city, :search_distance => 50000, :state => @breeder.state}, :format => 'js'}
-       xhr :get, :nearer_breeders, @params
+      xhr :get, :nearer_breeders, @params
       expect(response).to render_template(:nearer_breeders)
-   end
+    end
     
     it "joins by breed name only" do
       @params = {:breeder => {:breed_name => @temp_pup.pup_name, :search_distance => 50, :state => @breeder.state}, :format => 'js'}
@@ -93,6 +104,32 @@ describe BreedersController do
       @params = {:breeder => {:search_distance => 50, :state => @breeder.state}, :format => :js}
       xhr :get, :nearer_breeders, @params
       expect(response).to render_template(:nearer_breeders)
+    end
+    
+    it "don't search if location is invalid" do
+      @params = {:breeder => {:search_distance => 50, :city => "fake city", :state => "CA"}, :format => :js}
+      expect(Breeder).not_to receive(:joins)
+      xhr :get, :nearer_breeders, @params
+    end
+    
+    it "don't search if city is enter by state is not" do
+      @params = {:breeder => {:search_distance => 50, :city => "Oakland", :state => ""}, :format => :js}
+      expect(Breeder).not_to receive(:joins)
+      xhr :get, :nearer_breeders, @params
+    end
+    
+    it "provide the error message and set invalid_location if location is invalid" do
+      @params = {:breeder => {:search_distance => 100, :city => "Oakland", :state => "NV"}, :format => :js}
+      xhr :get, :nearer_breeders, @params
+      expect(assigns(:valid_location)).to eq false
+      expect(assigns(:message)).to eq "The city you entered is not a valid city in the selected state"
+    end
+    
+    it "provide the error message and set invalid_location if only city is entered" do
+      @params = {:breeder => {:search_distance => 100, :city => "Oakland", :state => ""}, :format => :js}
+      xhr :get, :nearer_breeders, @params
+      expect(assigns(:valid_location)).to eq false
+      expect(assigns(:message)).to eq "Please select a state"
     end
   end
 
