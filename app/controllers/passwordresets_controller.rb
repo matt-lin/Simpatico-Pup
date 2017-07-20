@@ -30,7 +30,8 @@ class PasswordresetsController < ApplicationController
   
   def update
     @user = User.find(params[:id])
-    if @user.reset_password_token.nil?
+    time = @user.reset_password_sent_at
+    if @user.reset_password_token.empty?
       flash[:notice] = 'Your request to reset password has expired. Refill the form if you want to reset password.'
       render 'new' and return
     end
@@ -43,7 +44,9 @@ class PasswordresetsController < ApplicationController
     elsif params[:user][:password] != params[:user][:password_confirmation]
       flash[:notice] = "Password not same as Confirmation"
       render 'edit'    
-    elsif @user.update_attributes(user_params)         
+    elsif @user.update_attributes(user_params)     
+      @user.update_attribute(:reset_password_sent_at, time)
+      @user.update_attribute(:reset_password_token, '')
       # log_in @user
       flash[:success] = "Password has been reset."
       redirect_to root_path
@@ -62,10 +65,22 @@ class PasswordresetsController < ApplicationController
   # 2) must be the last sent reset password url
   # 3) that url has not been used yet 
   def edit
+    # puts '*'*80
+    # puts params[:token]
+    # puts @user.reset_password_token
+    # puts '*'*80
     if params[:email].nil? || params[:token].nil?
       redirect_to root_path and return
     end
+
     @user = User.find_by(email: params[:email].downcase)
+            
+    puts '*'*80
+    puts params
+    puts @user.reset_password_sent_at
+    puts @user.reset_password_token
+    puts '*'*80
+
     if ((Time.zone.now - @user.reset_password_sent_at) > 1800) || params[:token] != @user.reset_password_token
       flash[:notice] = 'Your request to reset password has expired. Refill the form if you want to reset password.'
       render 'new'

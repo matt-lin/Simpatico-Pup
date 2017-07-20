@@ -64,4 +64,4 @@ Feature: Users should be able to reset password
       Given I am on the "Enter Email" page
       And   I enter "jeff"'s email and click on the url from the sent email
       And   I click on that url again
-      Then  I should be on the RateMyPup home page
+      Then  I should be on the "Enter Email" page
