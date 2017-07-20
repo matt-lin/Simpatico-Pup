@@ -89,6 +89,8 @@ GEM
       autoprefixer-rails (>= 6.0.3)
       sass (>= 3.4.19)
     bourbon (4.3.4)
+      sass (~> 3.4)
+      thor (~> 0.19)
     builder (3.2.2)
     byebug (5.0.0)
       columnize (= 0.9.0)
@@ -99,11 +101,11 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    city-state (0.0.13)
-      rubyzip (~> 1.1)
     capybara-email (2.5.0)
       capybara (~> 2.4)
       mail
+    city-state (0.0.13)
+      rubyzip (~> 1.1)
     climate_control (0.2.0)
     cliver (0.3.2)
     cocaine (0.5.8)
@@ -430,8 +432,8 @@ DEPENDENCIES
   activeadmin (= 1.0.0.pre1)
   bootstrap (~> 4.0.0.alpha6)
   byebug (= 5.0.0)
-  city-state
   capybara-email
+  city-state
   codeclimate-test-reporter
   coffee-rails
   cucumber-rails

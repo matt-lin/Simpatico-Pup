@@ -1,4 +1,4 @@
-#Iter 2-1
+# Iter 2-1
 Feature: Users should be able to reset password
   As a user
   I want to be able to reset my password
@@ -65,3 +65,5 @@ Feature: Users should be able to reset password
       And   I enter "jeff"'s email and click on the url from the sent email
       And   I click on that url again
       Then  I should be on the RateMyPup home page
+
+# End iter2-1
