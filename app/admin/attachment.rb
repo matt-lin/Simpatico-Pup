@@ -4,9 +4,10 @@ ActiveAdmin.register Attachment do
   config.filters = false
 
   index do
+    selectable_column
     column :document_file_name
-
-    column :updated_at
+    column :document_content_type
+    column :document_file_size
     actions
   end
 
@@ -20,6 +21,7 @@ ActiveAdmin.register Attachment do
   show do
     attributes_table do
       row :document_file_name
+
     end
   end
 
@@ -31,6 +33,8 @@ ActiveAdmin.register Attachment do
       @attachment = Attachment.create()
 
       @attachment[:document_file_name] = attrs[:attachment].original_filename
+      @attachment[:document_content_type] = attrs[:attachment].content_type
+      @attachment[:document_file_size] = attrs[:attachment].size
       #@attachment[:attachment] = attrs[:attachment].read
 
       if @attachment.save
