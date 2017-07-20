@@ -24,3 +24,7 @@ When(/^I am logged in$/) do
   click_button("Log in")
   assert_text("Logout")
 end
+
+When(/^I should have logged in as "([^"]*)"/) do |arg1|
+  pending
+end

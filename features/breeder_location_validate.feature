@@ -1,3 +1,4 @@
+# Iter 2-1
 @javascript
 Feature: Validate user entered city and state when creating breeder
   As a user, when I enter a location to create or search for a breeder
@@ -56,5 +57,4 @@ Background: User already login, filled out pup name, how long the user owned the
     When I fill in the search breeder form with following: Any, Boston, MA, 100
     And I press "Search_Breeder"
     Then I should see "No Breeders Available :("
-    
-  
+#End iter2-1    
