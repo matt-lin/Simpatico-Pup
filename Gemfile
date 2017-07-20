@@ -27,6 +27,7 @@ gem 'city-state'
 
 #Implementing image upload features [iter2]
 gem "paperclip", "~> 5.0.0"
+gem 'formtastic', '~> 3.0'
 #end of iter 2
 
 gem 'protected_attributes'
