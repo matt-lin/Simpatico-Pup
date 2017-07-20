@@ -6,7 +6,7 @@ if RUBY_VERSION =~ /2.2/ # default encoding for db:seed
   Encoding.default_external = Encoding::UTF_8
   Encoding.default_internal = Encoding::UTF_8
 end
-
+gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'rails', '~> 4.2.4'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
@@ -24,6 +24,10 @@ gem 'test-unit', '~> 3.0'
 gem 'thredded'
 gem 'city-state'
 
+
+#Implementing image upload features [iter2]
+gem "paperclip", "~> 5.0.0"
+#end of iter 2
 
 gem 'protected_attributes'
 
@@ -43,6 +47,7 @@ group :development, :test do
 	gem 'poltergeist'
 	gem 'phantomjs', :require => 'phantomjs/poltergeist'
 	gem 'rack_session_access'
+	gem 'capybara-email'
 end
 
 group :production do

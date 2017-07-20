@@ -6,6 +6,10 @@ Feature: choose comments from all user comments
   
   Background: Given I login as an admin
     Given I login as an admin
+    Given the following breeders exist:
+    | name    | city     | state  |
+    | Carl    | Berkeley | CA     |
+    
     Given the following comments exist:
     | breed_1 			| breed_2 		 | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating | comments 						  | breeder_id 	   |
     | German Short Hair | None 			 | 4 					  | 5 			   | 5 			  | 4 				| 5 		   | 5 				  | The greatest dog I've ever owned. | 2 |
@@ -24,6 +28,7 @@ Feature: choose comments from all user comments
     Then I submit the batch action form with "approve"
     When admin go to selected_comments
     Then I should see "The greatest dog I've ever owned"
+    And I should see "German Short Hair"
     Given I am on the RateMyPup home page
     And I should see "The greatest dog I've ever owned"
     
@@ -36,7 +41,9 @@ Feature: choose comments from all user comments
     Then I submit the batch action form with "approve"
     When admin go to selected_comments
     Then I should see "The greatest dog I've ever owned"
+    And I should see "German Short Hair"
     Then I should see "The worst dog I've ever owned"
     Given I am on the RateMyPup home page
     Then I will see "The greatest dog I've ever owned" or "The worst dog I've ever owned"
+    And I will see "German Short Hair" or "Siberian Husky"
 # End for Iter 1-2

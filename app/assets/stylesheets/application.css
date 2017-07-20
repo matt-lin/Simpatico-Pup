@@ -18,6 +18,7 @@
 
 #background {
     background-size: cover;
+    overflow: auto;
 }
 
 body {
@@ -138,6 +139,8 @@ body {
     margin-top: 8px;
     margin-bottom: 8px;
     display: inline-block;
+    padding: 6px 12px;
+
     width: 150px;
     height: 100px;
     line-height: 1.42857143;
@@ -145,6 +148,7 @@ body {
     white-space: nowrap;
     vertical-align: middle;
     border-radius: 25px;
+    overflow: auto;
 }
 .ad-box-a {
     background-image: url(/assets/Amazon_Prime_logo.jpg); 
@@ -422,8 +426,6 @@ h3.mission-text {
 
 .page-links {
     padding-top: 80px;
-    margin: auto;
-    text-align: center;
 }
 
 /*Iter 1-2*/
@@ -444,7 +446,6 @@ body,
     background-size: cover;
 }
 
-    
 
 /************************************/
 

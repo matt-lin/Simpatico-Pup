@@ -34,7 +34,10 @@ module NavigationHelpers
     when /^the "Admin Dashboard" page$/ then admin_root_path
     when /^the "Correct Back" page$/ then '/users'
     when /^the "Search Breeder" page$/ then search_nearer_breeders_path
-
+    when /^the "Enter Email" page$/ then new_passwordreset_path
+    when /^the "Sign in" page$/ then new_user_session_path
+    when /^the Jeff's "Edit Password" page$/ then edit_passwordreset_path(:id => User.where(username: "jeff").first.id)
+    when /^Jeff's "Edit Password" page$/ then '/passwordresets/1'
       # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

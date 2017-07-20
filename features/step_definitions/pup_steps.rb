@@ -36,7 +36,7 @@ Given /the following comments exist/ do |pups_table|
   pups_table.hashes.each do |rating|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that movie to the database here.
-    Pup.create!(
+    pup = Pup.create!(
       pup_name: 'Thor',
     	breed_1: rating['breed_1'],
     	breed_2: rating['breed_2'],
@@ -48,10 +48,12 @@ Given /the following comments exist/ do |pups_table|
     	simpatico_rating: rating['simpatico_rating'],
     	comments: rating['comments'],
     	user_id: 1,
-    	breeder_id: breeder.id)
+    	breeder_id: breeder.id,
+    	breed_id: 1)
     Comment.create!(
       content: rating['comments'],
-      pup_id: '1')
+      pup_id: pup.id)
+    Breed.create!(name: rating['breed_1'])
     if User.find_by_email("testing@berkeley.edu").nil?
       User.create!(
         username: "Testing User",
