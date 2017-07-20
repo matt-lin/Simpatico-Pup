@@ -14,7 +14,7 @@ Background: User already login, filled out pup name, how long the user owned the
       | name            |
       | Affenpinscher   |
 
-  And the following breeders exist:
+  And the following breeders exist for search:
       | name            | city     | state |
       | Carl            | Berkeley | CA    |
       | Alex            | Berkeley | CA    |

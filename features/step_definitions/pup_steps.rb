@@ -63,11 +63,13 @@ Given /the following comments exist/ do |pups_table|
   end
 end
 
-Given(/^the following breeders exist:$/) do |table|
+Given(/^the following breeders exist( for search)?:$/) do |for_search, table|
   table.hashes.each do |breeder|
     breeder = FactoryGirl.create(:breeder, :name => breeder[:name], :city => breeder[:city], :state => breeder[:state])
     # Add a pup used by searching breeder
-    FactoryGirl.create(:pup, :breeder_id => breeder.id)
+    if for_search
+      FactoryGirl.create(:pup, :breeder_id => breeder.id)
+    end
   end
 end
 
@@ -159,10 +161,4 @@ When /^I fill in the search breeder form with following: (.*)/ do |args|
     And I select "#{info_list[2]}" in the dropdown menu "breeder_state"
     And I select "#{info_list[3]}" in the dropdown menu "breeder_search_distance"
   }
-end
-
-When /^print table/ do 
-  p "*" * 80  
-  p Pup.all
-  p Breeder.all
 end
