@@ -1,5 +1,8 @@
 Ratemypup::Application.routes.draw do
 
+  # get 'password_resets/new'
+
+  # get 'password_resets/edit'
 
   mount Thredded::Engine => '/forum'
 
@@ -23,8 +26,7 @@ Ratemypup::Application.routes.draw do
   resources :pups
   resources :breeders
   resources :texts
-  # resources :password_resets
-  resources :passwordresets
+  resources :password_resets
 
   get '/breed' => 'pups#breed', :as => :breed
   get '/breed/match' => 'pups#search_breed', :as => :breed_search

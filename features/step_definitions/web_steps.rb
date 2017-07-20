@@ -210,7 +210,3 @@ Given(/^I finished previous steps$/) do
   page.set_rack_session(step2: true)
   page.set_rack_session(step3: true)
 end
-
-Then /^I should notice "([^"]*)"$/ do |message|
-  flash[:notice].should == message
-end
