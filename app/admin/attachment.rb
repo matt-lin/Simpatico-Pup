@@ -2,7 +2,10 @@ ActiveAdmin.register Attachment do
   permit_params :attachment
 
   config.filters = false
-
+  
+  menu :label => 'Attachment Manager'
+  actions :all, except: [:edit]
+  
   index do
     selectable_column
     column :document_file_name
@@ -23,7 +26,6 @@ ActiveAdmin.register Attachment do
       row :document_file_name
       row :document_content_type
       row :document_file_size
-      row :thumb
     end
   end
 
@@ -31,7 +33,6 @@ ActiveAdmin.register Attachment do
 
     def create
       attrs = permitted_params[:attachment]
-
       @attachment = Attachment.new(document: params[:document])
       @attachment[:document_file_name] = attrs[:attachment].original_filename
       @attachment[:document_content_type] = attrs[:attachment].content_type
@@ -39,9 +40,9 @@ ActiveAdmin.register Attachment do
       @attachment.document = attrs[:attachment]
 
       if @attachment.save
-        redirect_to admin_attachment_path(@attachment)
+        redirect_to admin_attachments_path, notice: "The attachment has been uploaded."
       else
-        render :new
+        render :new, notice: "Invalid file, please try again"
       end
     end
 
