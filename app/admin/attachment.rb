@@ -24,7 +24,7 @@ ActiveAdmin.register Attachment do
   end
 
   form do |f|
-    f.inputs "Firmware" do
+    f.inputs "Upload File" do
       f.input :attachment, as: :file
     end
     f.actions
@@ -63,13 +63,8 @@ ActiveAdmin.register Attachment do
 
     def update
       attrs = permitted_params[:attachment]
-
       @attachment = Attachment.where(id: params[:id]).first!
-      #@attachment.firmware_level = attrs[:firmware_level]
-
       @attachment[:document_file_name] = attrs[:attachment].original_filename
-      #@attachment[:attachment] = attrs[:attachment].read
-
       if @attachment.save
         redirect_to admin_attachment_path(@attachment)
       else
