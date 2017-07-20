@@ -33,16 +33,22 @@ ActiveAdmin.register Attachment do
 
     def create
       attrs = permitted_params[:attachment]
+      @empty = true
       @attachment = Attachment.new(document: params[:document])
-      @attachment[:document_file_name] = attrs[:attachment].original_filename
-      @attachment[:document_content_type] = attrs[:attachment].content_type
-      @attachment[:document_file_size] = attrs[:attachment].size
-      @attachment.document = attrs[:attachment]
+      
+      if !attrs.nil?
+        @empty = false
+        @attachment[:document_file_name] = attrs[:attachment].original_filename
+        @attachment[:document_content_type] = attrs[:attachment].content_type
+        @attachment[:document_file_size] = attrs[:attachment].size
+        @attachment.document = attrs[:attachment]
+        @attachment.save!
+      end
 
-      if @attachment.save
+      if !@empty
         redirect_to admin_attachments_path, notice: "The attachment has been uploaded."
       else
-        render :new, notice: "Invalid file, please try again"
+        redirect_to admin_attachments_path, alert: "Invalid upload, please try again."
       end
     end
 
