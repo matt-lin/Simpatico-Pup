@@ -78,6 +78,13 @@ ActiveRecord::Schema.define(version: 201707200916261) do
     t.string   "breed"
   end
 
+  create_table "firmware_images", force: :cascade do |t|
+    t.string   "firmware_image_filename"
+    t.binary   "firmware_image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",           limit: 191, null: false
     t.integer  "sluggable_id",               null: false

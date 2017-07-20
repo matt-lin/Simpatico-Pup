@@ -9,12 +9,10 @@ ActiveAdmin.register Attachment do
   batch_action :select do |ids|
     @lst = []
     batch_action_collection.find(ids).each do |a|
-      @unit = {document_file_name: a.document_file_name}
+      @unit = a.document_file_name
       @lst.push(@unit)
     end
-    @parameter = {}
-    @parameter[:posts_attributes] = @lst
-    @SelectedAttachment = SelectedAttachment.create(@parameter)
+    SelectedAttachment.change_files @lst
     redirect_to collection_path, notice: "The attachments have been selected."
   end
   
