@@ -20,10 +20,6 @@ Background: The user is on signup page
     Then I should see "Terms of Service"
     And I should see "Privacy Policy"
 
-
-  
-
-
     
   Scenario: Sign up and get an instruction to read the confirmation email 
     Then I fill in "user_username" with "example"
@@ -41,6 +37,7 @@ Background: The user is on signup page
     Then I should See "You have successfully activated your account!"
     And I should have logged in as "example"
     
+    # ####################################sad path#####################################################
   Scenario: Email has already been taken (sad path)
     Then I fill in "user_username" with "example2"
     Then I fill in "user_email" with "jeff@berkeley.edu"

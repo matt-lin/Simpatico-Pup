@@ -29,18 +29,7 @@
 
   </div>
   
-  <% if not subscribed? %>
-    <br>
-    <div>
-      <%= check_box_tag 'subscribe_newsletter', 'yes' %> Click here if we may add you to our mailing list to receive occasional updates on the progress of our website. We will not share your email address with anyone else
-    </div>
-  <% else %>
-    <br>
-    <div>
-      <%= check_box_tag 'unsubscribe_newsletter', 'no' %> Click here to unsubscribe newsletter :(
-    </div>
-  <% end %>
-  <br>
+
 
   <div class="actions">
     <%= f.submit "Update", :id => "update_button" %>

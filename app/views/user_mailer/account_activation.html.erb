@@ -4,9 +4,8 @@
 
 <p>To Activate your <strong>simpaticopup.com </strong> account click the link below:</p>
 
-<%= link_to "Activate account", "TODO") %> 
+<%= link_to "Activate", edit_account_activation_url(@user.activation_token, email: @user.email) %>
 
-<p>This link will expire in half hours.</p>
 
 <p>
 If you did not sing up for simpaticopup, please ignore this email.

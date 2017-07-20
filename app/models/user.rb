@@ -8,9 +8,10 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :agreement
   # attr_accessible :title, :body
-  attr_accessor :reset_token
+  
+  attr_accessor :reset_token, :remember_token, :activation_token, :activation_digest, :activated
   before_save   :downcase_email
-  # before_create :create_activation_digest
+  before_create :create_activation_digest
   
   has_many :pups
   
@@ -21,7 +22,13 @@ class User < ActiveRecord::Base
   end
   
 
-  
+  # Returns true if the given token matches the digest.
+  def authenticated?(attribute, token)
+    digest = send("#{attribute}_digest")
+    return false if digest.nil?
+    BCrypt::Password.new(digest).is_password?(token)
+  end
+
 
   
  # Sets the password reset attributes.
@@ -40,25 +47,35 @@ class User < ActiveRecord::Base
     self.email = email.downcase
   end
   
-  # #may not need active function
-    ## Activates an account.
-  # def activate
-  #   update_attribute(:activated,    true)
-  #   update_attribute(:activated_at, Time.zone.now)
-  # end
+  def activated?
+    @user = User.find(id)
+    @user.activated
+  end
+  #######################################################################
+  #may not need active function
+  # Activates an account.
+  def activate
+    update_attribute(:activated,    true)
+    p "#{self.activated}"
+    p "*"*80
+    p "activate actioin"
+    p " * "*80
+    # no  need time limte
+    # update_attribute(:activated_at, Time.zone.now)
+  end
   
-    # #Sends activation email.
-  # def send_activation_email
-  #   UserMailer.account_activation(self).deliver_now
-  # end
+    #Sends activation email.
+  def send_activation_email
+    UserMailer.account_activation(self).deliver_now
+  end
   
   
-  # #Creates and assigns the activation token and digest.
-  # def create_activation_digest
-  #   self.activation_token  = User.new_token
-  #   self.activation_digest = User.digest(activation_token)
-  # end
-  
+  #Creates and assigns the activation token and digest.
+  def create_activation_digest
+    self.activation_token  = User.new_token
+    self.activation_digest = User.digest(activation_token)
+  end
+  ########################################################################
 # Returns a random token.
   def self.new_token
     SecureRandom.urlsafe_base64
