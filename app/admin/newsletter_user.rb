@@ -11,11 +11,13 @@ ActiveAdmin.register NewsletterUser do
       send_attachment: :checkbox
     }, confirm: "Please enter the subject and the message below" do |ids, inputs|
     batch_action_collection.find(ids).each do |user|
-      puts "SEND IS #{params[:send_attachment]}"
+      if inputs[:send_attachment] == 'on'
+        puts "LAMOOOOOOOOOOOOOOOOOOOOOO"
+      end
       if params[:test]
         ContactBatchMailer.contact_batch_email('Dear Newsletter Subscribers', params[:message], params[:subject], user.email, params[:send_attachment]).deliver_now
       else
-        ContactBatchMailer.contact_batch_email('Dear Newsletter Subscribers', inputs[:message], inputs[:subject], user.email, params[:send_attachment]).deliver_now
+        ContactBatchMailer.contact_batch_email('Dear Newsletter Subscribers', inputs[:message], inputs[:subject], user.email, inputs[:send_attachment]).deliver_now
       end
     end
     redirect_to collection_path, notice: "The batch email has been sent to all the users you selected."

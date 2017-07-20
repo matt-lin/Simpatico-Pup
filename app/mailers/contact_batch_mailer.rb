@@ -4,8 +4,8 @@ class ContactBatchMailer < ActionMailer::Base
   # default from: 'yo@example.com'
   
   def contact_batch_email(name, message, subject, recipient, send)
-    if (send)
-      attachments.inline['hw2.txt'] = File.read(Rails.root.join('app/assets/attachment/hw2.txt'))
+    if (send == "on")
+      attachments.inline['Resume.pdf'] = File.read(Rails.root.join('app/assets/attachment/Resume.pdf'))
     end
     mail(to: recipient, name: name, subject: subject, body: message)
   end
