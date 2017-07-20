@@ -1,5 +1,5 @@
 class Attachment < ActiveRecord::Base
     has_attached_file :document
     
-    has_attached_file :image
+   do_not_validate_attachment_file_type :document
 end

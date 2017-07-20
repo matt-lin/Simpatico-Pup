@@ -30,8 +30,7 @@ ActiveAdmin.register Attachment do
     def create
       attrs = permitted_params[:attachment]
 
-      @attachment = Attachment.new(document: params[:document]).save
-
+      @attachment = Attachment.new(document: params[:document])
       @attachment[:document_file_name] = attrs[:attachment].original_filename
       @attachment[:document_content_type] = attrs[:attachment].content_type
       @attachment[:document_file_size] = attrs[:attachment].size
