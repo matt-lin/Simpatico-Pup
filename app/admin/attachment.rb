@@ -7,12 +7,15 @@ ActiveAdmin.register Attachment do
   actions :all, except: [:edit]
   
   batch_action :select do |ids|
+    @lst = []
     batch_action_collection.find(ids).each do |a|
-      @SelectedAttachment = SelectedAttachment.new()
-      @SelectedAttachment.filename = a.document_file_name
-      @SelectedAttachment.save
+      @unit = {document_file_name: a.document_file_name}
+      @lst.push(@unit)
     end
-    redirect_to collection_path, alert: "The attachments have been selected."
+    @parameter = {}
+    @parameter[:posts_attributes] = @lst
+    @SelectedAttachment = SelectedAttachment.create(@parameter)
+    redirect_to collection_path, notice: "The attachments have been selected."
   end
   
   index do
