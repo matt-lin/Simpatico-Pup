@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170722035134) do
+ActiveRecord::Schema.define(version: 201707200916261) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "resource_id",   null: false
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20170722035134) do
     t.integer  "pup_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "breed"
   end
 
   create_table "firmware_images", force: :cascade do |t|
@@ -125,6 +126,10 @@ ActiveRecord::Schema.define(version: 20170722035134) do
     t.string   "owner_name"
     t.integer  "breed_1"
     t.integer  "breed_2"
+  end
+
+  create_table "selected_attachments", force: :cascade do |t|
+    t.string "filename"
   end
 
   create_table "selected_comments", force: :cascade do |t|

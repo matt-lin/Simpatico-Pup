@@ -6,6 +6,15 @@ ActiveAdmin.register Attachment do
   menu :label => 'Attachment Manager'
   actions :all, except: [:edit]
   
+  batch_action :select do |ids|
+    batch_action_collection.find(ids).each do |a|
+      @SelectedAttachment = SelectedAttachment.new()
+      @SelectedAttachment.filename = a.document_file_name
+      @SelectedAttachment.save
+    end
+    redirect_to collection_path, alert: "The attachments have been selected."
+  end
+  
   index do
     selectable_column
     column :document_file_name
