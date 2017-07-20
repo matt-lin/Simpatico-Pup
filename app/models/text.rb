@@ -8,4 +8,8 @@ class Text < ActiveRecord::Base
   #   statement_ids.values
   # end
   
+  def self.find_by_name(name)
+    Text.where("title = ?",name).first
+  end
+  
 end

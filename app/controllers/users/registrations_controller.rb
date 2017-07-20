@@ -1,11 +1,14 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 before_filter :configure_sign_up_params, only: [:create]
 before_filter :configure_account_update_params, only: [:update]
+
+# Iter 1-2
 helper_method :subscribed?
 
   def subscribed?
     not NewsletterUser.where("email = ?", resource.email).empty?
   end
+# End for Iter 1-2
 
   # GET /resource/sign_up
   def new
@@ -56,6 +59,7 @@ helper_method :subscribed?
   end
 
   # PUT /resource
+  # Iter 1-2
   def update
     super
     
@@ -67,6 +71,7 @@ helper_method :subscribed?
       NewsletterUser.where(email: resource.email).destroy_all
     end
   end
+  # End for Iter 1-2
 
   # DELETE /resource
   def destroy

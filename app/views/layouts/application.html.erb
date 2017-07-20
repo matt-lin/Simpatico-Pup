@@ -21,7 +21,6 @@
 
   <!-- Devise user login buttons -->
   <div class="container-fluid" style="padding-top:50px; padding-bottom: 50px">
-  <!--<div class="container-fluid" style="padding-top:50px; padding-bottom: 50px">-->
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         
@@ -32,15 +31,10 @@
             <span class="icon-bar"></span>                        
           </button>
           <a class="navbar-brand" href="/" style="font-size: 24px;padding-left:25px;">SimpaticoPup</a>
-
         </div>
                 
         <div class="collapse navbar-collapse" id="Navbar">
             <ul class="nav navbar-nav navbar-right">
-
-              <li>
-                <%= link_to "", "#"%>
-              </li>
               <li> 
                 <%= link_to "Mission", text_mission_path %>
               </li>
@@ -85,38 +79,30 @@
         </div>
       <% end %>
     <% end %>
-    
+
     <%= yield %>
-    <!--Mask-->
-    <!--<div class="view">-->
-    <!--    <div class="full-bg-img flex-center">-->
-    <!--    </div>-->
-    <!--</div>-->
-    <!--/.Mask-->
-    
-
-    
-
   </div>
   
   <div class="row navbar-fixed-bottom">
     <div class="col-md-12 contact contact-text-sm">
       <div class="col-sm-4">
-        <p>For More Information on Breed Health:</p >
+        <p>For More Information on Breed Health:</p>
+        <!--Iter 1-2-->
         <%= link_to 'Canine Health Information Center', 'http://www.caninehealthinfo.org/', :class => "contact-link" %>
+        <!--End for Iter 1-2-->
       </div>
     
       <div class="col-sm-4">
         <p>
           <%= link_to "Privacy Policy", privacy_policy_path, :class=>"contact-link" %>
-        </p >
+        </p>
         <p>
           <%= link_to "Terms of Service", terms_of_service_path, :class=>"contact-link" %>
-        </p >
-
+        </p>
+      </div>
     
       <div class="col-sm-4">
-        <p>Contact Info</p >
+        <p>Contact Info</p>
         <%= link_to "LSandersDVM@gmail.com", 'mailto:LSandersDVM@gmail.com', :class=>"contact-link" %>
       </div>
     
