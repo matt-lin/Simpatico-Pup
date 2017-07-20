@@ -99,6 +99,8 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    city-state (0.0.13)
+      rubyzip (~> 1.1)
     capybara-email (2.5.0)
       capybara (~> 2.4)
       mail
@@ -340,6 +342,7 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
+    rubyzip (1.2.1)
     sanitize (4.3.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.4.4)
@@ -427,6 +430,7 @@ DEPENDENCIES
   activeadmin (= 1.0.0.pre1)
   bootstrap (~> 4.0.0.alpha6)
   byebug (= 5.0.0)
+  city-state
   capybara-email
   codeclimate-test-reporter
   coffee-rails

@@ -13,12 +13,12 @@ var BreederAutofill = {
         $('#breeder_form').keyup(function() {
             BreederAutofill.breeder_ajax('form')
         });
-        $('#breeder_city').keyup(function() {
-            BreederAutofill.breeder_ajax_address()
-        });
-        $('#breeder_state').keyup(function() {
-            BreederAutofill.breeder_ajax_address()
-        });
+        // $('#breeder_city').keyup(function() {
+        //     BreederAutofill.breeder_ajax_address()
+        // });
+        // $('#breeder_state').keyup(function() {
+        //     BreederAutofill.breeder_ajax_address()
+        // });
         // $('#cancel_form').click(function () {
         //     $('#breeder_form_collapse').collapse('show');
         //     $('#breeder_well').collapse('hide');

@@ -23,7 +23,7 @@ class Breed < ActiveRecord::Base
 
   private
   def Breed.all_breeds
-    return Breed.select('name').map{ |e| e.name }.to_a
+    Breed.select('name').map{ |e| e.name }.to_a
   end
 
 end
