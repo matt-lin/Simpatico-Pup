@@ -57,3 +57,4 @@ Background: User already login, filled out pup name, how long the user owned the
     And I press "Search_Breeder"
     Then I should see "No Breeders Available :("
     
+  
