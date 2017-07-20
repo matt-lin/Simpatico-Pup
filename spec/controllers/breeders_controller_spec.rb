@@ -52,6 +52,12 @@ describe BreedersController do
       post :create, {:breeder => {:name => @breeder.name, :city => @breeder.city, :state => @breeder.state}}
       expect(flash[:notice]).to match(/Breeder Alex have been added to our database!*/)
     end
+    
+    it "tells you the city is invalid" do
+      @breeder = FactoryGirl.create(:breeder, :name => "Alex", :city => "HK", :state => "CA")
+      post :create, {:breeder => {:name => @breeder.name, :city => @breeder.city, :state => @breeder.state}}
+      expect(flash[:notice]).to match(/The city you entered is not a valid city in the selected state. Please re-enter your infomation./)
+    end
   end
   
     describe "search a breeder" do
@@ -70,6 +76,20 @@ describe BreedersController do
       get :search_nearer_breeders
       expect(assigns(:breeds)).to include @breed
       end
+      
+    it "tells you to select a state" do
+    @params = {:breeder => {:breed_name => @temp_pup.pup_name, :city => @breeder.city, :search_distance => 50000, :state => ""}, :format => 'js'}
+       xhr :get, :nearer_breeders, @params
+      expect(flash[:notice]).to match(/Please select a state/)
+      expect(response).to render_template(:nearer_breeders)
+    end
+   
+    it "tells you it is not a valid city" do 
+      @params = {:breeder => {:breed_name => @temp_pup.pup_name, :city => "HK", :search_distance => 50000, :state => @breeder.state}, :format => 'js'}
+       xhr :get, :nearer_breeders, @params
+       expect(flash[:notice]).to match(/The city you entered is not a valid city in the selected state/)
+      expect(response).to render_template(:nearer_breeders)
+    end
       
     it "joins by breed name and city" do
       @params = {:breeder => {:breed_name => @temp_pup.pup_name, :city => @breeder.city, :search_distance => 50000, :state => @breeder.state}, :format => 'js'}
