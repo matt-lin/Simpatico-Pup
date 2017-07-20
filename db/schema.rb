@@ -128,10 +128,6 @@ ActiveRecord::Schema.define(version: 201707200916261) do
     t.integer  "breed_2"
   end
 
-  create_table "selected_attachments", force: :cascade do |t|
-    t.string "filename"
-  end
-
   create_table "selected_comments", force: :cascade do |t|
     t.text     "content"
     t.string   "user"
