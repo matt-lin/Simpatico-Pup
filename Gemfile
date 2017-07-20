@@ -22,8 +22,6 @@ gem 'activeadmin', "1.0.0.pre1"
 gem 'test-unit', '~> 3.0'
 # forum
 gem 'thredded'
-gem 'city-state'
-
 
 #Implementing image upload features [iter2]
 gem "paperclip", "~> 5.0.0"

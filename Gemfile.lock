@@ -344,7 +344,6 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
-    rubyzip (1.2.1)
     sanitize (4.3.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.4.4)
