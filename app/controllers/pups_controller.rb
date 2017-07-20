@@ -1,29 +1,32 @@
 class PupsController < ApplicationController
 
-  before_filter :breeder_exists, :only => :create
+  # before_filter :breeder_exists, :only => :create
   before_filter :check_sign_in, :only => [:new, :dog_name, :dog_how_long, :dog_breed, :dog_breeder]
 
   # Devise. Methods not in the list below will require a user to be logged in.
   before_filter :authenticate_user!, except: [:index, :new, :main, :show, :breed, :search_breed]
 
-  def breeder_exists
-    if params[:pup][:breeder_id].to_i == -1
-      breeder = Breeder.find_or_create(params[:breeder][:name], params[:breeder][:city], params[:breeder][:state])
-      params[:pup][:breeder_id] = breeder.id
-    end
-  end
+  # def breeder_exists
+  #   if params[:pup][:breeder_id].to_i == -1
+  #     breeder = Breeder.find_or_create(params[:breeder][:name], params[:breeder][:city], params[:breeder][:state])
+  #     params[:pup][:breeder_id] = breeder.id
+  #   end
+  # end
 
   # The Root Path
   def main
     start_over
     selected_comment = SelectedComment.find_randomly
+    # Iter 2
     if selected_comment
       @comment_content = selected_comment.content
-      @comment_user = selected_comment.user
+      @comment_breed = selected_comment.breed
     end
+    # END of Iter 2
   end
 
   # The true rating page
+  # Iter 1-2
   def new
     if !session[:step1] || !session[:step2] || !session[:step3]
       redirect_to root_path and return
@@ -54,6 +57,7 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
       redirect_to new_breeder_path and return
     end
   end
+  # End for Iter 1-2
 
   # Rails default methods
   def index
@@ -84,18 +88,21 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
     new_pup[:breed_id] = Breed.find_by_name(session[:breed]).id
     new_pup[:breeder_id] = session[:breeder_id]
     new_pup[:user_id] = current_user.id
+    
+    # Iter 1-2
     new_pup[:breed_1] = session[:breed]
     # new_pup[:breeder_1] = session[:breed]
     @pup = Pup.new(new_pup)
     new_comment = {:content => params[:pup][:comments]}
     @Comment = Comment.new(new_comment)
+    # End for Iter 1-2
 
     if @pup.user.pups(:reload).size > 8
       flash[:notice] = 'SimpaticoPup is a website designed to collect information from dog lovers about their own
 companion dogs. To ensure that our rating summaries accurately reflect input from a wide variety of dog owners, we are
 currently limiting the number of ratings made by each dog owner to eight, and limiting each dog owner to rating only two
  dogs that come from the same dog breeder. Thank you for your contributions to our database.'
-      redirect_to new_pup_path and return
+      redirect_to root_path and return
     end
 
     #Problem 2
@@ -108,10 +115,13 @@ currently limiting the number of ratings made by each dog owner to eight, and li
       redirect_to new_pup_path and return
     end
 
+    # Iter 1-2
     @pup.save
     @Comment.pup_id = @pup.id
+    @Comment.breed = @pup.breed.name
+    @Comment.breeder = @pup.breeder.name
     @Comment.save
-    
+    # End for Iter 1-2
     
     # Successfully save pup & comment
     flash[:notice] = "Thank You! #{@pup.pup_name} was successfully added to our database."

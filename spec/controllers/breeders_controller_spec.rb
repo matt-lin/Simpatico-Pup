@@ -1,39 +1,100 @@
 require 'spec_helper'
 
 describe BreedersController do
-  # describe "searching by breeder" do
-  #   it "should find dogs for a breeder by name" do
-  #     breeder = FactoryGirl.build(:breeder)
-  #     dogs = (1..10).map do |i|
-  #       FactoryGirl.build(:pup, :breeder_id => breeder.id)
-  #     end
-  #     Breeder.should_receive(:find_by_name).with("Teddy Roosevelt").and_return(breeder)
-  #     breeder.stub(:pups).and_return(dogs)
-  #     get :search_name, {:breeders => {:breeder_name => "Teddy Roosevelt"}}
-  #   end
-
-  #   it "should redirect to main page if breeder doesn't exist" do
-  #     Breeder.should_receive(:find_by_name).with("Erik Bartlett").and_return(nil)
-  #     get :search_name, {:breeders =>{:breeder_name => "Erik Bartlett"}}
-  #     response.should redirect_to root_path
-  #   end
-  # end
-
-  # describe "creating new breeder" do
-  #   before :each do
-  #     @breeder = FactoryGirl.create(:breeder, :name => "Mcgoo", :location => "90210")
-  #     @breeder_build = FactoryGirl.build(:breeder, :name => "Jmac", :location => "94704")
-  #     @params = {:name => "Jmac", :city => "Berkeley", :state => "CA"}
-  #   end
-
-  #   it "should create new breeder and redirect to create pups page" do
-  #     Breeder.should_receive(:find_or_create)
-  #         .with(@params[:name], @params[:city], @params[:state])
-  #         .and_return([@breeder_build, "Erik"])
-  #     post :create, {:new_breeder => @params}
-  #     response.should redirect_to new_pup_path(:button_clicked => "Create", :breeder_id => @breeder_build.id)
-  #   end
-  # end
+  describe "looking for all the breeders" do
+    it "should retrieve all the breeders" do
+      Breeder.should_receive(:all)
+      get :index
+      response.should render_template "index"
+    end
+  end
+  
+  describe "search for breeder" do
+    it "should only redirect to root if invalid params" do
+      get :search_name, {}
+      response.should redirect_to root_path
+    end
+    
+    it "should display flash message since no rating was added" do
+      get :search_name, {:breeder => {:name => "Alex"}}
+      expect(flash[:notice]).to match(/Sorry, we do not yet have any ratings for Alex*/)
+      response.should redirect_to root_path
+    end
+    
+    it "should display breeder info" do
+      @breeder = FactoryGirl.create(:breeder)
+      @user = FactoryGirl.create(:user)
+      sign_in :user, @user
+      @temp_pup = Pup.new(:user => @user, :breeder => @breeder, :pup_name => "Doggie", :year => "2", :month => "1",
+      :user_id => @user.id, :breeder_id => @breeder.id, :breeder_responsibility => "1", :overall_health => "3",
+                  :trainability => "4", :social_behavior => "4",:dog_behavior => "4", :energy_level => "4" , :simpatico_rating => "4")
+      get :search_name, {:breeder => {:name => "#{@breeder.name} - #{@breeder.city}, #{@breeder.state}"}}
+      expect(assigns(:avg_ratings)).to eq @breeder.avg_pup_rating
+      expect(assigns(:pups)).to eq @breeder.all_pups
+    end
+    
+    it "should use breeder id to search" do
+      @breeder = FactoryGirl.create(:breeder)
+      @user = FactoryGirl.create(:user)
+      sign_in :user, @user
+      @temp_pup = Pup.new(:user => @user, :breeder => @breeder, :pup_name => "Doggie", :year => "2", :month => "1",
+      :user_id => @user.id, :breeder_id => @breeder.id, :breeder_responsibility => "1", :overall_health => "3",
+                  :trainability => "4", :social_behavior => "4",:dog_behavior => "4", :energy_level => "4" , :simpatico_rating => "4")
+      get :search_name, {:id => @breeder.id}
+      expect(assigns(:avg_ratings)).to eq @breeder.avg_pup_rating
+      expect(assigns(:pups)).to eq @breeder.all_pups
+    end
+  end
+  
+  describe "creating new breeder" do
+    it "should display breeder" do
+      @breeder = FactoryGirl.create(:breeder, :name => "Alex", :city => "Berkeley", :state => "CA")
+      post :create, {:breeder => {:name => @breeder.name, :city => @breeder.city, :state => @breeder.state}}
+      expect(flash[:notice]).to match(/Breeder Alex have been added to our database!*/)
+    end
+  end
+  
+    describe "search a breeder" do
+      before :each do
+      @breeder = FactoryGirl.create(:breeder)
+      @breed = FactoryGirl.create(:breed)
+      @user = FactoryGirl.create(:user)
+      sign_in :user, @user
+      post :create, {:breeder => {:name => @breeder.name, :city => @breeder.city, :state => @breeder.state}}
+      @temp_pup = Pup.new(:user => @user, :breeder => @breeder, :pup_name => "Doggie", :year => "2", :month => "1",
+      :user_id => @user.id, :breeder_id => @breeder.id, :breeder_responsibility => "1", :overall_health => "3",
+                  :trainability => "4", :social_behavior => "4",:dog_behavior => "4", :energy_level => "4" , :simpatico_rating => "4")
+      end
+      
+      it "gets all breed" do
+      get :search_nearer_breeders
+      expect(assigns(:breeds)).to include @breed
+      end
+      
+    it "joins by breed name and city" do
+      @params = {:breeder => {:breed_name => @temp_pup.pup_name, :city => @breeder.city, :search_distance => 50000, :state => @breeder.state}, :format => 'js'}
+       xhr :get, :nearer_breeders, @params
+      expect(response).to render_template(:nearer_breeders)
+   end
+    
+    it "joins by breed name only" do
+      @params = {:breeder => {:breed_name => @temp_pup.pup_name, :search_distance => 50, :state => @breeder.state}, :format => 'js'}
+      xhr :get, :nearer_breeders, @params
+      expect(response).to render_template(:nearer_breeders)
+    end
+    
+    it "joins by city only" do
+      @params = {:breeder => {:city => @breeder.city, :search_distance => 50, :state => @breeder.state}, :format => :js}
+      xhr :get, :nearer_breeders, @params
+      expect(response).to render_template(:nearer_breeders)
+    end
+    
+    it "joins by breed" do
+      @params = {:breeder => {:search_distance => 50, :state => @breeder.state}, :format => :js}
+      xhr :get, :nearer_breeders, @params
+      expect(response).to render_template(:nearer_breeders)
+    end
+  end
 
   describe "sending json of all breeders" do
     before :each do

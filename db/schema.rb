@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170711064248) do
+ActiveRecord::Schema.define(version: 20170718220650) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "resource_id",   null: false
@@ -118,6 +118,8 @@ ActiveRecord::Schema.define(version: 20170711064248) do
     t.string   "user"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "breed"
+    t.string   "breeder"
   end
 
   create_table "texts", force: :cascade do |t|
@@ -358,5 +360,3 @@ ActiveRecord::Schema.define(version: 20170711064248) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end
-
-AdminUser.create!(:email => 'admin@berkeley.edu', :password => 'password', :password_confirmation => 'password')

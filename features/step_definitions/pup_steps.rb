@@ -30,12 +30,13 @@ Given /the following ratings exist/ do |pups_table|
   end
 end
 
+# Iter 1-2
 Given /the following comments exist/ do |pups_table|
   breeder = FactoryGirl.create(:breeder, :name => "George W. Bush")
   pups_table.hashes.each do |rating|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that movie to the database here.
-    Pup.create!(
+    pup = Pup.create!(
       pup_name: 'Thor',
     	breed_1: rating['breed_1'],
     	breed_2: rating['breed_2'],
@@ -47,15 +48,18 @@ Given /the following comments exist/ do |pups_table|
     	simpatico_rating: rating['simpatico_rating'],
     	comments: rating['comments'],
     	user_id: 1,
-    	breeder_id: breeder.id)
+    	breeder_id: breeder.id,
+    	breed_id: 1)
     Comment.create!(
       content: rating['comments'],
-      pup_id: '1')
-    User.create!(
-      username: "Testing User",
-      email: "testing@berkeley.edu",
-      password: "123456789"
-  )
+      pup_id: pup.id)
+    Breed.create!(name: rating['breed_1'])
+    if User.find_by_email("testing@berkeley.edu").nil?
+      User.create!(
+        username: "Testing User",
+        email: "testing@berkeley.edu",
+        password: "123456789")
+    end
   end
 end
 
@@ -70,6 +74,7 @@ Given(/^the following breeds exist:$/) do |table|
     FactoryGirl.create(:breed, :name => breed[:name])
   end
 end
+# End for Iter 1-2
 
 def set_hidden_field(field, value)
   page.execute_script "s=$('##{field}');"
@@ -101,11 +106,13 @@ And(/^the following users exist:/) do |table|
   end
 end
 
+# Iter 1-2
 And(/^the following newsletter_user exist:/) do |table|
   table.hashes.each do |newsletter_user|
     NewsletterUser.create!(newsletter_user)
   end
 end
+# End for Iter 1-2
 
 When /^I fill out the form with the following attributes:$/ do |pups_table|
   page.evaluate_script "$('#multiple_breeds').trigger('click');"
@@ -130,3 +137,4 @@ When /^I select "(.*)" and "(.*)" and search/ do |breed1, breed2|
   page.select(breed2, :from => 'pup_breed_2')
   click_button "Find a Breed"
 end
+

@@ -1,3 +1,4 @@
+# Iter 1-2
 And /^"([^"]*)" is( not)? in the subscribing group/ do |username, not_in|
   if not_in.nil?
     NewsletterUser.where("email = ?", "#{username}@berkeley.edu").empty?.should == false
@@ -17,3 +18,4 @@ Then (/^check all subscribers/) do
     step calling_step
   end
 end
+

@@ -101,4 +101,29 @@ describe Breeder do
       @breeder_without_address.address.should eq("")
     end
   end
+  
+  describe "find breeder by using formatted string" do
+    before :each do
+     @breeder_with_address = FactoryGirl.create(:breeder, :name=>"John", :city=>"Berkeley", :state=>"CA")
+    end
+    Breeder.find_by_formatted_string("John - Berkeley, CA").should == @breeder_with_address
+  end
+  
+  describe "dismentle some pups" do
+    before :each do
+      @breeder = FactoryGirl.create(:breeder)
+      pups = 10.times.collect  { |i| FactoryGirl.create(:pup, :breeder_id => @breeder.id)}
+    end
+    it "should get the average ratings for each pup" do
+      results_hash = {:overall_health => 1.0, :trainability => 1.0, :social_behavior => 1.0,
+                      :dog_behavior => 1.0, :energy_level => 1.0, :simpatico_rating => 1.0, :breeder_responsibility => 1.0}
+      @breeder.pups.each do |pup|
+        results_hash.each{|k,v| pup.send(k).should == 1.0}
+      end
+      @breeder.dismentle_pups
+      @breeder.pups.each do |pup|
+        pup.breeder_id.should eq 1
+      end
+    end
+  end
 end

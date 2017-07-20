@@ -1,5 +1,5 @@
 class SelectedComment < ActiveRecord::Base
-  attr_accessible :content, :user
+  attr_accessible :content, :user, :breed, :breeder
 
   def SelectedComment.find_randomly
     count = SelectedComment.count
