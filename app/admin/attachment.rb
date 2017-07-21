@@ -1,3 +1,4 @@
+#Iter 2-2
 ActiveAdmin.register Attachment do
   permit_params :attachment
 
@@ -74,4 +75,4 @@ ActiveAdmin.register Attachment do
     end
   end
 end
-
+#End of Iter 2-2

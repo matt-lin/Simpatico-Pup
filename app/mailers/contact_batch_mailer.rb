@@ -3,6 +3,7 @@ class ContactBatchMailer < ActionMailer::Base
   default from: 'yuhongzhan0407@berkeley.edu'
   # default from: 'yo@example.com'
   
+  #Iter 2-2
   def contact_batch_email(name, message, subject, recipient, send)
     if (send == "on")
       @list = Attachment.get_files
@@ -16,6 +17,7 @@ class ContactBatchMailer < ActionMailer::Base
     end
     mail(to: recipient, name: name, subject: subject, body: message)
   end
+  #End of Iter 2-2
 
 end
 # End for Iter 1-2
