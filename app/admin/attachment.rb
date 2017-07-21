@@ -33,10 +33,10 @@ ActiveAdmin.register Attachment do
   
   index do
     selectable_column
+    column :marked
     column :document_file_name
     column :document_content_type
-    column :document_file_size
-    column :marked
+    number_column :document_file_size, as: :human_size
     actions
   end
 
