@@ -12,7 +12,7 @@ ActiveAdmin.register Attachment do
       @unit = a.document_file_name
       @lst.push(@unit)
     end
-    SelectedAttachment.change_files @lst
+    Attachment.change_files @lst
     redirect_to collection_path, notice: "The attachments have been selected."
   end
   

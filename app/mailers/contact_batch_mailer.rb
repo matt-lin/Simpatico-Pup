@@ -5,12 +5,12 @@ class ContactBatchMailer < ActionMailer::Base
   
   def contact_batch_email(name, message, subject, recipient, send)
     if (send == "on")
-      @list = SelectedAttachment.get_files
-      @list.each do |filename|
-        if filename.end_with?(".txt")
-          attachments[filename] = File.read(Rails.root.join("app/assets/attachment/#{filename}"))
+      @list = Attachment.get_files
+      @list.each do |name|
+        if name.end_with?(".txt")
+          attachments[name] = File.read(Rails.root.join("app/assets/attachment/#{name}"))
         else
-          attachments.inline[filename] = File.read(Rails.root.join("app/assets/attachment/#{filename}"))
+          attachments.inline[name] = File.read(Rails.root.join("app/assets/attachment/#{name}"))
         end
       end
     end
