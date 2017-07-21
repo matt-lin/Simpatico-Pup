@@ -33,10 +33,9 @@ ActiveAdmin.register Attachment do
   
   index do
     selectable_column
-    column :marked
-    column :document_file_name
-    column :document_content_type
+    attachment_column :document
     number_column :document_file_size, as: :human_size
+    bool_column :marked
     actions
   end
 
@@ -49,7 +48,7 @@ ActiveAdmin.register Attachment do
 
   show do
     attributes_table do
-      row :document_file_name
+      attachment_row("File", :document, label: 'Download file', truncate: false)
       row :document_content_type
       row :document_file_size
     end

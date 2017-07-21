@@ -11,6 +11,19 @@
 @import "active_admin/mixins";
 @import "active_admin/base";
 
+
+.bool-value {
+  font-size: 18px;
+
+  &.true-value {
+    color: #08A510;
+  }
+
+  &.false-value {
+    color: #FF0000;
+  }
+}
+
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
 //
