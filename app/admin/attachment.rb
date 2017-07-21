@@ -4,7 +4,7 @@ ActiveAdmin.register Attachment do
 
   config.filters = false
   
-  menu :label => 'Attachment Manager'
+  menu :label => 'File Manager'
   actions :all, except: [:edit]
   
   batch_action :attach do |ids|
