@@ -18,7 +18,7 @@ Then (/^"([^"]*)" (should|should not) receive an email$/) do |username, maybe|
   end
 end
 
-And (/^I send emails with subject as "([^"]*)" and message as "([^"]*)"( with an attachment)?$/) do |subject, body, attach|
+And (/^I send emails with subject as "([^"]*)" and message as "([^"]*)"( with an attachment included)?$/) do |subject, body, attach|
   action = "email"
   page.find("#batch_action", visible: false).set action
   form   = page.find "#collection_selection"
@@ -33,11 +33,12 @@ And (/^I send emails with subject as "([^"]*)" and message as "([^"]*)"( with an
 
   params[:subject] = subject
   params[:message] = body
+  params["Include Attachment"] = attach ? "on" : "off"
   params[:test] = true
   page.driver.submit form['method'], form['action'], params
 end
 
-Then (/^all the users should get an email with "([^"]*)" and "([^"]*)"( with an attachment)?$/) do |subject, body, attach|
+Then (/^all the users should get an email with "([^"]*)" and "([^"]*)"( with an attachment "([^"]*)")?$/) do |subject, body, attach, file|
   emails = ActionMailer::Base.deliveries
   emails.length.should == NewsletterUser.all.length
   NewsletterUser.all.each do |user|
@@ -45,16 +46,18 @@ Then (/^all the users should get an email with "([^"]*)" and "([^"]*)"( with an 
     user_email.size.should == 1
     expect(user_email.first).to have_content(subject)
     expect(user_email.first).to have_content(body)
+    expect(user_email.first.attachments.first.filename).to eq file if attach
   end
 end
 
-Then (/^"([^"]*)" (should|should not) get an email with "([^"]*)" and "([^"]*)"( with an attachment)?$/) do |username, maybe, subject, body, attach|
+Then (/^"([^"]*)" (should|should not) get an email with "([^"]*)" and "([^"]*)"( with an attachment "([^"]*)")?$/) do |username, maybe, subject, body, attach, file|
   emails = ActionMailer::Base.deliveries
   user_email = emails.select{|email| email.to.include? "#{username}@berkeley.edu"}
   if maybe == 'should'
     user_email.size.should == 1
     expect(user_email.first).to have_content(subject)
     expect(user_email.first).to have_content(body)
+    expect(user_email.first.attachments.first.filename).to eq file if attach
   else 
     user_email.size.should == 0
   end
@@ -102,5 +105,31 @@ And (/^I click on that url again$/) do
     current_email.click_link 'Reset password'
 end
 
+#Iter 2-2
+Given (/^I have uploaded a file named "([^"]*)"$/) do |file|
+  first(:link, "New Attachment").click
+  attach_file("attachment_attachment", File.expand_path("features/attachment/#{file}"))
+  click_button("Create Attachment")
+end
+
+When (/^I (mark|unmark) this uploaded file$/) do |marked|
+  send "check", "batch_action_item_1"
+  page.find("#collection_selection_toggle_all").click
+  if marked == "mark"
+    page.find("#batch_action", visible: false).set "mark"
+  elsif marked == "unmark"
+    page.find("#batch_action", visible: false).set "unmark"
+  end
+  form   = page.find "#collection_selection"
+  params = page.all("#main_content input", visible: false).each_with_object({}) do |input, obj|
+    key, value = input['name'], input['value']
+    if key == 'collection_selection[]'
+      (obj[key] ||= []).push value if input.checked?
+    else
+      obj[key] = value
+    end
+  end
+  page.driver.submit form['method'], form['action'], params
+end
 
 

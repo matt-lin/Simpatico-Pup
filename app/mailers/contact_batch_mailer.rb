@@ -16,11 +16,6 @@ class ContactBatchMailer < ActionMailer::Base
       end
     end
     mail(to: recipient, name: name, subject: subject, body: message)
-    Attachment.change_files []
-    Attachment.all.each do |a|
-      a.marked = false
-      a.save
-    end
   end
   #End of Iter 2-2
 
