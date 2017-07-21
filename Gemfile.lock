@@ -469,6 +469,7 @@ DEPENDENCIES
   rack_session_access
   rails (~> 4.2.4)
   rake
+  ransack
   reek
   rspec-rails (~> 2.14.0)
   sass-rails

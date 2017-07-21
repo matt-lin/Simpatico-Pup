@@ -37,6 +37,9 @@ gem 'permitted_params'
 
 #Improve Activeadmin UI
 gem 'activeadmin_addons'
+
+#Improve searchability for filter
+gem 'ransack'
 #End of iter 2-2
 
 gem 'protected_attributes'

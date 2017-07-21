@@ -6,9 +6,10 @@ describe ContactBatchMailer do
         @name = "Test_Name"
         @subject = "Pup test email"
         @body = "Test email body"
+        @send = "off"
     end
     it 'create email with given parameter' do
-        mail = ContactBatchMailer.contact_batch_email(@name, @body, @subject, @recipient)
+        mail = ContactBatchMailer.contact_batch_email(@name, @body, @subject, @recipient, @send)
         expect(mail.to).to eql([@recipient])
         expect(mail.subject).to eql(@subject)
         expect(mail.body.to_s).to eql(@body)
