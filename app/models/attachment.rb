@@ -6,13 +6,4 @@ class Attachment < ActiveRecord::Base
     has_attached_file :document, :path => attachment_real_path, :url => attachment_virtual_path
     do_not_validate_attachment_file_type :document
     
-    @@filenames = []
-  
-    def self.change_files arr
-        @@filenames = arr
-    end
-  
-    def self.get_files 
-        return @@filenames
-    end
 end

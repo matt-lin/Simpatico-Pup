@@ -17,7 +17,6 @@ ActiveAdmin.register NewsletterUser do
         ContactBatchMailer.contact_batch_email('Dear Newsletter Subscribers', inputs[:message], inputs[:subject], user.email, inputs["Include Attachment"]).deliver_now
       end
     end
-    Attachment.change_files []
     Attachment.all.each do |a|
       a.marked = false
       a.save
