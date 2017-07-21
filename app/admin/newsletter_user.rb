@@ -4,6 +4,31 @@ ActiveAdmin.register NewsletterUser do
   filter :id
   menu :label => 'Newsletter Subscribers'
   
+  sidebar :"How to use" do
+    h6 "Batch Actions"
+    ul do
+      li "Email Selected: Send Email to selected user"
+      li "Delete Selected: Unsubscribe selected user"
+
+      end
+           
+    h6 "Attachment size limit"
+    ul do
+      li "Gmail: 25Mb (per email)"
+      li "Outlook/hotmail: 10Mb (per file attachment)"
+      li "Yahoo Mail: 25Mb (per email)"
+      li "AOL:	25Mb"
+      li "Mail.com:	50Mb (per attachment) and 10Mb (per file)"
+      li "Zoho Mail:	12Mb (per email) and 10Mb (per file)"
+      li "GoDaddy Workspace: 30Mb (per email) and 20Mb (per file)"
+      end   
+      
+      h6 "Send Email with attachment"
+      ul do
+      text_node "When sending Email with attachment, upload and mark the attachments in 'File manager', then check 'Include Attachment' to send email with attachment"
+      end       
+  end
+  
   # Iter 2-2
   batch_action :email, form: {
       subject: :text,

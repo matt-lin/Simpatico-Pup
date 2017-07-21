@@ -8,12 +8,32 @@ ActiveAdmin.register Attachment do
   filter :document_file_size
   filter :marked
   
+  sidebar :"How to use" do
+    h6 "Batch Actions"
+    ul do
+      li "Mark Selected: Mark the files as pending attachment"
+      li "Unmark Selected: Remove marked the files from pending attachment"
+      li "Delete Selected: Permanently remove the marked the files from the site"
+      end
+           
+    h6 "Attachment size limit"
+    ul do
+      li "Gmail: 25Mb (per email)"
+      li "Outlook/hotmail: 10Mb (per file attachment)"
+      li "Yahoo Mail: 25Mb (per email)"
+      li "AOL:	25Mb"
+      li "Mail.com:	50Mb (per attachment) and 10Mb (per file)"
+      li "Zoho Mail:	12Mb (per email) and 10Mb (per file)"
+      li "GoDaddy Workspace: 30Mb (per email) and 20Mb (per file)"
+      end       
+  end
+  
   batch_action :mark do |ids|
     batch_action_collection.find(ids).each do |a|
       a.marked = true
       a.save
     end
-    redirect_to collection_path, notice: "The selected attachments have been marked."
+    redirect_to collection_path, notice: "The selected attachments have been marked and will be attached in email."
   end
   
   batch_action :unmark do |ids|
@@ -21,7 +41,7 @@ ActiveAdmin.register Attachment do
       a.marked = false
       a.save
     end
-    redirect_to collection_path, notice: "The selected attachments have been unmarked."
+    redirect_to collection_path, notice: "The selected attachments have been unmarked and will not be attached in email."
   end
   
   index do
