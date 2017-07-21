@@ -1,6 +1,6 @@
 class Attachment < ActiveRecord::Base
     belongs_to :selected_comment
-    has_attached_file :document, :path => ":rails_root/app/assets/attachment/:basename.:extension"
+    has_attached_file :document
     do_not_validate_attachment_file_type :document
     
     @@filenames = []
