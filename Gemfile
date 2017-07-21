@@ -25,11 +25,19 @@ gem 'thredded'
 gem 'city-state'
 
 
-#Implementing image upload features [iter2]
+# Iter 2-2
+#Implementing image upload features 
 gem "paperclip", "~> 5.0.0"
+
+#Improve form layout in activeadmin
 gem 'formtastic', '~> 3.0'
+
+#Improve Security
 gem 'permitted_params'
-#end of iter 2
+
+#Improve Activeadmin UI
+gem 'activeadmin_addons'
+#End of iter 2-2
 
 gem 'protected_attributes'
 
