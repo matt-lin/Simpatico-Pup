@@ -72,9 +72,11 @@ describe BreedersController do
       @breed = FactoryGirl.create(:breed)
       @user = FactoryGirl.create(:user)
       sign_in :user, @user
-      @temp_pup = Pup.new(:user => @user, :breeder => @breeder, :pup_name => "Doggie", :year => "2", :month => "1",
-      :user_id => @user.id, :breeder_id => @breeder.id, :breeder_responsibility => "1", :overall_health => "3",
-                  :trainability => "4", :social_behavior => "4",:dog_behavior => "4", :energy_level => "4" , :simpatico_rating => "4")
+      @temp_pup = Pup.create(:user => @user, :breeder => @breeder, :pup_name => "Doggie", :year => "2", :month => "1",
+                                          :user_id => @user.id, :breeder_id => @breeder.id, :breed_id => @breed.id,
+                                          :breeder_responsibility => "1", :overall_health => "3",
+                                          :trainability => "4", :social_behavior => "4",:dog_behavior => "4", 
+                                          :energy_level => "4" , :simpatico_rating => "4")
     end
       
     it "gets all breed" do
@@ -83,13 +85,14 @@ describe BreedersController do
     end
       
     it "joins by breed name and city" do
-      @params = {:breeder => {:breed_name => @temp_pup.pup_name, :city => @breeder.city, :search_distance => 50000, :state => @breeder.state}, :format => 'js'}
+      @params = {:breeder => {:breed_name => @temp_pup.breed.name, :city => @breeder.city, :search_distance => 100, :state => @breeder.state}, :format => 'js'}
       xhr :get, :nearer_breeders, @params
       expect(response).to render_template(:nearer_breeders)
+      expect(assigns(:breeders)).to include @breeder
     end
     
     it "joins by breed name only" do
-      @params = {:breeder => {:breed_name => @temp_pup.pup_name, :search_distance => 50, :state => @breeder.state}, :format => 'js'}
+      @params = {:breeder => {:breed_name => @temp_pup.breed.name, :search_distance => 50, :state => @breeder.state}, :format => 'js'}
       xhr :get, :nearer_breeders, @params
       expect(response).to render_template(:nearer_breeders)
     end
@@ -98,12 +101,14 @@ describe BreedersController do
       @params = {:breeder => {:city => @breeder.city, :search_distance => 50, :state => @breeder.state}, :format => :js}
       xhr :get, :nearer_breeders, @params
       expect(response).to render_template(:nearer_breeders)
+      expect(assigns(:breeders)).to include @breeder
     end
     
     it "joins by breed" do
-      @params = {:breeder => {:search_distance => 50, :state => @breeder.state}, :format => :js}
+      @params = {:breeder => {:search_distance => 250, :state => @breeder.state}, :format => :js}
       xhr :get, :nearer_breeders, @params
       expect(response).to render_template(:nearer_breeders)
+      expect(assigns(:breeders)).to include @breeder
     end
     
     it "don't search if location is invalid" do
@@ -116,6 +121,7 @@ describe BreedersController do
       @params = {:breeder => {:search_distance => 50, :city => "Oakland", :state => ""}, :format => :js}
       expect(Breeder).not_to receive(:joins)
       xhr :get, :nearer_breeders, @params
+      expect(response).to render_template(:nearer_breeders)
     end
     
     it "provide the error message and set invalid_location if location is invalid" do
@@ -123,6 +129,7 @@ describe BreedersController do
       xhr :get, :nearer_breeders, @params
       expect(assigns(:valid_location)).to eq false
       expect(assigns(:message)).to eq "The city you entered is not a valid city in the selected state"
+      expect(response).to render_template(:nearer_breeders)
     end
     
     it "provide the error message and set invalid_location if only city is entered" do
@@ -130,6 +137,7 @@ describe BreedersController do
       xhr :get, :nearer_breeders, @params
       expect(assigns(:valid_location)).to eq false
       expect(assigns(:message)).to eq "Please select a state"
+      expect(response).to render_template(:nearer_breeders)
     end
   end
 
