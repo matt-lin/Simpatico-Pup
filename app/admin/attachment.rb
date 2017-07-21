@@ -3,16 +3,15 @@ ActiveAdmin.register Attachment do
   permit_params :attachment
   
   menu :label => 'File Manager'
-  index :title => 'File Manager'
   actions :all, except: [:edit]
   filter :document_file_name
   filter :document_file_size
   filter :marked
-  
   config.clear_action_items!
   action_item :only => :index do
     link_to "Upload File" , "/admin/attachments/new" 
   end
+
   
   sidebar :"How to use" do
     h6 "Batch Actions"
