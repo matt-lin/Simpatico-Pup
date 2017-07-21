@@ -7,14 +7,28 @@ ActiveAdmin.register Attachment do
   menu :label => 'File Manager'
   actions :all, except: [:edit]
   
-  batch_action :attach do |ids|
-    @lst = []
+  batch_action :mark do |ids|
     batch_action_collection.find(ids).each do |a|
-      @unit = a.document_file_name
-      @lst.push(@unit)
+      a.marked = true
+      a.save
+      @filenames = Attachment.get_files
+      @filenames.push(a.document_file_name)
     end
-    Attachment.change_files @lst
-    redirect_to collection_path, notice: "The attachments have been selected."
+    Attachment.change_files @filenames
+    redirect_to collection_path, notice: "The selected attachments have been marked."
+  end
+  
+  batch_action :unmark do |ids|
+    batch_action_collection.find(ids).each do |a|
+      a.marked = false
+      a.save
+      @filenames = Attachment.get_files
+      if @filenames.include? a.document_file_name
+        @filenames.delete a.document_file_name
+      end
+    end
+    Attachment.change_files @filenames
+    redirect_to collection_path, notice: "The selected attachments have been unmarked."
   end
   
   index do
@@ -22,6 +36,7 @@ ActiveAdmin.register Attachment do
     column :document_file_name
     column :document_content_type
     column :document_file_size
+    column :marked
     actions
   end
 

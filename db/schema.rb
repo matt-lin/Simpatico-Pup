@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 201707200916261) do
     t.string   "document_content_type"
     t.integer  "document_file_size"
     t.datetime "document_updated_at"
+    t.boolean  "marked",                default: false
   end
 
   create_table "breeders", force: :cascade do |t|
