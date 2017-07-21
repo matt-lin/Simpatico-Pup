@@ -40,11 +40,12 @@ helper_method :subscribed?
   #   end
   # end
   def create
-    # build_resource(sign_up_params)
-    # resource.save
     @user = User.new(sign_up_params)
     p "*"*80
     if @user.save
+      if params[:subscribe_newsletter].present?
+        NewsletterUser.find_or_create_by(email: resource.email)
+      end
       UserMailer.account_activation(@user).deliver_now
       flash[:info] = "Please check your email to activate your account."
       redirect_to root_url
