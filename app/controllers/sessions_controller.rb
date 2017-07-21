@@ -1,6 +1,7 @@
 class SessionsController < Devise::SessionsController
 
   def new
+    p "*"*80
     super
   end
 
@@ -17,11 +18,11 @@ class SessionsController < Devise::SessionsController
     end  
     if user
       p "*"*80
-      p "user?"
-      p "#{user.activated?}"
+      p "user?""#{user.activated?}"
       if user.activated
         p "*"*80
         p "activated?"
+        
         super
       else
         message  = "Account not activated. "

@@ -2,7 +2,7 @@ Ratemypup::Application.routes.draw do
 
 
   mount Thredded::Engine => '/forum'
-  devise_for :users, controllers: {sessions: "sessions"}
+  devise_for :users, controllers: {sessions: "sessions", registrations: 'users/registrations'}
 
   root :to => 'pups#main'
 

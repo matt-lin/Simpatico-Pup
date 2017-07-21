@@ -5,10 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :delete_pup_from_session
   ##########################################
   
-<<<<<<< HEAD
-=======
 
->>>>>>> 7f4f082fbb0ed9540f1194f3d691b0e238d21f6b
   def delete_pup_from_session
     if session[:pup]
       session.delete(:pup)

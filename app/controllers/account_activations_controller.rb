@@ -36,12 +36,14 @@ class AccountActivationsController < ApplicationController
       
       user.activate
       new_session_path(user)
+      
       p "*"*80
       p "user.activated"
       p "#{user.activated}"
       p "*"*80
-      user.save
+      user.save!
       flash[:success] = "Account activated!"
+      UserMailer.welcome(user).deliver_now
       redirect_to root_path
     else
       flash[:danger] = "Invalid activation link"
