@@ -9,19 +9,7 @@ ActiveAdmin.register NewsletterUser do
     ul do
       li "Email Selected: Send Email to selected user"
       li "Delete Selected: Unsubscribe selected user"
-
       end
-           
-    h6 "Attachment size limit"
-    ul do
-      li "Gmail: 25Mb (per email)"
-      li "Outlook/hotmail: 10Mb (per file attachment)"
-      li "Yahoo Mail: 25Mb (per email)"
-      li "AOL:	25Mb"
-      li "Mail.com:	50Mb (per attachment) and 10Mb (per file)"
-      li "Zoho Mail:	12Mb (per email) and 10Mb (per file)"
-      li "GoDaddy Workspace: 30Mb (per email) and 20Mb (per file)"
-      end   
       
       h6 "Send Email with attachment"
       ul do

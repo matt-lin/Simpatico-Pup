@@ -8,6 +8,11 @@ ActiveAdmin.register Attachment do
   filter :document_file_size
   filter :marked
   
+  config.clear_action_items!
+  action_item :only => :index do
+    link_to "Upload File" , "/admin/attachments/new" 
+  end
+  
   sidebar :"How to use" do
     h6 "Batch Actions"
     ul do
@@ -16,8 +21,9 @@ ActiveAdmin.register Attachment do
       li "Delete Selected: Permanently remove the marked the files from the site"
       end
            
-    h6 "Attachment size limit"
+    h6 "File size limit"
     ul do
+      li "local: Unlimited size"
       li "Gmail: 25Mb (per email)"
       li "Outlook/hotmail: 10Mb (per file attachment)"
       li "Yahoo Mail: 25Mb (per email)"
@@ -26,6 +32,11 @@ ActiveAdmin.register Attachment do
       li "Zoho Mail:	12Mb (per email) and 10Mb (per file)"
       li "GoDaddy Workspace: 30Mb (per email) and 20Mb (per file)"
       end       
+      
+    text_node "Following file type will not send from email: 
+    .ADE, .ADP, .BAT, .CHM, .CMD, .COM, .CPL, .EXE, .HTA, .INS, .ISP, .JAR, 
+    .JS (NEW), .JSE, .LIB, .LNK, .MDE, .MSC, .MSI, .MSP, .MST, .NSH .PIF, .SCR, 
+    .SCT, .SHB, .SYS, .VB, .VBE, .VBS, .VXD, .WSC, .WSF, .WSH"
   end
   
   batch_action :mark do |ids|
@@ -45,8 +56,6 @@ ActiveAdmin.register Attachment do
   end
   
   index do
-
-    
     selectable_column
     attachment_column :document
     number_column :document_file_size, as: :human_size
