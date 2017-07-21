@@ -43,7 +43,7 @@ class PasswordresetsController < ApplicationController
       render 'edit'
     elsif params[:user][:password] != params[:user][:password_confirmation]
       flash[:notice] = "Password not same as Confirmation"
-      render 'edit'    
+      render 'edit'
     elsif @user.update_attributes(user_params)     
       @user.update_attribute(:reset_password_sent_at, time)
       @user.update_attribute(:reset_password_token, '')
@@ -52,7 +52,7 @@ class PasswordresetsController < ApplicationController
       redirect_to root_path
     else
       flash[:notice] = 'Password must contain more than 8 characters'
-      render 'edit'                                    
+      render 'edit'
     end
   end
   
@@ -65,27 +65,17 @@ class PasswordresetsController < ApplicationController
   # 2) must be the last sent reset password url
   # 3) that url has not been used yet 
   def edit
-    # puts '*'*80
-    # puts params[:token]
-    # puts @user.reset_password_token
-    # puts '*'*80
     if params[:email].nil? || params[:token].nil?
       redirect_to root_path and return
     end
 
     @user = User.find_by(email: params[:email].downcase)
-            
-    puts '*'*80
-    puts params
-    puts @user.reset_password_sent_at
-    puts @user.reset_password_token
-    puts '*'*80
-
+          
     if ((Time.zone.now - @user.reset_password_sent_at) > 1800) || params[:token] != @user.reset_password_token
       flash[:notice] = 'Your request to reset password has expired. Refill the form if you want to reset password.'
-      render 'new'
+      redirect_to new_passwordreset_path and return
     else
-      @user.update_attribute(:reset_password_token,  '')
+      @user.update_attribute(:reset_password_token,  'used')
     end
   end
   

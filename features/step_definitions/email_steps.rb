@@ -102,5 +102,12 @@ And (/^I click on that url again$/) do
     current_email.click_link 'Reset password'
 end
 
+And (/^"([^"]*)" wait for 31 mins$/) do |username|
+    @user = User.where("username = ?", username).first
+    @user.update_attribute(:reset_password_sent_at, Time.zone.now-1860)
+end
+
+
+
 
 
