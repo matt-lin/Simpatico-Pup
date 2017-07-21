@@ -19,17 +19,25 @@ Feature: Admin should be able to upload file to the file manager
       And I should see "eecs.jpg"
       And I should see "image/jpeg"
       
-    Scenario: admins should be able to upload any file type
+    Scenario: admins should be able to manage document
       When I follow "New Attachment"
       Then I attach the file "features/attachment/honor.pdf" to "attachment_attachment"
       And I press "Create Attachment"
+      And I should see "honor.pdf"
+      When I follow "Delete"
+      And I accept confirmation dialogs
+      Then I should see "Attachment was successfully destroyed."
+      
+    Scenario: admins should be able to manage media file
       When I follow "New Attachment"
       Then I attach the file "features/attachment/Velonica.mp3" to "attachment_attachment"
       And I press "Create Attachment"
       Then I should see "Velonica.mp3"
-      And I should see "honor.pdf"
+      When I follow "Delete"
+      And I accept confirmation dialogs
+      Then I should see "Attachment was successfully destroyed."
       
-    Scenario: admins should be able to delete the file that they uploaded
+    Scenario: admins should be able to manage text file
       When I follow "New Attachment"
       Then I attach the file "features/attachment/text.txt" to "attachment_attachment"
       And I press "Create Attachment"
@@ -37,7 +45,12 @@ Feature: Admin should be able to upload file to the file manager
       And I accept confirmation dialogs
       Then I should see "Attachment was successfully destroyed."
       
-
-    
+    Scenario: admins should be able to manage image file
+      When I follow "New Attachment"
+      Then I attach the file "features/attachment/eecs.jpg" to "attachment_attachment"
+      And I press "Create Attachment"
+      When I follow "Delete"
+      And I accept confirmation dialogs
+      Then I should see "Attachment was successfully destroyed."
 # End for Iter 2-2
       
