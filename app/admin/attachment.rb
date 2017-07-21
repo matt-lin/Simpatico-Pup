@@ -3,6 +3,7 @@ ActiveAdmin.register Attachment do
   permit_params :attachment
   
   menu :label => 'File Manager'
+  index :title => 'File Manager'
   actions :all, except: [:edit]
   filter :document_file_name
   filter :document_file_size
@@ -23,7 +24,7 @@ ActiveAdmin.register Attachment do
            
     h6 "File size limit"
     ul do
-      li "local: Unlimited size"
+      li "local: Unlimited"
       li "Gmail: 25Mb (per email)"
       li "Outlook/hotmail: 10Mb (per file attachment)"
       li "Yahoo Mail: 25Mb (per email)"
