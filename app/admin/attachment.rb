@@ -12,10 +12,7 @@ ActiveAdmin.register Attachment do
     batch_action_collection.find(ids).each do |a|
       a.marked = true
       a.save
-      @filenames = Attachment.get_files
-      @filenames.push(a.document_file_name)
     end
-    Attachment.change_files @filenames
     redirect_to collection_path, notice: "The selected attachments have been marked."
   end
   
@@ -23,12 +20,7 @@ ActiveAdmin.register Attachment do
     batch_action_collection.find(ids).each do |a|
       a.marked = false
       a.save
-      @filenames = Attachment.get_files
-      if @filenames.include? a.document_file_name
-        @filenames.delete a.document_file_name
-      end
     end
-    Attachment.change_files @filenames
     redirect_to collection_path, notice: "The selected attachments have been unmarked."
   end
   
