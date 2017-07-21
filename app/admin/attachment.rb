@@ -7,7 +7,7 @@ ActiveAdmin.register Attachment do
   menu :label => 'Attachment Manager'
   actions :all, except: [:edit]
   
-  batch_action :select do |ids|
+  batch_action :attach do |ids|
     @lst = []
     batch_action_collection.find(ids).each do |a|
       @unit = a.document_file_name
