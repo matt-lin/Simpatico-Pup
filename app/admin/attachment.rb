@@ -1,11 +1,12 @@
 #Iter 2-2
 ActiveAdmin.register Attachment do
   permit_params :attachment
-
-  config.filters = false
   
   menu :label => 'File Manager'
   actions :all, except: [:edit]
+  filter :document_file_name
+  filter :document_file_size
+  filter :marked
   
   batch_action :mark do |ids|
     batch_action_collection.find(ids).each do |a|
@@ -32,6 +33,8 @@ ActiveAdmin.register Attachment do
   end
   
   index do
+
+    
     selectable_column
     attachment_column :document
     number_column :document_file_size, as: :human_size
