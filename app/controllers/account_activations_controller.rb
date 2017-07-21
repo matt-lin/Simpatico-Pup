@@ -36,10 +36,10 @@ class AccountActivationsController < ApplicationController
       
       user.activate
       new_session_path(user)
-      
+      p "#{user.email}"
       p "*"*80
       p "user.activated"
-      p "#{user.activated}"
+      p "#{user.activated?}"
       p "*"*80
       user.save!
       flash[:success] = "Account activated!"

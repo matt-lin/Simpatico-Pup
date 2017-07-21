@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :agreement
   # attr_accessible :title, :body
   
-  attr_accessor :reset_token, :remember_token, :activation_token, :activation_digest, :activated
+  attr_accessor :reset_token, :remember_token, :activation_token, :activation_digest
   before_save   :downcase_email
   before_create :create_activation_digest
   

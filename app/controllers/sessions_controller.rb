@@ -6,23 +6,24 @@ class SessionsController < Devise::SessionsController
   end
 
   def create
+    # super
     user = User.find_by(email: params[:user][:email].downcase)
     p "*"*80
     p "#{user.email}"
+    p "#{user.activated_at}"
     p "*"*80
     
-    if !user.activated?
+    if !user.activated
       p "*" * 80
       p "activated? method say it is not activated yet"
       p "*"*80
     end  
     if user
       p "*"*80
-      p "user?""#{user.activated?}"
+      p "user? --->#{user.activated}<----"    #nil
       if user.activated
         p "*"*80
         p "activated?"
-        
         super
       else
         message  = "Account not activated. "
