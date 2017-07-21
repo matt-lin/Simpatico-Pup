@@ -1,5 +1,4 @@
 # Iter 2-1
-#@javascript
 Feature: Admin should be able to send emails to subscribed users with attachment 
     As an administrator
     I want to be able to send an email with attachment and photo
@@ -43,8 +42,8 @@ Feature: Admin should be able to send emails to subscribed users with attachment
       And I send emails with subject as "subject" and message as "message" with an attachment included
       Then all the users should get an email with "subject" and "message" with an attachment "eecs.jpg"
       Given admin go to attachments
-      When I follow "Delete"
-      And I accept confirmation dialogs
+      When I delete this uploaded file
+      Then I should see "Successfully destroyed"
     
     # End for Iter 2-2
 # End for Iter 2-1

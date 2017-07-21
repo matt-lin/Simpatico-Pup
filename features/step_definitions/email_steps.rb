@@ -132,4 +132,19 @@ When (/^I (mark|unmark) this uploaded file$/) do |marked|
   page.driver.submit form['method'], form['action'], params
 end
 
+When (/^I delete this uploaded file$/) do
+  send "check", "batch_action_item_1"
+  page.find("#collection_selection_toggle_all").click
+  page.find("#batch_action", visible: false).set :destroy
+  form   = page.find "#collection_selection"
+  params = page.all("#main_content input", visible: false).each_with_object({}) do |input, obj|
+    key, value = input['name'], input['value']
+    if key == 'collection_selection[]'
+      (obj[key] ||= []).push value if input.checked?
+    else
+      obj[key] = value
+    end
+  end
+  page.driver.submit form['method'], form['action'], params
+end
 
