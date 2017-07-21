@@ -17,7 +17,6 @@ Feature: Admin should be able to upload file to the file manager
       And I press "Create Attachment"
       Then I should see "The attachment has been uploaded."
       And I should see "eecs.jpg"
-      And I should see "image/jpeg"
       
     Scenario: admins should be able to manage document
       When I follow "New Attachment"
@@ -32,7 +31,6 @@ Feature: Admin should be able to upload file to the file manager
       When I follow "New Attachment"
       Then I attach the file "features/attachment/Velonica.mp3" to "attachment_attachment"
       And I press "Create Attachment"
-      Then I should see "Velonica.mp3"
       When I follow "Delete"
       And I accept confirmation dialogs
       Then I should see "Attachment was successfully destroyed."
@@ -53,4 +51,3 @@ Feature: Admin should be able to upload file to the file manager
       And I accept confirmation dialogs
       Then I should see "Attachment was successfully destroyed."
 # End for Iter 2-2
-      
