@@ -11,7 +11,7 @@ Feature: Admin should be able to upload file to the file manager
         
     Scenario: admins should be able to upload file
       Then I should see "There are no Attachments yet."
-      Then I follow "New Attachment"
+      Then I follow "Upload File"
       And I should see "Upload File"
       Then I attach the file "features/attachment/eecs.jpg" to "attachment_attachment"
       And I press "Create Attachment"
@@ -19,7 +19,7 @@ Feature: Admin should be able to upload file to the file manager
       And I should see "eecs.jpg"
       
     Scenario: admins should be able to manage document
-      When I follow "New Attachment"
+      When I follow "Upload File"
       Then I attach the file "features/attachment/honor.pdf" to "attachment_attachment"
       And I press "Create Attachment"
       And I should see "honor.pdf"
@@ -28,7 +28,7 @@ Feature: Admin should be able to upload file to the file manager
       Then I should see "Attachment was successfully destroyed."
       
     Scenario: admins should be able to manage media file
-      When I follow "New Attachment"
+      When I follow "Upload File"
       Then I attach the file "features/attachment/Velonica.mp3" to "attachment_attachment"
       And I press "Create Attachment"
       When I follow "Delete"
@@ -36,7 +36,7 @@ Feature: Admin should be able to upload file to the file manager
       Then I should see "Attachment was successfully destroyed."
       
     Scenario: admins should be able to manage text file
-      When I follow "New Attachment"
+      When I follow "Upload File"
       Then I attach the file "features/attachment/text.txt" to "attachment_attachment"
       And I press "Create Attachment"
       When I follow "Delete"
@@ -44,7 +44,7 @@ Feature: Admin should be able to upload file to the file manager
       Then I should see "Attachment was successfully destroyed."
       
     Scenario: admins should be able to manage image file
-      When I follow "New Attachment"
+      When I follow "Upload File"
       Then I attach the file "features/attachment/eecs.jpg" to "attachment_attachment"
       And I press "Create Attachment"
       When I follow "Delete"

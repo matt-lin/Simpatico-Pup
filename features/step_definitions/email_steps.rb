@@ -107,7 +107,7 @@ end
 
 #Iter 2-2
 Given (/^I have uploaded a file named "([^"]*)"$/) do |file|
-  first(:link, "New Attachment").click
+  first(:link, "Upload File").click
   attach_file("attachment_attachment", File.expand_path("features/attachment/#{file}"))
   click_button("Create Attachment")
 end
