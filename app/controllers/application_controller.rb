@@ -7,10 +7,15 @@ class ApplicationController < ActionController::Base
   
 
   def delete_pup_from_session
+    @name = User.find_by_id(params[:id])
+    p "8"*80
+    p "#{params}"
     if session[:pup]
       session.delete(:pup)
     end
   end
+  
+ 
 
 
   #Haven't found usage of it 

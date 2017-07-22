@@ -10,7 +10,7 @@ class AccountActivationsController < ApplicationController
       flash[:notice] = "Please check your email to activate your account."
       redirect_to root_url
     else
-      render 'new'
+      redirect_to 'new'
     end
   end
 
