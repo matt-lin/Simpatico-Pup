@@ -30,11 +30,22 @@ ActiveAdmin.register NewsletterUser do
         ContactBatchMailer.contact_batch_email('Dear Newsletter Subscribers', inputs[:message], inputs[:subject], user.email, inputs["Include Attachment"]).deliver_now
       end
     end
+    
+    @sent = []
     Attachment.all.each do |a|
-      a.marked = false
+      if a.marked
+        a.marked = false
+        @sent.push(a.document_file_name)
+      end
       a.save
     end
-    redirect_to collection_path, notice: "The batch email has been sent to all the users you selected."
+    if (params["Include Attachment"] == "on" || inputs["Include Attachment"] == "on") && !@sent.empty?
+      flash[:notice] = "The batch email has been sent to all the users you selected, Attachment: #{@sent.join(", ")}"
+    elsif 
+      flash[:notice] = "The batch email has been sent to all the users you selected, No attachment selected."
+    end
+    @sent.clear
+    redirect_to collection_path
   end
   
   actions :all, except: [:update, :show, :edit, :new]
