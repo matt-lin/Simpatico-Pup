@@ -7,7 +7,7 @@ class AccountActivationsController < ApplicationController
     @user = User.new(sign_up_params)
     if @user.save
       UserMailer.account_activation(@user).deliver_now
-      flash[:info] = "Please check your email to activate your account."
+      flash[:notice] = "Please check your email to activate your account."
       redirect_to root_url
     else
       render 'new'
@@ -42,7 +42,7 @@ class AccountActivationsController < ApplicationController
       p "#{user.activated?}"
       p "*"*80
       user.save!
-      flash[:success] = "Account activated!"
+      flash[:success] = "Account activated!. Try log_in now!"
       UserMailer.welcome(user).deliver_now
       redirect_to root_path
     else
