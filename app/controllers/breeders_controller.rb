@@ -3,11 +3,6 @@ class BreedersController < ApplicationController
   before_filter :set_states, only: [:search_nearer_breeders, :new]
 
   def index
-    ###########
-    if current_user
-      @username = current_user.username
-    end
-    ##########
     if request.xhr?
       render :json => Breeder.all
     else
@@ -16,21 +11,11 @@ class BreedersController < ApplicationController
   end
 
   def search_breeder
-    ###########
-    if current_user
-      @username = current_user.username
-    end
-    ##########
     name, limit= params[:name], params[:limit].to_i
     render :json => Breeder.find_by_substring(name, limit)
   end
 
   def search_name
-    ###########
-    if current_user
-      @username = current_user.username
-    end
-    ##########
 
     if params[:breeder].present?
 
@@ -61,22 +46,30 @@ class BreedersController < ApplicationController
 
 
   def search_nearer_breeders
-    ###########
-    if current_user
-      @username = current_user.username
-    end
-    ##########
-
     @breeds = Breed.all
 
   end
 
   def nearer_breeders
-    ###########
-    if current_user
-      @username = current_user.username
+
+    # Iter 2-1
+    @valid_location = true
+    if params[:breeder][:city].present? && params[:breeder][:state] == ""
+      @valid_location = false
+      @message = "Please select a state"
+      return
     end
-    ##########
+
+    if params[:breeder][:city].present? && params[:breeder][:state] != ""
+      cities = CS.cities(params[:breeder][:state].downcase, :us).map(&:downcase)
+      if !cities.include? params[:breeder][:city].downcase
+        @valid_location = false
+        @message = "The city you entered is not a valid city in the selected state"
+        return
+      end
+    end
+    # End for Iter 2-1
+
     if params[:breeder][:breed_name].present? && params[:breeder][:city].present?
       @breeders = Breeder.joins(pups: :breed).where("breeds.name = ?", params[:breeder][:breed_name]).near("#{params[:breeder][:city]}, #{params[:breeder][:state]}", params[:breeder][:search_distance])
     elsif params[:breeder][:breed_name].present?
@@ -95,6 +88,19 @@ class BreedersController < ApplicationController
 
   def create
     name, city, state = params[:breeder][:name], params[:breeder][:city], params[:breeder][:state]
+
+    if state.empty?
+      flash[:notice] = "Please select a state."
+      redirect_to new_breeder_path and return
+    end
+
+    #Iter 2-1
+    cities = CS.cities(state.downcase, :us).map(&:downcase)
+    if !cities.include? city.downcase
+      flash[:notice] = "The city you entered is not a valid city in the selected state. Please re-enter your infomation."
+      redirect_to new_breeder_path and return
+    end
+    #End for Iter 2-1
     breeder, message = Breeder.create!(:name => name, :city => city, :state => state)
     if !breeder
       flash[:message] = message

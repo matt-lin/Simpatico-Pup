@@ -1,7 +1,8 @@
+# Iter 2-1
 Feature: user should provide a username during signup
 	As a user I should able to signup
 	a new account with valid info
-	
+
 Background: The user is on signup page
   Given the following users exist:
         | username       | email               | password       | password_confirmation| activated |
@@ -79,8 +80,6 @@ Background: The user is on signup page
     Then I follow "here"
     And I enter "jeff"'s mailbox and click on the activate in sent email twice
     And I should see "Invalid activation link"
-    
-   
-    
-
+  
+# End iter 2-1
     

@@ -36,7 +36,7 @@ Given /the following comments exist/ do |pups_table|
   pups_table.hashes.each do |rating|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that movie to the database here.
-    Pup.create!(
+    pup = Pup.create!(
       pup_name: 'Thor',
     	breed_1: rating['breed_1'],
     	breed_2: rating['breed_2'],
@@ -48,10 +48,12 @@ Given /the following comments exist/ do |pups_table|
     	simpatico_rating: rating['simpatico_rating'],
     	comments: rating['comments'],
     	user_id: 1,
-    	breeder_id: breeder.id)
+    	breeder_id: breeder.id,
+    	breed_id: 1)
     Comment.create!(
       content: rating['comments'],
-      pup_id: '1')
+      pup_id: pup.id)
+    Breed.create!(name: rating['breed_1'])
     if User.find_by_email("testing@berkeley.edu").nil?
       User.create!(
         username: "Testing User",
@@ -61,9 +63,13 @@ Given /the following comments exist/ do |pups_table|
   end
 end
 
-Given(/^the following breeders exist:$/) do |table|
+Given(/^the following breeders exist( for search)?:$/) do |for_search, table|
   table.hashes.each do |breeder|
-    FactoryGirl.create(:breeder, :name => breeder[:name], :city => breeder[:city], :state => breeder[:state])
+    breeder = FactoryGirl.create(:breeder, :name => breeder[:name], :city => breeder[:city], :state => breeder[:state])
+    # Add a pup used by searching breeder
+    if for_search
+      FactoryGirl.create(:pup, :breeder_id => breeder.id)
+    end
   end
 end
 
@@ -140,3 +146,26 @@ When /^I select "(.*)" and "(.*)" and search/ do |breed1, breed2|
   click_button "Find a Breed"
 end
 
+When /^I fill in the new breeder form with following: (.*)/ do |args|
+  info_list = args.split(", ")
+
+  steps %Q{
+    When I fill in "breeder_name" with "#{info_list[0]}" 
+    Then I fill in "breeder_city" with "#{info_list[1]}"
+  }
+  if info_list[2] != "empty"
+    steps %Q{And I select "#{info_list[2]}" in the dropdown menu "breeder_state"}
+  end
+end
+
+When /^I fill in the search breeder form with following: (.*)/ do |args|
+  info_list = args.split(", ")
+  if info_list[0] != "Any"
+    step %Q{And I select "#{info_list[0]}" in the dropdown menu "breeder_breed_name"}
+  end
+  steps %Q{
+    Then I fill in "breeder_city" with "#{info_list[1]}"
+    And I select "#{info_list[2]}" in the dropdown menu "breeder_state"
+    And I select "#{info_list[3]}" in the dropdown menu "breeder_search_distance"
+  }
+end

@@ -16,7 +16,7 @@
     %div{:class => "form-group"}
       = label :breeder, :state, "Enter Breeder/Kennel's State"
       %br
-      = select :breeder, :state, options_for_select(@states.collect{ |s| [s, s[0,2]] })
+      = select :breeder, :state, options_for_select(@states.collect{ |s| [s, s[0,2]] }), {prompt: 'Select state'}, :class => "form-control"
     %div{:class => "form-group col-sm-5"}
       = submit_tag 'Add Breeder', :id => 'Add_Breeder', :class => "form-control"
     .col-sm-1

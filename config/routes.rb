@@ -1,5 +1,8 @@
 Ratemypup::Application.routes.draw do
 
+  # get 'password_resets/new'
+
+  # get 'password_resets/edit'
 
   mount Thredded::Engine => '/forum'
   devise_for :users, controllers: {sessions: "sessions", registrations: 'users/registrations'}
@@ -23,7 +26,6 @@ Ratemypup::Application.routes.draw do
   resources :pups
   resources :breeders
   resources :texts
-  # resources :password_resets
   resources :passwordresets
   # activate account
   resources :account_activations, only: [:edit]

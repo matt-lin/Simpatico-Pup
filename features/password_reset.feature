@@ -1,4 +1,4 @@
-#Iter 2-1
+# Iter 2-1
 Feature: Users should be able to reset password
   As a user
   I want to be able to reset my password
@@ -42,14 +42,14 @@ Feature: Users should be able to reset password
       Given I am on the "Enter Email" page
       And   I enter "jeff"'s email and click on the url from the sent email
       And   I enter invalid new password info and press "Update password"
-      Then  I should be on Jeff's "Edit Password" page
+      Then  I should be on Jeff's reload "Edit Password" page
       And   I should see "Password must contain more than 8 characters"
       
     Scenario: the entered confirmation password is different from the entered password (invalid info 2) (sad path)
       Given I am on the "Enter Email" page
       And   I enter "jeff"'s email and click on the url from the sent email
       And   I enter different password info and press "Update password"
-      Then  I should be on Jeff's "Edit Password" page
+      Then  I should be on Jeff's reload "Edit Password" page
       And   I should see "Password not same as Confirmation"
       
     Scenario: user can reset password even if he's logged in
@@ -59,3 +59,24 @@ Feature: Users should be able to reset password
       And   I follow "(forgot password)"
       Then  I should be on the RateMyPup home page
       And   I should see "Email sent with password reset instructions"
+      
+    Scenario: one reset-password link sent by email can only be used once
+      Given I am on the "Enter Email" page
+      And   I enter "jeff"'s email and click on the url from the sent email
+      And   I click on that url again
+      Then  I should be on the "Enter Email" page
+      And   I should see "Your request to reset password has expired. Refill the form if you want to reset password."
+      
+    Scenario: one reset-password link would expire in 30 mins
+      Given I am on the "Enter Email" page
+      When  I fill in "password_reset[email]" with "jeff@berkeley.edu"
+      And   I press "Submit"
+      And   "jeff" wait for 31 mins 
+      When  "jeff" go to the link contained by the sent email
+      Then  I should be on the "Enter Email" page
+      And   I should see "Your request to reset password has expired. Refill the form if you want to reset password."
+      
+
+      
+      
+      

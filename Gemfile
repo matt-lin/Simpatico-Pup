@@ -22,6 +22,25 @@ gem 'activeadmin', "1.0.0.pre1"
 gem 'test-unit', '~> 3.0'
 # forum
 gem 'thredded'
+gem 'city-state'
+gem 'capybara-email'
+
+# Iter 2-2
+#Implementing image upload features 
+gem "paperclip", "~> 5.0.0"
+
+#Improve form layout in activeadmin
+gem 'formtastic', '~> 3.0'
+
+#Improve Security
+gem 'permitted_params'
+
+#Improve Activeadmin UI
+gem 'activeadmin_addons'
+
+#Improve searchability for filter
+gem 'ransack'
+#End of iter 2-2
 
 gem 'protected_attributes'
 
@@ -41,7 +60,6 @@ group :development, :test do
 	gem 'poltergeist'
 	gem 'phantomjs', :require => 'phantomjs/poltergeist'
 	gem 'rack_session_access'
-	gem 'capybara-email'
 end
 
 group :production do
