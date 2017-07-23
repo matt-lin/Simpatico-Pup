@@ -1,6 +1,6 @@
 AllCops:
   #DisabledByDefault: false
-   TargetRubyVersion: 1.9
+   TargetRubyVersion: 2.1
 
 #################### Lint ################################
 
