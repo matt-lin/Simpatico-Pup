@@ -39,8 +39,10 @@ var BreedAutofill = {
     ,breeds_add_find: function (data, requestStatus, xhrObject) {
         
         $('#breed_autofills').empty();
-        for (num in data) {
-            var name = data[num];
+        datasize = (data.length > 5)? 5: data.length;
+        console.log(datasize)
+        for (i = 0; i < datasize; i++) {
+            var name = data[i];
             var html = '<div class="autofills"><a class="autofill_link">' + name + '</a></div>';
             var autofill = $(html);
             $('#breed_autofills').append(autofill);

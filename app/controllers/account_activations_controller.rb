@@ -1,5 +1,6 @@
 class AccountActivationsController < ApplicationController
   
+  #This controller in charges of account activation. 
   
   def new
     # build_resource(sign_up_params)
@@ -13,36 +14,18 @@ class AccountActivationsController < ApplicationController
       render 'new'
     end
   end
-
+  
+  # It searches the user using the user email in the database and activate the user account.
+  # After the user account has been activated, it directs the user to the home page 
+  # and automatically sign in for the user. 
   def edit
     user = User.find_by(email: params[:email])
-    if !user.activated?
-      p "*"*80
-      p "activated?"
-      p "*"*80
-    end
-    if user
-      p "*"*80
-      p "user"
-      p "*"*80
-    end
-    if user.authenticated?(:activation, :remember_token)
-      p "*"*80
-      P "authenticated?"
-      p "*"*80
-      
-    end
+    
     if user && !user.activated?
-      
       user.activate
-      new_session_path(user)
-      p "#{user.email}"
-      p "*"*80
-      p "user.activated"
-      p "#{user.activated?}"
-      p "*"*80
       user.save!
-      flash[:success] = "Account activated!. Try log_in now!"
+      sign_in(user, scope: :user)
+      flash[:success] = "Account activated!"
       UserMailer.welcome(user).deliver_now
       redirect_to root_path
     else
