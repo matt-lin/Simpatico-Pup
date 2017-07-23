@@ -19,7 +19,7 @@ ActiveAdmin.register Attachment do
       li "Mark Selected: Mark the files as pending attachment"
       li "Unmark Selected: Remove marked the files from pending attachment"
       li "Delete Selected: Permanently remove the marked the files from the site"
-      end
+    end
            
     h6 "File size limit"
     ul do
@@ -31,7 +31,7 @@ ActiveAdmin.register Attachment do
       li "Mail.com:	50Mb (per attachment) and 10Mb (per file)"
       li "Zoho Mail:	12Mb (per email) and 10Mb (per file)"
       li "GoDaddy Workspace: 30Mb (per email) and 20Mb (per file)"
-      end       
+    end       
       
     text_node "Following file type will not send from email: 
     .ADE, .ADP, .BAT, .CHM, .CMD, .COM, .CPL, .EXE, .HTA, .INS, .ISP, .JAR, 
