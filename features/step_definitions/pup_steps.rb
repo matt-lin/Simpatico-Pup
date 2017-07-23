@@ -144,11 +144,14 @@ end
 
 When /^I fill in the new breeder form with following: (.*)/ do |args|
   info_list = args.split(", ")
+
   steps %Q{
     When I fill in "breeder_name" with "#{info_list[0]}" 
     Then I fill in "breeder_city" with "#{info_list[1]}"
-    And I select "#{info_list[2]}" in the dropdown menu "breeder_state"
   }
+  if info_list[2] != "empty"
+    steps %Q{And I select "#{info_list[2]}" in the dropdown menu "breeder_state"}
+  end
 end
 
 When /^I fill in the search breeder form with following: (.*)/ do |args|

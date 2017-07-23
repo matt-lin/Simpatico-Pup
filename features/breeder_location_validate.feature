@@ -26,7 +26,14 @@ Background: User already login, filled out pup name, how long the user owned the
     And I press "Add_Breeder"
     Then I should be on the "Add breeder" page
     And I should see "The city you entered is not a valid city in the selected state"
-    
+
+  Scenario: User only enter a city but doesn't select state when creating breeder
+    Given I am on the "Add breeder" page
+    When I fill in the new breeder form with following: breeder, Oakland, empty
+    And I press "Add_Breeder"
+    Then I should be on the "Add breeder" page
+    And I should see "Please select a state"
+
   Scenario: User enter valid location and prcoess to rate dog page
     And I am on the "Add breeder" page
     When I fill in the new breeder form with following: breeder, Oakland, CA
