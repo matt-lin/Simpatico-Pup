@@ -88,6 +88,12 @@ class BreedersController < ApplicationController
 
   def create
     name, city, state = params[:breeder][:name], params[:breeder][:city], params[:breeder][:state]
+
+    if state.empty?
+      flash[:notice] = "Please select a state."
+      redirect_to new_breeder_path and return
+    end
+
     #Iter 2-1
     cities = CS.cities(state.downcase, :us).map(&:downcase)
     if !cities.include? city.downcase
