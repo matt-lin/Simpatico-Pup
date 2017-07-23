@@ -18,46 +18,4 @@ Then (/^check all subscribers/) do
     step calling_step
   end
 end
-
-And (/^I send emails with subject as "([^"]*)" and message as "([^"]*)"$/) do |subject, body|
-  action = "email"
-  page.find("#batch_action", visible: false).set action
-  form   = page.find "#collection_selection"
-  params = page.all("#main_content input", visible: false).each_with_object({}) do |input, obj|
-    key, value = input['name'], input['value']
-    if key == 'collection_selection[]'
-      (obj[key] ||= []).push value if input.checked?
-    else
-      obj[key] = value
-    end
-  end
-
-  params[:subject] = subject
-  params[:message] = body
-  params[:test] = true
-  page.driver.submit form['method'], form['action'], params
-end
-
-Then (/^all the users should get an email with "([^"]*)" and "([^"]*)"$/) do |subject, body|
-  emails = ActionMailer::Base.deliveries
-  emails.length.should == NewsletterUser.all.length
-  NewsletterUser.all.each do |user|
-    user_email = emails.select{|email| email.to.include? user.email}
-    user_email.size.should == 1
-    expect(user_email.first).to have_content(subject)
-    expect(user_email.first).to have_content(body)
-  end
-end
-
-Then (/^"([^"]*)" (should|should not) get an email with "([^"]*)" and "([^"]*)"$/) do |username, maybe, subject, body|
-  emails = ActionMailer::Base.deliveries
-  user_email = emails.select{|email| email.to.include? "#{username}@berkeley.edu"}
-  if maybe == 'should'
-    user_email.size.should == 1
-    expect(user_email.first).to have_content(subject)
-    expect(user_email.first).to have_content(body)
-  else 
-    user_email.size.should == 0
-  end
-end
 # End for Iter 1-2
