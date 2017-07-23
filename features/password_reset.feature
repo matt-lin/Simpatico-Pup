@@ -6,9 +6,9 @@ Feature: Users should be able to reset password
   Background: 
   
     Given the following users exist:
-        | username       | email               | password       | password_confirmation|
-        | jeff           | jeff@berkeley.edu   | 12345678       | 12345678             |
-        | gilbert        | gilbert@berkeley.edu| 12345678       | 12345678             |
+        | username       | email               | password       | password_confirmation| activated |
+        | jeff           | jeff@berkeley.edu   | 12345678       | 12345678             | true      |
+        | gilbert        | gilbert@berkeley.edu| 12345678       | 12345678             | true      |
     
     Scenario: users can go to the password-reset page with all valid email (happy path)
       Given I am on the "Sign in" page
