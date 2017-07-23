@@ -5,8 +5,12 @@ Feature: see content on the main page
     I want to be able to see information about these
 
 Background:
-    Given I am on the RateMyPup home page
-    Given I am logged in
+  Given the following users exist:
+      | username       | email               | password       | password_confirmation| activated |
+      | gilbert        | gilbert@berkeley.edu| 12345678       | 12345678             | true      |
+      
+  And I am on the RateMyPup home page
+  And I log in as "gilbert"
 
 Scenario: information content on main page 
     Given I am on the RateMyPup home page
