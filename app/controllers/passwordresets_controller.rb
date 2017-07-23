@@ -65,9 +65,6 @@ class PasswordresetsController < ApplicationController
   # 2) must be the last sent reset password url
   # 3) that url has not been used yet 
   def edit
-    if params[:email].nil? || params[:token].nil?
-      redirect_to root_path and return
-    end
 
     @user = User.find_by(email: params[:email].downcase)
           
