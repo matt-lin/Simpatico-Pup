@@ -7,13 +7,7 @@ class ContactBatchMailer < ActionMailer::Base
   def contact_batch_email(name, message, subject, recipient, send)
     if (send == "on")
       Attachment.all.each do |a|
-        if a.marked
-          if a.document_file_name.end_with?(".txt")
-            attachments[a.document_file_name] = File.read("#{a.document.path}")
-          else
-            attachments.inline[a.document_file_name] = File.read("#{a.document.path}")
-          end
-        end
+        attachments[a.document_file_name] = File.read("#{a.document.path}") if a.marked
       end
     end
     mail(to: recipient, name: name, subject: subject, body: message)
