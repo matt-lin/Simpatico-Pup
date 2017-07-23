@@ -52,6 +52,25 @@ class BreedersController < ApplicationController
   end
 
   def nearer_breeders
+
+    # Iter 2-1
+    @valid_location = true
+    if params[:breeder][:city].present? && params[:breeder][:state] == ""
+      @valid_location = false
+      @message = "Please select a state"
+      return
+    end
+
+    if params[:breeder][:city].present? && params[:breeder][:state] != ""
+      cities = CS.cities(params[:breeder][:state].downcase, :us).map(&:downcase)
+      if !cities.include? params[:breeder][:city].downcase
+        @valid_location = false
+        @message = "The city you entered is not a valid city in the selected state"
+        return
+      end
+    end
+    # End for Iter 2-1
+
     if params[:breeder][:breed_name].present? && params[:breeder][:city].present?
       @breeders = Breeder.joins(pups: :breed).where("breeds.name = ?", params[:breeder][:breed_name]).near("#{params[:breeder][:city]}, #{params[:breeder][:state]}", params[:breeder][:search_distance])
     elsif params[:breeder][:breed_name].present?
