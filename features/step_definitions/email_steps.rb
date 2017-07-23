@@ -132,6 +132,12 @@ When (/^I (mark|unmark) this uploaded file$/) do |marked|
   page.driver.submit form['method'], form['action'], params
 end
 
+And (/^"([^"]*)" wait for 31 mins$/) do |username|
+    @user = User.where("username = ?", username).first
+    @user.update_attribute(:reset_password_sent_at, Time.zone.now-1860)
+end
+
+
 When (/^I delete this uploaded file$/) do
   send "check", "batch_action_item_1"
   page.find("#collection_selection_toggle_all").click
