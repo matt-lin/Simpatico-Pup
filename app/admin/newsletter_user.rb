@@ -9,12 +9,12 @@ ActiveAdmin.register NewsletterUser do
     ul do
       li "Email Selected: Send Email to selected user"
       li "Delete Selected: Unsubscribe selected user"
-      end
+    end
       
-      h6 "Send Email with attachment"
-      ul do
+    h6 "Email with attachment"
+    ul do
       text_node "When sending Email with attachment, upload and mark the attachments in 'File manager', then check 'Include Attachment' to send email with attachment"
-      end       
+    end       
   end
   
   # Iter 2-2
