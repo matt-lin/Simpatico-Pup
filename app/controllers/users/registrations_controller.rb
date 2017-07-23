@@ -12,11 +12,6 @@ helper_method :subscribed?
 
   # GET /resource/sign_up
   def new
-    ###########
-    if current_user
-      @username = current_user.username
-    end
-    ##########
     super
   end
 
@@ -46,7 +41,6 @@ helper_method :subscribed?
   # end
   def create
     @user = User.new(sign_up_params)
-    p "*"*80
     if @user.save
       if params[:subscribe_newsletter].present?
         NewsletterUser.find_or_create_by(email: resource.email)
@@ -70,13 +64,7 @@ helper_method :subscribed?
   # PUT /resource
   # Iter 1-2
   def update
-    ###########
-    if current_user
-      @username = current_user.username
-    end
-    ##########
     super
-    
     user = User.find_by_email(params[:user][:email])
     
     if params[:subscribe_newsletter].present? and user.valid_password?(params[:user][:current_password])
@@ -89,11 +77,6 @@ helper_method :subscribed?
 
   # DELETE /resource
   def destroy
-    ###########
-    if current_user
-      @username = current_user.username
-    end
-    ##########
     super
   end
 
@@ -127,5 +110,4 @@ helper_method :subscribed?
   def after_inactive_sign_up_path_for(resource)
     super(resource)
   end
-  
 end
