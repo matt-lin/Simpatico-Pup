@@ -41,7 +41,7 @@ ActiveAdmin.register NewsletterUser do
     end
     if (params["Include Attachment"] == "on" || inputs["Include Attachment"] == "on") && !@sent.empty?
       flash[:notice] = "The batch email has been sent to all the users you selected. Attachment: #{@sent.join(", ")}"
-    elsif 
+    else 
       flash[:notice] = "The batch email has been sent to all the users you selected. No attachment selected"
     end
     @sent.clear
