@@ -22,6 +22,8 @@ gem 'activeadmin', "1.0.0.pre1"
 gem 'test-unit', '~> 3.0'
 # forum
 gem 'thredded'
+gem 'city-state'
+
 
 # Iter 2-2
 #Implementing image upload features 
