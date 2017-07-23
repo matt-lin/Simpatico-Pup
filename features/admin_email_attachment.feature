@@ -11,26 +11,40 @@ Feature: Admin should be able to send emails to subscribed users with attachment
           | jeff@berkeley.edu        |    
           | gilbert@berkeley.edu     |
           | gj@berkeley.edu  | 
-        
-    Scenario: admins inspect who are subscribing when there are subscriber
-      And admin go to newsletter_users
-      Then I should see "jeff@berkeley.edu"
-      And I should see "gilbert@berkeley.edu"
-      And I should see "gj@berkeley.edu"
-     
-    #following scenario not implemented
-    Scenario: admins process group emailing with subject, message, and attachment
-      And admin go to newsletter_users
-      And check all subscribers
-      And I send emails with subject as "subject" and message as "message" with an attachment
-      Then all the users should get an email with "subject" and "message" with an attachment
+    
+    # Iter 2-2
+    Scenario: admins mark/unmark uploaded file as attachment
+      Given admin go to attachments
+      And I have uploaded a file named "eecs.jpg"
+      When I mark this uploaded file
+      Then I should see "✔"
+      And I should not see "✗"
+      When I unmark this uploaded file
+      Then I should see "✗"	
+      And I should not see "✔"
       
     Scenario: admins process emailing with subject, message, and attachment to checked subscribers
+      Given admin go to attachments
+      And I have uploaded a file named "eecs.jpg"
+      When I mark this uploaded file
       And admin go to newsletter_users
       And I check "batch_action_item_1"
-      And I send emails with subject as "subject" and message as "message" with an attachment
-      Then "jeff" should get an email with "subject" and "message" with an attachment
+      And I send emails with subject as "subject" and message as "message" with an attachment included
+      Then "jeff" should get an email with "subject" and "message" with an attachment "eecs.jpg"
       And "gilbert" should not receive an email
     
+    Scenario: admins process group emailing with subject, message, and attachment
+      Given admin go to attachments
+      And I have uploaded a file named "eecs.jpg"
+      When I mark this uploaded file
+      And admin go to newsletter_users
+      And check all subscribers
+      And I send emails with subject as "subject" and message as "message" with an attachment included
+      Then all the users should get an email with "subject" and "message" with an attachment "eecs.jpg"
+      Given admin go to attachments
+      When I delete this uploaded file
+      Then I should see "Successfully destroyed"
+    
+    # End for Iter 2-2
 # End for Iter 2-1
       

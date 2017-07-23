@@ -20,9 +20,6 @@ class User < ActiveRecord::Base
     BCrypt::Password.create(string, cost: cost)
   end
   
-
-  
-
   
  # Sets the password reset attributes.
   def create_reset_digest

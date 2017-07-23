@@ -71,6 +71,10 @@ Given /^I want to click "(.*)"$/ do |option|
     return #{retval} }")
 end
 
+When /^I (accept|deny) confirmation dialogs$/ do |accept|
+  page.evaluate_script("window.confirm = function() { return #{(accept == 'accept').to_s}; }")
+end
+
 When(/^I hover over "(.*?)"$/) do |element_name|
   page.evaluate_script("$('#{element_name}').trigger('mouseover')")
 end
@@ -100,6 +104,10 @@ When /^I enter "(.*?)", "(.*?)", "(.*?)" into breeder search$/ do |name, city, s
   fill("breeder_city", city)
   fill("breeder_state", state)
   fill_and_trigger("breeder_find", name, "keyup")
+end
+
+When /^(?:I )attach the file "([^"]*)" to "([^"]*)"$/ do |path, field|
+  attach_file(field, File.expand_path(path))
 end
 
 #Web information verification
