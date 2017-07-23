@@ -67,14 +67,14 @@ describe PasswordresetsController do
           @user.update_attribute(:reset_password_token, 'token')
           get :edit, {:id => 2, :email => 'user1@berkeley.edu', :token => 'token'}
           expect(flash[:notice]).to eq 'Your request to reset password has expired. Refill the form if you want to reset password.'
-          response.should render_template 'new'
+          response.should redirect_to new_passwordreset_path
         end
         it "if that url has been opened already" do
           @user.update_attribute(:reset_password_sent_at, Time.zone.now)
           @user.update_attribute(:reset_password_token, '')
           get :edit, {:id => 2, :email => 'user1@berkeley.edu', :token => 'token'}
           expect(flash[:notice]).to eq 'Your request to reset password has expired. Refill the form if you want to reset password.'
-          response.should render_template 'new'
+          response.should redirect_to new_passwordreset_path
         end
       end
       it "request should only be working if it's never used and sent within 30 mins" do
@@ -84,16 +84,11 @@ describe PasswordresetsController do
         get :edit, {:id => 2, :email => 'user1@berkeley.edu', :token => 'token'}
         response.should render_template 'edit'      
       end
-      it "should not be working if users get to update page by swiping to the right" do
-        @user = FactoryGirl.create(:user, email: "user@berkeley.edu", password: '12345678', password_confirmation: '12345678')
-        put :update, {:id => @user.id, :user => {:password => "12345678", :password_confirmation => "12345678"}}
-        response.should render_template 'new'
-        expect(flash[:notice]).to eq 'Your request to reset password has expired. Refill the form if you want to reset password.'
-      end
       it "request should only be working if users try to go to edit page by typing directly" do
         @user = User.find(2)
         get :edit, {:id => 2}
         response.should redirect_to root_path      
-      end  end
+      end  
+    end
 
 end
