@@ -77,6 +77,17 @@ Given (/^I enter "([^"]*)"'s email and click on the url from the sent email$/) d
   current_email.click_link 'Reset password'
 end
 
+Given (/^I enter "([^"]*)"'s mailbox and click on the activate in sent email$/) do |username|
+  open_email("#{username}@berkeley.edu")
+  current_email.click_link 'Activate'
+end
+
+Given (/^I enter "([^"]*)"'s mailbox and click on the activate in sent email twice$/) do |username|
+  open_email("#{username}@berkeley.edu")
+  current_email.click_link 'Activate'
+  current_email.click_link 'Activate'
+end
+
 And (/^I enter (valid|invalid) new password info and press "([^"]*)"$/) do |maybe, button|
   if maybe == 'valid'
     fill_in("user[password]", with: "00000000")

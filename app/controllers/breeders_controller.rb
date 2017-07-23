@@ -46,7 +46,6 @@ class BreedersController < ApplicationController
 
 
   def search_nearer_breeders
-
     @breeds = Breed.all
 
   end

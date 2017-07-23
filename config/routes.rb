@@ -5,14 +5,14 @@ Ratemypup::Application.routes.draw do
   # get 'password_resets/edit'
 
   mount Thredded::Engine => '/forum'
-
+  devise_for :users, controllers: {sessions: "sessions", registrations: 'users/registrations'}
 
   root :to => 'pups#main'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  devise_for :users, controllers: { registrations: 'users/registrations'}
+  # devise_for :users, controllers: { registrations: 'users/registrations'}
   # ActiveAdmin.routes(self)
 
   match '/pups/create' => 'pups#create', :as => :create_pup, via: [:get, :post]
@@ -27,6 +27,8 @@ Ratemypup::Application.routes.draw do
   resources :breeders
   resources :texts
   resources :passwordresets
+  # activate account
+  resources :account_activations, only: [:edit]
 
   get '/breed' => 'pups#breed', :as => :breed
   get '/breed/match' => 'pups#search_breed', :as => :breed_search

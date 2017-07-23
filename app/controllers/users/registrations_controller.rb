@@ -17,20 +17,25 @@ helper_method :subscribed?
 
   # POST /resource
   def create
-    build_resource(sign_up_params)
 
+    build_resource(sign_up_params)
     resource.save
+    
     yield resource if block_given?
     if resource.persisted?
       if resource.active_for_authentication?
-        set_flash_message :notice, :signed_up if is_flashing_format?
-        sign_up(resource_name, resource)
+        set_flash_message :success, :signed_up if is_flashing_format?
+        UserMailer.account_activation(@user).deliver_now
+        flash[:success] += " Please check your email to activate your account."
         respond_with resource, location: after_sign_up_path_for(resource)
-      else
-        set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
-        expire_data_after_sign_in!
-        respond_with resource, location: after_inactive_sign_up_path_for(resource)
+        
+      # else
+      #   set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
+      #   expire_data_after_sign_in!
+      #   respond_with resource, location: after_inactive_sign_up_path_for(resource)
+      
       end
+      
       if params[:subscribe_newsletter].present?
         NewsletterUser.find_or_create_by(email: resource.email)
       end
@@ -40,9 +45,12 @@ helper_method :subscribed?
       respond_with resource
     end
   end
-
+ 
   # GET /resource/edit
   def edit
+    if current_user
+      @username = current_user.username
+    end
     super
   end
 
@@ -50,7 +58,6 @@ helper_method :subscribed?
   # Iter 1-2
   def update
     super
-    
     user = User.find_by_email(params[:user][:email])
     
     if params[:subscribe_newsletter].present? and user.valid_password?(params[:user][:current_password])
@@ -79,7 +86,7 @@ helper_method :subscribed?
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.for(:sign_up) << [:attribute, :username]
+    devise_parameter_sanitizer.for(:sign_up) << [:attribute, :username, :activate, :activate_at, :authenticity_token]
   end
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -96,5 +103,4 @@ helper_method :subscribed?
   def after_inactive_sign_up_path_for(resource)
     super(resource)
   end
-  
 end
