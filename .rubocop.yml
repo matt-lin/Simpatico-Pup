@@ -1,5 +1,5 @@
 AllCops:
-  DisabledByDefault: true
+  DisabledByDefault: false
   TargetRubyVersion: '2.2.2'
 
 #################### Lint ################################
