@@ -64,6 +64,14 @@ describe BreedersController do
       expect(flash[:notice]).to eq "The city you entered is not a valid city in the selected state. Please re-enter your infomation."
       expect(response).to redirect_to new_breeder_path
     end
+
+    it "should block creating breeder if state is not selected" do
+      expect {
+        post :create, {:breeder => {:name => "name", :city => "Berkeley", :state => ""}}
+      }.to_not change(Breeder, :count)
+      expect(flash[:notice]).to eq "Please select a state."
+      expect(response).to redirect_to new_breeder_path
+    end
   end
   
   describe "search a breeder" do
