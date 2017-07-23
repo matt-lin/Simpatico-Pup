@@ -21,7 +21,7 @@ ActiveAdmin.register NewsletterUser do
   batch_action :email, form: {
       subject: :text,
       message: :textarea ,
-      "Include Attachment": :checkbox
+      "Include Attachment" => :checkbox
     }, confirm: "Please enter the subject and the message below" do |ids, inputs|
     batch_action_collection.find(ids).each do |user|
       if params[:test]
