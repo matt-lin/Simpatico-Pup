@@ -17,6 +17,7 @@ helper_method :subscribed?
 
   # POST /resource
   def create
+
     build_resource(sign_up_params)
     resource.save
     
@@ -34,6 +35,7 @@ helper_method :subscribed?
       #   respond_with resource, location: after_inactive_sign_up_path_for(resource)
       
       end
+      
       if params[:subscribe_newsletter].present?
         NewsletterUser.find_or_create_by(email: resource.email)
       end
@@ -46,6 +48,9 @@ helper_method :subscribed?
  
   # GET /resource/edit
   def edit
+    if current_user
+      @username = current_user.username
+    end
     super
   end
 
@@ -53,7 +58,6 @@ helper_method :subscribed?
   # Iter 1-2
   def update
     super
-    
     user = User.find_by_email(params[:user][:email])
     
     if params[:subscribe_newsletter].present? and user.valid_password?(params[:user][:current_password])
@@ -99,5 +103,4 @@ helper_method :subscribed?
   def after_inactive_sign_up_path_for(resource)
     super(resource)
   end
-  
 end

@@ -2,15 +2,13 @@ class AccountActivationsController < ApplicationController
   
   
   def new
-    # build_resource(sign_up_params)
-    # resource.save
     @user = User.new(sign_up_params)
     if @user.save
       UserMailer.account_activation(@user).deliver_now
       flash[:notice] = "Please check your email to activate your account."
       redirect_to root_url
     else
-      render 'new'
+      redirect_to 'new'
     end
   end
 

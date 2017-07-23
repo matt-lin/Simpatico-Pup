@@ -15,6 +15,10 @@ class PupsController < ApplicationController
 
   # The Root Path
   def main
+    if current_user
+      @username = current_user.username
+    end
+    
     start_over
     selected_comment = SelectedComment.find_randomly
     if selected_comment

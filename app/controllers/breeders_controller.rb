@@ -3,6 +3,11 @@ class BreedersController < ApplicationController
   before_filter :set_states, only: [:search_nearer_breeders, :new]
 
   def index
+    ###########
+    if current_user
+      @username = current_user.username
+    end
+    ##########
     if request.xhr?
       render :json => Breeder.all
     else
@@ -11,11 +16,21 @@ class BreedersController < ApplicationController
   end
 
   def search_breeder
+    ###########
+    if current_user
+      @username = current_user.username
+    end
+    ##########
     name, limit= params[:name], params[:limit].to_i
     render :json => Breeder.find_by_substring(name, limit)
   end
 
   def search_name
+    ###########
+    if current_user
+      @username = current_user.username
+    end
+    ##########
 
     if params[:breeder].present?
 
@@ -46,12 +61,22 @@ class BreedersController < ApplicationController
 
 
   def search_nearer_breeders
+    ###########
+    if current_user
+      @username = current_user.username
+    end
+    ##########
 
     @breeds = Breed.all
 
   end
 
   def nearer_breeders
+    ###########
+    if current_user
+      @username = current_user.username
+    end
+    ##########
     if params[:breeder][:breed_name].present? && params[:breeder][:city].present?
       @breeders = Breeder.joins(pups: :breed).where("breeds.name = ?", params[:breeder][:breed_name]).near("#{params[:breeder][:city]}, #{params[:breeder][:state]}", params[:breeder][:search_distance])
     elsif params[:breeder][:breed_name].present?
