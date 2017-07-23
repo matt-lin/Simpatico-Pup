@@ -55,10 +55,6 @@ class User < ActiveRecord::Base
   # Activates an account.
   def activate
     update_attribute(:activated,    true)
-    p "#{self.activated}"
-    p "*"*80
-    p "activate actioin"
-    p " * "*80
     # no  need time limte
     # update_attribute(:activated_at, Time.zone.now)
   end
@@ -66,6 +62,7 @@ class User < ActiveRecord::Base
     #Sends activation email.
   def send_activation_email
     UserMailer.account_activation(self).deliver_now
+    return nil;
   end
   
   

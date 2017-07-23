@@ -100,7 +100,11 @@ end
 
 And(/^the following users exist:/) do |table|
   table.hashes.each do |user|
-    User.create!(user)
+    u = User.create!(user)
+    if user[:activated] == "true"
+      u.activated = true
+      u.save!
+    end
   end
 end
 

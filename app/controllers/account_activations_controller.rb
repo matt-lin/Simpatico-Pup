@@ -8,7 +8,7 @@ class AccountActivationsController < ApplicationController
       flash[:notice] = "Please check your email to activate your account."
       redirect_to root_url
     else
-      redirect_to 'new'
+      redirect_to root_url
     end
   end
 
@@ -19,7 +19,8 @@ class AccountActivationsController < ApplicationController
       user.activate
       user.save!
       
-      flash[:success] = "Account activated!. Try log in now!"
+      sign_in(user,scope:user)
+      flash[:success] = "Congratulations! Your account has been activated!"
       UserMailer.welcome(user).deliver_now
       redirect_to root_path
     else
