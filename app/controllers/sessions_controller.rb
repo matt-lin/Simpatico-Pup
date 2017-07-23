@@ -10,7 +10,7 @@ class SessionsController < Devise::SessionsController
       if user.activated
         super
       else
-        message  = "Account not activated. Please check your email for the activation link."
+        message  = "Account not activated. Check your email for the activation link."
         flash[:notice] = message
         redirect_to root_url
       end
