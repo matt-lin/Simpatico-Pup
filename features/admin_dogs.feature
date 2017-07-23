@@ -1,4 +1,4 @@
-# Iter 2
+# Iter 2-1
 Feature: View detailed imformation of all dogs 
   As an administrator 
   I want to check the details of every registered dog
@@ -37,4 +37,4 @@ Feature: View detailed imformation of all dogs
       | DOG NAME |
       | Thor  |
     
-# End for Iter 2
+# End for Iter 2-1

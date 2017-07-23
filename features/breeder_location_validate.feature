@@ -1,3 +1,4 @@
+# Iter 2-1
 @javascript
 Feature: Validate user entered city and state when creating breeder
   As a user, when I enter a location to create or search for a breeder
@@ -12,20 +13,27 @@ Background: User already login, filled out pup name, how long the user owned the
   And the following breeds exist:
       | name            |
       | Affenpinscher   |
-  
-  And the following breeders exist:
+
+  And the following breeders exist for search:
       | name            | city     | state |
       | Carl            | Berkeley | CA    |
       | Alex            | Berkeley | CA    |
       | Alexander       | Austin   | TX    |
-  
+
   Scenario: User enter a city that doesn't exist when creating breeder
     Given I am on the "Add breeder" page
     When I fill in the new breeder form with following: breeder, fake city, CA
     And I press "Add_Breeder"
     Then I should be on the "Add breeder" page
     And I should see "The city you entered is not a valid city in the selected state"
-    
+
+  Scenario: User only enter a city but doesn't select state when creating breeder
+    Given I am on the "Add breeder" page
+    When I fill in the new breeder form with following: breeder, Oakland, empty
+    And I press "Add_Breeder"
+    Then I should be on the "Add breeder" page
+    And I should see "Please select a state"
+
   Scenario: User enter valid location and prcoess to rate dog page
     And I am on the "Add breeder" page
     When I fill in the new breeder form with following: breeder, Oakland, CA
@@ -56,5 +64,4 @@ Background: User already login, filled out pup name, how long the user owned the
     When I fill in the search breeder form with following: Any, Boston, MA, 100
     And I press "Search_Breeder"
     Then I should see "No Breeders Available :("
-    
-  
+#End iter2-1    

@@ -1,3 +1,4 @@
+# Iter 2-1
 Feature: user should provide a username during signup
 	As a user I should able to signup
 	a new account with valid info
@@ -38,7 +39,7 @@ Background: The user is on signup page
     Then I enter "example"'s email and click on the url from the sent email
     Then I should be on Activation Page
     And I press "Activate"
-    Then I should See "You have successfully activated your account!"
+    Then I should see "You have successfully activated your account!"
     And I should have logged in as "example"
     
   Scenario: Email has already been taken (sad path)
@@ -69,5 +70,5 @@ Background: The user is on signup page
     And I press "Signup"
     Then I should see "Password confirmation doesn't match Password"
     
-
+# End iter 2-1
     
