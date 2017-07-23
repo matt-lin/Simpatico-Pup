@@ -1,5 +1,6 @@
 AllCops:
-  DisabledByDefault: true
+  #DisabledByDefault: false
+   TargetRubyVersion: 'gemfile'
 
 #################### Lint ################################
 

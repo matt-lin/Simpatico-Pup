@@ -18,4 +18,3 @@ Then (/^check all subscribers/) do
     step calling_step
   end
 end
-
