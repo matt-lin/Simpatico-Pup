@@ -1,6 +1,6 @@
 AllCops:
   #DisabledByDefault: false
-   TargetRubyVersion: 2.1
+   TargetRubyVersion: 'gemfile'
 
 #################### Lint ################################
 
