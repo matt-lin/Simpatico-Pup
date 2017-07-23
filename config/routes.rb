@@ -26,6 +26,7 @@ Ratemypup::Application.routes.draw do
   resources :pups
   resources :breeders
   resources :texts
+  resources :passwordresets
 
   get '/breed' => 'pups#breed', :as => :breed
   get '/breed/match' => 'pups#search_breed', :as => :breed_search
