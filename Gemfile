@@ -23,7 +23,7 @@ gem 'test-unit', '~> 3.0'
 # forum
 gem 'thredded'
 gem 'city-state'
-
+gem 'capybara-email'
 
 # Iter 2-2
 #Implementing image upload features 

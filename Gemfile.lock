@@ -102,6 +102,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-email (2.5.0)
+      capybara (~> 2.4)
+      mail
     city-state (0.0.13)
       rubyzip (~> 1.1)
     climate_control (0.2.0)
@@ -442,6 +445,7 @@ DEPENDENCIES
   activeadmin (= 1.0.0.pre1)
   activeadmin_addons
   byebug (= 5.0.0)
+  capybara-email
   city-state
   codeclimate-test-reporter
   coffee-rails
