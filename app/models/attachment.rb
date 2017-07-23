@@ -1,6 +1,6 @@
 class Attachment < ActiveRecord::Base
     belongs_to :selected_comment
-    attr_accessor :document
+    attr_accessible :document
     
     attachment_virtual_path = "/system/attachments/:rails_env/:hashed_path/:id/:style/:basename.:extension"
     attachment_real_path = ":rails_root/public" + attachment_virtual_path
