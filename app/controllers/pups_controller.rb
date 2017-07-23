@@ -15,12 +15,18 @@ class PupsController < ApplicationController
 
   # The Root Path
   def main
+    if current_user
+      @username = current_user.username
+    end
+    
     start_over
     selected_comment = SelectedComment.find_randomly
+    # Iter 2
     if selected_comment
       @comment_content = selected_comment.content
-      @comment_user = selected_comment.user
+      @comment_breed = selected_comment.breed
     end
+    # END of Iter 2
   end
 
   # The true rating page
@@ -116,6 +122,8 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     # Iter 1-2
     @pup.save
     @Comment.pup_id = @pup.id
+    @Comment.breed = @pup.breed.name
+    @Comment.breeder = @pup.breeder.name
     @Comment.save
     # End for Iter 1-2
     

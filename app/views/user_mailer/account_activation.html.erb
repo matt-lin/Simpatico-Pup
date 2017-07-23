@@ -1,0 +1,12 @@
+<!--For Iter 2-2-->
+
+<h1>Activate your account</h1>
+
+<p>To Activate your <strong>simpaticopup.com </strong> account click the link below:</p>
+
+<%= link_to "Activate", edit_account_activation_url(@user.activation_token, email: @user.email) %>
+
+
+<p>
+If you did not sing up for simpaticopup, please ignore this email.
+</p>

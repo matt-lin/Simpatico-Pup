@@ -18,7 +18,6 @@
 
 #background {
     background-size: cover;
-    overflow: auto;
 }
 
 body {
@@ -110,8 +109,7 @@ body {
     width: 100%;
     text-align: center;
     color: black;
-    /*margin-top:200px;*/
-    padding-bottom: 50px;
+    padding-bottom: 5%;
 }
     
 .ads{
@@ -139,8 +137,6 @@ body {
     margin-top: 8px;
     margin-bottom: 8px;
     display: inline-block;
-    padding: 6px 12px;
-
     width: 150px;
     height: 100px;
     line-height: 1.42857143;
@@ -148,7 +144,6 @@ body {
     white-space: nowrap;
     vertical-align: middle;
     border-radius: 25px;
-    overflow: auto;
 }
 .ad-box-a {
     background-image: url(/assets/Amazon_Prime_logo.jpg); 
@@ -426,7 +421,10 @@ h3.mission-text {
 
 .page-links {
     padding-top: 80px;
+    margin: auto;
+    text-align: center;
 }
+
 
 /*Iter 1-2*/
 /**************************************full img background**********/
@@ -446,6 +444,7 @@ body,
     background-size: cover;
 }
 
+    
 
 /************************************/
 
@@ -510,11 +509,9 @@ body,
         background-color: white;
         opacity: 0.6;
         width: 100%;
-        height: 100%;
         font-size: 20px;
         text-align: center;
         color: black;
-        margin-top: -190px;
     }
 }
     
@@ -531,10 +528,6 @@ body,
     
     .main-button {
         margin-left: 10px
-    }
-    
-    .featured-comment {
-        margin-top: -50px;
     }
 }
 
@@ -578,14 +571,11 @@ body,
         background-color: white;
         opacity: 0.6;
         width: 100%;
-        height: 100%;
         font-size: 20px;
         text-align: center;
         color: black;
-        margin-top: -200px
     }
         
 }
-
 
 /*End for Iter 1-2*/

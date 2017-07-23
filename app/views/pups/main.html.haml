@@ -8,12 +8,9 @@
                 %h2{:id => "tagline-text"} 
                     Find a pup from a <strong>reliable</strong> source
                     //First Row 
-            
             %div{:class => "row col-lg-12 page-links"}
-                
                 %div{:class => "col-sm-3 box-a text-center"}
                     %a{:class => "main-button-link button-a", :href => "pups/dog_name"}
-                        // %button{:class => "main-button"} Rate your Dog
                         %div{:class => "main-button"}
                             %div{:class => "main-button-small-text"}
                                 Rate your
@@ -69,22 +66,32 @@
                                 Search for a
                             %div{:class => "main-button-large-text"}
                                 Breeder
-
         // Iter 1-2
         %div{:class => "bg-page row view "}
-        
 
         // End for Iter 1-2
 
+            // %img{:class => "mySlides", :src => "/assets/pup.jpg", :style => "width:100%; display:none"}
+            // %img{:class => "mySlides", :src => "/assets/pup1.jpg", :style => "width:100%; display:none"}
+            // %img{:class => "mySlides", :src => "/assets/pup2.jpg", :style => "width:100%; display:none"}
+            // %img{:class => "mySlides", :src => "/assets/pup3.jpg", :style => "width:100%; display:none"}
+            // %img{:class => "mySlides", :src => "/assets/pup4.jpg", :style => "width:100%; display:none"}
+            // %img{:class => "mySlides", :src => "/assets/pup5.jpg", :style => "width:100%; display:none"}
+            // %img{:class => "mySlides", :src => "/assets/pup6.jpg", :style => "width:100%; display:none"}
+            // %img{:class => "mySlides", :src => "/assets/pup7.jpg", :style => "width:100%; display:none"}
+            // %img{:class => "mySlides", :src => "/assets/pup8.jpg", :style => "width:100%; display:none"}
+        // End for Iter 1-2
+        
+>>>>>>> 54d98e48882e45316dfe6f3fd18c99d944ddbc45
     //Second Row
-    // Iter 1-2
+    // Iter 2
     %div{:class => "row"}
         %section{:class => "featured-comment"}
             %header{:class => "span12"}
                 %h2 Featured Comment
                 %h3= "\"#{@comment_content}\""
-                %h3= "---- #{@comment_user}"
-    // End for Iter 1-2
+                %h3= "---- #{@comment_breed}"
+    // End for Iter 2
 
     //Third Row
     -#%div{:class => "row"}

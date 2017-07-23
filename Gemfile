@@ -6,7 +6,7 @@ if RUBY_VERSION =~ /2.2/ # default encoding for db:seed
   Encoding.default_external = Encoding::UTF_8
   Encoding.default_internal = Encoding::UTF_8
 end
-gem 'bootstrap', '~> 4.0.0.alpha6'
+
 gem 'rails', '~> 4.2.4'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
@@ -22,6 +22,25 @@ gem 'activeadmin', "1.0.0.pre1"
 gem 'test-unit', '~> 3.0'
 # forum
 gem 'thredded'
+gem 'city-state'
+gem 'capybara-email'
+
+# Iter 2-2
+#Implementing image upload features 
+gem "paperclip", "~> 5.0.0"
+
+#Improve form layout in activeadmin
+gem 'formtastic', '~> 3.0'
+
+#Improve Security
+gem 'permitted_params'
+
+#Improve Activeadmin UI
+gem 'activeadmin_addons'
+
+#Improve searchability for filter
+gem 'ransack'
+#End of iter 2-2
 
 gem 'protected_attributes'
 

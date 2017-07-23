@@ -5,6 +5,10 @@ ActiveAdmin.register SelectedComment do
   index do
     selectable_column
     column :content
+    column :breed do |s|
+      s.breed
+    end
+    column :breeder
     column :user
     actions
   end
