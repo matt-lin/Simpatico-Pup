@@ -9,9 +9,9 @@ Background: User already login
     Given I am on the RateMyPup home page
     
     And the following users exist:
-        | username       | email               | password       | password_confirmation|
-        | jeff           | jeff@berkeley.edu   | 12345678       | 12345678             |
-        | gilbert        | gilbert@berkeley.edu| 12345678       | 12345678             |
+        | username       | email               | password       | password_confirmation| activated |
+        | jeff           | jeff@berkeley.edu   | 12345678       | 12345678             | true      |
+        | gilbert        | gilbert@berkeley.edu| 12345678       | 12345678             | true      |
     
     And the following newsletter_user exist:
         | email               |

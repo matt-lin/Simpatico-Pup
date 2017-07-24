@@ -17,8 +17,13 @@ Feature: Improve "flow" of site
       | Michael Jackson | Boston   | MA     |
       | George Michael  | Fresno   | CA     |
       | George W. Bush  | Waco     | TX     |
+
+    Given the following users exist:
+      | username       | email               | password       | password_confirmation| activated |
+      | gilbert        | gilbert@berkeley.edu| 12345678       | 12345678             | true      | 
+      
     And I am on the RateMyPup home page
-    And I am logged in
+    And I log in as "gilbert"
 
     Scenario: The hashtags should be present on the page
       Given I am on the "Create New Pup Test" page

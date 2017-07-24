@@ -5,12 +5,17 @@ Feature: Flash warning/error should only show once
   
 
 Background: User already logged in
-  Given I am on the RateMyPup home page
-  And I am logged in
+  Given the following users exist:
+      | username       | email               | password       | password_confirmation| activated |
+      | gilbert        | gilbert@berkeley.edu| 12345678       | 12345678             | true      |
+      
   And the following breeders exist:
       | name            | city     | state |
       | Carl            | Berkeley | CA    |
       | Alex            | Berkeley | CA    |
+  
+  And I am on the RateMyPup home page
+  And I log in as "gilbert"
 
   Scenario: show error/warning once on dog_how_long
     Given I am on the RateMyPup home page

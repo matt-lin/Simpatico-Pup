@@ -6,8 +6,12 @@ Feature: Validate user entered city and state when creating breeder
   So that I can submit a valid location
   
 Background: User already login, filled out pup name, how long the user owned the dog, and breed
+  Given the following users exist:
+    | username       | email               | password       | password_confirmation| activated |
+    | gilbert        | gilbert@berkeley.edu| 12345678       | 12345678             | true      |
+
   Given I am on the RateMyPup home page
-  Given I am logged in
+  Given I log in as "gilbert"
   And I finished previous steps
   
   And the following breeds exist:

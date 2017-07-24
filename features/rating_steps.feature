@@ -6,8 +6,7 @@ Feature: Split rating process into a few steps
   
 Background: User already logged in, and databse is loaded with breed and breeder
   Given I am on the RateMyPup home page
-  And I am logged in
-  
+
   And the following breeds exist:
       | name            |
       | Affenpinscher   |
@@ -16,6 +15,13 @@ Background: User already logged in, and databse is loaded with breed and breeder
       | name            | city     | state |
       | Carl            | Berkeley | CA    |
       | Alex            | Berkeley | CA    |
+  
+  Given the following users exist:
+      | username       | email               | password       | password_confirmation| activated |
+      | jeff           | jeff@berkeley.edu   | 12345678       | 12345678             | false     |
+      | gilbert        | gilbert@berkeley.edu| 12345678       | 12345678             | true      |   
+  
+  Given I log in as "gilbert"
 
   Scenario: step0->1, direct to dog name page
     Given I am on the RateMyPup home page

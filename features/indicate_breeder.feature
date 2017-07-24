@@ -6,10 +6,10 @@ Feature: Indicate dog breeder when rating a pup
   So that people can evaluate the breeder based on my dog's rating.
   
 Background: User already login, filled out pup name, how long the user owned the dog, and breed
-  Given I am on the RateMyPup home page
-  Given I am logged in
-  And I finished previous steps
-  
+  Given the following users exist:
+      | username       | email               | password       | password_confirmation| activated |
+      | gilbert        | gilbert@berkeley.edu| 12345678       | 12345678             | true      |
+   
   And the following breeds exist:
       | name            |
       | Affenpinscher   |
@@ -18,6 +18,11 @@ Background: User already login, filled out pup name, how long the user owned the
       | name            | city     | state |
       | Carl            | Berkeley | CA    |
       | Alex            | Berkeley | CA    |
+
+  And I am on the RateMyPup home page
+  And I log in as "gilbert"
+  And I finished previous steps
+  
 
   Scenario: step4->new(happy), submit with empty breeder name and kennel name
     And I am on the "Dog Breeder Test" page
