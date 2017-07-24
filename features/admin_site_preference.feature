@@ -15,10 +15,21 @@ Feature: edit the content for the main page
     And admin should see "Button c text"
     And admin should see  "welcome message"
     
-  Scenario: select a comment and expect to see that comments on selected comment and the home page
+  Scenario: Change the title message and apply the change on the main page
     When admin go to site_preference
-    And I check "batch_action_item_1"
+    When I fill in "title_message" with "hi title"
+    And  I press "Submit"
+    Then I should see "The content has been modified"
+    When I am in the homepage
+    Then I should see "hi title"
 
-  Scenario: select two comments and one of them should be on the home page
+  Scenario: Change the button text and apply the change on the main page
+    When admin go to site_preference
+    When I fill in "button_a_text" with "rate my puppy"
+    And  I press "Submit"
+    Then I should see "The content has been modified"
+    When I am in the homepage
+    Then I should see "rate my puppy"
+    And I should not see "rate my dog"
 
 # End Iter 3-1
