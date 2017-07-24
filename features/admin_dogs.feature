@@ -1,4 +1,4 @@
-# Iter 2-1
+# Iter 2-1 Dog page validation (By Gung Hiu Ho, Licong Wang)
 Feature: View detailed imformation of all dogs 
   As an administrator 
   I want to check the details of every registered dog

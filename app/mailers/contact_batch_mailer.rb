@@ -3,7 +3,7 @@ class ContactBatchMailer < ActionMailer::Base
   default from: 'yuhongzhan0407@berkeley.edu'
   # default from: 'yo@example.com'
   
-  #Iter 2-2
+  #Iter 2-2 Improved email (with attachment) (By Gung Hiu Ho, Licong Wang)
   def contact_batch_email(name, message, subject, recipient, send)
     if (send == "on")
       Attachment.all.each do |a|

@@ -1,4 +1,4 @@
-# Iter 1-2
+# Iter 1-2 (By Gung Hiu Ho, Licong Wang)
 ActiveAdmin.register Comment, as: "User Comments" do
   batch_action :approve do |ids|
     batch_action_collection.find(ids).each do |c|
@@ -15,6 +15,8 @@ ActiveAdmin.register Comment, as: "User Comments" do
   # filter :pup
   filter :content
   filter :created_at
+  
+  #Iter 2-2 Redesigned selected comment column (By Gung Hiu Ho, Licong Wang)
   index do
     selectable_column
     

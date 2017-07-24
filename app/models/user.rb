@@ -23,12 +23,14 @@ class User < ActiveRecord::Base
   end
   
 
+  # Iter 2-2 account actication (by Zipei Wang and Jack Chen)
   # Returns true if the given token matches the digest.
   def authenticated?(attribute, token)
     digest = send("#{attribute}_digest")
     return false if digest.nil?
     BCrypt::Password.new(digest).is_password?(token)
   end
+  #End for Iter 2-2
   
   
  # Sets the password reset attributes.
@@ -47,13 +49,12 @@ class User < ActiveRecord::Base
     self.email = email.downcase
   end
   
+  # Iter 2-2 account actication (by Zipei Wang and Jack Chen)
   def activated?
     @user = User.find(id)
     @user.activated
   end
-  #######################################################################
-  #may not need active function
-  # Activates an account.
+  
   def activate
     update_attribute(:activated,    true)
     # no  need time limte
@@ -72,7 +73,8 @@ class User < ActiveRecord::Base
     self.activation_token  = User.new_token
     self.activation_digest = User.digest(activation_token)
   end
-  ########################################################################
+  #End for Iter 2-2
+  
 # Returns a random token.
   def self.new_token
     SecureRandom.urlsafe_base64

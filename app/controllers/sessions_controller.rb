@@ -12,7 +12,8 @@ class SessionsController < Devise::SessionsController
         super
       else
         user.create_activation_digest
-        message  = "Account not activated. A new activated email has been send plase check your email <a href='#{user.send_activation_email}'></a>!".html_safe
+        message  = "Account not activated. Check your email for the activation link. Or clik <font color=red><a href='#{user.send_activation_email}'>here</a></font> to resend!".html_safe
+
         flash[:notice] = message
         redirect_to root_url
       end

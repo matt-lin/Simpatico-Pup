@@ -1,3 +1,4 @@
+#Iter2-2 reset_password (By Jeff Yu, Zipei Wang)
 require 'spec_helper'
 
 describe PasswordresetsController do
@@ -92,3 +93,4 @@ describe PasswordresetsController do
     end
 
 end
+# End for Iter2-2

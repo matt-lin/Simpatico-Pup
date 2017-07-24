@@ -1,3 +1,4 @@
+# Iter 2-2 account actication (by Zipei Wang and Jack Chen)
 class AccountActivationsController < ApplicationController
   def new
     @user = User.new(sign_up_params)
@@ -25,3 +26,4 @@ class AccountActivationsController < ApplicationController
     end
   end
 end
+#End for Iter 2-2

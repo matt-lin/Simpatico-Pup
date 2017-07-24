@@ -1,3 +1,4 @@
+#Iter 2-2 Redesign dog page (By Gung Hiu Ho, Licong Wang)
 ActiveAdmin.register Pup, as: "Dogs" do
   filter :user
   filter :breeder

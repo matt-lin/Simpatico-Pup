@@ -60,6 +60,7 @@ Feature: Users should be able to reset password
       Then  I should be on the RateMyPup home page
       And   I should see "Email sent with password reset instructions"
       
+    #Iter 2-2 reset_password (Jeff Yu, Zipei Wang)
     Scenario: one reset-password link sent by email can only be used once
       Given I am on the "Enter Email" page
       And   I enter "jeff"'s email and click on the url from the sent email
@@ -75,7 +76,7 @@ Feature: Users should be able to reset password
       When  "jeff" go to the link contained by the sent email
       Then  I should be on the "Enter Email" page
       And   I should see "Your request to reset password has expired. Refill the form if you want to reset password."
-      
+      #End for Iter2-2
 
       
       

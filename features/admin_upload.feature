@@ -1,4 +1,4 @@
-# Iter 2-2
+# Iter 2-2 File manager validation (By Gung Hiu Ho, Licong Wang)
 @javascript
 Feature: Admin should be able to upload file to the file manager 
     As an administrator

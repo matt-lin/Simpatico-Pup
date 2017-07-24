@@ -1,4 +1,4 @@
-#Implementation for Iter2-2 (whole file)
+#Implementation for Iter2-2 (Jeff Yu, Zipei Wang)
 
 class PasswordresetsController < ApplicationController
   before_action :get_user,   only: [:edit, :update]
@@ -72,7 +72,7 @@ class PasswordresetsController < ApplicationController
       flash[:notice] = 'Your request to reset password has expired. Refill the form if you want to reset password.'
       redirect_to new_passwordreset_path and return
     else
-      @user.update_attribute(:reset_password_token,  'used')
+      # @user.update_attribute(:reset_password_token,  'used')
     end
   end
   
@@ -97,3 +97,5 @@ class PasswordresetsController < ApplicationController
 
 
 end
+
+#End for Iter 2-2
