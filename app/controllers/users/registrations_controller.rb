@@ -28,12 +28,6 @@ helper_method :subscribed?
         UserMailer.account_activation(@user).deliver_now
         flash[:success] += " Please check your email to activate your account."
         respond_with resource, location: after_sign_up_path_for(resource)
-        
-      # else
-      #   set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
-      #   expire_data_after_sign_in!
-      #   respond_with resource, location: after_inactive_sign_up_path_for(resource)
-      
       end
       
       if params[:subscribe_newsletter].present?
@@ -73,11 +67,6 @@ helper_method :subscribed?
     super
   end
 
-  # GET /resource/cancel
-  # Forces the session data which is usually expired after sign
-  # in to be expired now. This is useful if the user wants to
-  # cancel oauth signing in/up in the middle of the process,
-  # removing all OAuth session data.
   def cancel
     super
   end

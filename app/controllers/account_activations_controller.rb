@@ -1,6 +1,4 @@
 class AccountActivationsController < ApplicationController
-  
-  
   def new
     @user = User.new(sign_up_params)
     if @user.save
@@ -11,10 +9,8 @@ class AccountActivationsController < ApplicationController
       redirect_to root_url
     end
   end
-
   def edit
     user = User.find_by(email: params[:email])
-    
     if user && !user.activated?
       user.activate
       user.save!
