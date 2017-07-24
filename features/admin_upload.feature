@@ -50,4 +50,17 @@ Feature: Admin should be able to upload file to the file manager
       When I follow "Delete"
       And I accept confirmation dialogs
       Then I should see "Attachment was successfully destroyed."
+      
+      
+    #Iter 3-1 verify if multiple tables exist in this page (By Gung Hiu Ho, Licong Wang)
+      Scenario: admins should be able to manage image file
+      When I follow "Upload File"
+      Then I attach the file "features/attachment/eecs.jpg" to "attachment_attachment"
+      And I press "Create Attachment"
+      And I should see "Image Table"
+      When I follow "Delete"
+      And I accept confirmation dialogs
+      Then I should see "Attachment was successfully destroyed."
+    #End for Iter 3-1
+    
 # End for Iter 2-2
