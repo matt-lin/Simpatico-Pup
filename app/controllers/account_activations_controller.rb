@@ -1,3 +1,4 @@
+# Iter 2-2 account actication (by Zipei Wang and Jack Chen)
 class AccountActivationsController < ApplicationController
   
   
@@ -29,3 +30,4 @@ class AccountActivationsController < ApplicationController
     end
   end
 end
+#End for Iter 2-2

@@ -1,4 +1,4 @@
-#Implementation for Iter2-2 (whole file)
+#Implementation for Iter2-2 (Jeff Yu, Zipei Wang)
 
 class PasswordresetsController < ApplicationController
   before_action :get_user,   only: [:edit, :update]
@@ -97,3 +97,5 @@ class PasswordresetsController < ApplicationController
 
 
 end
+
+#End for Iter 2-2

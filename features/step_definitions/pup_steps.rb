@@ -146,6 +146,7 @@ When /^I select "(.*)" and "(.*)" and search/ do |breed1, breed2|
   click_button "Find a Breed"
 end
 
+# Iter 2-2 Breeder location validation (By Gilbert Lo, Jeff Yu)
 When /^I fill in the new breeder form with following: (.*)/ do |args|
   info_list = args.split(", ")
 
@@ -169,3 +170,4 @@ When /^I fill in the search breeder form with following: (.*)/ do |args|
     And I select "#{info_list[3]}" in the dropdown menu "breeder_search_distance"
   }
 end
+#End iter 2-2

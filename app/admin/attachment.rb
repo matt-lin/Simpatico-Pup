@@ -1,4 +1,4 @@
-#Iter 2-2
+#Iter 2-2 File manager (By Gung Hiu Ho, Licong Wang)
 ActiveAdmin.register Attachment do
   permit_params :attachment
   

@@ -1,3 +1,4 @@
+# Iter 2-2 account actication (by Zipei Wang and Jack Chen)
 class SessionsController < Devise::SessionsController
 
   def new
@@ -12,7 +13,7 @@ class SessionsController < Devise::SessionsController
         super
       else
         user.create_activation_digest
-        message  = "Account not activated. Check your email for the activation link or click <a href='#{user.send_activation_email}'>here</a> to resend!".html_safe
+        message  = "Account not activated. A new account activation has been send.<a href='#{user.send_activation_email}'></a>".html_safe
         flash[:notice] = message
         redirect_to root_url
       end
@@ -26,3 +27,4 @@ class SessionsController < Devise::SessionsController
   #   redirect_to root_url
   # end
 end
+#End for Iter 2-2

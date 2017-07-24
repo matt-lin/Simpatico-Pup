@@ -15,6 +15,8 @@ helper_method :subscribed?
     super
   end
 
+  # Iter 2-2 account actication (by Zipei Wang and Jack Chen)
+
   # POST /resource
   def create
 
@@ -45,6 +47,7 @@ helper_method :subscribed?
       respond_with resource
     end
   end
+  # End for Iter 2-2 
  
   # GET /resource/edit
   def edit

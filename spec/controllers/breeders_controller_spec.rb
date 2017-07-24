@@ -47,6 +47,7 @@ describe BreedersController do
   end
   
   describe "creating new breeder" do
+    # Iter 2-2 Breeder location validation (By Gilbert Lo, Jeff Yu)
     it "should call the city state gem function citites" do
       expect(CS).to receive(:cities).with("ca", :us).and_return(["Random city"])
       post :create, {:breeder => {:name => "Alex", :city => "fake city", :state => "CA"}}
@@ -72,6 +73,7 @@ describe BreedersController do
       expect(flash[:notice]).to eq "Please select a state."
       expect(response).to redirect_to new_breeder_path
     end
+    # End iter 2-2
   end
   
   describe "search a breeder" do
@@ -125,6 +127,7 @@ describe BreedersController do
       xhr :get, :nearer_breeders, @params
     end
     
+    # Iter 2-2 Breeder location validation (By Gilbert Lo, Jeff Yu)
     it "don't search if city is enter by state is not" do
       @params = {:breeder => {:search_distance => 50, :city => "Oakland", :state => ""}, :format => :js}
       expect(Breeder).not_to receive(:joins)
@@ -147,6 +150,7 @@ describe BreedersController do
       expect(assigns(:message)).to eq "Please select a state"
       expect(response).to render_template(:nearer_breeders)
     end
+    # iter 2-2
   end
 
   describe "sending json of all breeders" do

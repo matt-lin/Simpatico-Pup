@@ -1,4 +1,4 @@
-# Iter 2-1
+# Iter 2-1 email validation (with attachment) (By Gung Hiu Ho, Licong Wang)
 Feature: Admin should be able to send emails to subscribed users with attachment 
     As an administrator
     I want to be able to send an email with attachment and photo
@@ -12,7 +12,7 @@ Feature: Admin should be able to send emails to subscribed users with attachment
           | gilbert@berkeley.edu     |
           | gj@berkeley.edu  | 
     
-    # Iter 2-2
+    # Iter 2-2 email validation (with attachment) (By Gung Hiu Ho, Licong Wang)
     Scenario: admins mark/unmark uploaded file as attachment
       Given admin go to attachments
       And I have uploaded a file named "eecs.jpg"
@@ -44,7 +44,7 @@ Feature: Admin should be able to send emails to subscribed users with attachment
       Given admin go to attachments
       When I delete this uploaded file
       Then I should see "Successfully destroyed"
-    
+      
     # End for Iter 2-2
 # End for Iter 2-1
       

@@ -1,4 +1,4 @@
-#Iter 2-2
+#Iter 1
 Then (/^all the users should receive an email$/) do 
   emails = ActionMailer::Base.deliveries
   emails.length.should == NewsletterUser.all.length
@@ -37,7 +37,9 @@ And (/^I send emails with subject as "([^"]*)" and message as "([^"]*)"( with an
   params[:test] = true
   page.driver.submit form['method'], form['action'], params
 end
+#End for Iter1
 
+#Iter 2-2 upload attachment validation (By Gung Hiu Ho, Licong Wang)
 Then (/^all the users should get an email with "([^"]*)" and "([^"]*)"( with an attachment "([^"]*)")?$/) do |subject, body, attach, file|
   emails = ActionMailer::Base.deliveries
   emails.length.should == NewsletterUser.all.length
@@ -62,8 +64,6 @@ Then (/^"([^"]*)" (should|should not) get an email with "([^"]*)" and "([^"]*)"(
     user_email.size.should == 0
   end
 end
-
-#Iter 2-1
 
 When (/^"([^"]*)" go to the link contained by the sent email$/) do |username|
   open_email("#{username}@berkeley.edu")
@@ -116,7 +116,7 @@ And (/^I click on that url again$/) do
     current_email.click_link 'Reset password'
 end
 
-#Iter 2-2
+#Iter 2-2 upload file validation (By Gung Hiu Ho, Licong Wang)
 Given (/^I have uploaded a file named "([^"]*)"$/) do |file|
   first(:link, "Upload File").click
   attach_file("attachment_attachment", File.expand_path("features/attachment/#{file}"))
@@ -148,7 +148,7 @@ And (/^"([^"]*)" wait for 31 mins$/) do |username|
     @user.update_attribute(:reset_password_sent_at, Time.zone.now-1860)
 end
 
-
+#Iter 2-2 upload file validation (By Gung Hiu Ho, Licong Wang)
 When (/^I delete this uploaded file$/) do
   send "check", "batch_action_item_1"
   page.find("#collection_selection_toggle_all").click
@@ -164,4 +164,5 @@ When (/^I delete this uploaded file$/) do
   end
   page.driver.submit form['method'], form['action'], params
 end
+#End for Iter 2-2
 

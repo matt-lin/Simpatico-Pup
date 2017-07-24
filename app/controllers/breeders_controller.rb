@@ -52,7 +52,7 @@ class BreedersController < ApplicationController
 
   def nearer_breeders
 
-    # Iter 2-1
+    # Iter 2-2 Breeder location validation (By Gilbert Lo, Jeff Yu)
     @valid_location = true
     if params[:breeder][:city].present? && params[:breeder][:state] == ""
       @valid_location = false
@@ -68,7 +68,7 @@ class BreedersController < ApplicationController
         return
       end
     end
-    # End for Iter 2-1
+    # End for Iter 2-2
 
     if params[:breeder][:breed_name].present? && params[:breeder][:city].present?
       @breeders = Breeder.joins(pups: :breed).where("breeds.name = ?", params[:breeder][:breed_name]).near("#{params[:breeder][:city]}, #{params[:breeder][:state]}", params[:breeder][:search_distance])
@@ -88,19 +88,19 @@ class BreedersController < ApplicationController
 
   def create
     name, city, state = params[:breeder][:name], params[:breeder][:city], params[:breeder][:state]
-
+    
+    # Iter 2-2 Breeder location validation (By Gilbert Lo, Jeff Yu)
     if state.empty?
       flash[:notice] = "Please select a state."
       redirect_to new_breeder_path and return
     end
 
-    #Iter 2-1
     cities = CS.cities(state.downcase, :us).map(&:downcase)
     if !cities.include? city.downcase
       flash[:notice] = "The city you entered is not a valid city in the selected state. Please re-enter your infomation."
       redirect_to new_breeder_path and return
     end
-    #End for Iter 2-1
+    #End for Iter 2-2
     breeder, message = Breeder.create!(:name => name, :city => city, :state => state)
     if !breeder
       flash[:message] = message
