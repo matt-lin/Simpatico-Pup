@@ -8,6 +8,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Today's Dogs" do
           table_for Pup.where(created_at: Date.today..Date.today.next) do
+            
             column :dog_name do |p|
               p.pup_name
             end
