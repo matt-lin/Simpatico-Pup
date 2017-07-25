@@ -4,7 +4,7 @@ Feature: Users should be able to reset password
   I want to be able to reset my password
   So that I can get my account back even if I forget my password
   Background: 
-  
+    Given the default layout exist
     Given the following users exist:
         | username       | email               | password       | password_confirmation| activated |
         | jeff           | jeff@berkeley.edu   | 12345678       | 12345678             | true      |

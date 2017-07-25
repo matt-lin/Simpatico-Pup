@@ -4,11 +4,12 @@ Feature: user should provide a username during signup
 	a new account with valid info
 
 Background: The user is on signup page
+  Given the default layout exist
   Given the following users exist:
         | username       | email               | password       | password_confirmation| activated |
         | jeff           | jeff@berkeley.edu   | 12345678       | 12345678             | false     |
         | gilbert        | gilbert@berkeley.edu| 12345678       | 12345678             | true      |
-        
+  
   Given I am on the Signup page
 	
   Scenario: What user should see in the signup process
