@@ -81,8 +81,8 @@ ActiveRecord::Schema.define(version: 201707200916261) do
   end
 
   create_table "customizes", force: :cascade do |t|
-    t.string "welcome1"
-    t.string "welcome2"
+    t.string "name"
+    t.string "content"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|

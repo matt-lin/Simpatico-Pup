@@ -6,4 +6,9 @@ class CreateCustomizes < ActiveRecord::Migration
       t.string :welcome2
     end
   end
+  
+  def self.up
+    rename_column :customizes, :welcome1, :name
+    rename_column :customizes, :welcome2, :content
+  end
 end

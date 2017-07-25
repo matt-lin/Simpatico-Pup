@@ -268,6 +268,10 @@ newsletter_users = [
     {:email => 'nu3@gmail.com', :created_at => DateTime.now, :updated_at => DateTime.now},
     {:email => 'nu4@gmail.com', :created_at => DateTime.now, :updated_at => DateTime.now}]
 
+customizes = [
+  {:name => 'Welcome1', :content => 'Hello there!' }, 
+  {:name => 'Welcome2', :content => 'Hello there!!!!!!!!!!' }]
+
 newsletter_users.each do |nl_user|
   NewsletterUser.create!(nl_user)
 end
@@ -290,6 +294,10 @@ end
 
 texts.each do |text|
   Text.create!(text)
+end
+
+customizes.each do |customize|
+  Customize.create!(customize)
 end
 
 AdminUser.create!(:email => 'admin@berkeley.edu', :password => 'password', :password_confirmation => 'password')
