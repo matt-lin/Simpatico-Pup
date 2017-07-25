@@ -6,7 +6,7 @@ describe PasswordresetsController do
   describe "resetting password" do
       before :each do
           5.times.each do |i|
-be             FactoryGirl.create(:user, email: "user#{i}@berkeley.edu", password: '12345678', password_confirmation: '12345678', reset_password_token: "dummy#{i}")
+             FactoryGirl.create(:user, email: "user#{i}@berkeley.edu", password: '12345678', password_confirmation: '12345678', reset_password_token: "dummy#{i}")
           end
       end
       it "should start with proper page that asks for email" do
