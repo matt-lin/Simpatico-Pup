@@ -25,10 +25,10 @@ class PupsController < ApplicationController
     @rate_Dog_bottom = Customize.find_by_name("Rate_Dog_Bottom").content
     @find_breed_top = Customize.find_by_name("Find_Breed_Top").content
     @find_breed_bottom = Customize.find_by_name("Find_Breed_Bottom").content
-    @rate_dog_top = Customize.find_by_name("Rate_Dog_Top").content
-    @rate_dog_bottom = Customize.find_by_name("Rate_Dog_Bottom").content
-    @find_breed_top = Customize.find_by_name("Find_Breed_Top").content
-    @find_breed_bottom = Customize.find_by_name("Find_Breed_Bottom").content
+    @find_breeder_top = Customize.find_by_name("Find_Breeder_Top").content
+    @find_breeder_bottom = Customize.find_by_name("Find_Breeder_Bottom").content
+    @search_breeder_top = Customize.find_by_name("Search_Breeder_Top").content
+    @search_breeder_bottom = Customize.find_by_name("Search_Breeder_Bottom").content
     
     start_over
     selected_comment = SelectedComment.find_randomly
