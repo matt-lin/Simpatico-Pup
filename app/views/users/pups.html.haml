@@ -9,7 +9,9 @@
         %th Breed
         %th Breeder
         %th Comment
-        // %th Detail
+        %th Created At
+        %th Updated At
+        %th Action
 
     %tbody
       - @pups.each do |pup|
@@ -18,4 +20,10 @@
           %td= pup.breed.name
           %td= pup.breeder.name
           %td= pup.comment ? pup.comment.content : ""
-          %td= link_to "More", pup_path(pup)  
+          %td= pup.created_at.to_date
+          %td= pup.updated_at.to_date
+          %td
+            = link_to "Delete", pup_path(:id => pup.id), :method => :delete 
+            = link_to "Edit", root_path
+          %td= link_to "More", pup_path(pup) 
+          

@@ -1,30 +1,43 @@
 %div{:class => "container"}
+  %div{:class => "header"}
+    %h1= @pup.pup_name
 
-  %table#pup{:class => "table"}
-    %thead
-      %tr
-        %th Puppy Name
-        %th Breed
-        %th Breeder
-        %th Breeder Responsibility
-        %th Overall Health
-        %th Trainability
-        %th Social Behavior
-        %th Energy Level
-        %th Simpatico Rating
+  // %table#pup{:class => "table"}
+  //   %thead
+  //     %tr
+  //       %th Puppy Name
+  //       %th Breed
+  //       %th Breeder
+  //       %th Breeder Responsibility
+  //       %th Overall Health
+  //       %th Trainability
+  //       %th Social Behavior
+  //       %th Energy Level
+  //       %th Simpatico Rating
 
-    %tbody
-      %tr
-        %td= @pup.pup_name
-        %td= @pup.breed.name
-        %td= @pup.breeder.name
-        %td= @pup.breeder_responsibility
-        %td= @pup.overall_health
-        %td= @pup.trainability
-        %td= @pup.social_behavior
-        %td= @pup.energy_level
-        %td= @pup.simpatico_rating
-
-
-  = button_to 'Delete pup', pup_path(:id => @pup.id), :method => :delete
+  //   %tbody
+  //     %tr
+  //       %td= @pup.pup_name
+  //       %td= @pup.breed.name
+  //       %td= @pup.breeder.name
+  //       %td= @pup.breeder_responsibility
+  //       %td= @pup.overall_health
+  //       %td= @pup.trainability
+  //       %td= @pup.social_behavior
+  //       %td= @pup.energy_level
+  //       %td= @pup.simpatico_rating
+        
+  %div{:class=>"row"}
+    %div{:class=>"col-sm-6"}
+      %h4= "Pup name: " + @pup.pup_name
+      %h4= "Breed: " + @pup.breed.name
+      %h4= "Breeder: " + @pup.breeder.name
+      %h4= "Owned For: " + @pup.year.to_s + " year(s) and " + @pup.month.to_s + " month(s)"
+      %h4= "Updated at: " + @pup.updated_at.to_date.to_s
+    
+    %div{:class=>"col-sm-6"}
+      = render 'shared/comment', pup: @pup, responsibility: @pup.breeder_responsibility , health: @pup.overall_health , train: @pup.trainability , social: @pup.social_behavior, dog: @pup.dog_behavior, simpatico: @pup.simpatico_rating, energy: @pup.energy_level
   
+    
+  %div{:class=>"action"}
+    = button_to 'Delete pup', pup_path(:id => @pup.id), :method => :delete 

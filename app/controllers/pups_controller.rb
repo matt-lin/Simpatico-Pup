@@ -69,10 +69,16 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
   end
 
   def show
-    @pup = Pup.find params[:id]
-    if current_user.id != @pup.user_id
+    @pup = Pup.find_by_id params[:id]
+    if @pup.nil?
+      flash[:notice] = "The dog you are trying to show is not exist"
+      redirect_to root_path and return
+    end
+    
+    if !owner?(@pup)
       flash[:notice] = "The dog you are trying to show is not yours"
-      redirect_to root_path
+      p flash[:notice]
+      redirect_to root_path and return
     end
   end
 
@@ -144,8 +150,15 @@ currently limiting the number of ratings made by each dog owner to eight, and li
 
   def destroy
     @pup = Pup.find params[:id]
+    
+    if !owner?(@pup)
+      flash[:notice] = "The dog you are trying to show is not yours"
+      redirect_to root_path and return
+    end
+    
+    flash[:notice] = "Pup #{@pup.pup_name} has been deleted" 
     @pup.destroy
-    redirect_to pups_path
+    redirect_to root_path
   end
 
 
@@ -257,6 +270,10 @@ with you for a minimum of six months. Thank you."
 
 
   private
+  def owner?(pup)
+    return pup.id == current_user.id
+  end
+  
   def check_sign_in
     unless user_signed_in?
       redirect_to welcome_path
