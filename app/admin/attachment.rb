@@ -71,7 +71,7 @@ ActiveAdmin.register Attachment do
   form do |f|
     f.inputs "Upload File" do
       f.input :attachment, as: :file
-      f.input :catagory, :as => :radio, :collection => :newsletter
+      f.input :catagory, :as => :radio
       #f.input :category, as: :select
     end
     f.actions
