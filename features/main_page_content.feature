@@ -5,6 +5,7 @@ Feature: see content on the main page
     I want to be able to see information about these
 
 Background:
+  Given the default layout exist
   Given the following users exist:
       | username       | email               | password       | password_confirmation| activated |
       | gilbert        | gilbert@berkeley.edu| 12345678       | 12345678             | true      |

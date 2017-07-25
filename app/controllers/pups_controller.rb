@@ -19,6 +19,7 @@ class PupsController < ApplicationController
       @username = current_user.username
     end
     
+    #Iter 3-2 Customize the main page (By Gung Hiu Ho, Licong Wang)
     @primary_title = Customize.find_by_name("Primary_Title").content
     @secondary_title = Customize.find_by_name("Secondary_Title").content
     @rate_dog_top = Customize.find_by_name("Rate_Dog_Top").content

@@ -6,6 +6,7 @@ Feature: Indicate dog breeder when rating a pup
   So that people can evaluate the breeder based on my dog's rating.
   
 Background: User already login, filled out pup name, how long the user owned the dog, and breed
+  Given the default layout exist
   Given the following users exist:
       | username       | email               | password       | password_confirmation| activated |
       | gilbert        | gilbert@berkeley.edu| 12345678       | 12345678             | true      |

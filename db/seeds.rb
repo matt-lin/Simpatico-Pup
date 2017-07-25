@@ -9,7 +9,13 @@ customizes = [
   {:name => 'Find_Breeder_Top', :content => 'Find Ratings for a' },
   {:name => 'Find_Breeder_Bottom', :content => 'Breeder' },
   {:name => 'Search_Breeder_Top', :content => 'Search for a' },
-  {:name => 'Search_Breeder_Bottom', :content => 'Breeder' }
+  {:name => 'Search_Breeder_Bottom', :content => 'Breeder' },
+  {:name => 'Blue_Bar_Top_Left', :content => 'For More Information on Breed Health' },
+  {:name => 'Blue_Bar_Top_Middle', :content => 'Privacy Policy' },
+  {:name => 'Blue_Bar_Top_Right', :content => 'Contact Info' },
+  {:name => 'Blue_Bar_Bottom_Left', :content => "Canine Health Information Center" },
+  {:name => 'Blue_Bar_Bottom_Middle', :content => 'Terms of Service' },
+  {:name => 'Blue_Bar_Bottom_Right', :content => 'LSandersDVM@gmail.com' }
   ]
   
 customizes.each do |customize|
