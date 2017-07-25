@@ -6,6 +6,7 @@ Feature: Admin should be able to upload file to the file manager
     So that I store my data on my website
     
   Background: Logged in to database
+    Given the default layout exist
     Given I login as an admin
     Given admin go to attachments
         
