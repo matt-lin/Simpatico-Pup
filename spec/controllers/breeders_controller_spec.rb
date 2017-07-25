@@ -55,7 +55,7 @@ describe BreedersController do
     
     it "should display breeder" do
       post :create, {:breeder => {:name => "Alex", :city => "Berkeley", :state => "CA"}}
-      expect(flash[:notice]).to match(/Breeder Alex have been added to our database!*/)
+      expect(flash[:notice]).to match(/Breeder Alex has been added to our database!*/)
     end
 
     it "should block creating breeder if location is not valid" do
