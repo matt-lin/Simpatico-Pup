@@ -1,6 +1,7 @@
 # Iter 3-2 (By Gung Hiu Ho, Licong Wang)
 ActiveAdmin.register Customize do
   config.clear_sidebar_sections!
+  actions :index, :edit
   index do
     table_for Customize.all do
       column :name 
@@ -8,26 +9,20 @@ ActiveAdmin.register Customize do
       actions
     end
   end
-    
-  show do
-    attributes_table do
-      row :name
-      row :conent
+  
+  form do |f|
+    f.inputs "Customize" do
+        f.input :content
     end
+    f.button :Submit
   end
     
   controller do
     def update
-      attrs = permitted_params[:attachment]
-      @attachment = Attachment.where(id: params[:id]).first!
-      @attachment[:document_file_name] = attrs[:attachment].original_filename
-      if @attachment.save
-        redirect_to admin_attachment_path(@attachment)
-      else
-        render :edit
+      super do |format|
+        redirect_to collection_url and return if resource.valid?
       end
     end
   end
-  
 end
 # End for Iter 3-2
