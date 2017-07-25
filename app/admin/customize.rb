@@ -26,6 +26,7 @@ ActiveAdmin.register Customize do
     table_for Customize.all do
       column :name 
       column :content
+      column :location
       actions
     end
   end

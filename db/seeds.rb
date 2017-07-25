@@ -11,12 +11,12 @@ customizes = [
   {:name => 'Find_Breeder_Bottom', :content => 'Breeder', :location => "main_button" },
   {:name => 'Search_Breeder_Top', :content => 'Search for a', :location => "main_button" },
   {:name => 'Search_Breeder_Bottom', :content => 'Breeder', :location => "main_button" },
-  {:name => 'Blue_Bar_Top_Left', :content => 'For More Information on Breed Health' },
-  {:name => 'Blue_Bar_Top_Middle', :content => 'Privacy Policy' },
-  {:name => 'Blue_Bar_Top_Right', :content => 'Contact Info' },
-  {:name => 'Blue_Bar_Bottom_Left', :content => "Canine Health Information Center" },
-  {:name => 'Blue_Bar_Bottom_Middle', :content => 'Terms of Service' },
-  {:name => 'Blue_Bar_Bottom_Right', :content => 'LSandersDVM@gmail.com' }
+  {:name => 'Blue_Bar_Top_Left', :content => 'For More Information on Breed Health', :location => "main_bar" },
+  {:name => 'Blue_Bar_Top_Middle', :content => 'Privacy Policy', :location => "main_bar" },
+  {:name => 'Blue_Bar_Top_Right', :content => 'Contact Info', :location => "main_bar" },
+  {:name => 'Blue_Bar_Bottom_Left', :content => "Canine Health Information Center", :location => "main_bar" },
+  {:name => 'Blue_Bar_Bottom_Middle', :content => 'Terms of Service', :location => "main_bar" },
+  {:name => 'Blue_Bar_Bottom_Right', :content => 'LSandersDVM@gmail.com', :location => "main_bar" }
   ]
   
 customizes.each do |customize|

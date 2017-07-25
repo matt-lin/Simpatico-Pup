@@ -1,3 +1,3 @@
 class Customize < ActiveRecord::Base
-    attr_accessible :name, :content
+    attr_accessible :name, :content, :location
 end
