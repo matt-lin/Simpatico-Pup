@@ -1,7 +1,8 @@
-# Iter 3-2 (By Gung Hiu Ho, Licong Wang)
+# Iter 3-2 Site preference (By Gung Hiu Ho, Licong Wang)
 ActiveAdmin.register Customize do
   config.clear_sidebar_sections!
   actions :index, :edit
+  menu :label => 'Site preference'
   index do
     table_for Customize.all do
       column :name 
