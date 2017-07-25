@@ -8,10 +8,10 @@ Feature: select dog breed using when using rating
   
 Background: User already logged in
   
-    Given the following breeds exist:
+  Given the following breeds exist:
     | name            | 
     | Affenpinscher   |
-    | Afghan     Hound|
+    | Afghan Hound    |
     | Akita           |
     | Bobq            |
     | Michael Jackson |
