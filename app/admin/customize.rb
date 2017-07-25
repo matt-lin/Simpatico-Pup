@@ -13,6 +13,7 @@ ActiveAdmin.register Customize do
     attributes_table do
       row :name
       row :conent
+    
     end
   end
     
