@@ -23,7 +23,6 @@ Feature: edit the content for the main page
   Scenario: Change the website title and apply the change on the main page
     When admin go to customizes
     And I follow "Edit"
-    Then I should see "SimpaticoPup"
     And I fill in "customize_content" with "PupSimpatico"
     And I press "Submit"
     And I should see "The content has been modified"
@@ -33,7 +32,6 @@ Feature: edit the content for the main page
 
   Scenario: Change the primary title message and apply the change on the main page
     When admin go to customizes/2/edit
-    Then I should see "Better Way to Find a Great Dog"
     When I fill in "customize_content" with "Greatest Way to Find the Greatest Dog"
     And  I press "Submit"
     Then I should see "The content has been modified"
