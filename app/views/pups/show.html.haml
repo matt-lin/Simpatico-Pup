@@ -4,35 +4,27 @@
     %thead
       %tr
         %th Puppy Name
-        %th Owner Name
-        / %th Breeder
-        %th Breed 1
-        %th Breed 2
+        %th Breed
+        %th Breeder
         %th Breeder Responsibility
         %th Overall Health
         %th Trainability
         %th Social Behavior
         %th Energy Level
         %th Simpatico Rating
-        %th Comments
-        %th More
 
     %tbody
       %tr
         %td= @pup.pup_name
-        %td= @pup.owner_name
-        / %td= @pup.breeder
-        %td= @pup.breed_1
-        %td= @pup.breed_2
+        %td= @pup.breed.name
+        %td= @pup.breeder.name
         %td= @pup.breeder_responsibility
         %td= @pup.overall_health
         %td= @pup.trainability
         %td= @pup.social_behavior
         %td= @pup.energy_level
         %td= @pup.simpatico_rating
-        %td= @pup.comments
 
 
   = button_to 'Delete pup', pup_path(:id => @pup.id), :method => :delete
-  %br
-  = button_to 'All pups', pups_path, :method => :get
+  

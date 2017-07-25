@@ -1,4 +1,21 @@
 %div{:class => "container text-container"}
   %div{:class => "header"}
-    %h1 Test
-    %p= @username
+    %h1 My Pups
+    
+  %table#pups{:class => "table table-striped"}
+    %thead
+      %tr
+        %th Puppy Name
+        %th Breed
+        %th Breeder
+        %th Comment
+        // %th Detail
+
+    %tbody
+      - @pups.each do |pup|
+        %tr
+          %td= pup.pup_name
+          %td= pup.breed.name
+          %td= pup.breeder.name
+          %td= pup.comment ? pup.comment.content : ""
+          %td= link_to "More", pup_path(pup)  

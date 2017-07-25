@@ -4,7 +4,7 @@ class PupsController < ApplicationController
   before_filter :check_sign_in, :only => [:new, :dog_name, :dog_how_long, :dog_breed, :dog_breeder]
 
   # Devise. Methods not in the list below will require a user to be logged in.
-  before_filter :authenticate_user!, except: [:index, :new, :main, :show, :breed, :search_breed]
+  before_filter :authenticate_user!, except: [:index, :new, :main, :breed, :search_breed]
 
   # def breeder_exists
   #   if params[:pup][:breeder_id].to_i == -1
@@ -70,6 +70,9 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
 
   def show
     @pup = Pup.find params[:id]
+    if current_user.id != @pup.user_id
+      redirect_to root_path
+    end
   end
 
   def create

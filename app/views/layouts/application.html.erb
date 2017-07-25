@@ -58,8 +58,11 @@
                     <%= "Logged in as " + current_user.username %>
                     
                   </li>
-
-
+                  
+                  <li>
+                    <%= link_to "My Pups", user_pups_path %>
+                  </li>  
+                    
                   <li>
                     <%= link_to "Edit Profile", edit_user_registration_path %>
                   </li>

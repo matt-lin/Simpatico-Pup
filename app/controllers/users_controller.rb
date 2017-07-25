@@ -4,5 +4,6 @@ class UsersController < ApplicationController
   
   def pups
     @username = current_user.username
+    @pups = Pup.where("user_id = ?", current_user.id)
   end
 end
