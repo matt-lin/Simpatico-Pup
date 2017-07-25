@@ -1,9 +1,14 @@
+#Iter 3-2 Improving File manager - catagorize the file (By Gung Hiu Ho, Licong Wang)
 #Iter 2-2 File manager (By Gung Hiu Ho, Licong Wang)
 ActiveAdmin.register Attachment do
   permit_params :attachment
   
   menu :label => 'File Manager'
   actions :all, except: [:edit]
+  
+  #TODO: Add more relationship
+  scope :all, :default => true
+  
   filter :document_file_name
   filter :document_file_size
   filter :marked
@@ -66,6 +71,8 @@ ActiveAdmin.register Attachment do
   form do |f|
     f.inputs "Upload File" do
       f.input :attachment, as: :file
+      f.input :catagory, :as => :radio, :collection => :newsletter
+      #f.input :category, as: :select
     end
     f.actions
   end
@@ -114,3 +121,4 @@ ActiveAdmin.register Attachment do
   end
 end
 #End of Iter 2-2
+#End of Iter 3-2
