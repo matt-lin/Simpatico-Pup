@@ -5,4 +5,9 @@ class Customize < ActiveRecord::Base
      "welcome1" => "ha",
      "welcome2" => "haha"
     }
+    
+    def self.texts
+        return @@texts
+    end
+
 end
