@@ -1,3 +1,4 @@
+<!--Iter 3-2 by Jeff Yu-->
 <!-- Contact batch email -->
 <!DOCTYPE html>
 <html>
@@ -5,15 +6,14 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <div>Name: <%= @name %></div>
+    <div><%= @name %></div>
     <br>
-    <div>Subject: <%= @subject %></div>
     <br>
-    <div>Reply to: <%= @email %></div>
+    <div><%= @message %></div>
     <br>
-    <div>Message: </div>
     <br>
-     <div><p><%= @message %></p></div>
-    <br>
+    <div>
+      <p>Click <%= link_to "here", unsubscribe_newsletter_url(email: @recipient)%> to unsubscribe newsletter.</p>
+    </div>
   </body>
 </html>

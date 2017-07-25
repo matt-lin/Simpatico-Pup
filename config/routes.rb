@@ -6,6 +6,10 @@ Ratemypup::Application.routes.draw do
 
   mount Thredded::Engine => '/forum'
   devise_for :users, controllers: {sessions: "sessions", registrations: 'users/registrations'}
+  
+  devise_scope :user do
+    get '/users/unsubscribe' => 'users/registrations#unsubscribe_newsletter', :as => :unsubscribe_newsletter
+  end
 
   root :to => 'pups#main'
 
@@ -44,7 +48,7 @@ Ratemypup::Application.routes.draw do
   get '/text/privacy_policy' => 'texts#privacy_policy', :as => :privacy_policy
   get '/text/terms_of_service' => 'texts#terms_of_service', :as => :terms_of_service
   get '/welcome' => 'texts#welcome', :as => :welcome
-
+  
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
