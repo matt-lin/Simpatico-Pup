@@ -1,5 +1,6 @@
 #encoding: utf-8
 customizes = [
+  {:name => 'Site_Name', :content => 'SimpaticoPup'},
   {:name => 'Primary_Title', :content => 'Better Way to Find a Great Dog' }, 
   {:name => 'Secondary_Title', :content => 'Find Dog Breeders Near You' },
   {:name => 'Rate_Dog_Top', :content => 'Rate your' },
