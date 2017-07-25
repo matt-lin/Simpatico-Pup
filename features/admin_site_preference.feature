@@ -8,7 +8,7 @@ Feature: edit the content for the main page
     Given I login as an admin
    
   Scenario: login and expect to see a user comments
-    When admin go to site_preference
+    When admin go to customizes
     Then admin should see "Title message"
     And admin should see "Button a text"
     And admin should see "Button b text"
