@@ -1,18 +1,12 @@
 # Iter 3-2 (By Gung Hiu Ho, Licong Wang)
 ActiveAdmin.register Customize do
-    
-    menu :priority => 1, :label => proc{ I18n.t("active_admin.dashboard") }
-    content :title => proc{ I18n.t("active_admin.customize") } do
-        columns do
-          column do
-            panel "Today's Dogs" do
-              table_for Pup.where(created_at: Date.today..Date.today.next) do
-                
-              end
-            end
-          end
+    index do
+        table_for order.customizes do
+          column(:payment_type) { |payment| payment.payment_type.titleize }
+          column "Received On",     :created_at
+          column "Details & Notes", :payment_details
+          column "Amount",          :amount_in_dollars
         end
-      end
-    
+    end
 end
 # End for Iter 3-2
