@@ -4,7 +4,7 @@
     
   %table#pups{:class => "table table-striped"}
     %thead
-      %tr
+      %tr 
         %th Puppy Name
         %th Breed
         %th Breeder
@@ -15,7 +15,7 @@
 
     %tbody
       - @pups.each do |pup|
-        %tr
+        %tr{:class => pup.id}
           %td= pup.pup_name
           %td= pup.breed.name
           %td= pup.breeder.name

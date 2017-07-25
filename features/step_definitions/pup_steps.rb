@@ -171,3 +171,17 @@ When /^I fill in the search breeder form with following: (.*)/ do |args|
   }
 end
 #End iter 2-2
+
+And(/^the following pups exist:/) do |table|
+  table.hashes.each do |pup|
+    Pup.create!(pup)
+  end
+end
+
+When(/^I fill in new info$/) do
+  pending
+end
+
+Then(/^I should see info updated$/) do
+  pending
+end
