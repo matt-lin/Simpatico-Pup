@@ -6,7 +6,6 @@ ActiveAdmin.register Attachment do
   menu :label => 'File Manager'
   actions :all
   
-  #TODO: Add more relationship
   scope :all, :default => true
   scope :Newsletter do |a|
     a.where(:catagory => "Newsletter")
@@ -90,7 +89,7 @@ ActiveAdmin.register Attachment do
   form do |f|
     f.inputs "Upload File" do
       f.input :attachment, as: :file
-      f.input :catagory, :as => :radio, :collection => Attachment::FILE_CATAGORIES
+      f.input :catagory, :as => :radio, :collection => Attachment::FILE_CATAGORIES, include_blank: false
     end
     f.actions
   end
@@ -108,7 +107,6 @@ ActiveAdmin.register Attachment do
 
     def create
       attrs = permitted_params[:attachment]
-      #type = permitted_params[:catagory]
       @empty = true
       @attachment = Attachment.new(document: params[:document])
       
