@@ -1,4 +1,4 @@
-#Iter 3-2
+# Iter 3-2
 Given (/^the default layout exist$/) do
   layouts = {
     Site_Name: 'SimpaticoPup',
@@ -23,5 +23,6 @@ Given (/^the default layout exist$/) do
   layouts.keys.each do |key|
     Customize.create!(name: key, content: layouts[key])
   end
-  
 end
+
+# End for Iter 3-2

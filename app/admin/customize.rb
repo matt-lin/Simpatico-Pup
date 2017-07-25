@@ -41,6 +41,8 @@ ActiveAdmin.register Customize do
   controller do
     def update
       super do |format|
+        puts 
+        flash[:notice] = "The content has been modified"
         redirect_to collection_url and return if resource.valid?
       end
     end
