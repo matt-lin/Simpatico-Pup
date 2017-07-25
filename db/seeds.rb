@@ -1,4 +1,5 @@
 #encoding: utf-8
+#Iter 3-2 Populate default layout into the database (By Gung Hiu Ho, Licong Wang)
 customizes = [
   {:name => 'Site_Name', :content => 'SimpaticoPup', :location => "site_title" },
   {:name => 'Primary_Title', :content => 'Better Way to Find a Great Dog', :location => "main_title" }, 
@@ -22,6 +23,7 @@ customizes = [
 customizes.each do |customize|
   Customize.create!(customize)
 end
+#End of Iter 3-2
 
 pups = [{:pup_name => 'Chloe', :year => 1, :month => 0, :breeder_id => '1', :breed_id => '1', :breeder_responsibility => '5', :overall_health => '5', :trainability => '3', :social_behavior => '4', :dog_behavior => '4', :energy_level => '4', :simpatico_rating => '5'},
   	 	{:pup_name => 'Spot', :year => 2, :month => 1, :breeder_id => '2', :breed_id => '1', :breeder_responsibility => '3', :overall_health => '3', :trainability => '3', :social_behavior => '3', :dog_behavior => '3', :energy_level => '3', :simpatico_rating => '3'},
