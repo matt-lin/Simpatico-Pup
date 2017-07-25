@@ -4,7 +4,7 @@ ActiveAdmin.register Attachment do
   permit_params :attachment
   
   menu :label => 'File Manager'
-  actions :all
+  actions :all, except: [:edit]
   
   scope :all, :default => true
   scope :Newsletter do |a|
@@ -80,9 +80,9 @@ ActiveAdmin.register Attachment do
   index do
     selectable_column
     column :document_file_name
+    column :catagory
     number_column :document_file_size, as: :human_size
     bool_column :marked
-    column :catagory
     actions
   end
 
