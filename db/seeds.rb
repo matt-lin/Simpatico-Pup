@@ -1,4 +1,20 @@
 #encoding: utf-8
+customizes = [
+  {:name => 'Primary_Title', :content => 'Better Way to Find a Great Dog' }, 
+  {:name => 'Secondary_Title', :content => 'Find Dog Breeders Near You' },
+  {:name => 'Rate_Dog_Top', :content => 'Rate your' },
+  {:name => 'Rate_Dog_Bottom', :content => 'Dog' },
+  {:name => 'Find_Breed_Top', :content => 'Find Ratings for a' },
+  {:name => 'Find_Breed_Bottom', :content => 'Breed' },
+  {:name => 'Find_Breeder_Top', :content => 'Find Ratings for a' },
+  {:name => 'Find_Breeder_Bottom', :content => 'Breeder' },
+  {:name => 'Search_Breeder_Top', :content => 'Search for a' },
+  {:name => 'Search_Breeder_Bottom', :content => 'Breeder' }
+  ]
+  
+customizes.each do |customize|
+  Customize.create!(customize)
+end
 
 pups = [{:pup_name => 'Chloe', :year => 1, :month => 0, :breeder_id => '1', :breed_id => '1', :breeder_responsibility => '5', :overall_health => '5', :trainability => '3', :social_behavior => '4', :dog_behavior => '4', :energy_level => '4', :simpatico_rating => '5'},
   	 	{:pup_name => 'Spot', :year => 2, :month => 1, :breeder_id => '2', :breed_id => '1', :breeder_responsibility => '3', :overall_health => '3', :trainability => '3', :social_behavior => '3', :dog_behavior => '3', :energy_level => '3', :simpatico_rating => '3'},
@@ -268,19 +284,6 @@ newsletter_users = [
     {:email => 'nu3@gmail.com', :created_at => DateTime.now, :updated_at => DateTime.now},
     {:email => 'nu4@gmail.com', :created_at => DateTime.now, :updated_at => DateTime.now}]
 
-customizes = [
-  {:name => 'Primary_Title', :content => 'Better Way to Find a Great Dog' }, 
-  {:name => 'Secondary_Title', :content => 'Find Dog Breeders Near You' },
-  {:name => 'Rate_Dog_Top', :content => 'Rate your' },
-  {:name => 'Rate_Dog_Bottom', :content => 'Dog' },
-  {:name => 'Find_Breed_Top', :content => 'Find Ratings for a' },
-  {:name => 'Find_Breed_Bottom', :content => 'Breed' },
-  {:name => 'Find_Breeder_Top', :content => 'Find Ratings for a' },
-  {:name => 'Find_Breeder_Bottom', :content => 'Breeder' },
-  {:name => 'Search_Breeder_Top', :content => 'Search for a' },
-  {:name => 'Search_Breeder_Bottom', :content => 'Breeder' }
-  ]
-
 newsletter_users.each do |nl_user|
   NewsletterUser.create!(nl_user)
 end
@@ -303,10 +306,6 @@ end
 
 texts.each do |text|
   Text.create!(text)
-end
-
-customizes.each do |customize|
-  Customize.create!(customize)
 end
 
 AdminUser.create!(:email => 'admin@berkeley.edu', :password => 'password', :password_confirmation => 'password')
