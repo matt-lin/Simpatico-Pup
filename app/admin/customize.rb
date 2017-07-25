@@ -23,12 +23,10 @@ ActiveAdmin.register Customize do
   
   
   index do
-    table_for Customize.all do
-      column :name 
-      column :content
-      column :location
-      actions
-    end
+    column :name 
+    column :content
+    column :location
+    actions
   end
   
   form do |f|

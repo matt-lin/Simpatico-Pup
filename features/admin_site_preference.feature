@@ -9,11 +9,16 @@ Feature: edit the content for the main page
    
   Scenario: login and expect to see a user comments
     When admin go to customizes
-    Then admin should see "Title message"
-    And admin should see "Button a text"
-    And admin should see "Button b text"
-    And admin should see "Button c text"
-    And admin should see  "welcome message"
+    Then I should see all of:
+      | Site_Title      |
+      | main_title      |
+      | main_button  |
+      | main_bar        |
+      | Better Way to Find a Great Dog  |
+      | Find Dog Breeders Near You     |
+    When I follow "Main Page Welcome Title"
+    Then I should see "Find Dog Breeders Near You"
+    And I should not see "For more information on Breed Health"
     
   Scenario: Change the title message and apply the change on the main page
     When admin go to site_preference
