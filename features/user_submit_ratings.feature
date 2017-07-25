@@ -8,8 +8,8 @@ Feature: only users with a user profile should be able to submit a rating
   Background: reviews have been added to the database
 
   Scenario: there should be a login button on the home page
-
-    Given I am on the RateMyPup home page
+    Given the default layout exist
+    And I am on the RateMyPup home page
     Then I should see "Login"
     Then I should see "Signup"
     When I follow "Login"
