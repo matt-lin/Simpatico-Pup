@@ -65,12 +65,12 @@ Background: User already login
     When  I follow "More" for "dog1"
     Then  I should see correct info    
     
-  # Scenario: users can add breeder if he wants
-  #   When  I follow "Edit" for "dog1"
-  #   And   I fill in with a non-existing breeder
-  #   And   I press "Save"
-  #   Then  I should be on the "Edit Pup Rating" page
-  #   And   I should see "..."    
+  Scenario: users can add breeder if he wants
+    When  I follow "Edit" for "dog1"
+    And   I fill in with a non-existing breeder
+    And   I press "Save"
+    Then  I should be on the "Edit Pup Rating" page
+    And   I should see "Breeder is not in our database."    
   
   Scenario: users can go to details page and delete pup
     When  I follow "More" for "dog1"
