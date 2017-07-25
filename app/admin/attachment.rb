@@ -14,7 +14,10 @@ ActiveAdmin.register Attachment do
     a.where(:catagory => "Document")
   end
   scope :Image do |a|
-    a.where(:catagory => ["Image"])
+    a.where(:catagory => "Image")
+  end
+  scope :Music do |a|
+    a.where(:catagory => "Music")
   end
   scope :Video do |a|
     a.where(:catagory => "Video")

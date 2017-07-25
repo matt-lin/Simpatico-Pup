@@ -4,7 +4,7 @@ class Attachment < ActiveRecord::Base
     attr_accessible :document
     attr_accessible :catagory
     
-    FILE_CATAGORIES = ["Newsletter", "Document", "Image", "Video", "Administive", "Others"]
+    FILE_CATAGORIES = ["Newsletter", "Document", "Image", "Music", "Video", "Administive", "Others"]
     
     attachment_virtual_path = "/system/attachments/:rails_env/:hashed_path/:id/:style/:basename.:extension"
     attachment_real_path = ":rails_root/public" + attachment_virtual_path
