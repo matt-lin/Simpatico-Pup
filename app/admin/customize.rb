@@ -3,6 +3,25 @@ ActiveAdmin.register Customize do
   config.clear_sidebar_sections!
   actions :index, :edit
   menu :label => 'Site preference'
+  
+  scope :all, :default => true
+  scope :'Site Title' do |a|
+    a.where(:location => "site_title")
+  end
+  scope :'Main Page Welcome Title' do |a|
+    a.where(:location => "main_title")
+  end
+  scope :'Main Page Buttons' do |a|
+    a.where(:location => "main_button")
+  end
+  scope :'Main Page Blue Bar' do |a|
+    a.where(:location => "main_bar")
+  end
+  scope :Others do |a|
+    a.where(:location => "Others")
+  end
+  
+  
   index do
     table_for Customize.all do
       column :name 

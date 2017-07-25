@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 201707200916261) do
   create_table "customizes", force: :cascade do |t|
     t.string "name"
     t.string "content"
+    t.string "location", default: "Others"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
