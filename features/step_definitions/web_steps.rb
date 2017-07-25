@@ -15,7 +15,7 @@ When /^(?:I )go to (.+)$/ do |page_name|
 end
 
 When(/^(?:admin )go to (.+)$/) do |page_name|
-    visit "/admin/"+page_name
+  visit "/admin/"+page_name
 end
 
 Given /^(?:I )am on (.+)$/ do |page_name|

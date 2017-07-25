@@ -5,8 +5,11 @@ Feature: edit the content for the main page
   So that I can edit content in main the page on admin page
   
   Background: Given I login as an admin
-    Given I login as an admin
+  
+  Given the default layout exist
+  And I login as an admin
    
+<<<<<<< HEAD
   Scenario: login and expect to see a user comments
     When admin go to customizes
     Then I should see all of:
@@ -19,22 +22,39 @@ Feature: edit the content for the main page
     When I follow "Main Page Welcome Title"
     Then I should see "Find Dog Breeders Near You"
     And I should not see "For more information on Breed Health"
+=======
+  Scenario: login and expect to see editable texts
+    When admin go to customizes
+    Then I should see all of:
+      | Name         |
+      | Site_Name    |
+      | Content      |
+      | SimpaticoPup |
+      | Location     |
+      | site_title   |
+      | edit         |
+>>>>>>> 5ec3dcf3a0f32031122c40b35c653f7f53e772b2
     
-  Scenario: Change the title message and apply the change on the main page
-    When admin go to site_preference
-    When I fill in "title_message" with "hi title"
-    And  I press "Submit"
-    Then I should see "The content has been modified"
-    When I am in the homepage
-    Then I should see "hi title"
+  Scenario: Change the website title and apply the change on the main page
+    When admin go to customizes
+    And I follow "Edit"
+    Then I should see "SimpaticoPup"
+    And I fill in "customize_content" with "PupSimpatico"
+    And I press "Submit"
+    And I should see "The content has been modified"
+    When I go to the RateMyPup home page
+    Then I should see "PupSimpatico"
+    And I should not see "SimpaticoPup"
 
-  Scenario: Change the button text and apply the change on the main page
-    When admin go to site_preference
-    When I fill in "button_a_text" with "rate my puppy"
+  Scenario: Change the primary title message and apply the change on the main page
+    When admin go to customizes/2/edit
+    Then I should see "Better Way to Find a Great Dog"
+    When I fill in "customize_content" with "Greatest Way to Find the Greatest Dog"
     And  I press "Submit"
     Then I should see "The content has been modified"
-    When I am in the homepage
-    Then I should see "rate my puppy"
-    And I should not see "rate my dog"
+    And I should see "The content has been modified"
+    When I go to the RateMyPup home page
+    Then I should see "Greatest Way to Find the Greatest Dog"
+    And I should not see "Better Way to Find a Great Dog"
 
 # End Iter 3-1
