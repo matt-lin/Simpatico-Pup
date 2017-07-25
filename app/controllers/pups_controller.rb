@@ -19,7 +19,16 @@ class PupsController < ApplicationController
       @username = current_user.username
     end
     
-    @welcome1 = Customize.find_by_name("Welcome1").content
+    @primary_title = Customize.find_by_name("Primary_Title").content
+    @secondary_title = Customize.find_by_name("Secondary_Title").content
+    @rate_dog_top = Customize.find_by_name("Rate_Dog_Top").content
+    @rate_Dog_bottom = Customize.find_by_name("Rate_Dog_Bottom").content
+    @find_breed_top = Customize.find_by_name("Find_Breed_Top").content
+    @find_breed_bottom = Customize.find_by_name("Find_Breed_Bottom").content
+    @rate_dog_top = Customize.find_by_name("Rate_Dog_Top").content
+    @rate_dog_bottom = Customize.find_by_name("Rate_Dog_Bottom").content
+    @find_breed_top = Customize.find_by_name("Find_Breed_Top").content
+    @find_breed_bottom = Customize.find_by_name("Find_Breed_Bottom").content
     
     start_over
     selected_comment = SelectedComment.find_randomly
