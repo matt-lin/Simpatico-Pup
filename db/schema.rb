@@ -366,7 +366,6 @@ ActiveRecord::Schema.define(version: 201707200916261) do
     t.boolean  "activated",              default: false
     t.datetime "activated_at"
     t.string   "reset_password_token"
-    t.string   "string"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
