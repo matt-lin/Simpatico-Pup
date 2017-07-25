@@ -77,7 +77,6 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
     
     if !owner?(@pup)
       flash[:notice] = "The dog you are trying to show is not yours"
-      p flash[:notice]
       redirect_to root_path and return
     end
   end
@@ -271,7 +270,7 @@ with you for a minimum of six months. Thank you."
 
   private
   def owner?(pup)
-    return pup.id == current_user.id
+    return pup.user_id == current_user.id
   end
   
   def check_sign_in
