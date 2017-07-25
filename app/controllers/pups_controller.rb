@@ -19,6 +19,8 @@ class PupsController < ApplicationController
       @username = current_user.username
     end
     
+    @welcome1 = Customize.find_by_name("Welcome1").content
+    
     start_over
     selected_comment = SelectedComment.find_randomly
     # Iter 2
