@@ -269,8 +269,17 @@ newsletter_users = [
     {:email => 'nu4@gmail.com', :created_at => DateTime.now, :updated_at => DateTime.now}]
 
 customizes = [
-  {:name => 'Welcome1', :content => 'Hello there!' }, 
-  {:name => 'Welcome2', :content => 'Hello there!!!!!!!!!!' }]
+  {:name => 'Primary_Title', :content => 'Better Way to Find a Great Dog' }, 
+  {:name => 'Secondary_Title', :content => 'Find Dog Breeders Near You' },
+  {:name => 'Rate_Dog_Top', :content => 'Rate your' },
+  {:name => 'Rate_Dog_Bottom', :content => 'Dog' },
+  {:name => 'Find_Breed_Top', :content => 'Find Ratings for a' },
+  {:name => 'Find_Breed_Bottom', :content => 'Breed' },
+  {:name => 'Rate_Dog_Top', :content => 'Find Ratings for a' },
+  {:name => 'Rate_Dog_Bottom', :content => 'Breeder' },
+  {:name => 'Find_Breed_Top', :content => 'Search for a' },
+  {:name => 'Find_Breed_Bottom', :content => 'Breeder' },
+  ]
 
 newsletter_users.each do |nl_user|
   NewsletterUser.create!(nl_user)
