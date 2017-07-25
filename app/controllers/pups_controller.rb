@@ -71,6 +71,7 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
   def show
     @pup = Pup.find params[:id]
     if current_user.id != @pup.user_id
+      flash[:notice] = "The dog you are trying to show is not yours"
       redirect_to root_path
     end
   end
