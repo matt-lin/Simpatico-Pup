@@ -275,10 +275,10 @@ customizes = [
   {:name => 'Rate_Dog_Bottom', :content => 'Dog' },
   {:name => 'Find_Breed_Top', :content => 'Find Ratings for a' },
   {:name => 'Find_Breed_Bottom', :content => 'Breed' },
-  {:name => 'Rate_Dog_Top', :content => 'Find Ratings for a' },
-  {:name => 'Rate_Dog_Bottom', :content => 'Breeder' },
-  {:name => 'Find_Breed_Top', :content => 'Search for a' },
-  {:name => 'Find_Breed_Bottom', :content => 'Breeder' },
+  {:name => 'Find_Breeder_Top', :content => 'Find Ratings for a' },
+  {:name => 'Find_Breeder_Bottom', :content => 'Breeder' },
+  {:name => 'Search_Breeder_Top', :content => 'Search for a' },
+  {:name => 'Search_Breeder_Bottom', :content => 'Breeder' }
   ]
 
 newsletter_users.each do |nl_user|
