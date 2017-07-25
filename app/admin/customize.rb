@@ -21,7 +21,6 @@ ActiveAdmin.register Customize do
     a.where(:location => "Others")
   end
   
-  
   index do
     column :name 
     column :content

@@ -9,7 +9,7 @@ Feature: edit the content for the main page
   Given the default layout exist
   And I login as an admin
    
-<<<<<<< HEAD
+
   Scenario: login and expect to see a user comments
     When admin go to customizes
     Then I should see all of:
@@ -22,23 +22,9 @@ Feature: edit the content for the main page
     When I follow "Main Page Welcome Title"
     Then I should see "Find Dog Breeders Near You"
     And I should not see "For more information on Breed Health"
-=======
-  Scenario: login and expect to see editable texts
-    When admin go to customizes
-    Then I should see all of:
-      | Name         |
-      | Site_Name    |
-      | Content      |
-      | SimpaticoPup |
-      | Location     |
-      | site_title   |
-      | edit         |
->>>>>>> 5ec3dcf3a0f32031122c40b35c653f7f53e772b2
-    
+
   Scenario: Change the website title and apply the change on the main page
-    When admin go to customizes
-    And I follow "Edit"
-    Then I should see "SimpaticoPup"
+    When admin go to customizes/1/edit
     And I fill in "customize_content" with "PupSimpatico"
     And I press "Submit"
     And I should see "The content has been modified"
@@ -48,11 +34,9 @@ Feature: edit the content for the main page
 
   Scenario: Change the primary title message and apply the change on the main page
     When admin go to customizes/2/edit
-    Then I should see "Better Way to Find a Great Dog"
     When I fill in "customize_content" with "Greatest Way to Find the Greatest Dog"
     And  I press "Submit"
     Then I should see "The content has been modified"
-    And I should see "The content has been modified"
     When I go to the RateMyPup home page
     Then I should see "Greatest Way to Find the Greatest Dog"
     And I should not see "Better Way to Find a Great Dog"
