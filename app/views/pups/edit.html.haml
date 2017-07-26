@@ -30,7 +30,13 @@
         %div{:id => 'autofills', :class => "form-group col-md-12"}
       %br
       
-      = label_tag 'comment', 'Comment'
+      %div{:class => "form-group col-lg-12", :id => "hashtags"}
+        %h3 Hashtags (Up to 3)
+        = text_field :pup, 'hashtag_1', :class => "form-control", :id =>"invisible_hashtag_1", :type => 'hidden'
+        = text_field :pup, 'hashtag_2', :class => "form-control", :id =>"invisible_hashtag_2", :type => 'hidden'
+        = text_field :pup, 'hashtag_3', :class => "form-control", :id =>"invisible_hashtag_3", :type => 'hidden'
+      
+      = label_tag 'comment', 'Comment (140 chars limit)'
       = text_field_tag 'comment', @comment_content, :maxlength => 140, :placeholder => 'Enter Comment', :class => 'form-control', :id => 'comment'
       %br
       
@@ -41,6 +47,8 @@
     .col-sm-5.form-group
       = link_to 'Cancel', :back, :class => 'form-control cancel'
       
+    %br
+    %br
     %br
     %br
       
