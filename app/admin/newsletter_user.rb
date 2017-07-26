@@ -29,8 +29,12 @@ ActiveAdmin.register NewsletterUser do
     batch_action_collection.find(ids).each do |user|
       if inputs["Include Email Template"]
         EmailTemplate.all.each do |b|
-          inputs[:subject] = b.title
-          inputs[:message] = b.body
+          if b.marked
+            b.marked = false
+            inputs[:subject] = b.title
+            inputs[:message] = b.body
+          end
+          b.save
         end
       end
       if params[:test]
