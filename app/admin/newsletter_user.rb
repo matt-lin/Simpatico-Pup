@@ -18,12 +18,21 @@ ActiveAdmin.register NewsletterUser do
     end       
   end
   
+  
   batch_action :email, form: {
       subject: :text,
       message: :textarea ,
-      "Include Attachment" => :checkbox
+      "Include Attachment" => :checkbox,
+      
+      "Include Email Template" => :checkbox
     }, confirm: "Please enter the subject and the message below" do |ids, inputs|
     batch_action_collection.find(ids).each do |user|
+      if inputs["Include Email Template"]
+        EmailTemplate.all.each do |b|
+          inputs[:subject] = b.title
+          inputs[:message] = b.body
+        end
+      end
       if params[:test]
         ContactBatchMailer.contact_batch_email('Dear Newsletter Subscribers', params[:message], params[:subject], user.email, params["Include Attachment"]).deliver_now
       else

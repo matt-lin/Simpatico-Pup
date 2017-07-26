@@ -1,18 +1,21 @@
 ActiveAdmin.register EmailTemplate do
-
   permit_params :title, :body
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # permit_params :list, :of, :attributes, :on, :model
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:permitted, :attributes]
-  #   permitted << :other if resource.something?
-  #   permitted
-  # end
-
-
+  batch_action :send do |ids|
+    redirect_to admin_newsletter_users_path
+  end
+  batch_action :mark do |ids|
+    batch_action_collection.find(ids).each do |b|
+      b.marked = true
+      b.save
+    end
+    redirect_to collection_path, notice: "The selected template have been marked and will be the email."
+  end
+  
+  batch_action :unmark do |ids|
+    batch_action_collection.find(ids).each do |a|
+      b.marked = false
+      b.save
+    end
+    redirect_to collection_path, notice: "The selected template have been unmarked and will not be the email."
+  end
 end
