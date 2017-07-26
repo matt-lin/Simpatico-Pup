@@ -108,7 +108,7 @@ class Pup < ActiveRecord::Base
   def update_breeder(breeder_str)
     if breeder_str.empty?
       self.breeder = Breeder.where('name = ?', 'Unknown').first
-      return
+      return self.breeder
     end
     
     breeder = Breeder.find_by_formatted_string(breeder_str)
