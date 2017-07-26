@@ -96,6 +96,28 @@ class Pup < ActiveRecord::Base
     not Breed.find_by_name(breed_name) == nil
   end
   
+  def update_comment(content)
+    if self.comment
+      self.comment.content = content
+      self.comment.save
+    else
+      self.create_comment(:content => content)
+    end
+  end
+  
+  def update_breeder(breeder_str)
+    if breeder_str.empty?
+      self.breeder = Breeder.where('name = ?', 'Unknown').first
+      return
+    end
+    
+    breeder = Breeder.find_by_formatted_string(breeder_str)
+    if breeder
+      self.breeder = breeder
+    else
+      # New Breeder
+    end
+  end
   
   private
   def limit_ratings

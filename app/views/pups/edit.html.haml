@@ -11,11 +11,11 @@
       
       = label_tag 'Time you have owned your dog.'
       %p Years
-      %select{:class => "form-control", :id => 'pup_years', :name => 'pup[year]'} 
+      %select{:class => 'form-control', :id => 'pup_years', :name => 'pup[year]'} 
         = options_for_select((0..20).to_a, @pup.year)
       
       %p Month
-      %select{:class => "form-control", :id => 'pup_months', :name => 'pup[month]'} 
+      %select{:class => 'form-control', :id => 'pup_months', :name => 'pup[month]'} 
         = options_for_select((0..12).to_a, @pup.month)
       %br
       
@@ -24,9 +24,9 @@
         = options_for_select(@breeds.collect {|p| p.name }, @breed)
       %br 
       
-      = label_tag 'breeder_form', 'Breeder'
+      = label_tag 'breeder_form', 'Breeder (Left Blank if Breeder is unknown)'
       %div{:class => 'collapse in', :id => 'breeder_form_collapse'}
-        = text_field_tag 'breeder_name', @breeder_text, :placeholder => 'Enter Breeder', :class => "form-control", :id => "breeder_form"
+        = text_field_tag 'breeder_str', @breeder_text, :placeholder => 'Enter Breeder if known', :class => 'form-control', :id => 'breeder_form'
         %div{:id => 'autofills', :class => "form-group col-md-12"}
       %br
       
@@ -36,9 +36,9 @@
       
       
     %div{:class => "form-group col-sm-5"}
-      = submit_tag 'Update', :class => "form-control", :id => 'update_button'
+      = submit_tag 'Update', :class => 'form-control', :id => 'update_button'
     .col-sm-1
     .col-sm-5.form-group
-      = link_to 'Cancel', :back, :class => "form-control cancel"
+      = link_to 'Cancel', :back, :class => 'form-control cancel'
       
       

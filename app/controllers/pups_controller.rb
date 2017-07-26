@@ -137,13 +137,14 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     p params
     
     @pup.breed_id = Breed.find_by_name(params[:breed_name]).id
-    
-    if @pup.comment
-      @pup.comment.content = params[:comment]
-      @pup.comment.save
-    else
-      @pup.comment.create(:content => params[:comment])
-    end
+    @pup.update_comment(params[:comment])
+    @pup.update_breeder(params[:breeder_str])
+    # if @pup.comment
+    #   @pup.comment.content = params[:comment]
+    #   @pup.comment.save
+    # else
+    #   @pup.comment.create(:content => params[:comment])
+    # end
     
     @pup.save
     
@@ -201,12 +202,9 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     
     @breed = @pup.breed.name
     breeder = @pup.breeder
-    @breeder_text = breeder.name
+    @breeder_text = breeder.name + " - " + breeder.address
     @comment_content = @pup.comment ? @pup.comment.content : ""
-    
-    if !breeder.city.empty?
-      @breeder_text = @breeder_text + ' - ' + breeder.city + ', ' + breeder.state 
-    end
+
   end
 
 
