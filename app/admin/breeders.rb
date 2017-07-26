@@ -19,11 +19,12 @@ ActiveAdmin.register Breeder do
       f.input :name
     end
     f.inputs 'City' do
-      f.input :name
+      f.input :city
     end
     f.inputs 'State' do
-      f.input :name
+      f.input :state
     end
+    f.button :Submit
   end
 
   show do
