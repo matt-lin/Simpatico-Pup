@@ -19,7 +19,7 @@ class PupsController < ApplicationController
       @username = current_user.username
     end
     
-    #Iter 3-2 Customize the main page (By Gung Hiu Ho, Licong Wang)
+    # Iter 3-2 Customize the main page (By Gung Hiu Ho, Licong Wang)
     @primary_title = Customize.find_by_name("Primary_Title").content
     @secondary_title = Customize.find_by_name("Secondary_Title").content
     @rate_dog_top = Customize.find_by_name("Rate_Dog_Top").content
@@ -30,6 +30,9 @@ class PupsController < ApplicationController
     @find_breeder_bottom = Customize.find_by_name("Find_Breeder_Bottom").content
     @search_breeder_top = Customize.find_by_name("Search_Breeder_Top").content
     @search_breeder_bottom = Customize.find_by_name("Search_Breeder_Bottom").content
+    @search_breeder_bottom = Customize.find_by_name("Search_Breeder_Bottom").content
+    @comment_title = Customize.find_by_name("Comment_Title").content
+    # End for Iter 3-2
     
     start_over
     selected_comment = SelectedComment.find_randomly

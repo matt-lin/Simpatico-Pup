@@ -17,8 +17,8 @@ customizes = [
   {:name => 'Blue_Bar_Top_Right', :content => 'Contact Info', :location => "main_bar" },
   {:name => 'Blue_Bar_Bottom_Left', :content => 'Canine Health Information Center', :location => "main_bar" },
   {:name => 'Blue_Bar_Bottom_Middle', :content => 'Terms of Service', :location => "main_bar" },
-  {:name => 'Blue_Bar_Bottom_Right', :content => 'LSandersDVM@gmail.com', :location => "main_bar" }
-  ]
+  {:name => 'Blue_Bar_Bottom_Right', :content => 'LSandersDVM@gmail.com', :location => "main_bar" },
+  {:name => 'Comment_Title', :content => 'Featured Comment', :location => "main_title" }]
   
 customizes.each do |customize|
   Customize.create!(customize)

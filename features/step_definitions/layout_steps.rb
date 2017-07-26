@@ -17,7 +17,8 @@ Given (/^the default layout exist$/) do
     Blue_Bar_Top_Right: ['Contact Info', 'main_bar'],
     Blue_Bar_Bottom_Left: ['Canine Health Information Center', 'main_bar'],
     Blue_Bar_Bottom_Middle: ['Terms of Service', 'main_bar'],
-    Blue_Bar_Bottom_Right: ['LSandersDVM@gmail.com', 'main_bar']
+    Blue_Bar_Bottom_Right: ['LSandersDVM@gmail.com', 'main_bar'],
+    Comment_Title: ['Featured Comment', 'main_title']
   }
   
   layouts.keys.each do |key|
