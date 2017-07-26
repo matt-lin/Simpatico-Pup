@@ -1,0 +1,13 @@
+%div{:class => "container"}
+  %div{:class => "header"}
+    %h1= "Edit #{@pup.pup_name}"
+  
+  = form_tag pup_path, :class => "form-horizontal", :autocomplete => 'off', :method => 'put' do
+  
+    %div{:class => "form-group great text-center", :class => "sub-title"}
+      = label_tag 'name', 'Pup name'
+      = text_field :pup, "pup_name", :class => "form-control"
+      %br
+      
+    %div{:class => "form-group col-sm-5"}
+      = submit_tag 'Next', :class => "form-control", :id => 'next_button'

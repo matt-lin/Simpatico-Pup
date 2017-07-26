@@ -68,19 +68,6 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
     @pups = Pup.all
   end
 
-  def show
-    @pup = Pup.find_by_id params[:id]
-    if @pup.nil?
-      flash[:notice] = "The dog you are trying to show is not exist"
-      redirect_to root_path and return
-    end
-    
-    if !owner?(@pup)
-      flash[:notice] = "The dog you are trying to show is not yours"
-      redirect_to root_path and return
-    end
-  end
-
   def create
     # gather pup ifo
     
@@ -146,20 +133,56 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     @pup.update_attributes(params[:pup])
     redirect_to pups_path
   end
-
-  def destroy
-    @pup = Pup.find params[:id]
+  
+  def show
+    @pup = Pup.find_by_id params[:id]
+    success = true
     
-    if !owner?(@pup)
+    if @pup.nil?
+      flash[:notice] = "The dog you are trying to show is not exist"
+      success = false
+      # redirect_to root_path and return
+    elsif !owner?(@pup)
       flash[:notice] = "The dog you are trying to show is not yours"
-      redirect_to root_path and return
+      success = false
+      # redirect_to root_path and return
     end
     
-    flash[:notice] = "Pup #{@pup.pup_name} has been deleted" 
-    @pup.destroy
-    redirect_to root_path
+    if !success
+      redirect_to root_path and return
+    end
   end
 
+  def destroy
+    @pup = Pup.find_by_id params[:id]
+    
+    if @pup.nil?
+      flash[:notice] = "Dog doesn't exist"
+    elsif !owner?(@pup)
+      flash[:notice] = "The dog you are trying to show is not yours"
+    else  
+      flash[:notice] = "Pup #{@pup.pup_name} has been deleted" 
+      @pup.destroy
+    end
+    redirect_to root_path
+  end
+  
+  def edit
+    @pup = Pup.find_by_id params[:id]
+    success = true
+    
+    if @pup.nil?
+      flash[:notice] = "The dog you are trying to edit is not exist"
+      success = false
+    elsif !owner?(@pup)
+      flash[:notice] = "The dog you are trying to edit is not yours"
+      success = false
+    end
+    
+    if !success
+      redirect_to root_path and return
+    end
+  end
 
 
   #################### Start Questionnaire ####################

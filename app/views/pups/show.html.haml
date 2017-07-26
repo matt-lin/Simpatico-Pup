@@ -40,4 +40,5 @@
   
     
   %div{:class=>"action"}
-    = button_to 'Delete pup', pup_path(:id => @pup.id), :method => :delete 
+    = button_to 'Delete pup', pup_path(:id => @pup.id), :method => :delete, :data => {:confirm => "Are you sure you want to delete this pup?" }
+    = button_to 'Edit pup', edit_pup_path(@pup), :method => :get

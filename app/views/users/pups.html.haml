@@ -24,6 +24,6 @@
           %td= pup.updated_at.to_date
           %td
             = link_to "Delete", pup_path(:id => pup.id), :method => :delete, :data => {:confirm => "Are you sure you want to delete #{pup.pup_name}?"} 
-            = link_to "Edit", root_path
+            = link_to "Edit", edit_pup_path(pup)
           %td= link_to "More", pup_path(pup) 
           
