@@ -127,11 +127,28 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     flash[:notice] = "Thank You! #{@pup.pup_name} was successfully added to our database."
     redirect_to root_path
   end
-
+  
+  # Still need check if it is owner and check if dog exist
+  # Update comment, breed, breeder cannot be done directly
   def update
-    @pup = Pup.find params[:id]
+    @pup = Pup.find_by_id params[:id]
     @pup.update_attributes(params[:pup])
-    redirect_to pups_path
+    p "*" * 80
+    p params
+    
+    @pup.breed_id = Breed.find_by_name(params[:breed_name]).id
+    
+    if @pup.comment
+      @pup.comment.content = params[:comment]
+      @pup.comment.save
+    else
+      @pup.comment.create(:content => params[:comment])
+    end
+    
+    @pup.save
+    
+    flash[:notice] = "Pup has been updated"
+    redirect_to user_pups_path
   end
   
   def show
@@ -169,6 +186,7 @@ currently limiting the number of ratings made by each dog owner to eight, and li
   
   def edit
     @pup = Pup.find_by_id params[:id]
+    @breeds = Breed.all
     success = true
     
     if @pup.nil?
@@ -181,6 +199,15 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     
     if !success
       redirect_to root_path and return
+    end
+    
+    @breed = @pup.breed.name
+    breeder = @pup.breeder
+    @breeder_text = breeder.name
+    @comment_content = @pup.comment ? @pup.comment.content : ""
+    
+    if !breeder.city.empty?
+      @breeder_text = @breeder_text + ' - ' + breeder.city + ', ' + breeder.state 
     end
   end
 
