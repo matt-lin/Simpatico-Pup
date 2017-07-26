@@ -41,4 +41,13 @@
     .col-sm-5.form-group
       = link_to 'Cancel', :back, :class => 'form-control cancel'
       
+    %br
+    %br
       
+= render 'popup', :info => {:close => true, :add_breeder => true, :header=>"The breeder you enter is not in our database", :content=>"Please add a breeder before updating your pup"}
+
+- if flash[:modal]
+  :javascript
+    $(document).ready(function() {
+      $('#popup').modal({backdrop:'static', keyboard:false});
+    })

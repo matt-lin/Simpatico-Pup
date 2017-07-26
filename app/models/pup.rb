@@ -116,6 +116,7 @@ class Pup < ActiveRecord::Base
       self.breeder = breeder
     else
       # New Breeder
+      nil
     end
   end
   

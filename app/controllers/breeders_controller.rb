@@ -106,6 +106,15 @@ class BreedersController < ApplicationController
       flash[:message] = message
     end
     flash[:notice] = "Breeder #{name} has been added to our database!"
+    
+    if session[:pup_id]
+      pup = Pup.find_by_id session[:pup_id]
+      pup.breeder = breeder
+      pup.save
+      session.delete :pup_id
+      redirect_to edit_pup_path(pup) and return
+    end
+    
     redirect_to new_pup_path(:breeder => {:name => (name+' - '+city+', '+state)})
   end
 

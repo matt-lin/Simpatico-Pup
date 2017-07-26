@@ -8,7 +8,7 @@ class Breeder < ActiveRecord::Base
   after_validation :geocode
 
   def address
-    if self.city and self.state
+    unless self.city.empty? and self.state.empty?
       self.city + ', ' + self.state
     else
       ""

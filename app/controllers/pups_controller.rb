@@ -129,16 +129,24 @@ currently limiting the number of ratings made by each dog owner to eight, and li
   end
   
   # Still need check if it is owner and check if dog exist
+  # pup_name, year, month updated directly using update_attributes
   # Update comment, breed, breeder cannot be done directly
   def update
     @pup = Pup.find_by_id params[:id]
+    
+    breeder = @pup.update_breeder(params[:breeder_str])
+    if !breeder
+      flash[:modal] = "Non existing breeder."
+      session[:pup_id] = params[:id]
+      redirect_to edit_pup_path(@pup) and return
+    end
+    
     @pup.update_attributes(params[:pup])
     p "*" * 80
     p params
     
     @pup.breed_id = Breed.find_by_name(params[:breed_name]).id
     @pup.update_comment(params[:comment])
-    @pup.update_breeder(params[:breeder_str])
     # if @pup.comment
     #   @pup.comment.content = params[:comment]
     #   @pup.comment.save
@@ -165,7 +173,7 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     end
     
     if !success
-      redirect_to root_path and return
+      redirect_to root_path
     end
   end
 
@@ -175,10 +183,10 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     if @pup.nil?
       flash[:notice] = "Dog doesn't exist"
     elsif !owner?(@pup)
-      flash[:notice] = "The dog you are trying to show is not yours"
+      flash[:notice] = "The dog you are trying to destroy is not yours"
     else  
-      flash[:notice] = "Pup #{@pup.pup_name} has been deleted" 
       @pup.destroy
+      flash[:notice] = "Pup #{@pup.pup_name} has been deleted" 
     end
     redirect_to root_path
   end
@@ -202,7 +210,12 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     
     @breed = @pup.breed.name
     breeder = @pup.breeder
-    @breeder_text = breeder.name + " - " + breeder.address
+    if breeder.name != 'Unknown'
+      @breeder_text = breeder.name + " - " + breeder.address
+    else
+      @breeder_text = ''
+    end
+    
     @comment_content = @pup.comment ? @pup.comment.content : ""
 
   end
