@@ -166,3 +166,11 @@ When (/^I delete this uploaded file$/) do
 end
 #End for Iter 2-2
 
+When (/^"([^"]*)" simply open the email$/) do |username|
+  open_email("#{username}@berkeley.edu")
+end
+
+When (/^"([^"]*)" go to the link to unsubscribe newsletter$/) do |username|
+  open_email("#{username}@berkeley.edu")
+  current_email.click_link 'here'
+end
