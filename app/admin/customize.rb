@@ -45,4 +45,4 @@ ActiveAdmin.register Customize do
     end
   end
 end
-# End for Iter 3-2
+# End of Iter 3-2

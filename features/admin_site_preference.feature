@@ -41,4 +41,4 @@ Feature: edit the content for the main page
     Then I should see "Greatest Way to Find the Greatest Dog"
     And I should not see "Better Way to Find a Great Dog"
 
-# End Iter 3-1
+# End of Iter 3-1

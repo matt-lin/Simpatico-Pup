@@ -26,4 +26,4 @@ Given (/^the default layout exist$/) do
   end
 end
 
-# End for Iter 3-2
+# End of Iter 3-2

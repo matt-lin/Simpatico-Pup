@@ -32,7 +32,7 @@ class PupsController < ApplicationController
     @search_breeder_bottom = Customize.find_by_name("Search_Breeder_Bottom").content
     @search_breeder_bottom = Customize.find_by_name("Search_Breeder_Bottom").content
     @comment_title = Customize.find_by_name("Comment_Title").content
-    # End for Iter 3-2
+    # End of Iter 3-2
     
     start_over
     selected_comment = SelectedComment.find_randomly
