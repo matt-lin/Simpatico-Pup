@@ -5,12 +5,22 @@
   = form_tag pup_path, :class => "form-horizontal", :autocomplete => 'off', :method => 'put' do
   
     %div{:class => "sub-title"}
-      = label_tag 'pup_name', 'Pup name'
+      = label_tag 'pup_name', "Pup's name"
       = text_field :pup, 'pup_name', :placeholder => 'Enter Pup Name', :class => "form-control", :id => "pup_name"
       %br
       
+      = label_tag 'Time you have owned your dog.'
+      %p Years
+      %select{:class => "form-control", :id => 'pup_years', :name => 'pup[year]'} 
+        = options_for_select((0..20).to_a, @pup.year)
+      
+      %p Month
+      %select{:class => "form-control", :id => 'pup_months', :name => 'pup[month]'} 
+        = options_for_select((0..12).to_a, @pup.month)
+      %br
+      
       = label_tag 'breed', "Pup's Breed"
-      %select{:class => "form-control", :id => "breed", :name => "breed_name"} 
+      %select{:class => 'form-control', :id => 'breed', :name => 'breed_name'} 
         = options_for_select(@breeds.collect {|p| p.name }, @breed)
       %br 
       
@@ -20,7 +30,7 @@
         %div{:id => 'autofills', :class => "form-group col-md-12"}
       %br
       
-      = label_tag '', 'Comment'
+      = label_tag 'comment', 'Comment'
       = text_field_tag 'comment', @comment_content, :maxlength => 140, :placeholder => 'Enter Comment', :class => 'form-control', :id => 'comment'
       %br
       

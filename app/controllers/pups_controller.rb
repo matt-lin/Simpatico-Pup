@@ -158,11 +158,9 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     if @pup.nil?
       flash[:notice] = "The dog you are trying to show is not exist"
       success = false
-      # redirect_to root_path and return
     elsif !owner?(@pup)
       flash[:notice] = "The dog you are trying to show is not yours"
       success = false
-      # redirect_to root_path and return
     end
     
     if !success
