@@ -31,6 +31,7 @@ Background: User already login
     | dog2            | 1           | 1        | 1       | 4                      | 4              | 3            | 5               | 3            | 4                |
     | dog3            | 2           | 3        | 2       | 3                      | 4              | 3            | 4               | 4            | 3                |
   
+  And   I should not see "My Pups"
   Given I log in as "jeff"
   When  I follow "My Pups"
   Then  I should be on the "Pups Ratings" page
