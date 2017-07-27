@@ -1,3 +1,4 @@
+# Iter 3-1
 Feature: Admin should be able to send email templates, so user do not need type in every time
     I want to be able to send an email templatewith that already save in admin
     
@@ -56,5 +57,5 @@ Feature: Admin should be able to send email templates, so user do not need type 
           Then I should see "title1" with "✔"
           And I should see "wellcome" with "✗"	 
           
-          
+#Iter 3-1
           
