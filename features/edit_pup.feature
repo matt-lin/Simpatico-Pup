@@ -22,6 +22,7 @@ Background: User already login
   
   And the following breeders exist:
     | name            | city     | state |
+    | Unknown         |          |       |
     | Carl            | Berkeley | CA    |
     | Juju            | Berkeley | CA    |
 
@@ -37,17 +38,17 @@ Background: User already login
   Then  I should be on the "Pups Ratings" page
   
   Scenario: users can see pups ratings
-    And   I should see "dog1"'s rating
-    And   I should see "dog2"'s rating
-    And   I should not see "dog3"'s rating
+    And   I should see "dog1"'s basic info
+    And   I should see "dog2"'s basic info
+    And   I should not see "dog3"'s basic info
   
   Scenario: users can delete ratings 
     When  I follow "Delete" for "dog1"
     Then  I should be on the RateMyPup home page
     And   I should see "Pup dog1 has been deleted"
     When  I follow "My Pups"
-    Then  I should not see "dog1"'s rating
-    And   I should see "dog2"'s rating
+    Then  I should not see "dog1"'s basic info
+    And   I should see "dog2"'s basic info
     
   Scenario: users can edit ratings
     When  I follow "Edit" for "dog1"
@@ -64,7 +65,7 @@ Background: User already login
     And   I press "Cancel"
     Then  I should be on the "Pups Ratings" page
     When  I follow "More" for "dog1"
-    Then  I should see correct info    
+    Then  I should see correct info of dog "dog1"
     
   Scenario: users can add breeder if he wants
     When  I follow "Edit" for "dog1"
@@ -76,12 +77,12 @@ Background: User already login
   Scenario: users can go to details page and delete pup
     When  I follow "More" for "dog1"
     Then  I should be on the "Pup Rating Detail" page
-    And   I should see correct info
+    And   I should see correct info of dog "dog1"
     When  I follow "Delete"
     Then  I should be on the RateMyPup home page
     And   I should see "Pup dog1 has been deleted"
     When  I follow "My Pups"
-    Then  I should not see "dog1"'s rating
+    Then  I should not see "dog1"
     And   I should see "dog2"'s rating    
     
   Scenario: users can go to details page and edit pup
