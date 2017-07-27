@@ -107,12 +107,16 @@ class BreedersController < ApplicationController
     end
     flash[:notice] = "Breeder #{name} has been added to our database!"
     
+    # Possible session didn't get delete, if not found dog, then not from edit page
+    # do nothing and delete the session
     if session[:pup_id]
       pup = Pup.find_by_id session[:pup_id]
-      pup.breeder = breeder
-      pup.save
       session.delete :pup_id
-      redirect_to edit_pup_path(pup) and return
+      if pup
+        pup.breeder = breeder
+        pup.save
+        redirect_to edit_pup_path(pup) and return
+      end
     end
     
     redirect_to new_pup_path(:breeder => {:name => (name+' - '+city+', '+state)})

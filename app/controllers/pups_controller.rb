@@ -147,13 +147,6 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     
     @pup.breed_id = Breed.find_by_name(params[:breed_name]).id
     @pup.update_comment(params[:comment])
-    # if @pup.comment
-    #   @pup.comment.content = params[:comment]
-    #   @pup.comment.save
-    # else
-    #   @pup.comment.create(:content => params[:comment])
-    # end
-    
     @pup.save
     
     flash[:notice] = "Pup has been updated"
