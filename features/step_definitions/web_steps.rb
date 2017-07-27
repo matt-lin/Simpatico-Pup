@@ -106,6 +106,7 @@ When /^I enter "(.*?)", "(.*?)", "(.*?)" into breeder search$/ do |name, city, s
   fill_and_trigger("breeder_find", name, "keyup")
 end
 
+#Iter 2-2 Upload file validation (By Gung Hiu Ho, Licong Wang)
 When /^(?:I )attach the file "([^"]*)" to "([^"]*)"$/ do |path, field|
   attach_file(field, File.expand_path(path))
 end
@@ -119,7 +120,7 @@ Then /^I should( not)? see "(.*)"/ do |not_see, text|
 	end	
 end
 
-# Iter 1-2
+# Iter 2 - 2 selected comment validation (By Gung Hiu Ho, Licong Wang)
 Then /^I will( not)? see "(.*)" or "(.*)"/ do |not_see, text1, text2|
   if not_see != nil
 		expect(page.has_no_content?(text1) && page.has_no_content?(text2)).to be (true)
@@ -217,4 +218,12 @@ Given(/^I finished previous steps$/) do
   page.set_rack_session(step1: true)
   page.set_rack_session(step2: true)
   page.set_rack_session(step3: true)
+end
+
+When (/^I follow "([^"]*)" for "([^"]*)"$/) do |link, pup_name|
+  pending
+  @pup = Pup.where("pup_name = ?", pup_name).first
+  within (".#{@pup.id}") do
+    first(:link, link).click
+  end
 end

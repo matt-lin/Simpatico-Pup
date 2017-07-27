@@ -1,3 +1,4 @@
+#Created Rspec for mailer (Gilbert Lo)
 require "spec_helper"
 
 describe ContactBatchMailer do

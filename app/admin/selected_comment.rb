@@ -1,4 +1,4 @@
-# Iter 1-2
+# Iter 1-2 (By Gung Hiu Ho, Licong Wang)
 ActiveAdmin.register SelectedComment do
   filter :content
   filter :created_at

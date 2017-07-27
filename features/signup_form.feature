@@ -68,8 +68,7 @@ Background: The user is on signup page
   Scenario: Inactivated acccount should not be able to log in
     Given I am on the RateMyPup home page
     Given I log in as "jeff"
-    Then I should see "Account not activated. Check your email for the activation link or click here to resend!"
-    Then I follow "here"
+    Then I should see "Account not activated. A new account activation has been send."
     And I enter "jeff"'s mailbox and click on the activate in sent email
     Then I should see "Congratulations! Your account has been activated!"
     And I should see "Logged in as jeff"
@@ -77,7 +76,6 @@ Background: The user is on signup page
   Scenario: Activated account should not be activated again
     Given I am on the RateMyPup home page
     Given I log in as "jeff"
-    Then I follow "here"
     And I enter "jeff"'s mailbox and click on the activate in sent email twice
     And I should see "Invalid activation link"
   

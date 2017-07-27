@@ -9,6 +9,12 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
+Given /the following pups exist/ do |pups_table|
+  pups_table.hashes.each do |p|
+    Pup.create!(p)
+  end
+end
+
 Given /the following ratings exist/ do |pups_table|
   breeder = FactoryGirl.create(:breeder, :name => "George W. Bush")
   pups_table.hashes.each do |rating|
@@ -146,6 +152,7 @@ When /^I select "(.*)" and "(.*)" and search/ do |breed1, breed2|
   click_button "Find a Breed"
 end
 
+# Iter 2-2 Breeder location validation (By Gilbert Lo, Jeff Yu)
 When /^I fill in the new breeder form with following: (.*)/ do |args|
   info_list = args.split(", ")
 
@@ -168,4 +175,21 @@ When /^I fill in the search breeder form with following: (.*)/ do |args|
     And I select "#{info_list[2]}" in the dropdown menu "breeder_state"
     And I select "#{info_list[3]}" in the dropdown menu "breeder_search_distance"
   }
+end
+#End iter 2-2
+
+When /^I fill in with a non-existing breeder/ do
+  pending
+end
+
+When /^I fill in new info/ do
+  pending
+end
+
+When /^I should see correct info updated/ do
+  pending
+end
+
+When /^I should see correct info of dog "(.*)"/ do |pup|
+  pending
 end

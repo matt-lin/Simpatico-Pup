@@ -25,20 +25,19 @@ gem 'thredded'
 gem 'city-state'
 gem 'capybara-email'
 
-# Iter 2-2
-#Implementing image upload features 
+#Iter 2-2 Implementing image upload features (By Gung Hiu Ho, Licong Wang)
 gem "paperclip", "~> 5.0.0"
 
-#Improve form layout in activeadmin
+#Iter 2-2 Improve form layout in activeadmin (By Gung Hiu Ho, Licong Wang)
 gem 'formtastic', '~> 3.0'
 
-#Improve Security
+#Iter 2-2 Improve Security (By Gung Hiu Ho, Licong Wang)
 gem 'permitted_params'
 
-#Improve Activeadmin UI
+#Iter 2-2 Improve Activeadmin UI (By Gung Hiu Ho, Licong Wang)
 gem 'activeadmin_addons'
 
-#Improve searchability for filter
+#Iter 2-2 Improve searchability for filter (By Gung Hiu Ho, Licong Wang)
 gem 'ransack'
 #End of iter 2-2
 

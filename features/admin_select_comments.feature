@@ -20,7 +20,7 @@ Feature: choose comments from all user comments
     Then admin should see "Testing User"
     And admin should see "The greatest dog I've ever owned"
     
-  # Iter 2-1
+  # Iter 2-1 Changed to validate breed name instead of user name (By Gung Hiu Ho, Licong Wang)
     
   Scenario: select a comment and expect to see that comments on selected comment and the home page
     When admin go to user_comments

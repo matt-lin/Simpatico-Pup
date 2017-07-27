@@ -1,3 +1,4 @@
+#Iter 2-2 Redesign dog page (By Gung Hiu Ho, Licong Wang)
 ActiveAdmin.register Pup, as: "Dogs" do
   filter :user
   filter :breeder
@@ -19,7 +20,11 @@ index do
     end
     column :user
     column :comment do |p|
-      p.comment.content
+      if p.comment
+        p.comment.content
+      else
+        ""
+      end
     end
     column :created_at
     column :updated_at

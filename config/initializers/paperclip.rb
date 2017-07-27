@@ -1,3 +1,4 @@
+#Iter 2-2 Improved security for upload attachment (By Gung Hiu Ho, Licong Wang)
 require 'paperclip/media_type_spoof_detector'
 module Paperclip
   class MediaTypeSpoofDetector

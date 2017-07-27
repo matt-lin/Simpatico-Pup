@@ -1,3 +1,4 @@
+#Iter2-2 reset_password (By Jeff Yu, Zipei Wang)
 require 'spec_helper'
 
 describe PasswordresetsController do
@@ -5,7 +6,7 @@ describe PasswordresetsController do
   describe "resetting password" do
       before :each do
           5.times.each do |i|
-             FactoryGirl.create(:user, email: "user#{i}@berkeley.edu", password: '12345678', password_confirmation: '12345678', reset_password_token: "dummy#{i}")
+be             FactoryGirl.create(:user, email: "user#{i}@berkeley.edu", password: '12345678', password_confirmation: '12345678', reset_password_token: "dummy#{i}")
           end
       end
       it "should start with proper page that asks for email" do
@@ -92,3 +93,4 @@ describe PasswordresetsController do
     end
 
 end
+# End for Iter2-2

@@ -1,4 +1,4 @@
-#Implementation for Iter2-2 (whole file)
+#Implementation for Iter2-2 (Jeff Yu, Zipei Wang)
 
 class PasswordresetsController < ApplicationController
   before_action :get_user,   only: [:edit, :update]
@@ -67,6 +67,10 @@ class PasswordresetsController < ApplicationController
     end
 
     @user = User.find(params[:id])
+    puts '*'*80
+    puts params
+    puts @user.reset_password_token
+    puts '*'*80
           
     if ((Time.zone.now - @user.reset_password_sent_at) > 1800) || params[:token] != @user.reset_password_token
       flash[:notice] = 'Your request to reset password has expired. Refill the form if you want to reset password.'
@@ -97,3 +101,5 @@ class PasswordresetsController < ApplicationController
 
 
 end
+
+#End for Iter 2-2

@@ -1,4 +1,4 @@
-#Iter 2-2
+#Iter 2-2 File manager (By Gung Hiu Ho, Licong Wang)
 ActiveAdmin.register Attachment do
   permit_params :attachment
   
@@ -57,7 +57,7 @@ ActiveAdmin.register Attachment do
   
   index do
     selectable_column
-    attachment_column :document
+    column :document_file_name
     number_column :document_file_size, as: :human_size
     bool_column :marked
     actions

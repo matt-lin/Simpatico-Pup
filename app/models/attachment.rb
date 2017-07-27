@@ -1,3 +1,4 @@
+#Iter 2-2 Attachment model for file manager (By Gung Hiu Ho, Licong Wang)
 class Attachment < ActiveRecord::Base
     belongs_to :selected_comment
     attr_accessible :document

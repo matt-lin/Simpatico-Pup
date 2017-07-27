@@ -1,3 +1,5 @@
+# Iter 2-2 account actication (by Zipei Wang and Jack Chen)
+
 require 'spec_helper'
 
 describe SessionsController do
@@ -18,7 +20,7 @@ describe SessionsController do
         end
         it "should not sign in if not activated" do
           post :create, {:user => {:email => 'user2@berkeley.edu'}}
-          expect(flash[:notice]).to start_with("Account not activated. Check your email for the activation link or click")
+          expect(flash[:notice]).to start_with("Account not activated. A new account activation has been send.")
           response.should redirect_to root_url
         end
         it "should not sign in if not existing" do
@@ -30,3 +32,4 @@ describe SessionsController do
     end
             
 end
+# End for Iter 2-2
