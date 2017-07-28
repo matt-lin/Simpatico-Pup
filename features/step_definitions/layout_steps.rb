@@ -1,4 +1,4 @@
-# Iter 3-2
+cd# Iter 3-2
 Given (/^the default layout exist$/) do
   layouts = {
     Site_Name: ['SimpaticoPup', 'site_title'],
@@ -18,7 +18,7 @@ Given (/^the default layout exist$/) do
     Blue_Bar_Bottom_Left: ['Canine Health Information Center', 'main_bar'],
     Blue_Bar_Bottom_Middle: ['Terms of Service', 'main_bar'],
     Blue_Bar_Bottom_Right: ['LSandersDVM@gmail.com', 'main_bar'],
-    Comment_Title: ['Featured Comment', 'main_title']
+    Comment_Title: ['Featured Comment', 'main_title', 'main_title']
   }
   
   layouts.keys.each do |key|
