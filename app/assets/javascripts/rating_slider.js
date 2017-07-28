@@ -73,7 +73,46 @@ var RatingPaws = {
         for (var i = 0; i < RatingPaws.categories.length; i++) {
             RatingPaws.setupCategory(RatingPaws.categories[i]);
         }
+    },
+    preRate: function() {
+      console.log("in for rating")
+      let pathArray = window.location.pathname.substring(1).split('/');
+      console.log(pathArray)
+      if (pathArray.length == 3 && pathArray[2] === 'edit') {
+          let pupId = parseInt(pathArray[1]);
+          console.log(pupId);
+          $.ajax({
+                type: 'GET',
+                url: '/pups/ratings',
+                data: {
+                    "pup_id": pupId
+                },
+                contentType: 'application/json',
+                dataType: 'json',
+                timeout: 5000,
+                success: function(data) {
+                    console.log(data);
+                    for (let key in data) {
+                        console.log(key);
+                        console.log(data[key]);
+                        if (data[key] > 0) {
+                            let id =  "#" + key + "-label-" + RatingPaws.pos[data[key] - 1];
+                            console.log(id);
+                            $(id).click();
+                        }
+                    }
+                },
+                error: function() {
+                    console.log("fail to get hashtag");
+                }
+            })
+      }
     }
 }
 
-$(document).ready(RatingPaws.setup);
+// $(document).ready(RatingPaws.setup);
+$(document).ready(function () {
+    $(RatingPaws.setup);
+    RatingPaws.preRate();
+});
+

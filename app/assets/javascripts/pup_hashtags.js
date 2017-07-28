@@ -68,10 +68,10 @@ var PupHashTags = {
     
     ,preTag: function () {
         let pathArray = window.location.pathname.substring(1).split('/');
-        console.log(pathArray)
+        // console.log(pathArray)
         if (pathArray.length == 3 && pathArray[2] === 'edit') {
             let pupId = parseInt(pathArray[1]);
-            console.log(pupId);
+            // console.log(pupId);
             
             $.ajax({
                 type: 'GET',
@@ -82,15 +82,14 @@ var PupHashTags = {
                 contentType: 'application/json',
                 dataType: 'json',
                 timeout: 5000,
-                // callback designated by selection of find or form
                 success: function(data) {
-                    console.log(data);
+                    // console.log(data);
                     for (let i = 0; i < data.length; i += 1) {
-                        console.log(data[i])
+                        // console.log(data[i])
                         if (data[i]) {
                             let index = PupHashTags.hashtags.indexOf(data[i]);
-                            console.log(".hashtag[number=" + index + "]")
-                            console.log($(".hashtag[number=" + index + "]"))
+                            // console.log(".hashtag[number=" + index + "]")
+                            // console.log($(".hashtag[number=" + index + "]"))
                             $(".hashtag[number=" + index + "]").click()
                         }
                     }

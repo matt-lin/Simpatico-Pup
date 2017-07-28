@@ -29,7 +29,8 @@ Ratemypup::Application.routes.draw do
   get 'pups/dog_breed' => 'pups#dog_breed', :as => :dog_breed
   get 'pups/dog_breeder' => 'pups#dog_breeder', :as => :dog_breeder
   
-  get 'pups/hashtags' => 'pups#hashtags'
+  get 'pups/hashtags' => 'pups#hashtags', :as => :dog_hashtags
+  get 'pups/ratings' => 'pups#ratings', :as => :dog_ratings
 
   resources :pups
   resources :breeders
