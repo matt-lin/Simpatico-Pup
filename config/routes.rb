@@ -44,7 +44,8 @@ Ratemypup::Application.routes.draw do
   get '/text/privacy_policy' => 'texts#privacy_policy', :as => :privacy_policy
   get '/text/terms_of_service' => 'texts#terms_of_service', :as => :terms_of_service
   get '/welcome' => 'texts#welcome', :as => :welcome
-
+  
+  get "*path" => redirect("/")
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

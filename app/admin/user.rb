@@ -24,6 +24,7 @@ ActiveAdmin.register User do
       row :created_at
       row :updated_at
       row :agreement
+      row :activated
       panel "Dogs" do
         table_for user.pups do
           column :dog_name do |p|

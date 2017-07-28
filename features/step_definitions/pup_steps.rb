@@ -9,6 +9,12 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
+Given /the following pups exist/ do |pups_table|
+  pups_table.hashes.each do |p|
+    Pup.create!(p)
+  end
+end
+
 Given /the following ratings exist/ do |pups_table|
   breeder = FactoryGirl.create(:breeder, :name => "George W. Bush")
   pups_table.hashes.each do |rating|
@@ -171,3 +177,19 @@ When /^I fill in the search breeder form with following: (.*)/ do |args|
   }
 end
 #End iter 2-2
+
+When /^I fill in with a non-existing breeder/ do
+  pending
+end
+
+When /^I fill in new info/ do
+  pending
+end
+
+When /^I should see correct info updated/ do
+  pending
+end
+
+When /^I should see correct info of dog "(.*)"/ do |pup|
+  pending
+end

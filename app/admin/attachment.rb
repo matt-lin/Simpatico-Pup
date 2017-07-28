@@ -83,7 +83,6 @@ ActiveAdmin.register Attachment do
   index do
     selectable_column
     column :document_file_name
-    column :catagory
     number_column :document_file_size, as: :human_size
     bool_column :marked
     actions

@@ -1,4 +1,3 @@
-# Iter 2-2 File manager validation (By Gung Hiu Ho, Licong Wang)
 # Iter 3-1 verify if multiple scope exist in this page (By Gung Hiu Ho, Licong Wang)
 @javascript
 Feature: Admin should be able to upload file to the file manager 
