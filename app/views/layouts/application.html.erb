@@ -5,7 +5,7 @@
 
 <head>
   <link rel="icon" href="/assets/icon.png">
-  <title>SimpaticoPup</title>
+  <title><%= titles %></title>
   
   <!-- mobile friendly tag -->
     <meta name="viewport" content="width=device-width">
@@ -30,7 +30,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>                        
           </button>
-          <a class="navbar-brand" href="/" style="font-size: 24px;padding-left:25px;">SimpaticoPup</a>
+          <a class="navbar-brand" href="/" style="font-size: 24px;padding-left:25px;"><%= titles %></a>
         </div>
                 
         <div class="collapse navbar-collapse" id="Navbar">
@@ -91,24 +91,24 @@
   <div class="row navbar-fixed-bottom">
     <div class="col-md-12 contact contact-text-sm">
       <div class="col-sm-4">
-        <p>For More Information on Breed Health:</p>
+        <p><%= top_left %></p>
         <!--Iter 1-2-->
-        <%= link_to 'Canine Health Information Center', 'http://www.caninehealthinfo.org/', :class => "contact-link" %>
+        <%= link_to bot_left, 'http://www.caninehealthinfo.org/', :class => "contact-link" %>
         <!--End for Iter 1-2-->
       </div>
     
       <div class="col-sm-4">
         <p>
-          <%= link_to "Privacy Policy", privacy_policy_path, :class=>"contact-link" %>
+          <%= link_to top_mid, privacy_policy_path, :class=>"contact-link" %>
         </p>
         <p>
-          <%= link_to "Terms of Service", terms_of_service_path, :class=>"contact-link" %>
+          <%= link_to bot_mid, terms_of_service_path, :class=>"contact-link" %>
         </p>
       </div>
     
       <div class="col-sm-4">
-        <p>Contact Info</p>
-        <%= link_to "LSandersDVM@gmail.com", 'mailto:LSandersDVM@gmail.com', :class=>"contact-link" %>
+        <p><%= top_right %></p>
+        <%= link_to link_to bot_right, 'mailto:LSandersDVM@gmail.com', :class=>"contact-link" %>
       </div>
     
     </div>

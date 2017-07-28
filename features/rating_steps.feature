@@ -5,7 +5,8 @@ Feature: Split rating process into a few steps
   I want to provide information interactively
   
 Background: User already logged in, and databse is loaded with breed and breeder
-  Given I am on the RateMyPup home page
+  Given the default layout exist
+  And I am on the RateMyPup home page
 
   And the following breeds exist:
       | name            |

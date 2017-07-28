@@ -6,7 +6,8 @@ Feature: Dog owners should be able to subscribe or unsubscribe newsletters
     So that I can keep up with the news if interested
     
 Background: User already login
-    Given I am on the RateMyPup home page
+    Given the default layout exist
+    And I am on the RateMyPup home page
     
     And the following users exist:
         | username       | email               | password       | password_confirmation| activated |

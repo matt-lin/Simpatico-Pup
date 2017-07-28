@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 201707200916261) do
     t.integer  "document_file_size"
     t.datetime "document_updated_at"
     t.boolean  "marked",                default: false
+    t.string   "catagory",              default: "Others"
   end
 
   create_table "breeders", force: :cascade do |t|
@@ -77,6 +78,12 @@ ActiveRecord::Schema.define(version: 201707200916261) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "breed"
+  end
+
+  create_table "customizes", force: :cascade do |t|
+    t.string "name"
+    t.string "content"
+    t.string "location", default: "Others"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|

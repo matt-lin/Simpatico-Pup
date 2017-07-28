@@ -4,7 +4,7 @@ ActiveAdmin.register Pup, as: "Dogs" do
   filter :breeder
   filter :breed
   filter :pup_name
-  actions :all, except: [:update, :show, :new]
+  actions :all, except: [:update, :show, :new, :edit]
   
 index do
   
