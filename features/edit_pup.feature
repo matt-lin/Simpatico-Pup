@@ -1,4 +1,5 @@
 # Iter 3-1
+@javascript
 Feature: User should be able to edit their previous pups' ratings
     As a user
     I want to modify my dog ratings
