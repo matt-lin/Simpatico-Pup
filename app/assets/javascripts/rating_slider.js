@@ -75,13 +75,13 @@ var RatingPaws = {
         }
     },
     preRate: function() {
-      console.log("in for rating")
-      let pathArray = window.location.pathname.substring(1).split('/');
-      console.log(pathArray)
-      if (pathArray.length == 3 && pathArray[2] === 'edit') {
-          let pupId = parseInt(pathArray[1]);
-          console.log(pupId);
-          $.ajax({
+        console.log("in for rating")
+        let pathArray = window.location.pathname.substring(1).split('/');
+        console.log(pathArray)
+        if (pathArray.length == 3 && pathArray[2] === 'edit') {
+            let pupId = parseInt(pathArray[1]);
+            console.log(pupId);
+            $.ajax({
                 type: 'GET',
                 url: '/pups/ratings',
                 data: {
@@ -106,13 +106,13 @@ var RatingPaws = {
                     console.log("fail to get hashtag");
                 }
             })
-      }
+        }
     }
 }
 
-// $(document).ready(RatingPaws.setup);
-$(document).ready(function () {
-    $(RatingPaws.setup);
-    RatingPaws.preRate();
-});
+$(document).ready(RatingPaws.setup);
+// $(document).ready(function () {
+//     $(RatingPaws.setup);
+//     // RatingPaws.preRate();
+// });
 
