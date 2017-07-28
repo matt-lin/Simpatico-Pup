@@ -212,6 +212,17 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     @comment_content = @pup.comment ? @pup.comment.content : ""
 
   end
+  
+  def hashtags
+    p "*" * 80
+    p params
+    
+    pup_id = params[:pup_id]
+    pup = Pup.find_by_id pup_id
+    if pup
+      render :json => [pup.hashtag_1, pup.hashtag_2, pup.hashtag_3]
+    end
+  end
 
 
   #################### Start Questionnaire ####################

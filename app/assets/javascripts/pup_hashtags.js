@@ -65,9 +65,55 @@ var PupHashTags = {
             });
         }
     }
+    
+    ,preTag: function () {
+        let pathArray = window.location.pathname.substring(1).split('/');
+        console.log(pathArray)
+        if (pathArray.length == 3 && pathArray[2] === 'edit') {
+            let pupId = parseInt(pathArray[1]);
+            console.log(pupId);
+            
+            $.ajax({
+                type: 'GET',
+                url: '/pups/hashtags',
+                data: {
+                    "pup_id": pupId
+                },
+                contentType: 'application/json',
+                dataType: 'json',
+                timeout: 5000,
+                // callback designated by selection of find or form
+                success: function(data) {
+                    console.log(data);
+                },
+                error: function() {
+                    console.log("fail to get hashtag");
+                }
+            })
+            
+            // $.ajax({
+            //     type: 'GET',
+            //     url: '/pup/hashtags',
+            //     data: {
+            //         'pup_id': pupId
+            //     },
+            //     contentType: 'application/json',
+            //     dataType: 'json',
+            //     timeout: 50000,
+            //     success: function(data) {
+            //         console.log("asd");
+            //         console.log(data);
+            //     },
+            //     error: function() { 
+            //         console.log("fail"); 
+            //     } 
+            // });
+        }
+    }
 };
 
 
 $(document).ready(function () {
     $(PupHashTags.setup);
+    PupHashTags.preTag();
 });

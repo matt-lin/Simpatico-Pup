@@ -31,7 +31,7 @@
       %br
       
       %div{:class => "sub-header"}
-        %h3 How would you rate your pup?
+        %h3 Your rating on #{@pup.pup_name}
       %h4{:class => "explanation"}
         (1 = Poor, 5 = Excellent)
       = render 'slider_rating', title: "Breeder Responsibility", slider: "slider-breeder", id: "breeder-label",
