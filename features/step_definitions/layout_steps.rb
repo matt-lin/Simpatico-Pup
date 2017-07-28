@@ -1,4 +1,4 @@
-cd# Iter 3-2
+# Iter 3-2
 Given (/^the default layout exist$/) do
   layouts = {
     Site_Name: ['SimpaticoPup', 'site_title'],
