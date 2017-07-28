@@ -39,7 +39,7 @@ Ratemypup::Application.configure do
   # Devise setup
 require "#{Rails.root}/lib/smtp_tls"
 
-  config.action_mailer.default_url_options = { :host => 'cs169-intro-hyu596.c9users.io' }
+  config.action_mailer.default_url_options = { :host => 'simpatico-pup-jcjack.c9users.io' }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true 
   ActionMailer::Base.delivery_method = :smtp
@@ -49,7 +49,7 @@ require "#{Rails.root}/lib/smtp_tls"
     :domain => "gmail.com",
     :authentication => :plain,
     :user_name => "yuhongzhan0407@gmail.com",
-    :password => "Jeff4728",
+    :password => "Qwertyuiop",
     :enable_starttls_auto => false
   }
 
