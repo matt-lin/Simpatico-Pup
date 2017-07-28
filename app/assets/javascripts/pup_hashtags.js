@@ -32,7 +32,7 @@ var PupHashTags = {
 
     ,setup: function() {
         for (hashtag in PupHashTags.hashtags) {
-            $('<a number="' + hashtag + '" class="hashtag">' + PupHashTags.hashtags[hashtag] + ' </a>').appendTo('#hashtags').click( function() {
+            $('<a number="' + hashtag + '" class="hashtag" id=hashtag'+hashtag+'>' + PupHashTags.hashtags[hashtag] + ' </a>').appendTo('#hashtags').click( function() {
 
                 if ($(this).attr('class').indexOf("hashtag_selected") > -1) {
                     $(this).removeClass('hashtag_selected');
