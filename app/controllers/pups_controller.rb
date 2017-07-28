@@ -154,6 +154,10 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     @pup = Pup.find_by_id params[:id]
     success = true
     
+    if @pup.comment.nil?
+      @pup.update_comment("")
+    end
+    
     if @pup.nil?
       flash[:notice] = "The dog you are trying to show is not exist"
       success = false

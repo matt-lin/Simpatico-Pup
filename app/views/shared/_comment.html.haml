@@ -1,10 +1,10 @@
 <!-- http://www.jquery2dotnet.com/ -->
 / http://bootsnipp.com/snippets/featured/rating-card
-%div{:class=>""}
-    %div{:class=>"row"}
-        %div{:class=>"col-sm-11"}
-            %div{:class=>"well well-sm"}
-                %div{:class=>"col-lg-12"}
+%div{:class => ""}
+    %div{:class => "row"}
+        %div{:class => "col-sm-11"}
+            %div{:class => "well well-sm"}
+                %div{:class => "col-lg-12"}
                     %p{:class => "date"}= pup.created_at ? "Created: "+pup.created_at.to_date.to_s : ""
                 .row
                     .col-sm-2
@@ -18,7 +18,8 @@
                     = render 'shared/rating_comments', width: energy, title: 'Energy Level', color: 'progress-bar'
                     = render 'shared/rating_comments', width: simpatico, title: 'Simpatico Rating', color: 'progress-bar'
 
-                %h4{:class=>"rating-comment"} #{pup.comment.content}
+                
+                %h4{:class => "rating-comment"} #{pup.comment.content}
                 %h4
                     - if pup.safe_hashtag_string.size() < 1
                         %p{:class => "no-hashtags"} This pup has no attribute tags

@@ -15,7 +15,7 @@
 
     %tbody
       - @pups.each do |pup|
-        %tr{:class => pup.id}
+        %tr{:class => pup.pup_name}
           %td= pup.pup_name
           %td= pup.breed.name
           %td= pup.breeder.name

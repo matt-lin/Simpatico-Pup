@@ -502,6 +502,7 @@ with you for a minimum of six months. Thank you.")
     end
     
     it 'should return json for Breed' do 
+
       breed1 = FactoryGirl.create(:breed, :name => 'breed1')
       breed2 = FactoryGirl.create(:breed, :name => 'breed2')
       breed3 = FactoryGirl.create(:breed, :name => 'breed3')

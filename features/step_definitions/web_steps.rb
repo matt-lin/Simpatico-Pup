@@ -221,10 +221,9 @@ Given(/^I finished previous steps$/) do
   page.set_rack_session(step3: true)
 end
 
-When (/^I follow "([^"]*)" for "([^"]*)"$/) do |link, pup_name|
-  pending
-  @pup = Pup.where("pup_name = ?", pup_name).first
-  within (".#{@pup.id}") do
+When (/^I follow "([^"]*)" for dog1$/) do |link|
+  within (".dog1") do
     first(:link, link).click
   end
 end
+
