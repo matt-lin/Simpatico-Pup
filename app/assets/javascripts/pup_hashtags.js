@@ -85,29 +85,20 @@ var PupHashTags = {
                 // callback designated by selection of find or form
                 success: function(data) {
                     console.log(data);
+                    for (let i = 0; i < data.length; i += 1) {
+                        console.log(data[i])
+                        if (data[i]) {
+                            let index = PupHashTags.hashtags.indexOf(data[i]);
+                            console.log(".hashtag[number=" + index + "]")
+                            console.log($(".hashtag[number=" + index + "]"))
+                            $(".hashtag[number=" + index + "]").click()
+                        }
+                    }
                 },
                 error: function() {
                     console.log("fail to get hashtag");
                 }
             })
-            
-            // $.ajax({
-            //     type: 'GET',
-            //     url: '/pup/hashtags',
-            //     data: {
-            //         'pup_id': pupId
-            //     },
-            //     contentType: 'application/json',
-            //     dataType: 'json',
-            //     timeout: 50000,
-            //     success: function(data) {
-            //         console.log("asd");
-            //         console.log(data);
-            //     },
-            //     error: function() { 
-            //         console.log("fail"); 
-            //     } 
-            // });
         }
     }
 };
