@@ -38,18 +38,18 @@ Background: User already login
   When  I follow "My Pups"
   Then  I should be on the "Pups Ratings" page
   
-  # Scenario: users can see pups ratings
-  #   And   I should see "dog1"
-  #   And   I should see "dog2"
-  #   And   I should not see "dog3"
+  Scenario: users can see pups ratings
+    And   I should see "dog1"
+    And   I should see "dog2"
+    And   I should not see "dog3"
   
-  # Scenario: users can delete ratings 
-  #   When  I follow "Delete" for dog1
-  #   Then  I should be on the RateMyPup home page
-  #   And   I should see "Pup dog1 has been deleted"
-  #   When  I follow "My Pups"
-  #   Then  I should not see "dog1"'s basic info
-  #   And   I should see "dog2"'s basic info
+  Scenario: users can delete ratings 
+    When  I follow "Delete" for dog1
+    Then  I should be on the RateMyPup home page
+    And   I should see "Pup dog1 has been deleted"
+    When  I follow "My Pups"
+    Then  I should not see "dog1"'s basic info
+    And   I should see "dog2"'s basic info
     
   Scenario: users can edit ratings
     When  I follow "Edit" for dog1
@@ -61,39 +61,39 @@ Background: User already login
     When  I follow "More" for dog1
     Then  I should see correct info updated
     
-  # Scenario: users can cancel the edit before saving
-  #   When  I follow "Edit" for dog1
-  #   And   I fill in new info
-  #   And   I follow "Cancel"
-  #   Then  I should be on the "Pups Ratings" page
-  #   When  I follow "More" for dog1
-  #   Then  I should see correct info of dog1
+  Scenario: users can cancel the edit before saving
+    When  I follow "Edit" for dog1
+    And   I fill in new info
+    And   I follow "Cancel"
+    Then  I should be on the "Pups Ratings" page
+    When  I follow "More" for dog1
+    Then  I should see correct info of dog1
     
-  # Scenario: users can add breeder if he wants
-  #   When  I follow "Edit" for dog1
-  #   And   I fill in with a non-existing breeder
-  #   And   I press "Update"
-  #   Then  I should be on the "Edit Pup Rating" page
-  #   And   I should see "The breeder you enter is not in our database" 
-  #   When  I follow "Add Breeder"
-  #   Then  I should be on the "Add breeder" page
-  #   When  I finish adding a new breeder 
-  #   Then  I should be on the "Edit Pup Rating" page
-  #   And   I should see "Jeff Yu"
+  Scenario: users can add breeder if he wants
+    When  I follow "Edit" for dog1
+    And   I fill in with a non-existing breeder
+    And   I press "Update"
+    Then  I should be on the "Edit Pup Rating" page
+    And   I should see "The breeder you enter is not in our database" 
+    When  I follow "Add Breeder"
+    Then  I should be on the "Add breeder" page
+    When  I finish adding a new breeder 
+    Then  I should be on the "Edit Pup Rating" page
+    And   I should see "Jeff Yu"
   
-  # Scenario: users can go to details page and delete pup
-  #   When  I follow "More" for dog1
-  #   Then  I should be on the "Pup Rating Detail" page
-  #   And   I should see correct info of dog1
-  #   When  I press "Delete pup"
-  #   Then  I should be on the RateMyPup home page
-  #   # And   I should see "Pup dog1 has been deleted"
-  #   When  I follow "My Pups"
-  #   Then  I should not see "dog1"
-  #   And   I should see "dog2"'s rating    
+  Scenario: users can go to details page and delete pup
+    When  I follow "More" for dog1
+    Then  I should be on the "Pup Rating Detail" page
+    And   I should see correct info of dog1
+    When  I press "Delete pup"
+    Then  I should be on the RateMyPup home page
+    And   I should see "Pup dog1 has been deleted"
+    When  I follow "My Pups"
+    Then  I should not see "dog1"
+    And   I should see "dog2"'s rating    
     
-  # Scenario: users can go to details page and edit pup
-  #   When  I follow "More" for dog1
-  #   When  I press "Edit pup"
-  #   Then  I should be on the "Edit Pup Rating" page
+  Scenario: users can go to details page and edit pup
+    When  I follow "More" for dog1
+    When  I press "Edit pup"
+    Then  I should be on the "Edit Pup Rating" page
 #End iter 3-1
