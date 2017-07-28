@@ -42,7 +42,7 @@ Feature: Admin should be able to send email templates, so user do not need type 
           And I check "jcjack@berkeley.edu"
           And I check "batch_action_item_1"
           And I check send email_templates
-          Then Then "jcjack" should get an email with "wellcome" and "hi" 
+          Then "jcjack" should get an email with "wellcome" and "hi" 
           
 ########################### sad path ##########################################
         
