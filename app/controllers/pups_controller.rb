@@ -142,9 +142,6 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     end
     
     @pup.update_attributes(params[:pup])
-    p "*" * 80
-    p params
-    
     @pup.breed_id = Breed.find_by_name(params[:breed_name]).id
     @pup.update_comment(params[:comment])
     @pup.save

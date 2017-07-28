@@ -46,10 +46,30 @@ describe PupsController do
   # end
   
   describe "looking at a single pup review" do
-    it "should find the pup", :pending => true do
-      temp_pup = Pup.new()
-      Pup.should_receive(:find).with('1').and_return(temp_pup)
-      get :show, :id => 1
+    before :each do
+      @user1 = FactoryGirl.create(:user)
+      sign_in :user, @user1
+      @dog1 = FactoryGirl.create(:pup, :user_id => @user1.id)
+    end
+    
+    it "should find the pup if dog exist and user is the owner" do
+      get :show, :id => @dog1.id
+      expect(response).to render_template 'show'
+      expect(assigns(:pup)).to eq @dog1
+    end
+    
+    it "should redirect to root_path if pup not exist" do
+      get :show, :id => 2
+      expect(response).to redirect_to root_path
+      expect(flash[:notice]).to_not be_empty
+    end
+    
+    it "should redirect to root_path if the user does not own the dog" do
+      user2 = FactoryGirl.create(:user, :email => "user2@test.com")
+      sign_in :user, user2
+      get :show, :id => @dog1.id
+      expect(response).to redirect_to root_path
+      expect(flash[:notice]).to_not be_empty
     end
   end
   
@@ -389,26 +409,65 @@ with you for a minimum of six months. Thank you.")
       expect(response).to redirect_to root_path
     end
   end
+  
   describe "updating a review" do
-    it "should find the pup and update it's attributes", :pending => true do
-      @user = FactoryGirl.create(:user)
-      sign_in :user, @user
-      temp_pup = Pup.new()
-      Pup.should_receive(:find).with('1').and_return(temp_pup)
-      temp_pup.should_receive(:update_attributes).with({})
-      put :update, {:id => 1, :pup => {}}
-      response.should redirect_to pups_path
+    before :each do
+      @user1 = FactoryGirl.create(:user)
+      sign_in :user, @user1
+      @dog1 = FactoryGirl.create(:pup, :user_id => @user1.id)
     end
-  end
-  describe "deleting a pup rating", :pending => true do
-    it "should find the pup and destroy it's review" do
-      @user = FactoryGirl.create(:user)
-      sign_in :user, @user
+    
+    it "should find the pup and update it's attributes" do
       temp_pup = Pup.new()
-      Pup.should_receive(:find).with('1').and_return(temp_pup)
+      temp_breed = Breed.new()
+      Pup.should_receive(:find_by_id).with('1').and_return(temp_pup)
+      temp_pup.should_receive(:update_breeder).and_return("")
+      temp_pup.should_receive(:update_attributes).with({})
+      Breed.should_receive(:find_by_name).with(nil).and_return(temp_breed)
+      temp_pup.should_receive(:update_comment).with(nil)
+      
+      put :update, {:id => 1, :pup => {}}
+      expect(flash[:notice]).to end_with "has been updated"
+      response.should redirect_to user_pups_path
+    end
+    
+    # Still need rspec
+  end
+  
+  describe "deleting a pup rating" do
+    before :each do
+      @user1 = FactoryGirl.create(:user)
+      sign_in :user, @user1
+      @dog1 = FactoryGirl.create(:pup, :user_id => @user1.id)
+    end
+    
+    it "should find the pup and destroy it's review" do
+      temp_pup = Pup.new()
+      temp_pup.user_id = @user1.id
+      Pup.should_receive(:find_by_id).with('1').and_return(temp_pup)
       temp_pup.should_receive(:destroy)
       delete :destroy, :id => 1
-      response.should redirect_to pups_path
+      
+      expect(flash[:notice]).to end_with 'has been deleted'
+      response.should redirect_to root_path
+    end
+    
+    it "should not destroy the dog if pup doesn't exist" do
+      expect { 
+        delete :destroy, :id => 2
+      }.to_not change(Pup, :count) 
+      expect(flash[:notice]).to eq "Dog doesn't exist"
+      response.should redirect_to root_path
+    end
+    
+    it "should not delete the dog if user is not the owner" do
+      user2 = FactoryGirl.create(:user, :email => "test@test.com")
+      sign_in :user, user2
+      expect { 
+        delete :destroy, :id => @dog1.id
+      }.to_not change(Pup, :count) 
+      expect(flash[:notice]).to_not be_empty
+      response.should redirect_to root_path
     end
   end
   describe "searching a dog by breed" do
