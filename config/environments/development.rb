@@ -49,7 +49,7 @@ require "#{Rails.root}/lib/smtp_tls"
     :domain => "gmail.com",
     :authentication => :plain,
     :user_name => "yuhongzhan0407@gmail.com",
-    :password => "Jeff4728",
+    :password => "Qwertyuiop",
     :enable_starttls_auto => false
   }
 
