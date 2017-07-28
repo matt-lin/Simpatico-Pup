@@ -75,12 +75,9 @@ var RatingPaws = {
         }
     },
     preRate: function() {
-        console.log("in for rating")
-        let pathArray = window.location.pathname.substring(1).split('/');
-        console.log(pathArray)
+        var pathArray = window.location.pathname.substring(1).split('/');
         if (pathArray.length == 3 && pathArray[2] === 'edit') {
-            let pupId = parseInt(pathArray[1]);
-            console.log(pupId);
+            var pupId = parseInt(pathArray[1]);
             $.ajax({
                 type: 'GET',
                 url: '/pups/ratings',
@@ -91,13 +88,9 @@ var RatingPaws = {
                 dataType: 'json',
                 timeout: 5000,
                 success: function(data) {
-                    console.log(data);
-                    for (let key in data) {
-                        console.log(key);
-                        console.log(data[key]);
+                    for (var key in data) {
                         if (data[key] > 0) {
-                            let id =  "#" + key + "-label-" + RatingPaws.pos[data[key] - 1];
-                            console.log(id);
+                            var id =  "#" + key + "-label-" + RatingPaws.pos[data[key] - 1];
                             $(id).click();
                         }
                     }
@@ -110,9 +103,9 @@ var RatingPaws = {
     }
 }
 
-$(document).ready(RatingPaws.setup);
-// $(document).ready(function () {
-//     $(RatingPaws.setup);
-//     // RatingPaws.preRate();
-// });
+// $(document).ready(RatingPaws.setup);
+$(document).ready(function () {
+    $(RatingPaws.setup);
+    RatingPaws.preRate();
+});
 

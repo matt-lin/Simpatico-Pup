@@ -67,11 +67,9 @@ var PupHashTags = {
     }
     
     ,preTag: function () {
-        let pathArray = window.location.pathname.substring(1).split('/');
-        // console.log(pathArray)
+        var pathArray = window.location.pathname.substring(1).split('/');
         if (pathArray.length == 3 && pathArray[2] === 'edit') {
-            let pupId = parseInt(pathArray[1]);
-            // console.log(pupId);
+            var pupId = parseInt(pathArray[1]);
             
             $.ajax({
                 type: 'GET',
@@ -83,13 +81,9 @@ var PupHashTags = {
                 dataType: 'json',
                 timeout: 5000,
                 success: function(data) {
-                    // console.log(data);
-                    for (let i = 0; i < data.length; i += 1) {
-                        // console.log(data[i])
+                    for (var i = 0; i < data.length; i += 1) {
                         if (data[i]) {
-                            let index = PupHashTags.hashtags.indexOf(data[i]);
-                            // console.log(".hashtag[number=" + index + "]")
-                            // console.log($(".hashtag[number=" + index + "]"))
+                            var index = PupHashTags.hashtags.indexOf(data[i]);
                             $(".hashtag[number=" + index + "]").click()
                         }
                     }

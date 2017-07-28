@@ -214,9 +214,6 @@ currently limiting the number of ratings made by each dog owner to eight, and li
   end
   
   def hashtags
-    p "*" * 80
-    p params
-    
     pup = Pup.find_by_id params[:pup_id]
     if pup
       render :json => [pup.hashtag_1, pup.hashtag_2, pup.hashtag_3]
@@ -224,8 +221,6 @@ currently limiting the number of ratings made by each dog owner to eight, and li
   end
   
   def ratings
-    p "&" * 80
-    p params
     pup = Pup.find_by_id params[:pup_id]
     if pup
       ratings_hash = {:breeder => pup.breeder_responsibility, :health => pup.overall_health, :train => pup.trainability,
