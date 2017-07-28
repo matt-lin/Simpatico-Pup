@@ -152,23 +152,19 @@ currently limiting the number of ratings made by each dog owner to eight, and li
   
   def show
     @pup = Pup.find_by_id params[:id]
-    success = true
+
+    if @pup.nil?
+      flash[:notice] = "The dog you are trying to show is not exist"
+      redirect_to root_path and return
+    elsif !owner?(@pup)
+      flash[:notice] = "The dog you are trying to show is not yours"
+      redirect_to root_path and return
+    end
     
     if @pup.comment.nil?
       @pup.update_comment("")
     end
     
-    if @pup.nil?
-      flash[:notice] = "The dog you are trying to show is not exist"
-      success = false
-    elsif !owner?(@pup)
-      flash[:notice] = "The dog you are trying to show is not yours"
-      success = false
-    end
-    
-    if !success
-      redirect_to root_path
-    end
   end
 
   def destroy
