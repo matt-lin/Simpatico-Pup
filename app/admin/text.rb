@@ -2,7 +2,7 @@ ActiveAdmin.register Text do
     
     sidebar :"How to use" do
     
-        h6"Avaliable title:"
+        h6 "Avaliable title:"
         ul do
             li "Mission"
             li "Background"
