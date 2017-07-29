@@ -22,7 +22,7 @@ When /^I check the (\d+)(?:st|nd|rd|th) record$/ do |index|
   page.all("table.index_table input[type=checkbox]")[index.to_i].set true
 end
 
-When /^I toggle the collection selection$/ do
+When /^admin toggle the collection selection$/ do
   page.find("#collection_selection_toggle_all").click
 end
 
