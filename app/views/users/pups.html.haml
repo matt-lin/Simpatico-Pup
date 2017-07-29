@@ -1,0 +1,30 @@
+%div{:class => "container text-container"}
+  %div{:class => "header"}
+    %h1 My Pups
+    
+  %table#pups{:class => "table table-striped"}
+    %thead
+      %tr 
+        %th Puppy Name
+        %th Breed
+        %th Breeder
+        %th Comment
+        %th Created At
+        %th Updated At
+        %th Action
+
+    %tbody
+      - @pups.each do |pup|
+        %tr{:class => pup.pup_name}
+          %td= pup.pup_name
+          %td= pup.breed.name
+          %td= pup.breeder.name
+          %td= pup.comment ? pup.comment.content : ""
+          %td= pup.created_at.to_date
+          %td= pup.updated_at.to_date
+          %td
+            = link_to "Delete", pup_path(:id => pup.id), :method => :delete, :id => "delete_#{pup.pup_name}", |
+            :data => {:confirm => "Are you sure you want to delete #{pup.pup_name}?"} 
+            = link_to "Edit", edit_pup_path(pup), :id => "edit_#{pup.pup_name}"
+          %td= link_to "More", pup_path(pup) , :id => "more_#{pup.pup_name}"
+          

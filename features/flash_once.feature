@@ -5,6 +5,7 @@ Feature: Flash warning/error should only show once
   
 
 Background: User already logged in
+  Given the default layout exist
   Given the following users exist:
       | username       | email               | password       | password_confirmation| activated |
       | gilbert        | gilbert@berkeley.edu| 12345678       | 12345678             | true      |

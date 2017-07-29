@@ -4,7 +4,7 @@ class PupsController < ApplicationController
   before_filter :check_sign_in, :only => [:new, :dog_name, :dog_how_long, :dog_breed, :dog_breeder]
 
   # Devise. Methods not in the list below will require a user to be logged in.
-  before_filter :authenticate_user!, except: [:index, :new, :main, :show, :breed, :search_breed]
+  before_filter :authenticate_user!, except: [:index, :new, :main, :breed, :search_breed]
 
   # def breeder_exists
   #   if params[:pup][:breeder_id].to_i == -1
@@ -18,6 +18,21 @@ class PupsController < ApplicationController
     if current_user
       @username = current_user.username
     end
+    
+    # Iter 3-2 Customize the main page (By Gung Hiu Ho, Licong Wang)
+    @primary_title = Customize.find_by_name("Primary_Title").content
+    @secondary_title = Customize.find_by_name("Secondary_Title").content
+    @rate_dog_top = Customize.find_by_name("Rate_Dog_Top").content
+    @rate_Dog_bottom = Customize.find_by_name("Rate_Dog_Bottom").content
+    @find_breed_top = Customize.find_by_name("Find_Breed_Top").content
+    @find_breed_bottom = Customize.find_by_name("Find_Breed_Bottom").content
+    @find_breeder_top = Customize.find_by_name("Find_Breeder_Top").content
+    @find_breeder_bottom = Customize.find_by_name("Find_Breeder_Bottom").content
+    @search_breeder_top = Customize.find_by_name("Search_Breeder_Top").content
+    @search_breeder_bottom = Customize.find_by_name("Search_Breeder_Bottom").content
+    @search_breeder_bottom = Customize.find_by_name("Search_Breeder_Bottom").content
+    @comment_title = Customize.find_by_name("Comment_Title").content
+    # End of Iter 3-2
     
     start_over
     selected_comment = SelectedComment.find_randomly
@@ -66,10 +81,6 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
   # Rails default methods
   def index
     @pups = Pup.all
-  end
-
-  def show
-    @pup = Pup.find params[:id]
   end
 
   def create
@@ -131,19 +142,106 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     flash[:notice] = "Thank You! #{@pup.pup_name} was successfully added to our database."
     redirect_to root_path
   end
-
+  
+  # Still need check if it is owner and check if dog exist
+  # pup_name, year, month updated directly using update_attributes
+  # Update comment, breed, breeder cannot be done directly
   def update
-    @pup = Pup.find params[:id]
+    @pup = Pup.find_by_id params[:id]
+    
+    breeder = @pup.update_breeder(params[:breeder_str])
+    if !breeder
+      flash[:modal] = "Non existing breeder."
+      session[:pup_id] = params[:id]
+      redirect_to edit_pup_path(@pup) and return
+    end
+    
     @pup.update_attributes(params[:pup])
-    redirect_to pups_path
+    @pup.breed_id = Breed.find_by_name(params[:breed_name]).id
+    @pup.update_comment(params[:comment])
+    @pup.save
+    
+    flash[:notice] = "Pup has been updated"
+    redirect_to user_pups_path
+  end
+  
+  def show
+    @pup = Pup.find_by_id params[:id]
+
+    if @pup.nil?
+      flash[:notice] = "The dog you are trying to show is not exist"
+      redirect_to root_path and return
+    elsif !owner?(@pup)
+      flash[:notice] = "The dog you are trying to show is not yours"
+      redirect_to root_path and return
+    end
+    
+    if @pup.comment.nil?
+      @pup.update_comment("")
+    end
+    
   end
 
   def destroy
-    @pup = Pup.find params[:id]
-    @pup.destroy
-    redirect_to pups_path
+    @pup = Pup.find_by_id params[:id]
+    
+    if @pup.nil?
+      flash[:notice] = "Dog doesn't exist"
+    elsif !owner?(@pup)
+      flash[:notice] = "The dog you are trying to destroy is not yours"
+    else  
+      @pup.destroy
+      flash[:notice] = "Pup #{@pup.pup_name} has been deleted" 
+    end
+    redirect_to root_path
   end
+  
+  def edit
+    @pup = Pup.find_by_id params[:id]
+    @breeds = Breed.all
+    success = true
+    
+    if @pup.nil?
+      flash[:notice] = "The dog you are trying to edit is not exist"
+      success = false
+    elsif !owner?(@pup)
+      flash[:notice] = "The dog you are trying to edit is not yours"
+      success = false
+    end
+    
+    if !success
+      redirect_to root_path and return
+    end
+    
+    @breed = @pup.breed.name
+    breeder = @pup.breeder
+    if breeder.name != 'Unknown'
+      @breeder_text = breeder.name + " - " + breeder.address
+    else
+      @breeder_text = ''
+    end
+    
+    @comment_content = @pup.comment ? @pup.comment.content : ""
 
+  end
+  
+  def hashtags
+    pup = Pup.find_by_id params[:pup_id]
+    if pup
+      render :json => [pup.hashtag_1, pup.hashtag_2, pup.hashtag_3]
+    end
+  end
+  
+  def ratings
+    pup = Pup.find_by_id params[:pup_id]
+    if pup
+      ratings_hash = {:breeder => pup.breeder_responsibility, :health => pup.overall_health, :train => pup.trainability,
+                      :social => pup.social_behavior, :behavior => pup.dog_behavior, :energy => pup.energy_level,
+                      :simpatico => pup.simpatico_rating 
+                     }
+      render :json => ratings_hash
+    end
+  end
 
 
   #################### Start Questionnaire ####################
@@ -253,6 +351,10 @@ with you for a minimum of six months. Thank you."
 
 
   private
+  def owner?(pup)
+    return pup.user_id == current_user.id
+  end
+  
   def check_sign_in
     unless user_signed_in?
       redirect_to welcome_path

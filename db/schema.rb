@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 201707200916261) do
+ActiveRecord::Schema.define(version: 20170728025649) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "resource_id",   null: false
@@ -52,7 +52,10 @@ ActiveRecord::Schema.define(version: 201707200916261) do
     t.integer  "document_file_size"
     t.datetime "document_updated_at"
     t.boolean  "marked",                default: false
+    t.string   "catagory",              default: "Others"
   end
+
+  add_index "attachments", ["selected_attachment_id"], name: "index_attachments_on_selected_attachment_id"
 
   create_table "breeders", force: :cascade do |t|
     t.string  "name"
@@ -76,7 +79,12 @@ ActiveRecord::Schema.define(version: 201707200916261) do
     t.integer  "pup_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "breed"
+  end
+
+  create_table "customizes", force: :cascade do |t|
+    t.string "name"
+    t.string "content"
+    t.string "location", default: "Others"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
