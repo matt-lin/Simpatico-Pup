@@ -75,7 +75,7 @@ class Pup < ActiveRecord::Base
                    :dog_behavior => 0, :energy_level => 0, :simpatico_rating => 0}
     count = 0.0
     pups_by_breed.each do |pup|
-      results_hash.each do |rating|
+      results_hash.each do |rating, value|
         unless pup.send(rating) == nil
           results_hash[rating] += pup.send(rating)
           results_num[rating] += 1
@@ -84,7 +84,7 @@ class Pup < ActiveRecord::Base
       end
       count += 1.0
     end
-    results_hash.each do |k|
+    results_hash.each do |k, v|
       results_hash[k] = 1.0 * results_hash[k]/results_num[k] if results_num[k] > 0
       # results_hash[k] /= count
     end

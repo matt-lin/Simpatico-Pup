@@ -27,14 +27,14 @@ class Breeder < ActiveRecord::Base
     results_num = {:overall_health => 0, :trainability => 0, :social_behavior => 0, :dog_behavior => 0,
                    :energy_level => 0, :simpatico_rating => 0, :breeder_responsibility => 0}
     all_pups.each do |pup|
-      results_hash.each do |rating|
+      results_hash.each do |rating, value|
         unless pup.send(rating) == 0
           results_hash[rating] += pup.send(rating)
           results_num[rating] += 1
         end
       end
     end
-    results_hash.each do |k|
+    results_hash.each do |k, v|
       results_hash[k] = 1.0 * results_hash[k]/results_num[k] if results_num[k] > 0
     end
   end
