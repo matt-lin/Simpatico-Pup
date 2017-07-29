@@ -32,7 +32,6 @@ And (/^I send emails with subject as "([^"]*)" and message as "([^"]*)"( with an
     end
   end
 
-  puts attach
   params[:subject] = subject
   params[:message] = body
   params["Include Attachment"] = attach ? "on" : "off"

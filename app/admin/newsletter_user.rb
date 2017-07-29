@@ -37,12 +37,11 @@ ActiveAdmin.register NewsletterUser do
         end
       end
       
-      
-      # if params[:test]
-      #   ContactBatchMailer.contact_batch_email('Dear Newsletter Subscribers', params[:message], params[:subject], user.email, params["Include Attachment"]).deliver_now
-      # else
+      if params[:test]
+        ContactBatchMailer.contact_batch_email('Dear Newsletter Subscribers', params[:message], params[:subject], user.email, params["Include Attachment"]).deliver_now
+      else
         ContactBatchMailer.contact_batch_email('Dear Newsletter Subscribers', inputs[:message], inputs[:subject], user.email, inputs["Include Attachment"]).deliver_now
-      # end
+      end
     end
     
     @sent = []
