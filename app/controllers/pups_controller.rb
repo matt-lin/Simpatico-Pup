@@ -174,17 +174,12 @@ currently limiting the number of ratings made by each dog owner to eight, and li
   def edit
     @pup = Pup.find_by_id params[:id]
     @breeds = Breed.all
-    success = true
-    
+
     if @pup.nil?
       flash[:notice] = "The dog you are trying to edit is not exist"
-      success = false
+      redirect_to root_path and return
     elsif !owner?(@pup)
       flash[:notice] = "The dog you are trying to edit is not yours"
-      success = false
-    end
-    
-    if !success
       redirect_to root_path and return
     end
     
@@ -280,7 +275,7 @@ with you for a minimum of six months. Thank you."
 
   #step3
   def dog_breeder
-    if !session[:step1] || !session[:step2]
+    if not_finish_previous_steps?(session[:step1], session[:step2])
       redirect_to root_path and return
     end
     if params[:breed]
@@ -323,6 +318,10 @@ with you for a minimum of six months. Thank you."
 
 
   private
+  
+  def not_finish_previous_steps?(step1, step2 = true)
+    !step1 || !step2
+  end
   
   def check_time_valid?(years, months)
     result1 = (!years.empty? && !is_num?(years)) || (!months.empty? && !is_num?(months))
