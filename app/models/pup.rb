@@ -46,10 +46,11 @@ class Pup < ActiveRecord::Base
     # result = Pup.where("breed_1 = ?", breed_name).order("created_at DESC")
     # result += Pup.where("breed_2 = ?", breed_name).order("created_at DESC")
     if Breed.find_by_name(breed_name).nil?
-      []
+      result = []
     else
       result = Pup.where("breed_id = ?", Breed.find_by_name( breed_name ).id).order("created_at DESC")
     end
+    result
   end
   
   def Pup.find_by_breeds(breed1, breed2='None')
@@ -75,7 +76,7 @@ class Pup < ActiveRecord::Base
                    :dog_behavior => 0, :energy_level => 0, :simpatico_rating => 0}
     count = 0.0
     pups_by_breed.each do |pup|
-      results_hash.each do |rating|
+      results_hash.each do |rating, _value|
         unless pup.send(rating) == nil
           results_hash[rating] += pup.send(rating)
           results_num[rating] += 1
@@ -84,7 +85,7 @@ class Pup < ActiveRecord::Base
       end
       count += 1.0
     end
-    results_hash.each do |k|
+    results_hash.each do |k, _v|
       results_hash[k] = 1.0 * results_hash[k]/results_num[k] if results_num[k] > 0
       # results_hash[k] /= count
     end
