@@ -18,9 +18,6 @@ Then (/^"([^"]*)" (should|should not) receive an email$/) do |username, maybe|
   end
 end
 
-When (/^"([^"]*)" simply open the email$/) do |username|
-  open_email("#{username}@berkeley.edu")
-end
 
 And (/^I send emails with subject as "([^"]*)" and message as "([^"]*)"( with an attachment included)?$/) do |subject, body, attach|
   action = "email"
@@ -74,10 +71,6 @@ When (/^"([^"]*)" go to the link contained by the sent email$/) do |username|
   current_email.click_link 'Reset password'
 end
 
-When (/^"([^"]*)" go to the link to unsubscribe newsletter$/) do |username|
-  open_email("#{username}@berkeley.edu")
-  current_email.click_link 'here'
-end
 
 Given (/^I enter "([^"]*)"'s email and click on the url from the sent email$/) do |username|
   fill_in("password_reset[email]", with: "#{username}@berkeley.edu")
@@ -183,3 +176,4 @@ When (/^"([^"]*)" go to the link to unsubscribe newsletter$/) do |username|
   open_email("#{username}@berkeley.edu")
   current_email.click_link 'here'
 end
+
