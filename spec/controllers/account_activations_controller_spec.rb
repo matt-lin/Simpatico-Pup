@@ -24,9 +24,6 @@ describe AccountActivationsController do
             expect(flash[:danger]).to eq "Invalid activation link"
             response.should redirect_to root_url
         end
-        it "should send an activating email if unactivated" do
-            get :new
-        end
     end
 end
 # End for Iter 2-2
