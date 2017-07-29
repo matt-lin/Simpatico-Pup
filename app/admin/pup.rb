@@ -4,7 +4,7 @@ ActiveAdmin.register Pup, as: "Dogs" do
   filter :breeder
   filter :breed
   filter :pup_name
-  actions :all, except: [:update, :show, :new]
+  actions :all, except: [:update, :show, :new, :edit]
   
 index do
   
@@ -43,7 +43,7 @@ end
     item.display_on?(:show)
   }
 
-  action_item :only => :show do |dog|
+  action_item :only => :show do
     link_to "Edit Dog" , edit_admin_dog_path
   end
 

@@ -1,4 +1,29 @@
 #encoding: utf-8
+#Iter 3-2 Populate default layout into the database (By Gung Hiu Ho, Licong Wang)
+customizes = [
+  {:name => 'Site_Name', :content => 'SimpaticoPup', :location => "site_title" },
+  {:name => 'Primary_Title', :content => 'Better Way to Find a Great Dog', :location => "main_title" }, 
+  {:name => 'Secondary_Title', :content => 'Find a pup from a reliable source', :location => "main_title" },
+  {:name => 'Rate_Dog_Top', :content => 'Rate your', :location => "main_button" },
+  {:name => 'Rate_Dog_Bottom', :content => 'Dog', :location => "main_button" },
+  {:name => 'Find_Breed_Top', :content => 'Find Ratings for a', :location => "main_button" },
+  {:name => 'Find_Breed_Bottom', :content => 'Breed', :location => "main_button" },
+  {:name => 'Find_Breeder_Top', :content => 'Find Ratings for a', :location => "main_button" },
+  {:name => 'Find_Breeder_Bottom', :content => 'Breeder', :location => "main_button" },
+  {:name => 'Search_Breeder_Top', :content => 'Search for a', :location => "main_button" },
+  {:name => 'Search_Breeder_Bottom', :content => 'Breeder', :location => "main_button" },
+  {:name => 'Blue_Bar_Top_Left', :content => 'For More Information on Breed Health', :location => "main_bar" },
+  {:name => 'Blue_Bar_Top_Middle', :content => 'Privacy Policy', :location => "main_bar" },
+  {:name => 'Blue_Bar_Top_Right', :content => 'Contact Info', :location => "main_bar" },
+  {:name => 'Blue_Bar_Bottom_Left', :content => 'Canine Health Information Center', :location => "main_bar" },
+  {:name => 'Blue_Bar_Bottom_Middle', :content => 'Terms of Service', :location => "main_bar" },
+  {:name => 'Blue_Bar_Bottom_Right', :content => 'LSandersDVM@gmail.com', :location => "main_bar" },
+  {:name => 'Comment_Title', :content => 'Featured Comment', :location => "main_title" }]
+  
+customizes.each do |customize|
+  Customize.create!(customize)
+end
+#End of Iter 3-2
 
 pups = [{:pup_name => 'Chloe', :year => 1, :month => 0, :breeder_id => '1', :breed_id => '1', :breeder_responsibility => '5', :overall_health => '5', :trainability => '3', :social_behavior => '4', :dog_behavior => '4', :energy_level => '4', :simpatico_rating => '5'},
   	 	{:pup_name => 'Spot', :year => 2, :month => 1, :breeder_id => '2', :breed_id => '1', :breeder_responsibility => '3', :overall_health => '3', :trainability => '3', :social_behavior => '3', :dog_behavior => '3', :energy_level => '3', :simpatico_rating => '3'},

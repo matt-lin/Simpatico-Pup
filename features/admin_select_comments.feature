@@ -5,6 +5,7 @@ Feature: choose comments from all user comments
   So that I can display them on the home page
   
   Background: Given I login as an admin
+    Given the default layout exist
     Given I login as an admin
     Given the following breeders exist:
     | name    | city     | state  |

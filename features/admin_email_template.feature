@@ -1,3 +1,4 @@
+# Iter 3-1
 Feature: Admin should be able to send email templates, so user do not need type in every time
     I want to be able to send an email templatewith that already save in admin
     
@@ -11,7 +12,7 @@ Feature: Admin should be able to send email templates, so user do not need type 
         And the following email_templates exist:
         |   title       | body      |  marked   |
         | title1        | body1     |   ture    |
-        | welcome      | hi        |   false   |
+        | wellcome      | hi        |   false   |
     
     
         Scenario: admins able to creat a new email_templates
@@ -44,6 +45,6 @@ Feature: Admin should be able to send email templates, so user do not need type 
           And I check "title1"
           And I check "batch_action_item_1"
           Then I should see "A email can only includ one Email Template"
-
           
+#Iter 3-1
           

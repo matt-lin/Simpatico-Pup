@@ -6,6 +6,7 @@ Feature: Allow searching by only city, state, or breed
   I want to be able to filter breeders by there city, state, or breed
 
   Background: breeders have been added to the database
+    Given the default layout exist
     Given the following breeders exist:
       | name            | city     | state  |
       | Carl            | Berkeley | CA     |

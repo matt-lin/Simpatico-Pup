@@ -15,7 +15,7 @@ When /^(?:I )go to (.+)$/ do |page_name|
 end
 
 When(/^(?:admin )go to (.+)$/) do |page_name|
-    visit "/admin/"+page_name
+  visit "/admin/"+page_name
 end
 
 Given /^(?:I )am on (.+)$/ do |page_name|
@@ -206,6 +206,7 @@ Given /^a confirmation box saying "(.*)" should pop up$/ do |message|
   @expected_message = message
 end
 
+
 # Iter 1-2
 Then /^the confirmation box should have been displayed$/ do
   page.evaluate_script("$.cookie('confirm_message')").should_not be_nil
@@ -219,3 +220,10 @@ Given(/^I finished previous steps$/) do
   page.set_rack_session(step2: true)
   page.set_rack_session(step3: true)
 end
+
+When (/^I follow "([^"]*)" for dog1$/) do |link|
+  within (".dog1") do
+    first(:link, link).click
+  end
+end
+

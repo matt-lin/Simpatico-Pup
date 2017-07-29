@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(version: 20170728234722) do
     t.string   "document_content_type"
     t.integer  "document_file_size"
     t.datetime "document_updated_at"
-    t.integer  "selected_attachment_id"
-    t.boolean  "marked",                 default: false
+    t.boolean  "marked",                default: false
+    t.string   "catagory",              default: "Others"
   end
 
   add_index "attachments", ["selected_attachment_id"], name: "index_attachments_on_selected_attachment_id"
@@ -81,6 +81,10 @@ ActiveRecord::Schema.define(version: 20170728234722) do
     t.datetime "updated_at"
   end
 
+  create_table "customizes", force: :cascade do |t|
+    t.string "name"
+    t.string "content"
+    t.string "location", default: "Others"
   create_table "email_templates", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
@@ -380,5 +384,5 @@ ActiveRecord::Schema.define(version: 20170728234722) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
-
+  end
 end

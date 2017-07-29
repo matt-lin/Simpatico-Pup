@@ -8,6 +8,7 @@ Feature: Improve "flow" of site
     I want to be able to intuitively interact with the site
 
   Background: breeders have been added to the database
+    Given the default layout exist
     Given the following breeders exist:
       | name            | city     | state  |
       | Carl            | Berkeley | CA     |

@@ -46,10 +46,11 @@ class Pup < ActiveRecord::Base
     # result = Pup.where("breed_1 = ?", breed_name).order("created_at DESC")
     # result += Pup.where("breed_2 = ?", breed_name).order("created_at DESC")
     if Breed.find_by_name(breed_name).nil?
-      []
+      result = []
     else
       result = Pup.where("breed_id = ?", Breed.find_by_name( breed_name ).id).order("created_at DESC")
     end
+    result
   end
   
   def Pup.find_by_breeds(breed1, breed2='None')
@@ -75,7 +76,7 @@ class Pup < ActiveRecord::Base
                    :dog_behavior => 0, :energy_level => 0, :simpatico_rating => 0}
     count = 0.0
     pups_by_breed.each do |pup|
-      results_hash.each do |rating, value|
+      results_hash.each do |rating, _value|
         unless pup.send(rating) == nil
           results_hash[rating] += pup.send(rating)
           results_num[rating] += 1
@@ -84,7 +85,7 @@ class Pup < ActiveRecord::Base
       end
       count += 1.0
     end
-    results_hash.each do |k,v|
+    results_hash.each do |k, _v|
       results_hash[k] = 1.0 * results_hash[k]/results_num[k] if results_num[k] > 0
       # results_hash[k] /= count
     end
@@ -96,6 +97,40 @@ class Pup < ActiveRecord::Base
     not Breed.find_by_name(breed_name) == nil
   end
   
+  def update_comment(content)
+    if self.comment
+      self.comment.content = content
+      self.comment.save
+    else
+      self.create_comment(:content => content)
+    end
+  end
+  
+  def update_breeder(breeder_str)
+    if breeder_str.empty?
+      self.breeder = Breeder.where('name = ?', 'Unknown').first
+      return self.breeder
+    end
+    
+    breeder = Breeder.find_by_formatted_string(breeder_str)
+    if breeder
+      self.breeder = breeder
+    else
+      # New Breeder
+      nil
+    end
+  end
+  
+  def hashtags
+    [self.hashtag_1, self.hashtag_2, self.hashtag_3]
+  end
+  
+  def ratings
+    {:breeder => self.breeder_responsibility, :health => self.overall_health, :train => self.trainability,
+     :social => self.social_behavior, :behavior => self.dog_behavior, :energy => self.energy_level,
+     :simpatico => self.simpatico_rating 
+    }
+  end
   
   private
   def limit_ratings
