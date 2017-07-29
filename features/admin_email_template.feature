@@ -16,7 +16,7 @@ Feature: Admin should be able to send email templates, so user do not need type 
     
         Scenario: admins able to creat a new email_templates
           Given admin go to email_templates
-          And I click "New Email Template" 
+          And I click "New Email Template"
           And I fill in "title" with "Ex title"
           And I fill in "body" with "Ex body"
           And I click "Create new Email Template"
@@ -28,16 +28,21 @@ Feature: Admin should be able to send email templates, so user do not need type 
           
         Scenario: able to send email_templates to newsletter_user
           Given admin go to email_templates
-          When I check "wellcome" email_template
-          
+          When I check "wellcome" as template
           And I check "batch_action_item_1"
-          And I check "jcjack@berkeley.edu" as newsletter_user
+          And admin go to newsletter_users
+          And I check "jcjack@berkeley.edu"
           And I check "batch_action_item_1"
           And I check send email_templates
           Then "jcjack" should get an email with "wellcome" and "hi" 
           
+########################### sad path ##########################################
+        
+        Scenario: only allowed one email_template been select, since email_template and email is one to one 
+          When I check "wellcome"
+          And I chec "title1"
+          And I check "batch_action_item_1"
+          Then I should see "A email can only includ one Email Template"
 
-
-          
           
           
