@@ -16,7 +16,7 @@ Feature: Admin should be able to send email templates, so user do not need type 
     
         Scenario: admins able to creat a new email_templates
           Given admin go to email_templates
-          And I click "New Email Template"
+          And I click "New Email Template" 
           And I fill in "title" with "Ex title"
           And I fill in "body" with "Ex body"
           And I click "Create new Email Template"
@@ -25,36 +25,19 @@ Feature: Admin should be able to send email templates, so user do not need type 
           And I should see "Ex title"
           And I should see "Ex body"
         
-        Scenario: admins check/uncheck email_templates
-          When I uncheck "title1"
-          Then I should not see "✔"
-          And  I should see "✗"	
-          When I check "wellcome"
-          Then I should see "✔"
-          And I uncheck "wellcome"
-          Then I should not see "✔"
           
         Scenario: able to send email_templates to newsletter_user
           Given admin go to email_templates
-          When I check "wellcome"
-          Then I should see "✔"
-          And admin go to newsletter_users
-          And I check "jcjack@berkeley.edu"
+          When I check "wellcome" email_template
+          
+          And I check "batch_action_item_1"
+          And I check "jcjack@berkeley.edu" as newsletter_user
           And I check "batch_action_item_1"
           And I check send email_templates
           Then "jcjack" should get an email with "wellcome" and "hi" 
           
-########################### sad path ##########################################
-        
-        Scenario: only allowed one email_template been select, since email_template and email is one to one 
-          When I check "wellcome","title1"
-          Then I should see "A email can only includ one Email Template"
-          When I check "wellcome"
-          Then I should see "wellcome" with "✔"
-          And I should see "title1" with "✗"
-          When I check "title1"
-          Then I should see "title1" with "✔"
-          And I should see "wellcome" with "✗"	 
+
+
           
           
           

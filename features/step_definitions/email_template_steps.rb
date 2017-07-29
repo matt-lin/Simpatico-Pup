@@ -2,7 +2,7 @@ And (/^the following email_templates exist:$/) do |table|
     pending
 end
 
-When (/^I check "([^"]*)","([^"]*)"$/) do |template|
+When (/^I check "([^"]*)" email_template$/) do |template|
     pedning
 end
 
