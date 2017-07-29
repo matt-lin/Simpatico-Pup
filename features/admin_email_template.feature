@@ -41,10 +41,11 @@ Feature: Admin should be able to send email templates, so user do not need type 
 ########################### sad path ##########################################
         
         Scenario: only allowed one email_template been select, since email_template and email is one to one 
-          When I check "welcome"
-          And I check "title1"
-          And I check "batch_action_item_1"
+          Given admin go to email_templates
+          When I check "batch_action_item_1"
+          And I check "batch_action_item_2"
+          And I submit the batch action form with "send"
           Then I should see "A email can only includ one Email Template"
           
 #Iter 3-1
-          
+
