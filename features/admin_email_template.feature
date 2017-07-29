@@ -9,17 +9,17 @@ Feature: Admin should be able to send email templates, so user do not need type 
               | zipeiw@berkeley.edu        |
               | gj@berkeley.edu            | 
         And the following email_templates exist:
-        |   Title       | Body      |  Marked   |
+        |   title       | body      |  marked   |
         | title1        | body1     |   ture    |
-        | wellcome      | hi        |   false   |
+        | welcome      | hi        |   false   |
     
     
         Scenario: admins able to creat a new email_templates
           Given admin go to email_templates
-          And I click "New Email Template"
-          And I fill in "title" with "Ex title"
-          And I fill in "body" with "Ex body"
-          And I click "Create new Email Template"
+          And I follow "New Email Template"
+          And I fill in "email_template_title" with "Ex title"
+          And I fill in "email_template_body" with "Ex body"
+          And I press "Create Email template"
           And I should see "Email template was successfully created."
           And admin go to email_templates
           And I should see "Ex title"
@@ -28,19 +28,20 @@ Feature: Admin should be able to send email templates, so user do not need type 
           
         Scenario: able to send email_templates to newsletter_user
           Given admin go to email_templates
-          When I check "wellcome" as template
           And I check "batch_action_item_1"
-          And admin go to newsletter_users
-          And I check "jcjack@berkeley.edu"
+          And I submit the batch action form with "send"
+          Then I should see "Newsletter Users"
+          
           And I check "batch_action_item_1"
-          And I check send email_templates
-          Then "jcjack" should get an email with "wellcome" and "hi" 
+          And I submit the batch action form with "email"
+          Then I should see "The batch email has been sent to all the users"
+          Then "jcjack" should get an email with "welcome" and "hi" 
           
 ########################### sad path ##########################################
         
         Scenario: only allowed one email_template been select, since email_template and email is one to one 
-          When I check "wellcome"
-          And I chec "title1"
+          When I check "welcome"
+          And I check "title1"
           And I check "batch_action_item_1"
           Then I should see "A email can only includ one Email Template"
 
