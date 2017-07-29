@@ -96,4 +96,3 @@ exclude_paths:
 - test/
 - vendor/
 - lib/
-
