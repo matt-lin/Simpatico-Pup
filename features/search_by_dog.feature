@@ -6,7 +6,8 @@ Feature: display average rating of breed along with corresponding reviews
     I want to be able to search for a specific dog breed's characteristics ratings
 
 Background: reviews have been added to the database
-
+    
+    Given the default layout exist
     Given the following ratings exist:
     | breed_1 			| breed_2 		 | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating | comments 						  | breeder_id 	   |
     | German Short Hair | None 			 | 4 					  | 5 			   | 5 			  | 4 				| 5 		   | 5 				  | The greatest dog I've ever owned. | 2 |
@@ -18,7 +19,7 @@ Background: reviews have been added to the database
     | Poodle 			| None           | 4 					  | 5 			   | 5 			  | 4 				| 5 		   | 5 				  | The greatest poodle ever.         | 2 |
     | Poodle 			| None           | 2 					  | 3 			   | 3 			  | 3 				| 5 		   | 4 				  | Great dog.                        | 3  |
     | Shiba Inu 	  	| None 			 | 3 					  | 4 			   | 4 			  | 5 				| 4 		   | 2 				  | Such review. Wow. 				  | 1   |
-
+    
     And I am on the RateMyPup home page
     And I press a hidden button ".button-b"
 

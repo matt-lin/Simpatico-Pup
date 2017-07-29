@@ -7,6 +7,11 @@ Ratemypup::Application.routes.draw do
   mount Thredded::Engine => '/forum'
   devise_for :users, controllers: {sessions: "sessions", registrations: 'users/registrations'}
   
+  # namespace :users do
+  #   get '/pups' => 'users#pups', :as => :user_pups
+  # end
+
+  get '/users/pups' => 'users#pups', :as => :user_pups
   devise_scope :user do
     get '/users/unsubscribe' => 'users/registrations#unsubscribe_newsletter', :as => :unsubscribe_newsletter
   end
@@ -26,6 +31,9 @@ Ratemypup::Application.routes.draw do
   get 'pups/dog_how_long' => 'pups#dog_how_long', :as => :dog_how_long
   get 'pups/dog_breed' => 'pups#dog_breed', :as => :dog_breed
   get 'pups/dog_breeder' => 'pups#dog_breeder', :as => :dog_breeder
+  
+  get 'pups/hashtags' => 'pups#hashtags', :as => :dog_hashtags
+  get 'pups/ratings' => 'pups#ratings', :as => :dog_ratings
 
   resources :pups
   resources :breeders
@@ -49,6 +57,10 @@ Ratemypup::Application.routes.draw do
   get '/text/terms_of_service' => 'texts#terms_of_service', :as => :terms_of_service
   get '/welcome' => 'texts#welcome', :as => :welcome
   
+<<<<<<< HEAD
+=======
+  get "*path" => redirect("/")
+>>>>>>> master
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

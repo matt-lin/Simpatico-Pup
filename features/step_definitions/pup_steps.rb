@@ -9,6 +9,12 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
+Given /the following pups exist/ do |pups_table|
+  pups_table.hashes.each do |p|
+    Pup.create!(p)
+  end
+end
+
 Given /the following ratings exist/ do |pups_table|
   breeder = FactoryGirl.create(:breeder, :name => "George W. Bush")
   pups_table.hashes.each do |rating|
@@ -171,3 +177,65 @@ When /^I fill in the search breeder form with following: (.*)/ do |args|
   }
 end
 #End iter 2-2
+
+When /^I fill in with a non-existing breeder/ do
+  steps %Q{
+    When I fill in "breeder_str" with "Invalid breeder"
+  }
+end
+
+When /^I fill in new info/ do
+  steps %Q{
+    When I select "10" in the dropdown menu "pup_years"
+    And I select "10" in the dropdown menu "pup_months"
+    And I select "Affenpinscher" in the dropdown menu "breed"
+    And I fill in "breeder_str" with "Carl - Berkeley, CA"
+    And I fill in "comment" with "Test"
+  }
+  # fifith = 5, sixth = 0
+  page.find("#breeder-label-fifth").trigger(:click)
+  page.find("#health-label-fifth").trigger(:click)
+  page.find("#train-label-fifth").trigger(:click)
+  page.find("#social-label-fifth").trigger(:click)
+  page.find("#behavior-label-fifth").trigger(:click)
+  page.find("#energy-label-fifth").trigger(:click)
+  page.find("#simpatico-label-sixth").trigger(:click)
+  # HardToObedienceTrain and VeryQuiet
+  page.find("#hashtag1").trigger(:click)
+  page.find("#hashtag7").trigger(:click)
+end
+
+When /^I should see correct info updated/ do
+  steps %Q{
+    Then I should see "Owned For: 10 year(s) and 10 month(s)"
+    And  I should see "Breed: Affenpinscher"
+    And  I should see "Breeder: Carl"
+    And  I should see "Test"
+    And  I should see "#HardToObedienceTrain"
+    And  I should see "#VeryQuiet"
+  }
+  page.find('#breeder_score')['innerHTML'].should == "5"
+  page.find('#health_score')['innerHTML'].should == "5"
+  page.find('#train_score')['innerHTML'].should == "5"
+  page.find('#social_score')['innerHTML'].should == "5"
+  page.find('#energy_score')['innerHTML'].should == "5"
+  page.find('#simpatico_score')['innerHTML'].should == "N/A"
+end
+
+When /^I should see correct info of dog1/ do
+  steps %Q{
+    Then  I should see "Breeder: Juju"
+    And   I should see "Breed: Afghan Hound"
+    And   I should see "Owned For: 1 year(s) and 1 month(s)"
+  }
+end
+
+When /^I finish adding a new breeder$/ do
+  steps %Q{
+    When I fill in "breeder_name" with "Jeff Yu"
+    And I fill in "breeder_city" with "Berkeley"
+    And I select "CA" in the dropdown menu "breeder_state"
+    And I press "Add_Breeder"
+  }
+end
+

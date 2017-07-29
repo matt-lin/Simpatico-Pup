@@ -1,3 +1,4 @@
+# Iter 3-1
 Feature: users should be able to unsubscribe newsletters in the newsletter they receive
   
     As a users
@@ -23,3 +24,5 @@ Background:
     Scenario: user remain subscribing if not doing anything
       When  "jeff" simply open the email
       Then  "jeff" is in the subscribing group
+      
+# End 3-1
