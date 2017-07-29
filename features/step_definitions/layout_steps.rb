@@ -20,7 +20,6 @@ Given (/^the default layout exist$/) do
     Blue_Bar_Bottom_Right: ['LSandersDVM@gmail.com', 'main_bar'],
     Comment_Title: ['Featured Comment', 'main_title', 'main_title']
   }
-  
   layouts.keys.each do |key|
     Customize.create!(name: key, content: layouts[key][0], location: layouts[key][1])
   end

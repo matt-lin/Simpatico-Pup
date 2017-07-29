@@ -55,8 +55,6 @@ ActiveRecord::Schema.define(version: 20170728025649) do
     t.string   "catagory",              default: "Others"
   end
 
-  add_index "attachments", ["selected_attachment_id"], name: "index_attachments_on_selected_attachment_id"
-
   create_table "breeders", force: :cascade do |t|
     t.string  "name"
     t.string  "location"
