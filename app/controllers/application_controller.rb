@@ -3,8 +3,6 @@ class ApplicationController < ActionController::Base
   
   ##### :set_titles deleted from before_filter to stop undfined method being created
   before_filter :delete_pup_from_session
-  ##########################################
-
   def delete_pup_from_session
     if session[:pup]
       session.delete(:pup)

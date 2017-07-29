@@ -6,7 +6,7 @@ Feature: select dog breed using when using rating
   I want to enter a dog breed
   
   Background: breeders have been added to the database
-    
+    Given the default layout exist
     Given the following breeders exist:
       | name            | city     | state |
       | Carl            | Berkeley | CA    |

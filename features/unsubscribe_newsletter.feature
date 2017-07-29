@@ -1,3 +1,4 @@
+# Iter 3-1
 Feature: users should be able to unsubscribe newsletters in the newsletter they receive
   
     As a users
@@ -5,6 +6,7 @@ Feature: users should be able to unsubscribe newsletters in the newsletter they 
     So that it would be most convenient for me
 
 Background: 
+    Given the default layout exist
     Given the following newsletter_user exist:
           | email                    |
           | jeff@berkeley.edu        |    
@@ -23,3 +25,5 @@ Background:
     Scenario: user remain subscribing if not doing anything
       When  "jeff" simply open the email
       Then  "jeff" is in the subscribing group
+      
+# End 3-1

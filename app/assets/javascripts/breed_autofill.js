@@ -19,7 +19,6 @@ var BreedAutofill = {
 
         // grab prefix from either find or form text
         var prefix = $("#breed_find").val();
-        console.log(prefix);
         $.ajax({
             type: 'GET',
             url: '/breed/match',
@@ -32,16 +31,15 @@ var BreedAutofill = {
         })
     }
 
-    // callback for breeder_ajax creates links for max 10 relevant breeders
+    // callback for breeder_ajax creates links for max 5 relevant breeders
     // class .autofills wraps each autofill
     // id #breeder_find contains .autofills
     // class .autofill_link links to each breeder's average ratings page
     ,breeds_add_find: function (data, requestStatus, xhrObject) {
         
         $('#breed_autofills').empty();
-        datasize = (data.length > 5)? 5: data.length;
-        console.log(datasize)
-        for (i = 0; i < datasize; i++) {
+        var datasize = (data.length > 5)? 5: data.length;
+        for (var i = 0; i < datasize; i++) {
             var name = data[i];
             var html = '<div class="autofills"><a class="autofill_link">' + name + '</a></div>';
             var autofill = $(html);

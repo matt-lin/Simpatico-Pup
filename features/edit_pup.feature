@@ -1,11 +1,12 @@
-
+# Iter 3-1
+@javascript
 Feature: User should be able to edit their previous pups' ratings
     As a user
     I want to modify my dog ratings
     So that when I make a mistake or change my mind, I can edit the ratings
     
 Background: User already login
-  
+  Given the default layout exist
   Given I am on the RateMyPup home page
   
   And the following users exist: 
@@ -27,23 +28,24 @@ Background: User already login
     | Juju            | Berkeley | CA    |
 
   And the following pups exist:
-    | pup_name        | breeder_id  | breed_id | user_id | breeder_responsibility | overall_health | trainability | social_behavior | energy_level | simpatico_rating |
-    | dog1            | 1           | 1        | 1       | 4                      | 4              | 3            | 5               | 3            | 4                | 
-    | dog2            | 1           | 1        | 1       | 4                      | 4              | 3            | 5               | 3            | 4                |
-    | dog3            | 2           | 3        | 2       | 3                      | 4              | 3            | 4               | 4            | 3                |
+    | pup_name        | breeder_id  | breed_id | user_id | breeder_responsibility | overall_health | trainability | dog_behavior    | social_behavior | energy_level | simpatico_rating | year | month |
+    | dog1            | 3           | 2        | 1       | 4                      | 4              | 3            | 2               | 5               | 3            | 4                | 1    | 1     |
+    | dog2            | 1           | 1        | 1       | 4                      | 4              | 3            | 2               | 5               | 3            | 4                | 1    | 1     |
+    | dog3            | 2           | 3        | 2       | 3                      | 4              | 3            | 2               |4                | 4            | 3                | 1    | 1     |
   
   And   I should not see "My Pups"
+  
   Given I log in as "jeff"
   When  I follow "My Pups"
   Then  I should be on the "Pups Ratings" page
   
   Scenario: users can see pups ratings
-    And   I should see "dog1"'s basic info
-    And   I should see "dog2"'s basic info
-    And   I should not see "dog3"'s basic info
+    And   I should see "dog1"
+    And   I should see "dog2"
+    And   I should not see "dog3"
   
   Scenario: users can delete ratings 
-    When  I follow "Delete" for "dog1"
+    When  I follow "Delete" for dog1
     Then  I should be on the RateMyPup home page
     And   I should see "Pup dog1 has been deleted"
     When  I follow "My Pups"
@@ -51,34 +53,40 @@ Background: User already login
     And   I should see "dog2"'s basic info
     
   Scenario: users can edit ratings
-    When  I follow "Edit" for "dog1"
+    When  I follow "Edit" for dog1
     Then  I should be on the "Edit Pup Rating" page
     When  I fill in new info
-    And   I press "Save"
+    And   I press "Update"
     Then  I should be on the "Pups Ratings" page
-    When  I follow "More" for "dog1"
+    And   I should see "Pup has been updated"
+    When  I follow "More" for dog1
     Then  I should see correct info updated
     
   Scenario: users can cancel the edit before saving
-    When  I follow "Edit" for "dog1"
+    When  I follow "Edit" for dog1
     And   I fill in new info
-    And   I press "Cancel"
+    And   I follow "Cancel"
     Then  I should be on the "Pups Ratings" page
-    When  I follow "More" for "dog1"
-    Then  I should see correct info of dog "dog1"
+    When  I follow "More" for dog1
+    Then  I should see correct info of dog1
     
   Scenario: users can add breeder if he wants
-    When  I follow "Edit" for "dog1"
+    When  I follow "Edit" for dog1
     And   I fill in with a non-existing breeder
-    And   I press "Save"
+    And   I press "Update"
     Then  I should be on the "Edit Pup Rating" page
-    And   I should see "Breeder is not in our database."    
+    And   I should see "The breeder you enter is not in our database" 
+    When  I follow "Add Breeder"
+    Then  I should be on the "Add breeder" page
+    When  I finish adding a new breeder 
+    Then  I should be on the "Edit Pup Rating" page
+    And   I should see "Jeff Yu"
   
   Scenario: users can go to details page and delete pup
-    When  I follow "More" for "dog1"
+    When  I follow "More" for dog1
     Then  I should be on the "Pup Rating Detail" page
-    And   I should see correct info of dog "dog1"
-    When  I follow "Delete"
+    And   I should see correct info of dog1
+    When  I press "Delete pup"
     Then  I should be on the RateMyPup home page
     And   I should see "Pup dog1 has been deleted"
     When  I follow "My Pups"
@@ -86,6 +94,7 @@ Background: User already login
     And   I should see "dog2"'s rating    
     
   Scenario: users can go to details page and edit pup
-    When  I follow "More" for "dog1"
-    When  I follow "Edit"
+    When  I follow "More" for dog1
+    When  I press "Edit pup"
     Then  I should be on the "Edit Pup Rating" page
+#End iter 3-1

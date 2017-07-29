@@ -7,11 +7,12 @@ Feature: select dog breed using when using rating
   I want to enter a dog breed
   
 Background: User already logged in
-  
-    Given the following breeds exist:
+
+  Given the default layout exist
+  Given the following breeds exist:
     | name            | 
     | Affenpinscher   |
-    | Afghan     Hound|
+    | Afghan Hound    |
     | Akita           |
     | Bobq            |
     | Michael Jackson |

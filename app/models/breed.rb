@@ -21,9 +21,8 @@ class Breed < ActiveRecord::Base
     return result
   end
 
-  private
+  #private
   def Breed.all_breeds
     return Breed.select('name').map{ |e| e.name }.to_a
   end
-
 end

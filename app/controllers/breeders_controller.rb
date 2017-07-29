@@ -90,13 +90,11 @@ class BreedersController < ApplicationController
     name, city, state = params[:breeder][:name], params[:breeder][:city], params[:breeder][:state]
     
     # Iter 2-2 Breeder location validation (By Gilbert Lo, Jeff Yu)
+    cities = CS.cities(state.downcase, :us).map(&:downcase)
     if state.empty?
       flash[:notice] = "Please select a state."
       redirect_to new_breeder_path and return
-    end
-
-    cities = CS.cities(state.downcase, :us).map(&:downcase)
-    if !cities.include? city.downcase
+    elsif !cities.include? city.downcase
       flash[:notice] = "The city you entered is not a valid city in the selected state. Please re-enter your infomation."
       redirect_to new_breeder_path and return
     end
@@ -106,6 +104,19 @@ class BreedersController < ApplicationController
       flash[:message] = message
     end
     flash[:notice] = "Breeder #{name} has been added to our database!"
+    
+    # Possible session didn't get delete, if not found dog, then not from edit page
+    # do nothing and delete the session
+    if session[:pup_id]
+      pup = Pup.find_by_id session[:pup_id]
+      session.delete :pup_id
+      if pup
+        pup.breeder = breeder
+        pup.save
+        redirect_to edit_pup_path(pup) and return
+      end
+    end
+    
     redirect_to new_pup_path(:breeder => {:name => (name+' - '+city+', '+state)})
   end
 

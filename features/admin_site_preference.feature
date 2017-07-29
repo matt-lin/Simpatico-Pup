@@ -18,9 +18,9 @@ Feature: edit the content for the main page
       | main_button  |
       | main_bar        |
       | Better Way to Find a Great Dog  |
-      | Find Dog Breeders Near You     |
+      | Find a pup from a reliable source |
     When I follow "Main Page Welcome Title"
-    Then I should see "Find Dog Breeders Near You"
+    Then I should see "Find a pup from a reliable source"
     And I should not see "For more information on Breed Health"
 
   Scenario: Change the website title and apply the change on the main page

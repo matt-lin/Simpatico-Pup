@@ -1,8 +1,8 @@
 class Comment < ActiveRecord::Base
 
   belongs_to :pup
-
-  attr_accessible :content, :pup_id
+  attr_accessible :content
+  attr_accessible :pup_id
   attr_accessor :breed, :breeder
 
   validate :comment_length
