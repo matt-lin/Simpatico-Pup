@@ -90,13 +90,11 @@ class BreedersController < ApplicationController
     name, city, state = params[:breeder][:name], params[:breeder][:city], params[:breeder][:state]
     
     # Iter 2-2 Breeder location validation (By Gilbert Lo, Jeff Yu)
+    cities = CS.cities(state.downcase, :us).map(&:downcase)
     if state.empty?
       flash[:notice] = "Please select a state."
       redirect_to new_breeder_path and return
-    end
-
-    cities = CS.cities(state.downcase, :us).map(&:downcase)
-    if !cities.include? city.downcase
+    elsif !cities.include? city.downcase
       flash[:notice] = "The city you entered is not a valid city in the selected state. Please re-enter your infomation."
       redirect_to new_breeder_path and return
     end
