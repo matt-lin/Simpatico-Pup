@@ -38,34 +38,31 @@ class PupsController < ApplicationController
   # The true rating page
   # Iter 1-2
   def new
-    if !session[:step1] || !session[:step2] || !session[:step3]
+    if not_finish_previous_steps?(session[:step1], session[:step2], session[:step3])
       redirect_to root_path and return
     end
     session.delete(:breeder_id)
-    if !session[:breeder_id]
-      breeder_str = params[:breeder][:name]
-      if breeder_str.empty?
-        session[:breeder_id] = 1
-        return
-      end
-      breeder = Breeder.find_by_formatted_string(breeder_str)
-      if breeder
-        @same_breeder = Pup.where("user_id = ? and breeder_id = ?", current_user.id, breeder.id)
-        if @same_breeder.length >= 2
-          redirect_to root_path, flash: {notice: 'SimpaticoPup is a website designed to collect information from dog
+    breeder_str = params[:breeder][:name]
+    if breeder_str.empty?
+      session[:breeder_id] = 1
+      return
+    end
+    breeder = Breeder.find_by_formatted_string(breeder_str)
+    if breeder
+      @same_breeder = Pup.where("user_id = ? and breeder_id = ?", current_user.id, breeder.id)
+      if @same_breeder.length >= 2
+        redirect_to root_path, flash: {notice: 'SimpaticoPup is a website designed to collect information from dog
 lovers about their own companion dogs. To ensure that our rating summaries accurately reflect input from a wide variety
 of dog owners, we are currently limiting the number of ratings made by each dog owner to eight, and limiting each dog
 owner to rating only two dogs that come from the same dog breeder. Thank you for your contributions to our database.'}
-          return
-        else
-          session[:breeder_id] = breeder.id
-          return
-        end
+      else
+        session[:breeder_id] = breeder.id
       end
-      flash[:notice] = "The dog breeder or kennel you entered is not yet in our database.
-      Please add the name of the dog breeder, city and state to our database."
-      redirect_to new_breeder_path and return
+      return
     end
+    flash[:notice] = "The dog breeder or kennel you entered is not yet in our database.
+    Please add the name of the dog breeder, city and state to our database."
+    redirect_to new_breeder_path and return
   end
   # End for Iter 1-2
 
@@ -80,14 +77,6 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
     new_comment = {:content => params[:pup][:comments]}
     @Comment = Comment.new(new_comment)
 
-    if @pup.user.pups(:reload).size > 8
-      flash[:notice] = 'SimpaticoPup is a website designed to collect information from dog lovers about their own
-companion dogs. To ensure that our rating summaries accurately reflect input from a wide variety of dog owners, we are
-currently limiting the number of ratings made by each dog owner to eight, and limiting each dog owner to rating only two
- dogs that come from the same dog breeder. Thank you for your contributions to our database.'
-      redirect_to root_path and return
-    end
-
     #Problem 2
     if !@pup.valid?
       flash[:notice] = 'Please make sure all fields are complete!'
@@ -97,16 +86,23 @@ currently limiting the number of ratings made by each dog owner to eight, and li
       flash[:notice] = 'Please make sure the comment is less than 140 characters.'
       redirect_to new_pup_path and return
     end
+    
+    if @pup.user.pups(:reload).size > 8
+      flash[:notice] = 'SimpaticoPup is a website designed to collect information from dog lovers about their own
+companion dogs. To ensure that our rating summaries accurately reflect input from a wide variety of dog owners, we are
+currently limiting the number of ratings made by each dog owner to eight, and limiting each dog owner to rating only two
+ dogs that come from the same dog breeder. Thank you for your contributions to our database.'
+    else
+      @pup.save
+      @Comment.pup_id = @pup.id
+      @Comment.breed = @pup.breed.name
+      @Comment.breeder = @pup.breeder.name
+      @Comment.save
 
-    @pup.save
-    @Comment.pup_id = @pup.id
-    @Comment.breed = @pup.breed.name
-    @Comment.breeder = @pup.breeder.name
-    @Comment.save
-
-    # Successfully save pup & comment
-    flash[:notice] = "Thank You! #{@pup.pup_name} was successfully added to our database."
-    redirect_to root_path
+      # Successfully save pup & comment
+      flash[:notice] = "Thank You! #{@pup.pup_name} was successfully added to our database."
+    end
+      redirect_to root_path
   end
   
   # Still need check if it is owner and check if dog exist
@@ -164,21 +160,14 @@ currently limiting the number of ratings made by each dog owner to eight, and li
   def edit
     @pup = Pup.find_by_id params[:id]
     @breeds = Breed.all
-    # success = true
-    
+
     if @pup.nil?
       flash[:notice] = "The dog you are trying to edit is not exist"
-      # success = false
       redirect_to root_path and return
     elsif !owner?(@pup)
       flash[:notice] = "The dog you are trying to edit is not yours"
-      # success = false
       redirect_to root_path and return
     end
-    
-    # if !success
-    #   redirect_to root_path and return
-    # end
     
     @breed = @pup.breed.name
     breeder = @pup.breeder
@@ -261,7 +250,7 @@ with you for a minimum of six months. Thank you."
 
   #step3
   def dog_breeder
-    if !session[:step1] || !session[:step2]
+    if not_finish_previous_steps?(session[:step1], session[:step2])
       redirect_to root_path and return
     end
     if params[:breed]
@@ -300,10 +289,18 @@ with you for a minimum of six months. Thank you."
 
   private
   
+  def not_finish_previous_steps?(step1, step2 = true, step3 = true)
+    !step1 || !step2 || !step3
+  end
+  
   def check_time_valid?(years, months)
-    result1 = (!years.empty? && !is_num?(years)) || (!months.empty? && !is_num?(months))
+    result1 = check_valid?(years) || check_valid?(months)
     result2 = years.nil? || months.nil? || (years.empty? && months.empty?)
     result1 || result2
+  end
+  
+  def check_valid?(input)
+    !input.empty? && !is_num?(input)
   end
   
   # def check_time_filled?(years, months)
