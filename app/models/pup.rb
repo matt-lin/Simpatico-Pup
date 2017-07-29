@@ -1,14 +1,16 @@
 class Pup < ActiveRecord::Base
-
+  
+  #Iter 3-2 include strong params to deal with mass assignment issue (By Gung Hiu Ho)
+  include ActiveModel::ForbiddenAttributesProtection
+  
   belongs_to :user
   # validate :limit_ratings
   belongs_to :breeder
   belongs_to :breed
-
+  
   has_one :comment, dependent: :destroy
 
   validates :pup_name, :presence => true
-  # validates :user_id, :presence => true
   validates :breeder_id, :presence => true
   
   ######breed_id may not be needed, result table creation error in admin.feature
@@ -22,15 +24,8 @@ class Pup < ActiveRecord::Base
   validates :energy_level, :presence => true
   validates :simpatico_rating, :presence => true
 
-  attr_accessible :pup_name, :year, :month, :user_id, :breeder_id, :breed_id, :breeder_responsibility, :overall_health,
-                  :trainability, :social_behavior,:dog_behavior, :energy_level, :simpatico_rating, :kennel,
-                  :hashtag_1, :hashtag_2, :hashtag_3
-
-
   # Info - Commented by Mallow-Tech developer and same logic implemented in dogs controller
   # before_destroy { |pup| pup.breeder ? pup.breeder.increment_deleted_reviews : nil }
-
-
 
   # assets
 
