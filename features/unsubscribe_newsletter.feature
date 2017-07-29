@@ -6,6 +6,7 @@ Feature: users should be able to unsubscribe newsletters in the newsletter they 
     So that it would be most convenient for me
 
 Background: 
+    Given the default layout exist
     Given the following newsletter_user exist:
           | email                    |
           | jeff@berkeley.edu        |    
