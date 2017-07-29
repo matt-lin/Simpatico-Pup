@@ -6,7 +6,7 @@ Feature: User should be able to edit their previous pups' ratings
     So that when I make a mistake or change my mind, I can edit the ratings
     
 Background: User already login
-  
+  Given the default layout exist
   Given I am on the RateMyPup home page
   
   And the following users exist: 
@@ -34,6 +34,7 @@ Background: User already login
     | dog3            | 2           | 3        | 2       | 3                      | 4              | 3            | 2               |4                | 4            | 3                | 1    | 1     |
   
   And   I should not see "My Pups"
+  
   Given I log in as "jeff"
   When  I follow "My Pups"
   Then  I should be on the "Pups Ratings" page
