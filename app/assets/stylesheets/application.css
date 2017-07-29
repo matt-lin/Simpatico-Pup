@@ -78,7 +78,7 @@ body {
     border: solid black;
     border-width: 1px;
     padding: 10px 10px 10px 10px;
-    margin: 0px 5px 0px 5px;
+    margin: 0 5px 0 5px;
     background: #c8e1fa
 }
 
@@ -305,12 +305,12 @@ body {
 }
 
 .subsection-tagline {
-    margin: 50px 0px 40px 0px;
+    margin: 50px 0 40px 0px;
     font-size: 28px;
 }
 
 .mission-text {
-    padding: 0px 40px 0px 40px;
+    padding: 0 40px 0 40px;
     margin-bottom: 100px;
     text-align: center;
     font-weight: normal; 
@@ -501,7 +501,7 @@ body,
     }
     
     .tagline {
-        margin:40px 0px -90px 0px;
+        margin:40px 0 -90px 0px;
         text-align: center;
     }
     
@@ -522,7 +522,7 @@ body,
     and (min-device-height: 680px){
         
     .tagline {
-        margin:40px 0px -20px 0px;
+        margin:40px 0 -20px 0px;
         text-align: center;
     }
     
@@ -563,7 +563,7 @@ body,
     }
     
     .tagline {
-        margin:20px 0px -90px 0px;
+        margin:20px 0 -90px 0px;
         text-align: center;
     }
     
