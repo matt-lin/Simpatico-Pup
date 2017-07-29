@@ -1,5 +1,6 @@
 # Iter 2-2 account actication (by Zipei Wang and Jack Chen)
 class AccountActivationsController < ApplicationController
+
   def edit
     user = User.find_by(email: params[:email])
     if user && !user.activated?
