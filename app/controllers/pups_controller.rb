@@ -233,18 +233,15 @@ currently limiting the number of ratings made by each dog owner to eight, and li
   def dog_breed
     if !session[:step1]
       redirect_to root_path and return
-    end
-    if params[:pup]
+    elsif params[:pup]
       years = params[:pup][:years]
       months = params[:pup][:months]
     else
       years = session[:years]
       months = session[:months]
     end
-    # tmp_session = {:name => session[:pup_name]}
-    if years.nil? || months.nil? || (years.empty? && months.empty?)
-      flash[:notice] = "Please enter how long you have owned your dog."
-    elsif (!years.empty? && !is_num?(years)) || (!months.empty? && !is_num?(months))
+
+    if check_time_valid?(years, months)
       flash[:notice] = "Please enter a valid integer number for year/month."
     elsif is_valid_year_month?(years, months)
       session[:years] = years
@@ -302,6 +299,17 @@ with you for a minimum of six months. Thank you."
   end
 
   private
+  
+  def check_time_valid?(years, months)
+    result1 = (!years.empty? && !is_num?(years)) || (!months.empty? && !is_num?(months))
+    result2 = years.nil? || months.nil? || (years.empty? && months.empty?)
+    result1 || result2
+  end
+  
+  # def check_time_filled?(years, months)
+  #   years.nil? || months.nil? || (years.empty? && months.empty?)
+  # end
+  
   def owner?(pup)
     return pup.user_id == current_user.id
   end
