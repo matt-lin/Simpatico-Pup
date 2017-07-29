@@ -6,6 +6,7 @@ Feature: Filter autofill response by breeder city and state
   I want to be able to filter breeders by there city and state
 
   Background: breeders have been added to the database
+    Given the default layout exist
     Given the following breeders exist:
       | name            | city     | state  |
       | Carl            | Berkeley | CA     |
