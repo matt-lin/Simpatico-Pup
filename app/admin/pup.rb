@@ -43,7 +43,7 @@ end
     item.display_on?(:show)
   }
 
-  action_item :only => :show do |dog|
+  action_item :only => :show do
     link_to "Edit Dog" , edit_admin_dog_path
   end
 
