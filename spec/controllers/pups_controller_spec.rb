@@ -58,27 +58,32 @@ describe PupsController do
       response.should render_template 'index'
     end
   end
-  # describe "page for submitting new review" do
-  #   it "should get all of the breeds for the page" do
-  #     Pup.should_receive(:all_breeds).and_return([])
-  #     Pup.should_receive(:all_breeds_none).and_return([])
-  #     get :new
-  #   end
-  # end
-  # describe "serving main page" do
-  #   it "should get all of the breeds for the page" do
-  #     Pup.should_receive(:all_breeds).and_return([])
-  #     Pup.should_receive(:all_breeds_none).and_return([])
-  #     Breeder.should_receive(:all).and_return([])
-  #     get :main
-  #   end
-  # end
   
   describe "looking at a single pup review" do
-    it "should find the pup" do
-      temp_pup = Pup.new()
-      Pup.should_receive(:find).with('1').and_return(temp_pup)
-      get :show, :id => 1
+    before :each do
+      @user1 = FactoryGirl.create(:user)
+      sign_in :user, @user1
+      @dog1 = FactoryGirl.create(:pup, :user_id => @user1.id)
+    end
+    
+    it "should find the pup if dog exist and user is the owner" do
+      get :show, :id => @dog1.id
+      expect(response).to render_template 'show'
+      expect(assigns(:pup)).to eq @dog1
+    end
+    
+    it "should redirect to root_path if pup not exist" do
+      get :show, :id => 2
+      expect(response).to redirect_to root_path
+      expect(flash[:notice]).to_not be_empty
+    end
+    
+    it "should redirect to root_path if the user does not own the dog" do
+      user2 = FactoryGirl.create(:user, :email => "user2@test.com")
+      sign_in :user, user2
+      get :show, :id => @dog1.id
+      expect(response).to redirect_to root_path
+      expect(flash[:notice]).to_not be_empty
     end
   end
   
@@ -216,18 +221,6 @@ describe PupsController do
       post :create, @pup_hash
       expect(response).to redirect_to root_path
     end
-    
-    # it "should auto create one according to input breeder info if breeder not exist" do
-    #   session[:step1] = true
-    #   session[:pup_name] = "Doggie"
-    #   session[:step2] = true
-    #   session[:years] = "1" 
-    #   session[:months] = "1"
-    #   session[:step3] = true
-    #   session[:breed] = "Affenpinscher"
-    #   post :create, @breeder_nonexist_hash
-    #   response.should redirect_to root_path
-    # end
     
     it "should go to root_path if user rate to many dog already (step 1)" do
       9.times do
@@ -418,26 +411,70 @@ with you for a minimum of six months. Thank you.")
       expect(response).to redirect_to root_path
     end
   end
+  
   describe "updating a review" do
-    it "should find the pup and update it's attributes" do
-      @user = FactoryGirl.create(:user)
-      sign_in :user, @user
-      temp_pup = Pup.new()
-      Pup.should_receive(:find).with('1').and_return(temp_pup)
-      temp_pup.should_receive(:update_attributes).with({})
-      put :update, {:id => 1, :pup => {}}
-      response.should redirect_to pups_path
+    before :each do
+      @user1 = FactoryGirl.create(:user)
+      sign_in :user, @user1
+      @dog1 = FactoryGirl.create(:pup, :user_id => @user1.id)
     end
-  end
-  describe "deleting a pup rating" do
-    it "should find the pup and destroy it's review" do
-      @user = FactoryGirl.create(:user)
-      sign_in :user, @user
+    
+    it "should find the pup and update it's attributes" do
       temp_pup = Pup.new()
-      Pup.should_receive(:find).with('1').and_return(temp_pup)
+      temp_breed = Breed.new()
+      Pup.should_receive(:find_by_id).with('1').and_return(temp_pup)
+      temp_pup.should_receive(:update_breeder).and_return("")
+      temp_pup.should_receive(:update_attributes).with({})
+      Breed.should_receive(:find_by_name).with(nil).and_return(temp_breed)
+      temp_pup.should_receive(:update_comment).with(nil)
+      
+      put :update, {:id => 1, :pup => {}}
+      expect(flash[:notice]).to end_with "has been updated"
+      response.should redirect_to user_pups_path
+    end
+    
+    it "should redirect to edit page if breeder not existing" do
+      put :update, {:id => 1, :breeder_str => 'invalid'}
+      expect(flash[:modal]).to eq "Non existing breeder."
+      expect(response).to redirect_to edit_pup_path
+    end
+    
+  end
+  
+  describe "deleting a pup rating" do
+    before :each do
+      @user1 = FactoryGirl.create(:user)
+      sign_in :user, @user1
+      @dog1 = FactoryGirl.create(:pup, :user_id => @user1.id)
+    end
+    
+    it "should find the pup and destroy it's review" do
+      temp_pup = Pup.new()
+      temp_pup.user_id = @user1.id
+      Pup.should_receive(:find_by_id).with('1').and_return(temp_pup)
       temp_pup.should_receive(:destroy)
       delete :destroy, :id => 1
-      response.should redirect_to pups_path
+      
+      expect(flash[:notice]).to end_with 'has been deleted'
+      response.should redirect_to root_path
+    end
+    
+    it "should not destroy the dog if pup doesn't exist" do
+      expect { 
+        delete :destroy, :id => 2
+      }.to_not change(Pup, :count) 
+      expect(flash[:notice]).to eq "Dog doesn't exist"
+      response.should redirect_to root_path
+    end
+    
+    it "should not delete the dog if user is not the owner" do
+      user2 = FactoryGirl.create(:user, :email => "test@test.com")
+      sign_in :user, user2
+      expect { 
+        delete :destroy, :id => @dog1.id
+      }.to_not change(Pup, :count) 
+      expect(flash[:notice]).to_not be_empty
+      response.should redirect_to root_path
     end
   end
   describe "searching a dog by breed" do
@@ -472,6 +509,7 @@ with you for a minimum of six months. Thank you.")
     end
     
     it 'should return json for Breed' do 
+
       breed1 = FactoryGirl.create(:breed, :name => 'breed1')
       breed2 = FactoryGirl.create(:breed, :name => 'breed2')
       breed3 = FactoryGirl.create(:breed, :name => 'breed3')
@@ -481,5 +519,83 @@ with you for a minimum of six months. Thank you.")
       get :search_breed, {:name => "breed"}
       expect(response.body).to eq(expect)
     end
+  end
+  
+  describe 'edit pup rating' do
+    before :each do
+      @user1 = FactoryGirl.create(:user)
+      @user2 = FactoryGirl.create(:user, :email => 'user2@berkeley.edu')
+      sign_in :user, @user1
+      @breeder1 = FactoryGirl.create(:breeder)
+      @breeder2 = FactoryGirl.create(:breeder, :name => "Unknown")
+      @dog1 = FactoryGirl.create(:pup, :user_id => @user1.id)
+      @dog2 = FactoryGirl.create(:pup, :user_id => @user2.id)
+      @dog3 = FactoryGirl.create(:pup, :user_id => @user1.id, :breeder_id => @breeder2.id)
+      @breed = FactoryGirl.create(:breed)
+    end
+    
+    it 'should redirect to home page if pup not existing' do
+      get :edit, {:id => 4}
+      expect(flash[:notice]).to eq("The dog you are trying to edit is not exist")
+      expect(response).to redirect_to root_path
+    end
+    
+    it 'should redirect to home page if pup not owned' do
+      get :edit, {:id => 2}
+      expect(flash[:notice]).to eq("The dog you are trying to edit is not yours")
+      expect(response).to redirect_to root_path    
+    end
+    
+    it 'should render edit page if everything valid' do
+      get :edit, {:id => 1}
+      expect(@breed.name).to eq("MyString")
+      expect(response).to render_template 'edit'
+    end
+    
+    it 'should render edit page if everything valid but breeder is unknown' do
+      get :edit, {:id => 3}
+      expect(@breed.name).to eq("MyString")
+      expect(response).to render_template 'edit'
+    end
+  end
+  
+  describe 'displaying correct hashtags' do
+    before :each do
+      @user1 = FactoryGirl.create(:user)
+      sign_in :user, @user1
+      @dog1 = FactoryGirl.create(:pup, :user_id => @user1.id)
+    end  
+    
+    it 'should render correct jsons if pup existing' do
+      get :hashtags, {:pup_id => @dog1.id}
+      expect = [@dog1.hashtag_1, @dog1.hashtag_2, @dog1.hashtag_3].to_json
+      expect(response.body).to eq(expect)
+    end
+  end
+  
+  describe 'displaying correct ratings' do
+    before :each do
+      @user1 = FactoryGirl.create(:user)
+      sign_in :user, @user1
+      @dog1 = FactoryGirl.create(:pup, :user_id => @user1.id)
+    end  
+    
+    it 'should render correct jsons if pup existing' do
+      get :ratings, {:pup_id => @dog1.id}
+      pup = @dog1
+      ratings_hash = {:breeder => pup.breeder_responsibility, :health => pup.overall_health, :train => pup.trainability,
+                      :social => pup.social_behavior, :behavior => pup.dog_behavior, :energy => pup.energy_level,
+                      :simpatico => pup.simpatico_rating 
+                     }      
+      expect = ratings_hash.to_json
+      expect(response.body).to eq(expect)
+    end
+  end
+  
+  it 'should set username correctly when logging in' do
+      @user1 = FactoryGirl.create(:user, :username => 'Jeff')
+      sign_in :user, @user1  
+      get :main
+      expect(response).to render_template 'main'
   end
 end
