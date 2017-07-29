@@ -57,10 +57,7 @@ Ratemypup::Application.routes.draw do
   get '/text/terms_of_service' => 'texts#terms_of_service', :as => :terms_of_service
   get '/welcome' => 'texts#welcome', :as => :welcome
   
-<<<<<<< HEAD
-=======
   get "*path" => redirect("/")
->>>>>>> master
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
