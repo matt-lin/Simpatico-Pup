@@ -192,6 +192,17 @@ When /^I fill in new info/ do
     And I fill in "breeder_str" with "Carl - Berkeley, CA"
     And I fill in "comment" with "Test"
   }
+  # fifith = 5, sixth = 0
+  page.find("#breeder-label-fifth").trigger(:click)
+  page.find("#health-label-fifth").trigger(:click)
+  page.find("#train-label-fifth").trigger(:click)
+  page.find("#social-label-fifth").trigger(:click)
+  page.find("#behavior-label-fifth").trigger(:click)
+  page.find("#energy-label-fifth").trigger(:click)
+  page.find("#simpatico-label-sixth").trigger(:click)
+  # HardToObedienceTrain and VeryQuiet
+  page.find("#hashtag1").trigger(:click)
+  page.find("#hashtag7").trigger(:click)
 end
 
 When /^I should see correct info updated/ do
@@ -200,7 +211,15 @@ When /^I should see correct info updated/ do
     And  I should see "Breed: Affenpinscher"
     And  I should see "Breeder: Carl"
     And  I should see "Test"
+    And  I should see "#HardToObedienceTrain"
+    And  I should see "#VeryQuiet"
   }
+  page.find('#breeder_score')['innerHTML'].should == "5"
+  page.find('#health_score')['innerHTML'].should == "5"
+  page.find('#train_score')['innerHTML'].should == "5"
+  page.find('#social_score')['innerHTML'].should == "5"
+  page.find('#energy_score')['innerHTML'].should == "5"
+  page.find('#simpatico_score')['innerHTML'].should == "N/A"
 end
 
 When /^I should see correct info of dog1/ do

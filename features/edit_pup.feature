@@ -39,9 +39,9 @@ Background: User already login
   Then  I should be on the "Pups Ratings" page
   
   Scenario: users can see pups ratings
-    And   I should see "dog1"'s basic info
-    And   I should see "dog2"'s basic info
-    And   I should not see "dog3"'s basic info
+    And   I should see "dog1"
+    And   I should see "dog2"
+    And   I should not see "dog3"
   
   Scenario: users can delete ratings 
     When  I follow "Delete" for dog1
@@ -87,7 +87,7 @@ Background: User already login
     And   I should see correct info of dog1
     When  I press "Delete pup"
     Then  I should be on the RateMyPup home page
-    # And   I should see "Pup dog1 has been deleted"
+    And   I should see "Pup dog1 has been deleted"
     When  I follow "My Pups"
     Then  I should not see "dog1"
     And   I should see "dog2"'s rating    
