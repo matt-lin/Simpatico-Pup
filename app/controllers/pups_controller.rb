@@ -1,17 +1,8 @@
 class PupsController < ApplicationController
-
-  # before_filter :breeder_exists, :only => :create
   before_filter :check_sign_in, :only => [:new, :dog_name, :dog_how_long, :dog_breed, :dog_breeder]
 
   # Devise. Methods not in the list below will require a user to be logged in.
   before_filter :authenticate_user!, except: [:index, :new, :main, :breed, :search_breed]
-
-  # def breeder_exists
-  #   if params[:pup][:breeder_id].to_i == -1
-  #     breeder = Breeder.find_or_create(params[:breeder][:name], params[:breeder][:city], params[:breeder][:state])
-  #     params[:pup][:breeder_id] = breeder.id
-  #   end
-  # end
 
   # The Root Path
   def main
@@ -154,7 +145,6 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     if @pup.comment.nil?
       @pup.update_comment("")
     end
-    
   end
 
   def destroy
@@ -174,51 +164,42 @@ currently limiting the number of ratings made by each dog owner to eight, and li
   def edit
     @pup = Pup.find_by_id params[:id]
     @breeds = Breed.all
-    success = true
+    # success = true
     
     if @pup.nil?
       flash[:notice] = "The dog you are trying to edit is not exist"
-      success = false
+      # success = false
+      redirect_to root_path and return
     elsif !owner?(@pup)
       flash[:notice] = "The dog you are trying to edit is not yours"
-      success = false
-    end
-    
-    if !success
+      # success = false
       redirect_to root_path and return
     end
     
+    # if !success
+    #   redirect_to root_path and return
+    # end
+    
     @breed = @pup.breed.name
     breeder = @pup.breeder
-    if breeder.name != 'Unknown'
-      @breeder_text = breeder.name + " - " + breeder.address
-    else
-      @breeder_text = ''
-    end
-    
+    @breeder_text = breeder.name != 'Unknown' ? breeder.name + ' - ' + breeder.address : ''
     @comment_content = @pup.comment ? @pup.comment.content : ""
-
   end
   
   def hashtags
     pup = Pup.find_by_id params[:pup_id]
     if pup
-      render :json => [pup.hashtag_1, pup.hashtag_2, pup.hashtag_3]
+      render :json => pup.hashtags
     end
   end
   
   def ratings
     pup = Pup.find_by_id params[:pup_id]
     if pup
-      ratings_hash = {:breeder => pup.breeder_responsibility, :health => pup.overall_health, :train => pup.trainability,
-                      :social => pup.social_behavior, :behavior => pup.dog_behavior, :energy => pup.energy_level,
-                      :simpatico => pup.simpatico_rating 
-                     }
-      render :json => ratings_hash
+      render :json => pup.ratings
     end
   end
-
-
+  
   #################### Start Questionnaire ####################
 
   # step 0
@@ -294,7 +275,6 @@ with you for a minimum of six months. Thank you."
     if !Breed.is_valid_breed breed
       session[:step3] = false
       flash[:modal] = "modal"
-      temp_session = {:years => session[:years], :months => session[:months]}
       redirect_to dog_breed_path and return
     end
     session[:breed] = breed
@@ -302,8 +282,6 @@ with you for a minimum of six months. Thank you."
   end
 
   #################### End Questionnaire ####################
-
-
 
   # search for breeds when doing auto-fill
   def search_breed
@@ -322,8 +300,6 @@ with you for a minimum of six months. Thank you."
       @avg_ratings = Pup.avg_ratings_by_breeds(name)
     end
   end
-
-
 
   private
   def owner?(pup)

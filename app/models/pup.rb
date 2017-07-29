@@ -120,6 +120,17 @@ class Pup < ActiveRecord::Base
     end
   end
   
+  def hashtags
+    [self.hashtag_1, self.hashtag_2, self.hashtag_3]
+  end
+  
+  def ratings
+    ratings_hash = {:breeder => self.breeder_responsibility, :health => self.overall_health, :train => self.trainability,
+                      :social => self.social_behavior, :behavior => self.dog_behavior, :energy => self.energy_level,
+                      :simpatico => self.simpatico_rating 
+                     }
+  end
+  
   private
   def limit_ratings
     # if self.user.pups(:reload).size > 8
