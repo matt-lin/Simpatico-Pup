@@ -125,10 +125,10 @@ class Pup < ActiveRecord::Base
   end
   
   def ratings
-    ratings_hash = {:breeder => self.breeder_responsibility, :health => self.overall_health, :train => self.trainability,
-                      :social => self.social_behavior, :behavior => self.dog_behavior, :energy => self.energy_level,
-                      :simpatico => self.simpatico_rating 
-                     }
+    {:breeder => self.breeder_responsibility, :health => self.overall_health, :train => self.trainability,
+     :social => self.social_behavior, :behavior => self.dog_behavior, :energy => self.energy_level,
+     :simpatico => self.simpatico_rating 
+    }
   end
   
   private
