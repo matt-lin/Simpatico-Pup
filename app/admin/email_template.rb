@@ -9,6 +9,7 @@ ActiveAdmin.register EmailTemplate do
       batch_action_collection.find(id).each do |b|
         b.marked = true
         b.save
+        
       end
       redirect_to admin_newsletter_users_path
     else
