@@ -67,6 +67,14 @@ helper_method :subscribed?
     end
   end
   # End for Iter 1-2
+  
+  #Iter 3-2 (by Jeff Yu)
+  def unsubscribe_newsletter
+    NewsletterUser.where(email: params[:email]).destroy_all
+    flash[:notice] = 'You have unsubscribed newsletter!'
+    redirect_to root_path and return
+  end
+  #End for Iter 3-2
 
   # DELETE /resource
   def destroy
