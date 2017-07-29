@@ -51,9 +51,12 @@ ActiveRecord::Schema.define(version: 20170728025649) do
     t.string   "document_content_type"
     t.integer  "document_file_size"
     t.datetime "document_updated_at"
-    t.boolean  "marked",                default: false
-    t.string   "catagory",              default: "Others"
+    t.integer  "selected_attachment_id"
+    t.boolean  "marked",                 default: false
+    t.string   "catagory",               default: "Others"
   end
+
+  add_index "attachments", ["selected_attachment_id"], name: "index_attachments_on_selected_attachment_id"
 
   create_table "breeders", force: :cascade do |t|
     t.string  "name"
