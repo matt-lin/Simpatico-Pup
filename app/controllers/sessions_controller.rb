@@ -10,17 +10,19 @@ class SessionsController < Devise::SessionsController
     if user
       if user.activated
         super
+      elsif user.valid_password?(params[:user][:password])
+          user.create_activation_digest
+          message  = "Account not activated. A new account activation has been send.<a href='#{user.send_activation_email}'>".html_safe
+          flash[:notice] = message
+          redirect_to root_url
       else
-        user.create_activation_digest
-        message  = "Account not activated. A new account activation has been send.<a href='#{user.send_activation_email}'>here</a>".html_safe
-
-        flash[:notice] = message
-        redirect_to root_url
+        super
       end
-    else
+    else  
       super
     end
   end
+  
 
   # def destroy
   #   log_out if logged_in?
