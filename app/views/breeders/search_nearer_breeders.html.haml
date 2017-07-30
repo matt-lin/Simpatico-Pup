@@ -17,7 +17,7 @@
       = select :breeder, :state, options_for_select(@states.collect{ |s| [s, s[0,2]] }), {prompt: 'Select state'}, :class => "form-control"
     %div{:class => "form-group"}
       = label :breeder, :search_distance, "Search Range (miles)"
-      = select :breeder, :search_distance, options_for_select({"100" => 100, "250" => 250, "500" => 500, "Any" => 3000}, 250), :class => "form-control"
+      = select :breeder, :search_distance, options_for_select({"Any" => 9999,"100" => 100, "250" => 250, "500" => 500}, 9999), :class => "form-control"
       %br
     %div{:class => "form-group col-sm-5"}
       = submit_tag 'Search for a Breeder', :id => 'Search_Breeder', :class => "form-control"

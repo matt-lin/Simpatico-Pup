@@ -3,7 +3,7 @@
 customizes = [
   {:name => 'Site_Name', :content => 'SimpaticoPup', :location => "site_title" },
   {:name => 'Primary_Title', :content => 'Better Way to Find a Great Dog', :location => "main_title" }, 
-  {:name => 'Secondary_Title', :content => 'Find Dog Breeders Near You', :location => "main_title" },
+  {:name => 'Secondary_Title', :content => 'Find a pup from a reliable source', :location => "main_title" },
   {:name => 'Rate_Dog_Top', :content => 'Rate your', :location => "main_button" },
   {:name => 'Rate_Dog_Bottom', :content => 'Dog', :location => "main_button" },
   {:name => 'Find_Breed_Top', :content => 'Find Ratings for a', :location => "main_button" },

@@ -3,7 +3,7 @@ Given (/^the default layout exist$/) do
   layouts = {
     Site_Name: ['SimpaticoPup', 'site_title'],
     Primary_Title: ['Better Way to Find a Great Dog', 'main_title'],
-    Secondary_Title: ['Find Dog Breeders Near You', 'main_title'],
+    Secondary_Title: ['Find a pup from a reliable source', 'main_title'],
     Rate_Dog_Top: ['Rate your','main_button'],
     Rate_Dog_Bottom: ['Dog','main_button'],
     Find_Breed_Top: ['Find Ratings for a', 'main_button'],

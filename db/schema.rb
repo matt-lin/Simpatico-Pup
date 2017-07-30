@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 201707200916261) do
+ActiveRecord::Schema.define(version: 20170728234722) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "resource_id",   null: false
@@ -87,6 +87,14 @@ ActiveRecord::Schema.define(version: 201707200916261) do
     t.string "name"
     t.string "content"
     t.string "location", default: "Others"
+  end
+
+  create_table "email_templates", force: :cascade do |t|
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "marked",     default: false
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
