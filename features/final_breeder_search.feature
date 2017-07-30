@@ -9,13 +9,13 @@ Feature: Allow searching by only city, state, or breed
     Given the default layout exist
     Given the following breeders exist:
       | name            | city     | state  |
+      | George W. Bush  | Waco     | TX     |
       | Carl            | Berkeley | CA     |
       | Chris           | Berkeley | CA     |
       | Alex            | Richmond | CA     |
       | Alexander       | New York | NY     |
       | Michael Jackson | Boston   | MA     |
       | George Michael  | Fresno   | CA     |
-      | George W. Bush  | Waco     | TX     |
     And I am on the RateMyPup home page
     And I click ".button-c"
     And the following ratings exist with breeders:

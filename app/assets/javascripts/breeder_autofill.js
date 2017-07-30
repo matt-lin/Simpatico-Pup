@@ -55,6 +55,9 @@ var BreederAutofill = {
         var datasize = (data.length > 5)? 5: data.length;
         for (var i = 0; i < datasize; i++) {
             var name = data[i].name;
+            if (name == "Unknown") {
+                continue;
+            }
             var city = data[i].city;
             var state = data[i].state;
             var html = '<div class="autofills"><a class="autofill_link">' + name + ' - ' + city + ", " + state + '</a></div>';
