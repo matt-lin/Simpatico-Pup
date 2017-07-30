@@ -16,6 +16,7 @@ Feature: Allow searching by only city, state, or breed
       | Alexander       | New York | NY     |
       | Michael Jackson | Boston   | MA     |
       | George Michael  | Fresno   | CA     |
+
     And I am on the RateMyPup home page
     And I click ".button-c"
     And the following ratings exist with breeders:

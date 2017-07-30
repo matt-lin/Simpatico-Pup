@@ -3,7 +3,11 @@
   %h3 #{@message}
 - elsif @breeders.present?
   %h1 Breeders
-  %p Find breeders/kennels within "#{params[:breeder][:search_distance]}" miles of "#{params[:breeder][:city].present? ? (params[:breeder][:city].to_s + ', ' + params[:breeder][:state].to_s) : params[:breeder][:state]}"
+  - if params[:breeder][:search_distance] == "9999"
+    %p Find breeders/kennels near "#{params[:breeder][:city].present? ? (params[:breeder][:city].to_s + ', ' + params[:breeder][:state].to_s) : params[:breeder][:state]}"
+  - else 
+    %p Find breeders/kennels within "#{params[:breeder][:search_distance]}" miles of "#{params[:breeder][:city].present? ? (params[:breeder][:city].to_s + ', ' + params[:breeder][:state].to_s) : params[:breeder][:state]}"
+  
   %table.table
     %thead
       %tr
