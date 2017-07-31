@@ -1,4 +1,4 @@
-# Iter 3-2 by (Zipei, Jack)
+# Iter3-2 by (Zipei, Jack)
 And (/^the following email_templates exist:$/) do |table|
     table.hashes.each do |email_templates|
     EmailTemplate.create!(email_templates)
@@ -34,4 +34,4 @@ end
 And (/^I check send email_templates$/) do 
     pending
 end
-# end Iter 3-2
+# end Iter3-2

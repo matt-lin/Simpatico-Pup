@@ -1,4 +1,4 @@
-# Iter 3-2 Customize the layout  (By Gung Hiu Ho, Licong Wang)
+# Iter3-2 Customize the layout  (By Gung Hiu Ho, Licong Wang)
 module ApplicationHelper
   def titles
     return Customize.find_by_name("Site_Name").content

@@ -1,4 +1,4 @@
-# Iter 3-2
+# Iter3-2
 Given (/^the default layout exist$/) do
   layouts = {
     Site_Name: ['SimpaticoPup', 'site_title'],
@@ -25,4 +25,4 @@ Given (/^the default layout exist$/) do
   end
 end
 
-# End of Iter 3-2
+# End of Iter3-2
