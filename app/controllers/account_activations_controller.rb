@@ -10,7 +10,7 @@ class AccountActivationsController < ApplicationController
       sign_in(user,scope:user)
       flash[:success] = "Congratulations! Your account has been activated!"
       UserMailer.welcome(user).deliver_now
-      redirect_to root_path
+      redirect_to root_url
     else
       flash[:danger] = "Invalid activation link"
       redirect_to root_url
