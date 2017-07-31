@@ -30,7 +30,6 @@ Given /the following ratings exist/ do |pups_table|
     	social_behavior: rating['social_behavior'],
     	energy_level: rating['energy_level'],
     	simpatico_rating: rating['simpatico_rating'],
-    	comments: rating['comments'],
     	user_id: "Testing User",
     	breeder_id: breeder.id)
   end
@@ -52,7 +51,6 @@ Given /the following comments exist/ do |pups_table|
     	social_behavior: rating['social_behavior'],
     	energy_level: rating['energy_level'],
     	simpatico_rating: rating['simpatico_rating'],
-    	comments: rating['comments'],
     	user_id: 1,
     	breeder_id: breeder.id,
     	breed_id: 1)
