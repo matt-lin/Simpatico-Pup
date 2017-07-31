@@ -48,8 +48,8 @@ require "#{Rails.root}/lib/smtp_tls"
     :port => 587,
     :domain => "gmail.com",
     :authentication => :plain,
-    :user_name => "yuhongzhan0407@gmail.com",
-    :password => "Qwertyuiop",
+    :user_name => "simpaticopup@gmail.com",
+    :password => "simpaticopup1",
     :enable_starttls_auto => false
   }
 
