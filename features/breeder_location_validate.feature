@@ -55,7 +55,7 @@ Background: User already login, filled out pup name, how long the user owned the
     Given I am on the "Search Breeder" page
     Then I fill in "breeder_city" with "Berkeley"
     And I press "Search_Breeder"
-    Then I should see "Please select a state"
+    Then I should see "Please select both city and state"
     
   Scenario: User enter a valid location when searching breeder
     Given I am on the "Search Breeder" page
