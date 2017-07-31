@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20170728025649) do
     t.integer  "pup_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "breed"
   end
 
   create_table "customizes", force: :cascade do |t|
