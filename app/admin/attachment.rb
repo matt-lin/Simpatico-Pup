@@ -1,4 +1,4 @@
-#Iter 3-2 Improving File manager - catagorize the file (By Gung Hiu Ho, Licong Wang)
+# Iter 3-2 Improving File manager - catagorize the file (By Gung Hiu Ho, Licong Wang)
 ActiveAdmin.register Attachment do
   permit_params :attachment
   
@@ -140,4 +140,4 @@ ActiveAdmin.register Attachment do
     end
   end
 end
-#End of Iter 3-2
+# End of Iter 3-2

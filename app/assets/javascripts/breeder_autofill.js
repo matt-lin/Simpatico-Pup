@@ -52,6 +52,7 @@ var BreederAutofill = {
     ,breeders_add_find: function (data, requestStatus, xhrObject) {
 
         $('#breeder_find_autofills').empty();
+        // Iter 3-2 (by Zipei, Jack)
         var datasize = (data.length > 5)? 5: data.length;
         for (var i = 0; i < datasize; i++) {
             var name = data[i].name;
@@ -71,6 +72,7 @@ var BreederAutofill = {
                 $('#breeder_find_autofills').empty();
             });
         }
+        // End for Iter 3-2 
     }
 
     ,breeders_add_form: function (data, requestStatus, xhrObject) {

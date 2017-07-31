@@ -1,3 +1,4 @@
+#Iter 3-2 email_template (by Zipei, Jack)
 ActiveAdmin.register EmailTemplate do
   permit_params :title, :body
   batch_action :send do |id|
@@ -46,3 +47,4 @@ ActiveAdmin.register EmailTemplate do
   end
   
 end
+# end Iter 3-2

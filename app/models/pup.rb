@@ -100,6 +100,7 @@ class Pup < ActiveRecord::Base
     not Breed.find_by_name(breed_name) == nil
   end
   
+  # Iter 3-2 (Gilbert Lo, Jeff Yu)
   def update_comment(content)
     if self.comment
       self.comment.content = content
@@ -156,6 +157,8 @@ class Pup < ActiveRecord::Base
      :simpatico => self.simpatico_rating 
     }
   end
+  
+  # End Iter 3-2
   
   private
   def limit_ratings

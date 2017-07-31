@@ -65,7 +65,7 @@ var PupHashTags = {
             });
         }
     }
-    
+    // Iter 3-2 (Gilbert Lo, Jeff Yu)
     ,preTag: function () {
         var pathArray = window.location.pathname.substring(1).split('/');
         if (pathArray.length == 3 && pathArray[2] === 'edit') {
@@ -94,6 +94,7 @@ var PupHashTags = {
             })
         }
     }
+    //End Iter 3-2
 };
 
 

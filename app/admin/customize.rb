@@ -1,4 +1,4 @@
-# Iter 3-2 Site preference (By Gung Hiu Ho, Licong Wang)
+# Iter 3-2 Site preference  (By Gung Hiu Ho, Licong Wang)
 ActiveAdmin.register Customize do
   config.clear_sidebar_sections!
   actions :index, :edit
@@ -45,4 +45,4 @@ ActiveAdmin.register Customize do
     end
   end
 end
-# End of Iter 3-2
+# End of Iter 3-2 
