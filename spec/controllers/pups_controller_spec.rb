@@ -172,6 +172,7 @@ describe PupsController do
       session[:months] = "1"
       session[:step3] = true
       session[:breed] = "Affenpinscher"
+      Pup.stub(:build_pup) {Pup.new(:pup_id => @user.id)}
       post :create, {:pup => {:overall_health => ''}}
       response.should redirect_to new_pup_path
       flash[:notice].should eq("Please make sure all fields are complete!")
@@ -186,6 +187,10 @@ describe PupsController do
       session[:months] = "1"
       session[:step3] = true
       session[:breed] = "Affenpinscher"
+      stub_pup = Pup.new(:overall_health => "1", :trainability => "1", :social_behavior => "1", :energy_level => "1",
+            :simpatico_rating => "1", :breeder_responsibility => "1", :breed_id => 1, :breeder_id => 1, :pup_name => session[:pup_name],
+            :year => session[:years], :month => session[:months], :user_id => @user.id)
+      Pup.stub(:build_pup) {stub_pup}
       post :create, @pup_hash
       response.should redirect_to root_path
       flash[:notice].should eq("Thank You! Doggie was successfully added to our database.")
@@ -201,6 +206,10 @@ describe PupsController do
       session[:step3] = true
       session[:breed] = "Affenpinscher"
       @pup_hash[:pup][:comments] = "*" * 200
+      stub_pup = Pup.new(:overall_health => "1", :trainability => "1", :social_behavior => "1", :energy_level => "1",
+            :simpatico_rating => "1", :breeder_responsibility => "1", :breed_id => 1, :breeder_id => 1, :pup_name => session[:pup_name],
+            :year => session[:years], :month => session[:months], :user_id => @user.id)
+      Pup.stub(:build_pup) {stub_pup}
       post :create, @pup_hash
       response.should redirect_to new_pup_path
       flash[:notice].should eq('Please make sure the comment is less than 140 characters.')
@@ -218,6 +227,10 @@ describe PupsController do
       session[:months] = "1"
       session[:step3] = true
       session[:breed] = "Affenpinscher"
+      stub_pup = Pup.new(:overall_health => "1", :trainability => "1", :social_behavior => "1", :energy_level => "1",
+            :simpatico_rating => "1", :breeder_responsibility => "1", :breed_id => 1, :breeder_id => 1, :pup_name => session[:pup_name],
+            :year => session[:years], :month => session[:months], :user_id => @user.id)
+      Pup.stub(:build_pup) {stub_pup}
       post :create, @pup_hash
       expect(response).to redirect_to root_path
     end

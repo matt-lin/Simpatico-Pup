@@ -121,6 +121,28 @@ class Pup < ActiveRecord::Base
     end
   end
   
+  def Pup.build_pup(params_hash, session_hash, user_id)
+    new_pup = {}
+    new_pup[:pup_name] = session_hash[:pup_name]
+    new_pup[:year] = session_hash[:years] || 0
+    new_pup[:month] = session_hash[:months] || 0
+    new_pup[:breeder_responsibility] = params_hash[:pup][:breeder_responsibility]
+    new_pup[:overall_health] = params_hash[:pup][:overall_health]
+    new_pup[:trainability] = params_hash[:pup][:trainability]
+    new_pup[:social_behavior] = params_hash[:pup][:social_behavior]
+    new_pup[:dog_behavior] = params_hash[:pup][:dog_behavior]
+    new_pup[:energy_level] = params_hash[:pup][:energy_level]
+    new_pup[:simpatico_rating] = params_hash[:pup][:simpatico_rating]
+    new_pup[:hashtag_1] = params_hash[:pup][:hashtag_1]
+    new_pup[:hashtag_2] = params_hash[:pup][:hashtag_2]
+    new_pup[:hashtag_3] = params_hash[:pup][:hashtag_3]
+    new_pup[:breed_id] = Breed.find_by_name(session_hash[:breed]).id
+    new_pup[:breeder_id] = session_hash[:breeder_id]
+    new_pup[:user_id] = user_id
+    new_pup[:breed_1] = session_hash[:breed]
+    return Pup.new(new_pup)
+  end
+  
   def hashtags
     [self.hashtag_1, self.hashtag_2, self.hashtag_3]
   end
