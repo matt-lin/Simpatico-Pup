@@ -54,11 +54,11 @@ class BreedersController < ApplicationController
 
     # Iter 2-2 Breeder location validation (By Gilbert Lo, Jeff Yu)
     @valid_location = true
-    if params[:breeder][:city].present? && params[:breeder][:state] == ""
-      @valid_location = false
-      @message = "Please select a state"
-      return
-    end
+    # if params[:breeder][:city].present? && params[:breeder][:state] == ""
+    #   @valid_location = false
+    #   @message = "Please select a state"
+    #   return
+    # end
 
     if params[:breeder][:city].present? && params[:breeder][:state] != ""
       cities = CS.cities(params[:breeder][:state].downcase, :us).map(&:downcase)
@@ -67,17 +67,28 @@ class BreedersController < ApplicationController
         @message = "The city you entered is not a valid city in the selected state"
         return
       end
-    end
-    # End for Iter 2-2
-
-    if params[:breeder][:breed_name].present? && params[:breeder][:city].present?
-      @breeders = Breeder.joins(pups: :breed).where("breeds.name = ?", params[:breeder][:breed_name]).near("#{params[:breeder][:city]}, #{params[:breeder][:state]}", params[:breeder][:search_distance])
-    elsif params[:breeder][:breed_name].present?
-      @breeders = Breeder.joins(pups: :breed).where("breeds.name = ?", params[:breeder][:breed_name]).near("#{params[:breeder][:state]}", params[:breeder][:search_distance])
-    elsif params[:breeder][:city].present?
-      @breeders = Breeder.joins(pups: :breed).near("#{params[:breeder][:city]}, #{params[:breeder][:state]}", params[:breeder][:search_distance])
     else
-      @breeders = Breeder.joins(pups: :breed).near("#{params[:breeder][:state]}", params[:breeder][:search_distance])
+      @valid_location = false
+      @message = "Please select both city and state"
+      return
+    end
+  
+    # End for Iter 2-2
+    
+    # if params[:breeder][:breed_name].present? && params[:breeder][:city].present?
+    #   @breeders = Breeder.joins(pups: :breed).where("breeds.name = ?", params[:breeder][:breed_name]).near("#{params[:breeder][:city]}, #{params[:breeder][:state]}", params[:breeder][:search_distance])
+    # elsif params[:breeder][:breed_name].present?
+    #   @breeders = Breeder.joins(pups: :breed).where("breeds.name = ?", params[:breeder][:breed_name]).near("#{params[:breeder][:state]}", params[:breeder][:search_distance])
+    # elsif params[:breeder][:city].present?
+    #   @breeders = Breeder.joins(pups: :breed).near("#{params[:breeder][:city]}, #{params[:breeder][:state]}", params[:breeder][:search_distance])
+    # else
+    #   @breeders = Breeder.joins(pups: :breed).near("#{params[:breeder][:state]}", params[:breeder][:search_distance])
+    # end
+    
+    if params[:breeder][:breed_name].present? 
+      @breeders = Breeder.joins(pups: :breed).where("breeds.name = ?", params[:breeder][:breed_name]).near("#{params[:breeder][:city]}, #{params[:breeder][:state]}", params[:breeder][:search_distance])
+    else
+      @breeders = Breeder.joins(pups: :breed).near("#{params[:breeder][:city]}, #{params[:breeder][:state]}", params[:breeder][:search_distance])
     end
     @breeders = @breeders.uniq
   end
@@ -121,6 +132,20 @@ class BreedersController < ApplicationController
   end
 
   private
+  
+  def evaluate_input(breed_name, city)
+    
+    if breed_name.present? && city.present?
+      3
+    elsif breed_name.present?
+      1
+    elsif city.present?
+      2
+    else
+      0
+    end
+      
+  end
 
   def set_states
 

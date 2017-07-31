@@ -134,7 +134,7 @@ describe BreedersController do
       @params = {:breeder => {:search_distance => 250, :state => @breeder.state}, :format => :js}
       xhr :get, :nearer_breeders, @params
       expect(response).to render_template(:nearer_breeders)
-      expect(assigns(:breeders)).to include @breeder
+      expect(assigns(:message)).to eq "Please select both city and state"
     end
     
     it "don't search if location is invalid" do
@@ -163,7 +163,7 @@ describe BreedersController do
       @params = {:breeder => {:search_distance => 100, :city => "Oakland", :state => ""}, :format => :js}
       xhr :get, :nearer_breeders, @params
       expect(assigns(:valid_location)).to eq false
-      expect(assigns(:message)).to eq "Please select a state"
+      expect(assigns(:message)).to eq "Please select both city and state"
       expect(response).to render_template(:nearer_breeders)
     end
     # iter 2-2
