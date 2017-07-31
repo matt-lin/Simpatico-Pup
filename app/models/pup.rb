@@ -1,10 +1,13 @@
 class Pup < ActiveRecord::Base
-
+  
+  #Iter 3-2 include strong params to deal with mass assignment issue (By Gung Hiu Ho)
+  #include ActiveModel::ForbiddenAttributesProtection
+  
   belongs_to :user
   # validate :limit_ratings
   belongs_to :breeder
   belongs_to :breed
-
+  
   has_one :comment, dependent: :destroy
 
   validates :pup_name, :presence => true
