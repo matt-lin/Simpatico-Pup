@@ -57,10 +57,11 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
   end
 
   def create
-    new_pup = set_pup
-    @pup = Pup.new(new_pup)
-    new_comment = {:content => params[:pup][:comments]}
-    @Comment = Comment.new(new_comment)
+    # new_pup = set_pup
+    # @pup = Pup.new(new_pup)
+    # new_comment = {:content => params[:pup][:comments]}
+    @pup = Pup.build_pup(params, session, current_user.id)
+    @Comment = Comment.new({:content => params[:pup][:comments]})
 
     #Problem 2
     if !@pup.valid?
@@ -80,8 +81,8 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     else
       @pup.save
       @Comment.pup_id = @pup.id
-      @Comment.breed = @pup.breed.name
-      @Comment.breeder = @pup.breeder.name
+      # @Comment.breed = @pup.breed.name
+      # @Comment.breeder = @pup.breeder.name
       @Comment.save
 
       # Successfully save pup & comment
@@ -114,14 +115,19 @@ currently limiting the number of ratings made by each dog owner to eight, and li
   
   def show
     @pup = Pup.find_by_id params[:id]
-
-    if @pup.nil?
-      flash[:notice] = "The dog you are trying to show is not exist"
-      redirect_to root_path and return
-    elsif !owner?(@pup)
-      flash[:notice] = "The dog you are trying to show is not yours"
+    
+    if !valid_access(@pup)
+      flash.keep
       redirect_to root_path and return
     end
+
+    # if @pup.nil?
+    #   flash[:notice] = "The dog you are trying to show is not exist"
+    #   redirect_to root_path and return
+    # elsif !owner?(@pup)
+    #   flash[:notice] = "The dog you are trying to show is not yours"
+    #   redirect_to root_path and return
+    # end
     
     if @pup.comment.nil?
       @pup.update_comment("")
@@ -131,13 +137,17 @@ currently limiting the number of ratings made by each dog owner to eight, and li
   def destroy
     @pup = Pup.find_by_id params[:id]
     
-    if @pup.nil?
-      flash[:notice] = "Dog doesn't exist"
-    elsif !owner?(@pup)
-      flash[:notice] = "The dog you are trying to destroy is not yours"
-    else  
+    # if @pup.nil?
+    #   flash[:notice] = "Dog doesn't exist"
+    # elsif !owner?(@pup)
+    #   flash[:notice] = "The dog you are trying to destroy is not yours"
+    # else  
+    #   @pup.destroy
+    #   flash[:notice] = "Pup #{@pup.pup_name} has been deleted" 
+    # end
+    if valid_access(@pup)
       @pup.destroy
-      flash[:notice] = "Pup #{@pup.pup_name} has been deleted" 
+      flash[:notice] = "Pup #{@pup.pup_name} has been deleted"
     end
     redirect_to root_path
   end
@@ -145,14 +155,19 @@ currently limiting the number of ratings made by each dog owner to eight, and li
   def edit
     @pup = Pup.find_by_id params[:id]
     @breeds = Breed.all
-
-    if @pup.nil?
-      flash[:notice] = "The dog you are trying to edit is not exist"
-      redirect_to root_path and return
-    elsif !owner?(@pup)
-      flash[:notice] = "The dog you are trying to edit is not yours"
+    
+    if !valid_access(@pup)
+      flash.keep
       redirect_to root_path and return
     end
+
+    # if @pup.nil?
+    #   flash[:notice] = "The dog you are trying to edit is not exist"
+    #   redirect_to root_path and return
+    # elsif !owner?(@pup)
+    #   flash[:notice] = "The dog you are trying to edit is not yours"
+    #   redirect_to root_path and return
+    # end
     
     @breed = @pup.breed.name
     breeder = @pup.breeder
@@ -292,6 +307,17 @@ with you for a minimum of six months. Thank you."
   #   years.nil? || months.nil? || (years.empty? && months.empty?)
   # end
   
+  def valid_access(pup)
+    if pup.nil?
+      flash[:notice] = "The dog you are trying to access does not exist"
+    elsif !owner?(pup)
+      flash[:notice] = "The dog you are trying to access is not yours"
+    else
+      return true
+    end
+    false
+  end
+  
   def owner?(pup)
     return pup.user_id == current_user.id
   end
@@ -306,28 +332,6 @@ with you for a minimum of six months. Thank you."
     return years.to_i * 12 + months.to_i >= 6
   end
 
-  def set_pup
-    new_pup = {}
-    new_pup[:pup_name] = session[:pup_name]
-    new_pup[:year] = session[:years] || 0
-    new_pup[:month] = session[:months] || 0
-    new_pup[:breeder_responsibility] = params[:pup][:breeder_responsibility]
-    new_pup[:overall_health] = params[:pup][:overall_health]
-    new_pup[:trainability] = params[:pup][:trainability]
-    new_pup[:social_behavior] = params[:pup][:social_behavior]
-    new_pup[:dog_behavior] = params[:pup][:dog_behavior]
-    new_pup[:energy_level] = params[:pup][:energy_level]
-    new_pup[:simpatico_rating] = params[:pup][:simpatico_rating]
-    new_pup[:hashtag_1] = params[:pup][:hashtag_1]
-    new_pup[:hashtag_2] = params[:pup][:hashtag_2]
-    new_pup[:hashtag_3] = params[:pup][:hashtag_3]
-    new_pup[:breed_id] = Breed.find_by_name(session[:breed]).id
-    new_pup[:breeder_id] = session[:breeder_id]
-    new_pup[:user_id] = current_user.id
-    new_pup[:breed_1] = session[:breed]
-    return new_pup
-  end
-
   def is_num?(str)
     Integer(str)
     return true
@@ -336,14 +340,17 @@ with you for a minimum of six months. Thank you."
   end
 
   def start_over
-    session[:step1] = false
-    session[:step2] = false
-    session[:step3] = false
-    session[:pup_name] = nil
-    session[:breed] = nil
-    session[:years] = nil
-    session[:months] = nil
-    session[:breeder_id] = nil
+    [:step1, :step2, :step3, :pup_name, :breed, :years, :months, :breed_id, :pup_id].each do |key|
+      session.delete(key)
+    end
+    # session[:step1] = false
+    # session[:step2] = false
+    # session[:step3] = false
+    # session[:pup_name] = nil
+    # session[:breed] = nil
+    # session[:years] = nil
+    # session[:months] = nil
+    # session[:breeder_id] = nil
   end
 end
   

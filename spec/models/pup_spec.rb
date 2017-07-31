@@ -175,4 +175,22 @@ describe Pup do
       expect(@dog_2.comment.content).to eq 'comment2'
     end
   end
+  
+  describe "it should build a dog" do
+    it 'should return a dog return given params, session and hash' do
+      user = FactoryGirl.create(:user)
+      session_hash = {}
+      session_hash[:pup_name] = "Doggie"
+      session_hash[:years] = "1" 
+      session_hash[:months] = "1"
+      session_hash[:breed] = "Affenpinscher"
+      session_hash[:breeder_id] = @breeder1.id
+      params_hash = {:pup => {:overall_health => "1", :trainability => "1", :social_behavior => "1", :energy_level => "1",
+                        :simpatico_rating => "1", :breeder_responsibility => "1"}}
+      expect_pup = Pup.new(:overall_health => "1", :trainability => "1", :social_behavior => "1", :energy_level => "1",
+            :simpatico_rating => "1", :breeder_responsibility => "1", :breed_id => 1, :breeder_id => 1, :pup_name => session_hash[:pup_name],
+            :year => session_hash[:years], :month => session_hash[:months], :user_id => user.id)
+      expect(Pup.build_pup(params_hash, session_hash, user.id))
+    end
+  end
 end
