@@ -91,6 +91,7 @@ currently limiting the number of ratings made by each dog owner to eight, and li
       redirect_to root_path
   end
   
+  # Iter3-2 (Jeff Yu, Gilbert Lo)
   # Still need check if it is owner and check if dog exist
   # pup_name, year, month updated directly using update_attributes
   # Update comment, breed, breeder cannot be done directly
@@ -188,6 +189,7 @@ currently limiting the number of ratings made by each dog owner to eight, and li
       render :json => pup.ratings
     end
   end
+  #End Iter3-2
   
   #################### Start Questionnaire ####################
 
@@ -307,6 +309,7 @@ with you for a minimum of six months. Thank you."
   #   years.nil? || months.nil? || (years.empty? && months.empty?)
   # end
   
+  # Iter3-2 (Gilbert Lo and Jeff Yu)
   def valid_access(pup)
     if pup.nil?
       flash[:notice] = "The dog you are trying to access does not exist"
@@ -321,6 +324,7 @@ with you for a minimum of six months. Thank you."
   def owner?(pup)
     return pup.user_id == current_user.id
   end
+  # End 3-2
   
   def check_sign_in
     unless user_signed_in?

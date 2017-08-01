@@ -1,6 +1,6 @@
 class Pup < ActiveRecord::Base
   
-  #Iter 3-2 include strong params to deal with mass assignment issue (By Gung Hiu Ho)
+  #Iter3-2 include strong params to deal with mass assignment issue (By Gung Hiu Ho)
   #include ActiveModel::ForbiddenAttributesProtection
   
   belongs_to :user
@@ -100,6 +100,7 @@ class Pup < ActiveRecord::Base
     not Breed.find_by_name(breed_name) == nil
   end
   
+  # Iter3-2 (Gilbert Lo, Jeff Yu)
   def update_comment(content)
     if self.comment
       self.comment.content = content
@@ -156,6 +157,8 @@ class Pup < ActiveRecord::Base
      :simpatico => self.simpatico_rating 
     }
   end
+  
+  # End Iter3-2
   
   private
   def limit_ratings

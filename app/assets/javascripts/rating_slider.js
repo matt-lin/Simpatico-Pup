@@ -74,6 +74,7 @@ var RatingPaws = {
             RatingPaws.setupCategory(RatingPaws.categories[i]);
         }
     },
+    // Iter3-2 (Gilbert Lo, Jeff Yu)
     preRate: function() {
         var pathArray = window.location.pathname.substring(1).split('/');
         if (pathArray.length == 3 && pathArray[2] === 'edit') {
@@ -101,6 +102,7 @@ var RatingPaws = {
             })
         }
     }
+    // End Iter3-2
 }
 
 // $(document).ready(RatingPaws.setup);

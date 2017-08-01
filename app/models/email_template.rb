@@ -1,5 +1,5 @@
 class EmailTemplate < ActiveRecord::Base
-    #Iter 3-2 restricted assignment (By Gung Hiu Ho)
+    #Iter3-2 restricted assignment (By Gung Hiu Ho)
     attr_accessible :title
     attr_accessible :body
     attr_accessible :created_at

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe PupsController do
-  # Iter 3-2 Setup the default layout for homepage (By Gung Hiu Ho, Licong Wang)
+  # Iter3-2 Setup the default layout for homepage (By Gung Hiu Ho, Licong Wang)
   before :each do
     layouts = {
       Site_Name: ['SimpaticoPup', 'site_title'],
@@ -28,7 +28,7 @@ describe PupsController do
       Customize.create!(name: key, content: layouts[key][0], location: layouts[key][1])
     end
   end
-  # End of Iter 3-2
+  # End of Iter3-2
   
   describe "showing home page" do
     it "should set up for main page" do
