@@ -11,4 +11,8 @@
         %div{:class=>"modal-footer"}
           -if info[:close]
             %button{:class=>"btn btn-default", :data=>{:dismiss=>"modal"}} Close
-          =link_to "Go Back to Homepage", root_path, :class=>"btn btn-primary"
+            
+          -if info[:add_breeder]
+            =link_to "Add Breeder", new_breeder_path, :class => 'btn btn-primary'
+          -else
+            =link_to "Go Back to Homepage", root_path, :class=>"btn btn-primary"

@@ -1,4 +1,4 @@
-# Iter 3-1
+# Iter 3-1 (by Jack, Zipei)
 Feature: Admin should be able to send email templates, so user do not need type in every time
     I want to be able to send an email templatewith that already save in admin
     
@@ -12,7 +12,7 @@ Feature: Admin should be able to send email templates, so user do not need type 
         And the following email_templates exist:
         |   title       | body      |  marked   |
         | title1        | body1     |   ture    |
-        | wellcome      | hi        |   false   |
+        | welcome      | hi        |   false   |
     
     
         Scenario: admins able to creat a new email_templates
@@ -29,13 +29,12 @@ Feature: Admin should be able to send email templates, so user do not need type 
           
         Scenario: able to send email_templates to newsletter_user
           Given admin go to email_templates
-          And I check "batch_action_item_1"
+          And I check "batch_action_item_2"
           And I submit the batch action form with "send"
           Then I should see "Newsletter Users"
           
           And I check "batch_action_item_1"
-          And I submit the batch action form with "email"
-          Then I should see "The batch email has been sent to all the users"
+          And I send the selected email template
           Then "jcjack" should get an email with "welcome" and "hi" 
           
 ########################### sad path ##########################################
@@ -48,3 +47,4 @@ Feature: Admin should be able to send email templates, so user do not need type 
           Then I should see "A email can only includ one Email Template"
           
 #Iter 3-1
+

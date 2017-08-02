@@ -27,8 +27,6 @@ class User < ActiveRecord::Base
   # Returns true if the given token matches the digest.
   def authenticated?(attribute, token)
     digest = send("#{attribute}_digest")
-    p  "*" * 80
-    p "digest -->#{digest}"
     return false if digest.nil?
     BCrypt::Password.new(digest).is_password?(token)
   end
@@ -73,7 +71,7 @@ class User < ActiveRecord::Base
   #Creates and assigns the activation token and digest.
   def create_activation_digest
     self.activation_token  = User.new_token
-    self.activation_digest = User.digest(activation_token)
+    self.activation_digest = self.activation_token
     # update_attribute(:activation_digest, self.activation_token)
   end
   #End for Iter 2-2

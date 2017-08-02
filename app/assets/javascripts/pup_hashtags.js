@@ -32,7 +32,7 @@ var PupHashTags = {
 
     ,setup: function() {
         for (hashtag in PupHashTags.hashtags) {
-            $('<a number="' + hashtag + '" class="hashtag">' + PupHashTags.hashtags[hashtag] + ' </a>').appendTo('#hashtags').click( function() {
+            $('<a number="' + hashtag + '" class="hashtag" id=hashtag'+hashtag+'>' + PupHashTags.hashtags[hashtag] + ' </a>').appendTo('#hashtags').click( function() {
 
                 if ($(this).attr('class').indexOf("hashtag_selected") > -1) {
                     $(this).removeClass('hashtag_selected');
@@ -65,9 +65,40 @@ var PupHashTags = {
             });
         }
     }
+    // Iter3-2 (Gilbert Lo, Jeff Yu)
+    ,preTag: function () {
+        var pathArray = window.location.pathname.substring(1).split('/');
+        if (pathArray.length == 3 && pathArray[2] === 'edit') {
+            var pupId = parseInt(pathArray[1]);
+            
+            $.ajax({
+                type: 'GET',
+                url: '/pups/hashtags',
+                data: {
+                    "pup_id": pupId
+                },
+                contentType: 'application/json',
+                dataType: 'json',
+                timeout: 5000,
+                success: function(data) {
+                    for (var i = 0; i < data.length; i += 1) {
+                        if (data[i]) {
+                            var index = PupHashTags.hashtags.indexOf(data[i]);
+                            $(".hashtag[number=" + index + "]").click()
+                        }
+                    }
+                },
+                error: function() {
+                    console.log("fail to get hashtag");
+                }
+            })
+        }
+    }
+    //End Iter3-2
 };
 
 
 $(document).ready(function () {
     $(PupHashTags.setup);
+    PupHashTags.preTag();
 });

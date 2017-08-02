@@ -73,7 +73,41 @@ var RatingPaws = {
         for (var i = 0; i < RatingPaws.categories.length; i++) {
             RatingPaws.setupCategory(RatingPaws.categories[i]);
         }
+    },
+    // Iter3-2 (Gilbert Lo, Jeff Yu)
+    preRate: function() {
+        var pathArray = window.location.pathname.substring(1).split('/');
+        if (pathArray.length == 3 && pathArray[2] === 'edit') {
+            var pupId = parseInt(pathArray[1]);
+            $.ajax({
+                type: 'GET',
+                url: '/pups/ratings',
+                data: {
+                    "pup_id": pupId
+                },
+                contentType: 'application/json',
+                dataType: 'json',
+                timeout: 5000,
+                success: function(data) {
+                    for (var key in data) {
+                        if (data[key] > 0) {
+                            var id =  "#" + key + "-label-" + RatingPaws.pos[data[key] - 1];
+                            $(id).click();
+                        }
+                    }
+                },
+                error: function() {
+                    console.log("fail to get hashtag");
+                }
+            })
+        }
     }
+    // End Iter3-2
 }
 
-$(document).ready(RatingPaws.setup);
+// $(document).ready(RatingPaws.setup);
+$(document).ready(function () {
+    $(RatingPaws.setup);
+    RatingPaws.preRate();
+});
+

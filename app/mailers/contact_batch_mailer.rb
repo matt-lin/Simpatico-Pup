@@ -10,8 +10,12 @@ class ContactBatchMailer < ActionMailer::Base
         attachments[a.document_file_name] = File.read("#{a.document.path}") if a.marked
       end
     end
-    mail(to: recipient, name: name, subject: subject, body: message)
-  end
+    @name = name
+    @message = message
+    @subject = subject 
+    @recipient = recipient
+
+    mail(to: recipient, subject: subject)  end
   #End of Iter 2-2
 
 end

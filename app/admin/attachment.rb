@@ -1,9 +1,33 @@
-#Iter 2-2 File manager (By Gung Hiu Ho, Licong Wang)
+# Iter3-2 Improving File manager - catagorize the file (By Gung Hiu Ho, Licong Wang)
 ActiveAdmin.register Attachment do
   permit_params :attachment
   
   menu :label => 'File Manager'
   actions :all, except: [:edit]
+  
+  scope :all, :default => true
+  scope :Newsletter do |a|
+    a.where(:catagory => "Newsletter")
+  end
+  scope :Document do |a|
+    a.where(:catagory => "Document")
+  end
+  scope :Image do |a|
+    a.where(:catagory => "Image")
+  end
+  scope :Music do |a|
+    a.where(:catagory => "Music")
+  end
+  scope :Video do |a|
+    a.where(:catagory => "Video")
+  end
+  scope :Administive do |a|
+    a.where(:catagory => "Administive")
+  end
+  scope :Others do |a|
+    a.where(:catagory => "Others")
+  end
+  
   filter :document_file_name
   filter :document_file_size
   filter :marked
@@ -66,6 +90,7 @@ ActiveAdmin.register Attachment do
   form do |f|
     f.inputs "Upload File" do
       f.input :attachment, as: :file
+      f.input :catagory, :as => :radio, :collection => Attachment::FILE_CATAGORIES, include_blank: false
     end
     f.actions
   end
@@ -75,6 +100,7 @@ ActiveAdmin.register Attachment do
       attachment_row("File", :document, label: 'Download file', truncate: false)
       row :document_content_type
       row :document_file_size
+      row :catagory
     end
   end
 
@@ -90,6 +116,7 @@ ActiveAdmin.register Attachment do
         @attachment[:document_file_name] = attrs[:attachment].original_filename
         @attachment[:document_content_type] = attrs[:attachment].content_type
         @attachment[:document_file_size] = attrs[:attachment].size
+        @attachment[:catagory] = params.require(:attachment).permit(:catagory).values[0]
         @attachment.document = attrs[:attachment]
         @attachment.save!
       end
@@ -113,4 +140,4 @@ ActiveAdmin.register Attachment do
     end
   end
 end
-#End of Iter 2-2
+# End of Iter3-2

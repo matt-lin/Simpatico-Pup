@@ -19,11 +19,12 @@ ActiveAdmin.register Breeder do
       f.input :name
     end
     f.inputs 'City' do
-      f.input :name
+      f.input :city
     end
     f.inputs 'State' do
-      f.input :name
+      f.input :state
     end
+    f.button :Submit
   end
 
   show do
@@ -34,11 +35,11 @@ ActiveAdmin.register Breeder do
       panel "Dogs" do
         table_for breeder.pups do
           column :dog_name do |p|
-            link_to p.pup_name, admin_dog_path(p)
+            p.pup_name
           end
-          #column :comment do |p|
-            #p.comment.content
-          #end
+          column :comment do |p|
+            p.comment.content
+          end
           column :breeder_responsibility
           column :overall_health
           column :trainability

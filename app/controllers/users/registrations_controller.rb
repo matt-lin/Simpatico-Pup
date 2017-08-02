@@ -67,6 +67,14 @@ helper_method :subscribed?
     end
   end
   # End for Iter 1-2
+  
+  #Iter3-2 unsubscribe_newsletter (by Jeff Yu)
+  def unsubscribe_newsletter
+    NewsletterUser.where(email: params[:email]).destroy_all
+    flash[:notice] = 'You have unsubscribed newsletter!'
+    redirect_to root_path and return
+  end
+  #End for Iter3-2.
 
   # DELETE /resource
   def destroy
@@ -98,9 +106,5 @@ helper_method :subscribed?
   def after_sign_up_path_for(resource)
     super(resource)
   end
-
-  # The path used after sign up for inactive accounts.
-  def after_inactive_sign_up_path_for(resource)
-    super(resource)
-  end
+  
 end

@@ -1,3 +1,4 @@
+<!--Iter3-2 unsubscribe_newsletter by Jeff Yu-->
 <!-- Contact batch email -->
 <!DOCTYPE html>
 <html>
@@ -6,6 +7,14 @@
   </head>
   <body>
     <div><%= @name %></div>
-
+    <br>
+    <br>
+    <div><%= @message %></div>
+    <br>
+    <br>
+    <div>
+      <p>Click <%= link_to "here", unsubscribe_newsletter_url(email: @recipient)%> to unsubscribe newsletter.</p>
+    </div>
   </body>
 </html>
+<!--End for Iter3-2-->

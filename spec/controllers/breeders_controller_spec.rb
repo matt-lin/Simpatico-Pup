@@ -74,6 +74,22 @@ describe BreedersController do
       expect(response).to redirect_to new_breeder_path
     end
     # End iter 2-2
+    
+    it 'should find the pup if new breeder is for existing pup' do
+      dog1 = FactoryGirl.create(:pup)
+      session[:pup_id] = dog1.id
+      expect(Pup).to receive(:find_by_id).with(session[:pup_id])
+      post :create, {:breeder => {:name => "name", :city => "Berkeley", :state => "CA"}}
+    end
+    
+    it "should add a breeder for existing pup, and redirect_to edit" do
+      dog1 = FactoryGirl.create(:pup)
+      session[:pup_id] = dog1.id
+      original_breeder_count = Breeder.count
+      post :create, {:breeder => {:name => "name", :city => "Berkeley", :state => "CA"}}
+      expect(response).to redirect_to edit_pup_path(dog1)
+      expect(Breeder.count).to eq original_breeder_count + 1
+    end
   end
   
   describe "search a breeder" do
@@ -118,7 +134,7 @@ describe BreedersController do
       @params = {:breeder => {:search_distance => 250, :state => @breeder.state}, :format => :js}
       xhr :get, :nearer_breeders, @params
       expect(response).to render_template(:nearer_breeders)
-      expect(assigns(:breeders)).to include @breeder
+      expect(assigns(:message)).to eq "Please select both city and state"
     end
     
     it "don't search if location is invalid" do
@@ -147,7 +163,7 @@ describe BreedersController do
       @params = {:breeder => {:search_distance => 100, :city => "Oakland", :state => ""}, :format => :js}
       xhr :get, :nearer_breeders, @params
       expect(assigns(:valid_location)).to eq false
-      expect(assigns(:message)).to eq "Please select a state"
+      expect(assigns(:message)).to eq "Please select both city and state"
       expect(response).to render_template(:nearer_breeders)
     end
     # iter 2-2

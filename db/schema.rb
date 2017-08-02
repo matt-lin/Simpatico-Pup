@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170725231628) do
+ActiveRecord::Schema.define(version: 20170728025649) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "resource_id",   null: false
@@ -51,11 +51,9 @@ ActiveRecord::Schema.define(version: 20170725231628) do
     t.string   "document_content_type"
     t.integer  "document_file_size"
     t.datetime "document_updated_at"
-    t.integer  "selected_attachment_id"
-    t.boolean  "marked",                 default: false
+    t.boolean  "marked",                default: false
+    t.string   "catagory",              default: "Others"
   end
-
-  add_index "attachments", ["selected_attachment_id"], name: "index_attachments_on_selected_attachment_id"
 
   create_table "breeders", force: :cascade do |t|
     t.string  "name"
@@ -79,14 +77,21 @@ ActiveRecord::Schema.define(version: 20170725231628) do
     t.integer  "pup_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "breed"
+  end
+
+  create_table "customizes", force: :cascade do |t|
+    t.string "name"
+    t.string "content"
+    t.string "location", default: "Others"
   end
 
   create_table "email_templates", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean  "marked"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "marked",     default: false
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -376,6 +381,7 @@ ActiveRecord::Schema.define(version: 20170725231628) do
     t.boolean  "activated",              default: false
     t.datetime "activated_at"
     t.string   "reset_password_token"
+    t.string   "remember_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -6,6 +6,7 @@ Feature: Validate user entered city and state when creating breeder
   So that I can submit a valid location
   
 Background: User already login, filled out pup name, how long the user owned the dog, and breed
+  Given the default layout exist
   Given the following users exist:
     | username       | email               | password       | password_confirmation| activated |
     | gilbert        | gilbert@berkeley.edu| 12345678       | 12345678             | true      |
@@ -54,7 +55,7 @@ Background: User already login, filled out pup name, how long the user owned the
     Given I am on the "Search Breeder" page
     Then I fill in "breeder_city" with "Berkeley"
     And I press "Search_Breeder"
-    Then I should see "Please select a state"
+    Then I should see "Please select both city and state"
     
   Scenario: User enter a valid location when searching breeder
     Given I am on the "Search Breeder" page

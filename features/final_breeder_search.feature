@@ -6,15 +6,17 @@ Feature: Allow searching by only city, state, or breed
   I want to be able to filter breeders by there city, state, or breed
 
   Background: breeders have been added to the database
+    Given the default layout exist
     Given the following breeders exist:
       | name            | city     | state  |
+      | George W. Bush  | Waco     | TX     |
       | Carl            | Berkeley | CA     |
       | Chris           | Berkeley | CA     |
       | Alex            | Richmond | CA     |
       | Alexander       | New York | NY     |
       | Michael Jackson | Boston   | MA     |
       | George Michael  | Fresno   | CA     |
-      | George W. Bush  | Waco     | TX     |
+
     And I am on the RateMyPup home page
     And I click ".button-c"
     And the following ratings exist with breeders:

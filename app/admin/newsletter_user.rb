@@ -23,7 +23,6 @@ ActiveAdmin.register NewsletterUser do
       subject: :text,
       message: :textarea ,
       "Include Attachment" => :checkbox,
-      
       "Include Email Template" => :checkbox
     }, confirm: "Please enter the subject and the message below" do |ids, inputs|
     batch_action_collection.find(ids).each do |user|
@@ -37,6 +36,7 @@ ActiveAdmin.register NewsletterUser do
           b.save
         end
       end
+      
       if params[:test]
         ContactBatchMailer.contact_batch_email('Dear Newsletter Subscribers', params[:message], params[:subject], user.email, params["Include Attachment"]).deliver_now
       else
@@ -55,7 +55,7 @@ ActiveAdmin.register NewsletterUser do
     if (params["Include Attachment"] == "on" || inputs["Include Attachment"] == "on") && !@sent.empty?
       flash[:notice] = "The batch email has been sent to all the users you selected. Attachment: #{@sent.join(", ")}"
     else 
-      flash[:notice] = "The batch email has been sent to all the users you selected. No attachment selected"
+      flash[:notice] = "The batch email has been sent to all the users you selected #{inputs[:message]}. No attachment selected"
     end
     @sent.clear
     redirect_to collection_path

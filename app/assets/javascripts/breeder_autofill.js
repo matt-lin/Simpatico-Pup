@@ -45,18 +45,22 @@ var BreederAutofill = {
         })
     }
 
-    // callback for breeder_ajax creates links for max 10 relevant breeders
+    // callback for breeder_ajax creates links for max 5 relevant breeders
     // class .autofills wraps each autofill
     // id #breeder_find contains .autofills
     // class .autofill_link links to each breeder's average ratings page
     ,breeders_add_find: function (data, requestStatus, xhrObject) {
 
         $('#breeder_find_autofills').empty();
-        for (num in data) {
-            var id = data[num].id;
-            var name = data[num].name;
-            var city = data[num].city;
-            var state = data[num].state;
+        // Iter3-2 (by Zipei, Jack)
+        var datasize = (data.length > 5)? 5: data.length;
+        for (var i = 0; i < datasize; i++) {
+            var name = data[i].name;
+            if (name == "Unknown") {
+                continue;
+            }
+            var city = data[i].city;
+            var state = data[i].state;
             var html = '<div class="autofills"><a class="autofill_link">' + name + ' - ' + city + ", " + state + '</a></div>';
             var autofill = $(html);
             $('#breeder_find_autofills').append(autofill);
@@ -68,6 +72,7 @@ var BreederAutofill = {
                 $('#breeder_find_autofills').empty();
             });
         }
+        // End for Iter3-2 
     }
 
     ,breeders_add_form: function (data, requestStatus, xhrObject) {

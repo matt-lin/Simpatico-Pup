@@ -90,5 +90,16 @@ describe Users::RegistrationsController do
       expect(response).to render_template 'new'
     end
   end
+  
+  describe 'unsubscribe newsletters' do
+    it 'allow newsletter subscribers to unsubscribe' do
+      get :unsubscribe_newsletter, {:email => @user1.email}
+      new_user_subscribe = NewsletterUser.where("email = ?", "user1@example.com")
+      expect(new_user_subscribe.length).to eq 0
+      expect(flash[:notice]).to eq 'You have unsubscribed newsletter!'
+      expect(response).to redirect_to root_path
+    end
+  end
+  
 end
     

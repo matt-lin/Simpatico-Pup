@@ -8,23 +8,24 @@
        url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 
-input.read {
+.read {
+	appearance:none;
+	-moz-appearance:none;
+	-webkit-appearance:none;
     background-color: transparent;
-  	font-size: 1.1em !important;
-    border: 0px !important;
-    height: 40px;
-    width: 40px  !important;
+    border: 0;
     color: #CCC;
-    outline: 0  !important;
-    -webkit-appearance:none;
-    -moz-appearance:none;
-    appearance:none;
+  	font-size: 1.1em;
+    height: 40px;
+    outline: focus;
+    width: 40px;
 }
+
 .ui-widget-content {
 	border: 3px solid #bdc3c7;
 	background: #e1e1e1;
 	color: #222222;
-	margin-top: 0px;
+	margin-top: 0;
 }
 
 .ui-slider .ui-slider-handle {
@@ -76,7 +77,7 @@ input.read {
 }
 
 h4.great {
-	padding: 7px 0px;
+	padding: 7px 0;
 	color: #111111;
 	font-size: 15px;
 	font-weight: 600;
@@ -84,7 +85,7 @@ h4.great {
 	display: inline-block;
 /*	background: #0B0B61;
 	color: #ffffff;
-	margin: 0 0 25px 0px;
+	margin: 0 0 25px 0;
 	padding: 7px 15px;
 	font-size: 18px;
 	font-weight: 600;
@@ -95,7 +96,11 @@ h4.great {
   	box-shadow:         2px 4px 5px 0 #ccc;*/
 }
 
-.header h1 {
+.explanation {
+	font-size: 14px;
+}
+
+h1 {
     padding: 7px 15px;
     color: #111111;
     font-size: 33px;
@@ -124,10 +129,6 @@ h4.great {
 	font-size: 12px;
 	font-style: italic;
 	margin-bottom: 10px;
-}
-
-h4.explanation {
-	font-size: 14px;
 }
 
 .radio-text {
@@ -221,7 +222,7 @@ h4.explanation {
 	margin-right: 6px;
 	margin-bottom: 6px;
 }
-#chooseTagModal .tag-holder a.active {
+#chooseTagModal .tag-holder active {
 	background: #00adee;
 }
 #chooseTagModal input[type="submit"] {
@@ -233,14 +234,14 @@ h4.explanation {
 	font-size: 28px;
 	line-height: 50px;
 	border: none;
-	outline: none;
+	outline: focus;
 	text-align: center;
 }
 #chooseTagModal input[type="submit"]:active {
 	border: none;
-	outline: none;
+	outline: focus;
 }
-.tag-holder, body.rate_school form.rate .form-element.tagger .tag-holder {
+.tag-holder, .rate_school .rate .form-element.tagger .tag-holder {
 	float: left;
 	width: 575px;
 	margin-left: 31px;
@@ -253,7 +254,7 @@ h4.explanation {
 	margin-bottom: 0;
 }
 
-.form-group span.price {
+.form-group .price {
 	font-weight: 200;
 	display: inline-block;
 	color: #7f8c8d;
@@ -280,7 +281,7 @@ h4.explanation {
 
 /* HR */
 
-hr.style {
+.style {
 	margin-top: 0;
     border: 0;
     border-bottom: 1px dashed #ccc;

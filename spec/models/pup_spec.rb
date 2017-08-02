@@ -6,12 +6,18 @@ describe Pup do
     breed_2 = FactoryGirl.create(:breed, :name => 'Afghan Hound')
     @affenpinscher_id = breed_1.id
     @afghan_hound_id = breed_2.id
+    @unknown_breeder = FactoryGirl.create(:breeder, :name => "Unknown")
+    @breeder1 = FactoryGirl.create(:breeder)
     
-    @dog_1 = FactoryGirl.create(:pup, :breed_id => @afghan_hound_id, :trainability => 3)
-    @dog_2 = FactoryGirl.create(:pup, :breed_id => @affenpinscher_id)
-    @dog_3 = FactoryGirl.create(:pup, :breed_id => @afghan_hound_id, :overall_health => 4)
-    @dog_4 = FactoryGirl.create(:pup, :breed_id => @afghan_hound_id)
-    @dog_5 = FactoryGirl.create(:pup, :breed_id => @affenpinscher_id)
+    @dog_1 = FactoryGirl.create(:pup, :breed_id => @afghan_hound_id, :trainability => 3, :hashtag_1 => 'ht1',
+                                :hashtag_2 => 'ht2', :hashtag_3 => 'ht3', :breeder_id => @breeder1.id)
+    @dog_2 = FactoryGirl.create(:pup, :breed_id => @affenpinscher_id, :hashtag_1 => 'ht1', :hashtag_2 => '', 
+                                :hashtag_3 => '', :breeder_id => @breeder1.id)
+    @dog_3 = FactoryGirl.create(:pup, :breed_id => @afghan_hound_id, :overall_health => 4, :breeder_id => @breeder1.id)
+    @dog_4 = FactoryGirl.create(:pup, :breed_id => @afghan_hound_id, :breeder_id => @unknown_breeder.id)
+    @dog_5 = FactoryGirl.create(:pup, :breed_id => @affenpinscher_id, :breeder_id => @unknown_breeder.id)
+    
+    @comment_1 = Comment.create(:content => "comment1", :pup_id => @dog_1.id)
   end
   
   describe 'should search dogs by single brred' do
@@ -100,6 +106,91 @@ describe Pup do
     end
     it "should return false on illegal breed type" do
       Pup.legal_dog("make_up_breed").should be_false
+    end
+  end
+  
+  describe "should return dog's hashtags" do 
+    it 'should return array of hashtags' do
+      expect1 = ['ht1', 'ht2', 'ht3']
+      expect2 = ['ht1', '', '']
+      expect(@dog_1.hashtags).to eq expect1
+      expect(@dog_2.hashtags).to eq expect2
+    end
+  end
+  
+  describe "should return a dog's rating" do
+    it 'should return hash of ratings' do
+      expect1 = {:breeder => 1, :health => 1, :train => 3, :social => 1, :behavior => 1, :energy => 1, :simpatico => 1}
+      expect2 = {:breeder => 1, :health => 1, :train => 1, :social => 1, :behavior => 1, :energy => 1, :simpatico => 1}
+      expect(@dog_1.ratings).to eq expect1
+      expect(@dog_2.ratings).to eq expect2
+    end
+  end
+  
+  describe "should update a dog's breeder" do
+    it 'should update the breeder to unknown' do
+      breeder = @dog_1.update_breeder("")
+      expect(@dog_1.breeder).to eq @unknown_breeder
+      expect(breeder).to eq @unknown_breeder
+    end
+    
+    it 'should find breeder if breeder str is not empty' do
+      expect(Breeder).to receive(:find_by_formatted_string).with("#{@breeder1.name} - #{@breeder1.city}, #{@breeder1.state}")
+      @dog_1.update_breeder("#{@breeder1.name} - #{@breeder1.city}, #{@breeder1.state}")
+    end
+    
+    it 'should update the breeder if breeder exist' do
+      breeder = @dog_5.update_breeder("#{@breeder1.name} - #{@breeder1.city}, #{@breeder1.state}")
+      expect(@dog_5.breeder).to eq @breeder1
+      expect(breeder).to eq @breeder1
+    end
+    
+    it "should should return nil if breeder doesn't exist, and breeder not updated" do
+      breeder = @dog_5.breeder
+      expect {
+        breeder = @dog_5.update_breeder("Fake Breeder")
+      }.to_not change(@dog_5, :breeder)
+      expect(breeder).to be_nil
+    end
+    
+  end
+  
+  describe "should update comment" do
+    it 'should update the comment content' do
+      expect {
+        @dog_1.update_comment('sad')
+      }.to change(@dog_1.comment, :content)
+      expect(@dog_1.comment.content).to eq 'sad'
+    end
+    
+    it 'should create a new comment if dog.comment is nil' do
+      expect(@dog_2).to receive(:create_comment).with(:content => 'sad')
+      @dog_2.update_comment('sad')
+    end
+    
+    it "should create a new comment if dog doesn't have comment and update dog comment" do
+      expect {
+        @dog_2.update_comment('comment2')
+      }.to change(@dog_2, :comment)
+      expect(@dog_2.comment.content).to eq 'comment2'
+    end
+  end
+  
+  describe "it should build a dog" do
+    it 'should return a dog return given params, session and hash' do
+      user = FactoryGirl.create(:user)
+      session_hash = {}
+      session_hash[:pup_name] = "Doggie"
+      session_hash[:years] = "1" 
+      session_hash[:months] = "1"
+      session_hash[:breed] = "Affenpinscher"
+      session_hash[:breeder_id] = @breeder1.id
+      params_hash = {:pup => {:overall_health => "1", :trainability => "1", :social_behavior => "1", :energy_level => "1",
+                        :simpatico_rating => "1", :breeder_responsibility => "1"}}
+      expect_pup = Pup.new(:overall_health => "1", :trainability => "1", :social_behavior => "1", :energy_level => "1",
+            :simpatico_rating => "1", :breeder_responsibility => "1", :breed_id => 1, :breeder_id => 1, :pup_name => session_hash[:pup_name],
+            :year => session_hash[:years], :month => session_hash[:months], :user_id => user.id)
+      expect(Pup.build_pup(params_hash, session_hash, user.id))
     end
   end
 end

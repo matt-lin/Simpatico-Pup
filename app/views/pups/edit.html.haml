@@ -1,0 +1,85 @@
+// Iter3-2 (Gilbert Lo, Jeff Yu)
+%div{:class => "container"}
+  %div{:class => "header"}
+    %h1= "Edit #{@pup.pup_name}"
+  
+  = form_tag pup_path, :class => "form-horizontal", :autocomplete => 'off', :method => 'put' do
+  
+    %div{:class => "sub-title"}
+      = label_tag 'pup_name', "Pup's name"
+      = text_field :pup, 'pup_name', :placeholder => 'Enter Pup Name', :class => "form-control", :id => "pup_name"
+      %br
+      
+      = label_tag 'Time you have owned your dog.'
+      %p Years
+      %select{:class => 'form-control', :id => 'pup_years', :name => 'pup[year]'} 
+        = options_for_select((0..20).to_a, @pup.year)
+      
+      %p Month
+      %select{:class => 'form-control', :id => 'pup_months', :name => 'pup[month]'} 
+        = options_for_select((0..11).to_a, @pup.month)
+      %br
+      
+      = label_tag 'breed', "Pup's Breed"
+      %select{:class => 'form-control', :id => 'breed', :name => 'breed_name'} 
+        = options_for_select(@breeds.collect {|p| p.name }, @breed)
+      %br 
+      
+      = label_tag 'breeder_form', 'Breeder (Left Blank if Breeder is unknown)'
+      %div{:class => 'collapse in', :id => 'breeder_form_collapse'}
+        = text_field_tag 'breeder_str', @breeder_text, :placeholder => 'Enter Breeder if known', :class => 'form-control', :id => 'breeder_form'
+        %div{:id => 'autofills', :class => "form-group col-md-12"}
+      %br
+      
+      %div{:class => "sub-header"}
+        %h3 Your rating on #{@pup.pup_name}
+      %h4{:class => "explanation"}
+        (1 = Poor, 5 = Excellent)
+      = render 'slider_rating', title: "Breeder Responsibility", slider: "slider-breeder", id: "breeder-label",
+                des1: "Poor Breeder Responsibility", des5: "Excellent Breeder Responsibility",
+                description: "Responsible dog breeders screen their breeder dogs for breed-related genetic problems, begin early training and socialization of the puppies they produce, provide a health guarantee and ongoing support for the puppies they sell, and provide excellent lifelong health care and quality of life for their breeding dogs. Please rate the breeder of your dog for the level of responsibility they demonstrated.", var: :breeder_responsibility
+      = render 'slider_rating', title: "Overall Health", slider: "slider-health", id: "health-label",
+                des1: "Poor Health", des5: "Excellent Health",
+                description: "Please rate your dog's overall health in the time that you have had him/her. Please do not consider health problems that were the result of accidental injuries.", var: :overall_health
+      = render 'slider_rating', title: "Trainability", slider: "slider-train", id: "train-label",
+                des1: "Difficult to Train", des5: "Easy to Train",
+                description: "Please rate how easy your dog has been to train: consider housetraining, obedience training, and basic manners.", var: :trainability
+      = render 'slider_rating', title: "Social Behavior Toward Humans", slider: "slider-social", id: "social-label",
+                des1: "Very Unfriendly Toward Humans", des5: "Always Very Friendly Toward Everyone",
+                description: "Please rate your dog's social response to others, including family members, strangers, adults and children.", var: :social_behavior
+      = render 'slider_rating', title: "Behavior Toward Other Dogs", slider: "slider-behavior", id: "behavior-label",
+                des1: "Very Unfriendly Toward Other Dogs", des5: "Always Very Friendly Toward Other Dogs",
+                description: "Please rate your dog's overall reaction toward other dogs, both familiar and unfamiliar.", var: :dog_behavior
+      = render 'slider_rating', title: "Energy Level", slider: "slider-energy", id: "energy-label",
+                des1: "Low Energy Level", des5: "High Energy Level, needs lots of exercise",
+                description: "Please rate your dog's overall energy level and exercise requirement at maturity (1--7 years of age).", var: :energy_level
+      = render 'slider_rating', title: "Simpatico Rating", slider: "slider-simpatico", id: "simpatico-label",
+                des1: "Low Simpatico rating: Hard to connect with this dog", des5: "High Simpatico rating: Most compatible dog I've ever had",
+                description: "Some dogs just seem to have what it takes to be the ultimate companion. Please give your dog an overall Simpatico rating, based on the overall compatibility that your dog has and the depth of the relationship you share.", var: :simpatico_rating
+
+      = render 'hashtag'
+      
+      = label_tag 'comment', 'Comment (140 chars limit)'
+      = text_field_tag 'comment', @comment_content, :maxlength => 140, :placeholder => 'Enter Comment', :class => 'form-control', :id => 'comment'
+      %br
+      
+    %div{:class => "form-group col-sm-5"}
+      = submit_tag 'Update', :class => 'form-control', :id => 'update_button'
+    .col-sm-1
+    .col-sm-5.form-group
+      = link_to 'Cancel', :back, :class => 'form-control cancel'
+      
+    %br
+    %br
+    %br
+    %br
+      
+= render 'popup', :info => {:close => true, :add_breeder => true, :header=>"The breeder you enter is not in our database", :content=>"Please add a breeder before updating your pup"}
+
+- if flash[:modal]
+  :javascript
+    $(document).ready(function() {
+      $('#popup').modal({backdrop:'static', keyboard:false});
+    })
+
+// End Iter3-2
