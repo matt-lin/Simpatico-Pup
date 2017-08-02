@@ -20,7 +20,7 @@ Background: reviews have been added to the database
     | Shiba Inu 	  	| None 			 | 3 					  | 4 			   | 4 			  | 5 				| 4 		   | 2 				  | Such review. Wow. 				  |
 
     And I am on the RateMyPup home page
-    And I click ".button-c"
+    And I click ".button-d"
 
 #  Scenario: searching for a breeder
 #      When I enter "Justin MacMillin - Porterville, CA" into "breeder_find"

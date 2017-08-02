@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :agreement
   # attr_accessible :title, :body
   
-  attr_accessor :reset_token, :remember_token, :activation_token, :activation_digest
+  attr_accessor :reset_token, :remember_token, :activation_token
   before_save   :downcase_email
   before_create :create_activation_digest
   
@@ -27,6 +27,8 @@ class User < ActiveRecord::Base
   # Returns true if the given token matches the digest.
   def authenticated?(attribute, token)
     digest = send("#{attribute}_digest")
+    p  "*" * 80
+    p "digest -->#{digest}"
     return false if digest.nil?
     BCrypt::Password.new(digest).is_password?(token)
   end
@@ -72,8 +74,12 @@ class User < ActiveRecord::Base
   def create_activation_digest
     self.activation_token  = User.new_token
     self.activation_digest = User.digest(activation_token)
+    # update_attribute(:activation_digest, self.activation_token)
   end
   #End for Iter 2-2
+
+    
+  
   
 # Returns a random token.
   def self.new_token
@@ -85,7 +91,5 @@ class User < ActiveRecord::Base
     false
   end
 
-  def to_s
-    email
-  end
+
 end

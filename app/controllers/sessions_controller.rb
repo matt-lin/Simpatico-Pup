@@ -13,7 +13,6 @@ class SessionsController < Devise::SessionsController
       else
         user.create_activation_digest
         message  = "Account not activated. A new account activation has been send.<a href='#{user.send_activation_email}'>here</a>".html_safe
-
         flash[:notice] = message
         redirect_to root_url
       end

@@ -3,10 +3,12 @@ class AccountActivationsController < ApplicationController
 
   def edit
     user = User.find_by(email: params[:email])
-    if user && !user.activated?
+    p "*" * 80
+    p user
+    p "#{user.authenticated?(:activation, params[:id])} <-- user"
+    if user && !user.activated? && user.authenticated?(:activation, params[:id])
       user.activate
       user.save!
-      
       sign_in(user,scope:user)
       flash[:success] = "Congratulations! Your account has been activated!"
       UserMailer.welcome(user).deliver_now
