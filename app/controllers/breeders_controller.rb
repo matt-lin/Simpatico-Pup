@@ -28,7 +28,7 @@ class BreedersController < ApplicationController
       end
       @avg_ratings = @breeder.avg_pup_rating
       @pups = @breeder.all_pups
-
+      @show_text = @breeder.name + ' - ' + @breeder.address
     elsif params[:id].present?
 
       @breeder = Breeder.find_by_id(params[:id])
