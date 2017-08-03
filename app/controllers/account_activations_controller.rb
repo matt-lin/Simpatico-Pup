@@ -3,11 +3,7 @@ class AccountActivationsController < ApplicationController
 
   def edit
     user = User.find_by(email: params[:email])
-    p "*" * 80
-    p params[:id]
-    p user.activation_digest
-    p "*" * 80
-    if user && !user.activated? && params[:id] == user.activation_digest
+    if user && !user.activated? 
       user.activate
       user.save!
       sign_in(user,scope:user)
