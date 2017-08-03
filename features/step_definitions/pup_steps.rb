@@ -77,6 +77,10 @@ Given(/^the following breeders exist( for search)?:$/) do |for_search, table|
   end
 end
 
+Given(/^the following admin exist( for search)?:$/) do |for_search, table|
+  pending
+end
+
 Given(/^the following breeds exist:$/) do |table|
   table.hashes.each do |breed|
     FactoryGirl.create(:breed, :name => breed[:name])
