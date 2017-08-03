@@ -15,18 +15,18 @@ Background: Admin already login
       
     Scenario: admins can change the content
       When admin go to text
-      And I click edit
+      And I follow "edit"
       Then I should see "If you have a purebred dog"
-      Then I fill in "•" in "text_body"
+      Then I fill in "•" with "text_body"
       When I go to the homepage
       And I follow "How you can help"
       Then I should see "•"
       
     Scenario: admins can change the title of nevgation bar
       When admin go to text
-      And I click edit
+      And I follow "edit"
       Then I should see "How you can help"
-      Then I fill in "testing titile" in "text_title"
+      Then I fill in "testing titile" with "text_title"
       When I go to the homepage
       Then I should see "testing title"
       

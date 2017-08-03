@@ -25,3 +25,6 @@ When(/^I am logged in$/) do
   assert_text("Logout")
 end
 
+Given(/^I login as admin "([^"]*)"$/) do |arg1|
+  pending
+end
