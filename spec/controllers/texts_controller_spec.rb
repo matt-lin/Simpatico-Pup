@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe TextsController do
     before :each do
-        @mission = FactoryGirl.create(:text, :title => "Mission", :body => "Mission Body")
-        @background = FactoryGirl.create(:text, :title => "Background", :body => "Background Body")
-        @goals = FactoryGirl.create(:text, :title => "Goals", :body => "Goals Body")
-        @help = FactoryGirl.create(:text, :title => "How you can help", :body => "Help Body")
+        @mission = Text.find_by_id(1)
+        @background = Text.find_by_id(2)
+        @goals = Text.find_by_id(3)
+        @help = Text.find_by_id(4)
     end
     
     describe "Render the template and find text" do

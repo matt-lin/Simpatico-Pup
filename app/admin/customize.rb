@@ -17,6 +17,9 @@ ActiveAdmin.register Customize do
   scope :'Main Page Blue Bar' do |a|
     a.where(:location => "main_bar")
   end
+  scope :'Navigation Bar' do |a|
+    a.where(:location => "navigation_bar")
+  end
   scope :Others do |a|
     a.where(:location => "Others")
   end

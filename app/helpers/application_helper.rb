@@ -72,6 +72,26 @@ module ApplicationHelper
     return Customize.find_by_name("Blue_Bar_Bottom_Right").content
   end
   
+  def nav_bar_1
+    return Customize.find_by_name("Nav_Bar_1").content
+  end
+  
+  def nav_bar_2
+    return Customize.find_by_name("Nav_Bar_2").content
+  end
+  
+  def nav_bar_3
+    return Customize.find_by_name("Nav_Bar_3").content
+  end
+  
+  def nav_bar_4
+    return Customize.find_by_name("Nav_Bar_4").content
+  end
+  
+  def nav_bar_5
+    return Customize.find_by_name("Nav_Bar_5").content
+  end
+  
   def bootstrap_class_for flash_type
       case flash_type.to_s
       when "success"
