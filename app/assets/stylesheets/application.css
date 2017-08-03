@@ -11,10 +11,11 @@
  *= require_self
  *= require_tree ./non_active_admin
  *= require thredded
- *= require bootstrap.min
  *= require font-awesome
  *= require jquery-ui
  */
+ 
+ /*bootstrap using online cdn provided*/
 
 #background {
     background-size: cover;
@@ -380,6 +381,8 @@ h3.mission-text {
 }
 
 
+
+
 /*Iter 1-2*/
 /**************************************full img background**********/
 html,
@@ -533,6 +536,7 @@ body,
 }
 
 /*End for Iter 1-2*/
+
 
 /*CONTACT INFO CSS*/
 
@@ -743,3 +747,4 @@ body,
 }
 
 /*****************************************************************************/
+
