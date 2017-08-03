@@ -1,5 +1,7 @@
-Feature:  
-    
+Feature: Add dropdown button to nav-bar to access edit profile and my pups page
+  As a user
+  I want to see a nicer website
+  So that I can have better UI experience
     
 Background: User already login
   Given the default layout exist
