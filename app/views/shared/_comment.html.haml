@@ -18,8 +18,10 @@
                     = render 'shared/rating_comments', width: energy, title: 'Energy Level', color: 'progress-bar', id: "energy"
                     = render 'shared/rating_comments', width: simpatico, title: 'Simpatico Rating', color: 'progress-bar', id: "simpatico"
 
-                
-                %h4{:class => "rating-comment"} #{pup.comment.content}
+                - if pup.comment
+                    %h4{:class => "rating-comment"} #{pup.comment.content}
+                - else
+                    %h4{:class => "rating-comment"} 
                 %h4
                     - if pup.safe_hashtag_string.size() < 1
                         %p{:class => "no-hashtags"} This pup has no attribute tags
