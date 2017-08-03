@@ -1,3 +1,4 @@
+# Iter 4-1
 Feature: Add dropdown button to nav-bar to access edit profile and my pups page
   As a user
   I want to see a nicer website
@@ -30,4 +31,5 @@ Background: User already login
     Then I should be on the "Edit Profile" page
     And I should see "Change Password"
     And I should see "Delete Account"
+# End iter 4-1  
   

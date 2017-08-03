@@ -1,5 +1,4 @@
-#Iter 4-1 Test for editing format on text page (By Gung Hiu Ho, Licong Wang)
-
+# Iter 4-1 
 Feature: Admin edit the text in nevgation 
     As an administrator,
     I want to be able to change the word style (font, bullet point) of text in navigation bar,
@@ -30,3 +29,4 @@ Background: Admin already login
       When I go to the homepage
       Then I should see "testing title"
       
+# End iter 4-1

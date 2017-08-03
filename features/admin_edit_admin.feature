@@ -1,4 +1,4 @@
-# Iter 4-1 Only owner can delete other admin (By Gung Hiu Ho, Licong Wang)
+# Iter 4-1 
 Feature: Only owner can delete other admin 
   As the owner of this website, 
   I want to be able to add or delete administrator accounts 
@@ -27,4 +27,4 @@ Feature: Only owner can delete other admin
       | Tom  |
     And I should not see "Delete"
     
-# End for Iter 4-1
+# End Iter 4-1
