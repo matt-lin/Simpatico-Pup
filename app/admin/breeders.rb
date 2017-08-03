@@ -3,6 +3,8 @@ ActiveAdmin.register Breeder do
   filter :name
   filter :city
   filter :state
+  
+  actions :all
 
   index do
     column :id
@@ -12,6 +14,7 @@ ActiveAdmin.register Breeder do
     column :city
     column :state
     column :removed_reviews
+    actions
   end
 
   form do |f|
