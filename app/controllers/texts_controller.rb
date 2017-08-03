@@ -13,7 +13,7 @@ class TextsController < ApplicationController
     end
     
     def how_you_can_help
-        @how_you_can_help_text = Text.find_by_name "How you can help"
+        @how_you_can_help_text = Text.find_by_name "123123123"
     end
 
     def privacy_policy
