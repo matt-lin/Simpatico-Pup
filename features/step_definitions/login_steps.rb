@@ -25,6 +25,10 @@ When(/^I am logged in$/) do
   assert_text("Logout")
 end
 
-Given(/^I login as admin "([^"]*)"$/) do |arg1|
-  pending
+Given(/^I login as admin "([^"]*)" with password "([^"]*)"$/) do |email, password|
+  @admin_user = FactoryGirl.create(:admin_user)
+  visit('/admin/login')
+  fill_in(:admin_user_email, :with => email)
+  fill_in(:admin_user_password, :with => password)
+  find("#admin_user_submit_action").find("input").click
 end
