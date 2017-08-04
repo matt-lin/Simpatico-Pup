@@ -6,36 +6,31 @@ Feature: Only owner can delete other admin
   
   Background:
     Given the following admin exist:
-      | email                    | password |
-      | owner@berkeley.edu       | 12345678 |
-      | non_owner1@berkeley.edu  | 12345678 |
-      | non_owner2@berkeley.edu  | 12345678 |
+      | email                   | password |
+      | owner@berkeley.edu      | password |
+      | non_owner@berkeley.edu  | password |
 
   Scenario: the website ownder should be able to edit other admins
-    Given I login as admin "owner@berkeley.edu" with password "12345678"
+    Given I login as the website owner
     When admin go to admin_users
     Then I should see all of:
       | owner@berkeley.edu |
-      | non_owner1@berkeley.edu |
-      | non_owner2@berkeley.edu |
-    When the current admin delete the rank "2" admin
-    Then I should see "owner@berkeley.edu"
-    And I should not see "non_owner1@berkeley.edu"
-    And I should see "non_owner2@berkeley.edu"
+      | non_owner@berkeley.edu |
+    When the current admin change the rank "2" admin email to "test@berkeley.edu"
+    Then I should see "test@berkeley.edu"
   
   Scenario: non website owner shouldn't be able to edit other admins
-    Given I login as admin "non_owner1@berkeley.edu" with password "12345678"
+    Given I login as admin "non_owner@berkeley.edu" with password "password"
     When admin go to admin_users
     Then I should see all of:
       | owner@berkeley.edu |
-      | non_owner1@berkeley.edu |
-      | non_owner2@berkeley.edu |
+      | non_owner@berkeley.edu |
     And I should not see "edit"
     And I should not see "delete"
     
   Scenario: non website owner shouldn't be able to access edit page by changing url
-    Given I login as admin "non_owner1@berkeley.edu" with password "12345678"
-    When admin go to /admin_users/3/edit
+    Given I login as admin "non_owner@berkeley.edu" with password "password"
+    When admin go to /admin_users/1/edit
     Then I should see "Warning: You don't have enough privilege to edit another admin"
     
 # End for Iter 4-1

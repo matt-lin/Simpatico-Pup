@@ -5,19 +5,11 @@ Given (/^the following admin exist:$/) do |admins_table|
   end
 end
 
-When(/^the current admin delete the rank "([^"]*)" admin$/) do |id|
-  send "check", "batch_action_item_#{id}"
-  page.find("#collection_selection_toggle_all").click
-  page.find("#batch_action", visible: false).set :destroy
-  form   = page.find "#collection_selection"
-  params = page.all("#main_content input", visible: false).each_with_object({}) do |input, obj|
-    key, value = input['name'], input['value']
-    if key == 'collection_selection[]'
-      (obj[key] ||= []).push value if input.checked?
-    else
-      obj[key] = value
-    end
-  end
-  page.driver.submit form['method'], form['action'], params
-  
+When(/^the current admin change the rank "([^"]*)" admin email to "([^"]*)"$/) do |id, email|
+  visit "/admin/admin_users/#{id}/edit"
+  assert_text("Password confirmation")
+  fill_in("admin_user_email", with: email)
+  fill_in("admin_user_password", with: "12345678")
+  fill_in("admin_user_password_confirmation", with: "12345678")
+  click_button("Update Admin user")
 end
