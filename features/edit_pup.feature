@@ -81,7 +81,7 @@ Background: User already login
     Then  I should be on the "Add breeder" page
     When  I finish adding a new breeder 
     Then  I should be on the "Edit Pup Rating" page
-    And   I should see "Jeff Yu"
+    And   I should see "Breeder has been updated!"
   
   Scenario: users can go to details page and delete pup
     When  I follow "More" for dog1
