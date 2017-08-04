@@ -10,7 +10,7 @@ ActiveAdmin.register Text do
     form do |f|
         f.inputs "Content editor" do
             f.input :title
-            f.input :body, :as => :rich, :config => { :width => '76%', :height => '400px' }
+            f.input :body, :as => :rich, :config => { :width => '100%', :height => '400px' }
         end
         f.actions
     end
@@ -34,7 +34,6 @@ ActiveAdmin.register Text do
         def update
             
             super do
-                flash[:notice] = "YOU KNOW ?"
                 redirect_to collection_url and return if resource.valid?
             end
         end
