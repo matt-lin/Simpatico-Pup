@@ -4,7 +4,7 @@ ActiveAdmin.register AdminUser do
     selectable_column
     column :email
     column :owner do |a|
-      a.true_admin a.email
+      AdminUser.true_admin? a.email
     end
     column :current_sign_in_at        
     column :last_sign_in_at           
@@ -31,4 +31,5 @@ ActiveAdmin.register AdminUser do
       redirect_to admin_admin_user_path, alert: "Warning: You don't have enough privilege to delete"
     end
   end
+  
 end                                   
