@@ -10,7 +10,7 @@ ActiveAdmin.register Text do
     form do |f|
         f.inputs "Content editor" do
             f.input :title
-            f.input :body, :as => :rich, :config => { :width => '100%', :height => '400px' }
+            f.input :body, :as => :rich, :config => { :width => '100%', :height => '400px' , :allow_embeds => true}
         end
         f.actions
     end
@@ -31,11 +31,9 @@ ActiveAdmin.register Text do
     
     controller do
         def update
-            
             super do
                 redirect_to collection_url and return if resource.valid?
             end
         end
     end
-
 end

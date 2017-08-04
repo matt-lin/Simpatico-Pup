@@ -2,6 +2,11 @@ require "rich"
 
 if Object.const_defined?("Rich")
   Rich.setup do |config|    
+    #Customize the toolbar
+
+    # modified list with text alignment
+    config.editor[:toolbar] = [['Bold', 'Italic', '-','NumberedList', 'BulletedList', 'Blockquote', '-', 'MediaEmbed', '-', 'Link', 'Unlink'],['Source', 'ShowBlocks']]
+
     # == Backend configuration
     # Rich uses Paperclip (https://github.com/thoughtbot/paperclip) by default.
     # You will need to add it to your Gemfile, however.
