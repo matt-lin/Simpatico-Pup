@@ -3,6 +3,7 @@
     %h1= @goals_text.title
     .text-content
       = simple_format @goals_text.body
-    %center
-    %a{:class => "btn btn-primary", :href => root_path}
+  
+  %center
+    %a{:class => "btn btn-primary", :href => root_path, :style => "text-align:center"}
       Go Back to Home Page
