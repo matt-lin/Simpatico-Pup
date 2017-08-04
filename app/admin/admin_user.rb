@@ -35,10 +35,9 @@ ActiveAdmin.register AdminUser do
       end
     end
     
-    def delete
+    def destory
       if AdminUser.true_admin? current_admin_user.email
         flash[:notice] = "fa"
-        super
       else
         flash[:notice] = "no permission"
         redirect_to admin_admin_user_path()
