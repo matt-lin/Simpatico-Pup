@@ -1,5 +1,7 @@
 ActiveAdmin.register Text do
-    actions :all, except: [:new, :show]
+    config.batch_actions = false
+    config.filters = false
+    actions :index, :edit, :update
     
     index do
        column :title
