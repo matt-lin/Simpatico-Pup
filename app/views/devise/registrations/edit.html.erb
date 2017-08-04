@@ -41,11 +41,11 @@
     <% if subscribed? %>
       <p>You are currently subscribing newsletter, click the button below to unsubscrib newsletter</p>
       <%= button_to "Unsubscribe newsletter", update_subscription_path(:to_subscribe => false), method: :post, 
-          :id => "subscribe_button", :class => "button" %>
+          :id => "unsubscribe_button", :class => "button" %>
     <% else %>
       <p>You are currently not subscribing newsletter, click the button below to subscribe newsletter</p>
       <%= button_to "Subscribe newsletter", update_subscription_path(:to_subscribe => true), method: :post, 
-          :id => "unsubscribe_button", :class => "button" %>
+          :id => "subscribe_button", :class => "button" %>
     <% end %>
     
   </div>

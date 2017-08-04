@@ -773,10 +773,6 @@ body,
   border-bottom: 1px #e1e4e8 solid;
 }
 
-.edit_account #error_explanation {
-  
-}
-
 .edit_account .button {
   margin-right: 8px;
   border: 1px solid #d1d5da;
@@ -787,7 +783,7 @@ body,
 }
 
 .edit_account .sub_part h3 {
-  padding: 30px 0 10px 0;;
+  padding: 30px 0 10px 0;
 }
 
 .field .password_input {

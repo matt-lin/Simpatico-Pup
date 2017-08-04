@@ -227,3 +227,6 @@ When (/^I follow "([^"]*)" for dog1$/) do |link|
   end
 end
 
+When /^I click the nav bar dropdown button/ do
+  find('#dropdown_menu').click
+end
