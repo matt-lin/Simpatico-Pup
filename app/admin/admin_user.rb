@@ -11,7 +11,7 @@ ActiveAdmin.register AdminUser do
     column :current_sign_in_at        
     column :last_sign_in_at           
     column :sign_in_count   
-    actions if AdminUser.true_admin? current_admin_user.email 
+    actions if AdminUser.true_admin? current_admin_user.id 
   end
 
 
@@ -26,7 +26,7 @@ ActiveAdmin.register AdminUser do
   
   controller do
     def destroy
-      if AdminUser.true_admin? current_admin_user.email 
+      if AdminUser.true_admin? current_admin_user.id 
         super
       else
         flash[:alert] = "Warning: You don't have enough privilege to delete"
@@ -35,7 +35,7 @@ ActiveAdmin.register AdminUser do
     end
     
     def new
-      if AdminUser.true_admin? current_admin_user.email 
+      if AdminUser.true_admin? current_admin_user.id 
         super
       else
         flash[:alert] = "Warning: You don't have enough privilege to create another admin"
@@ -44,7 +44,7 @@ ActiveAdmin.register AdminUser do
     end
     
     def show
-      if AdminUser.true_admin? current_admin_user.email or current_admin_user.id.to_s == params[:id].to_s
+      if AdminUser.true_admin? current_admin_user.id or current_admin_user.id.to_s == params[:id].to_s
         super
       else
         flash[:alert] = "Warning: You don't have enough privilege to view other admins"
@@ -53,7 +53,7 @@ ActiveAdmin.register AdminUser do
     end
     
     def update
-      if AdminUser.true_admin? current_admin_user.email or current_admin_user.id.to_s == params[:id].to_s
+      if AdminUser.true_admin? current_admin_user.id or current_admin_user.id.to_s == params[:id].to_s
         super
       else
         flash[:alert] = "Warning: You don't have enough privilege to update this page"
@@ -62,7 +62,7 @@ ActiveAdmin.register AdminUser do
     end
     
     def edit
-      if AdminUser.true_admin? current_admin_user.email or current_admin_user.id.to_s == params[:id].to_s
+      if AdminUser.true_admin? current_admin_user.id or current_admin_user.id.to_s == params[:id].to_s
         super
       else
         flash[:alert] = "Warning: You don't have enough privilege to edit another admin"

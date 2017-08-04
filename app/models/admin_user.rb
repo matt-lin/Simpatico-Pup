@@ -8,14 +8,14 @@ class AdminUser < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
   
-  @@owner = "admin@berkeley.edu"
+  @@owner_id = 1
   
-  def AdminUser.true_admin? email
-    email == @@owner
+  def AdminUser.true_admin? id
+    id == @@owner_id
   end
   
-  def AdminUser.change_owner email
-    @@owner = email
+  def AdminUser.change_owner id
+    @@owner_id = id
   end
   
 end
