@@ -9,7 +9,7 @@ class Breed < ActiveRecord::Base
   end
 
   def Breed.find_breed_by_substr(s)
-    Breed.all_breeds.select { |b| b.downcase.include? s.downcase }
+    Breed.all_breeds.select { |b| (b.downcase.start_with? (s.downcase)) }
   end
 
   def Breed.find_by_name(breed_name)
