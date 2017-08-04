@@ -53,7 +53,7 @@ ActiveAdmin.register AdminUser do
     end
     
     def update
-      if AdminUser.true_admin? current_admin_user.email 
+      if AdminUser.true_admin? current_admin_user.email or current_admin_user.id.to_s == params[:id].to_s
         super
       else
         flash[:alert] = "Warning: You don't have enough privilege to update this page"
@@ -62,7 +62,7 @@ ActiveAdmin.register AdminUser do
     end
     
     def edit
-      if AdminUser.true_admin? current_admin_user.email 
+      if AdminUser.true_admin? current_admin_user.email or current_admin_user.id.to_s == params[:id].to_s
         super
       else
         flash[:alert] = "Warning: You don't have enough privilege to edit another admin"
