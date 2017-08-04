@@ -21,5 +21,14 @@ ActiveAdmin.register AdminUser do
       f.input :password_confirmation  
     end                               
     f.actions                         
-  end                                 
+  end        
+  
+  controller do
+    def destroy
+      if true_admin 
+        redirect_to admin_admin_user_path, notice: "The selected admin has been deleted"
+      end
+      redirect_to admin_admin_user_path, alert: "Warning: You don't have enough privilege to delete"
+    end
+  end
 end                                   
