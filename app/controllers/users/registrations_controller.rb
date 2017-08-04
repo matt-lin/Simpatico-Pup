@@ -58,8 +58,8 @@ helper_method :subscribed?
   # Iter 1-2
   def update
     super
-    user = User.find_by_email(params[:user][:email])
-    
+    # user = User.find_by_email(params[:user][:email])
+    user = User.find_by_email(current_user.email)
     if params[:subscribe_newsletter].present? and user.valid_password?(params[:user][:current_password])
       NewsletterUser.find_or_create_by(email: resource.email)
     elsif params[:unsubscribe_newsletter].present? and user.valid_password?(params[:user][:current_password])

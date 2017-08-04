@@ -749,5 +749,49 @@ body,
     color: white;
 }
 
+.edit_account .title {
+  text-align: center;
+  font-size: 35px;
+  color: black;
+  font-weight: 600;
+  padding-bottom: 10px;
+  margin-top: 10px;
+}
+
+.edit_account {
+  margin-left: 150px;
+  margin-right: 150px;
+}
+
+.edit_account h3 {
+  display: block;
+  font-size: 1.5em;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+  border-bottom: 1px #e1e4e8 solid;
+}
+
+.edit_account .password_input {
+    width: 60%;
+    margin: 5px 0 5px 0;
+    border: 1px solid #d1d5da;
+    padding: 5px;
+    border-radius: 4px;
+    background-color: #fafbfc;
+}
+
+.edit_account .button {
+  margin-right: 8px;
+  border: 1px solid #d1d5da;
+  border-radius: 0.25em;
+  padding: 6px 12px;
+  background-color: white;
+  font-weight: 500;
+}
+
+.edit_account .sub_part h3 {
+  padding: 10px 0;
+}
+
 /*****************************************************************************/
 
