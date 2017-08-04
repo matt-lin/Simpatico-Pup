@@ -1,6 +1,8 @@
 ActiveAdmin.register AdminUser do
   
-  index do                 
+  filter :email
+  
+  index do            
     selectable_column
     column :email
     column :owner do |a|
@@ -12,7 +14,6 @@ ActiveAdmin.register AdminUser do
     actions if AdminUser.true_admin? current_admin_user.email 
   end
 
-  filter :email                       
 
   form do |f|                         
     f.inputs "Admin Details" do       
@@ -30,6 +31,42 @@ ActiveAdmin.register AdminUser do
       else
         flash[:alert] = "Warning: You don't have enough privilege to delete"
         redirect_to "admin/admin_users/"
+      end
+    end
+    
+    def new
+      if AdminUser.true_admin? current_admin_user.email 
+        super
+      else
+        flash[:alert] = "Warning: You don't have enough privilege to create another admin"
+        render :index
+      end
+    end
+    
+    def show
+      if AdminUser.true_admin? current_admin_user.email 
+        super
+      else
+        flash[:alert] = "Warning: You don't have enough privilege to view other admin"
+        render :index
+      end
+    end
+    
+    def update
+      if AdminUser.true_admin? current_admin_user.email 
+        super
+      else
+        flash[:alert] = "Warning: You don't have enough privilege to update this page"
+        render :index
+      end
+    end
+    
+    def edit
+      if AdminUser.true_admin? current_admin_user.email 
+        super
+      else
+        flash[:alert] = "Warning: You don't have enough privilege to edit another admin"
+        render :index
       end
     end
   end
