@@ -28,7 +28,7 @@ ActiveAdmin.register AdminUser do
       if AdminUser.true_admin? current_admin_user.email 
         super
       else
-        redirect_to admin_admin_user_path, alert: "Warning: You don't have enough privilege to delete"
+        render :index, alert: "Warning: You don't have enough privilege to delete"
       end
     end
   end
