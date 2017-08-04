@@ -9,7 +9,7 @@ class Breed < ActiveRecord::Base
   end
 
   def Breed.find_breed_by_substr(s)
-    Breed.all_breeds.select { |b| (b.downcase.start_with? (s.downcase)) }
+    Breed.all_breeds.select { |b| (Breed.contain? b.downcase, s.downcase) }
   end
 
   def Breed.find_by_name(breed_name)
@@ -20,9 +20,19 @@ class Breed < ActiveRecord::Base
     end
     return result
   end
+  
+  def Breed.contain?(name, str)
+    #name.gsub!(/\W+/, '')
+    flag = false
+    name.split(" ").each do |sub|
+      flag = true if sub.starts_with? str
+    end
+    return flag
+  end
 
   #private
   def Breed.all_breeds
     return Breed.select('name').map{ |e| e.name }.to_a
   end
+
 end
