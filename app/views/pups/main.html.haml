@@ -2,16 +2,31 @@
 %body{:id=>"background"}
     %section{:class => "find_pup"}
         //TOP PART (Tagline, Buttons)
-        %div{:class => "row top", :style => "position: absolute; width: 100%"}
-            %div{:class => "row tagline"}
-                %h1{:id => "titleline"} #{primary_title}
-                %h2{:id => "tagline-text"} #{secondary_title}
-            %div{:class => "row col-lg-12 page-links"}
-                %div{:class => "col-sm-3 box-a text-center"}
+        %div{:class => "row_top", :style => "position: absolute; width: 100%"}
+            %div{:class => "row_tagline"}
+                %h1{:id => "titleline_comment"} #{primary_title}
+                %h2{:id => "tagline-text"} The SimpaticoPup website was created to help improve how companion puppies are produced, and how they find their way to their forever homes.
+                %div{:id => "to_goal"} 
+                    = link_to "Find out more", text_goals_path, :id => "link_goal"
+            %div{:class => "row_tagline"}
+                %h1{:id => "titleline_comment"} #{comment_title}
+                %h2{:id => "tagline-text_comment"} 
+                    = "\"#{@comment_content}\""
+                %h3{:id => "tagline-text_breed"}
+                    = "---- #{@comment_breed}"
+            %a.prev{:id => "arrow_left"} ❮
+            %a.next{:id => "arrow_right"} ❯
+
+        %br
+        %br
+        %div{:class => "page_container"}
+            %div{:id => "main_page_buttons"}
+                %div{:class => "col-sm-3 box-a text-center", :id => "button1_main"}
                     %a{:class => "main-button-link button-a", :href => "pups/dog_name"}
                         %div{:class => "main-button"}
                             %div{:class => "main-button-small-text"} #{rate_dog_top}
                             %div{:class => "main-button-large-text"} #{rate_Dog_bottom}
+                %div{:class => "divider1"}
                 %div{:class => "col-sm-3 box-b box-move hidden"}
                     %div{:class => "panel panel-default"}
                         %div{:class => "panel-heading"}
@@ -27,11 +42,12 @@
                                 %div{:id => 'breed_autofills', :class => "form-group col-md-12"}
                                 %div{:class => "form-group", :class => "button-positioning"}
                                     = submit_tag 'Find ratings for this breed', :id => 'Find Breed', :class => "form-control"
-                %div{:class => "col-sm-3 box-b text-center"}
+                %div{:class => "col-sm-3 box-b text-center", :id => "button2_main"}
                     %a{:class => "main-button-link button-b"}
                         %div{:class => "main-button"}
                             %div{:class => "main-button-small-text"} #{find_breed_top}
                             %div{:class => "main-button-large-text"} #{find_breed_bottom}
+                %div{:class => "divider2"}
                 %div{:class => "col-sm-3 box-c box-move hidden"}
                     %div{:class => "panel panel-default"}
                         %div{:class => "panel-heading"}
@@ -46,25 +62,19 @@
                                     %div{:id => 'breeder_find_autofills', :class => "list-group"}
                                     %div{:class => "form-group", :class => "button-positioning"}
                                         = submit_tag 'Find ratings for this breeder', :id => 'Find Breeder', :class => "form-control"
-                %div{:class => "col-sm-3 box-c text-center"}
+                %div{:class => "col-sm-3 box-c text-center", :id => "button3_main"}
                     %a{:class => "main-button-link button-c"}
                         %div{:class => "main-button"}
                             %div{:class => "main-button-small-text"} #{find_breeder_top}
                             %div{:class => "main-button-large-text"} #{find_breeder_bottom}
-                %div{:class => "col-sm-3 box-d text-center"}
+                %div{:class => "divider3"}
+                %div{:class => "col-sm-3 box-d text-center", :id => "button4_main"}
                     %a{:class => "main-button-link button-d", :href => "/search_nearer_breeders"}
                         %div{:class => "main-button"}
                             %div{:class => "main-button-small-text"} #{search_breeder_top}
-                            %div{:class => "main-button-large-text"} #{search_breeder_bottom}
-        // Iter 1-2
-        %div{:class => "bg-page row view "}
+                            %div{:class => "main-button-large-text"} #{search_breeder_bottom} 
 
-    //Second Row
-    // Iter3-2 Customized featured title (By Gung Hiu Ho, Licong Wang)
-    %div{:class => "row"}
-        %section{:class => "featured-comment"}
-            %header{:class => "span12"}
-                %h2 #{comment_title}
-                %h3= "\"#{@comment_content}\""
-                %h3= "---- #{@comment_breed}"
+        %div{:class => "divider_hor"}
+        
+
 // End of Iter3-2

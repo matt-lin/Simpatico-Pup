@@ -2,7 +2,7 @@ class PupsController < ApplicationController
   before_filter :check_sign_in, :only => [:new, :dog_name, :dog_how_long, :dog_breed, :dog_breeder]
 
   # Devise. Methods not in the list below will require a user to be logged in.
-  before_filter :authenticate_user!, except: [:index, :new, :main, :breed, :search_breed]
+  before_filter :authenticate_user!, except: [:index, :new, :main, :breed, :search_breed, :random_comment]
 
   # The Root Path
   def main
@@ -18,6 +18,12 @@ class PupsController < ApplicationController
       @comment_breed = selected_comment.breed
     end
     # END of Iter 2
+  end
+  
+  def random_comment
+    puts '*'*80
+    selected_comment = SelectedComment.find_randomly
+    render :json => selected_comment
   end
 
   # The true rating page
