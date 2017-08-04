@@ -10,7 +10,7 @@ class AdminUser < ActiveRecord::Base
   
   @@owner = "admin@berkeley.edu"
   
-  def true_admin email
+  def AdminUser.true_admin? email
     email == @@owner
   end
   

@@ -4,7 +4,7 @@ ActiveAdmin.register AdminUser do
     selectable_column
     column :email
     column :owner do |a|
-      a.true_admin a.email
+      AdminUser.true_admin? a.email
     end
     column :current_sign_in_at        
     column :last_sign_in_at           
@@ -21,5 +21,30 @@ ActiveAdmin.register AdminUser do
       f.input :password_confirmation  
     end                               
     f.actions                         
-  end                                 
+  end
+  
+  controller do
+    def update
+      attrs = permitted_params[:attachment]
+      @attachment = Attachment.where(id: params[:id]).first!
+      @attachment[:document_file_name] = attrs[:attachment].original_filename
+      if @attachment.save
+        redirect_to admin_attachment_path(@attachment)
+      else
+        render :edit
+      end
+    end
+    
+    def delete
+      if AdminUser.true_admin? current_admin_user.email
+        flash[:notice] = "fa"
+        super
+      else
+        flash[:notice] = "no permission"
+        redirect_to admin_admin_user_path()
+      end
+    end
+    
+  end
+  
 end                                   
