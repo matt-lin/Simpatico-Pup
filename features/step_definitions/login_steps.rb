@@ -29,8 +29,6 @@ Given(/^I login as the website owner$/) do
   @owner = AdminUser.where("id = ?", 1).first
   @email = @owner.email
   @password = "password"
-  puts "EMAIL IS "
-  puts @email
   visit('/admin/login')
   fill_in(:admin_user_email, :with => @email)
   fill_in(:admin_user_password, :with => @password)
