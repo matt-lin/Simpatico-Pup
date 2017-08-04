@@ -14,4 +14,8 @@ class AdminUser < ActiveRecord::Base
     email == @@owner
   end
   
+  def AdminUser.change_owner email
+    @@owner = email
+  end
+  
 end

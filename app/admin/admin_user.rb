@@ -9,7 +9,7 @@ ActiveAdmin.register AdminUser do
     column :current_sign_in_at        
     column :last_sign_in_at           
     column :sign_in_count   
-    actions
+    actions if AdminUser.true_admin? current_admin_user.email 
   end
 
   filter :email                       
@@ -29,7 +29,7 @@ ActiveAdmin.register AdminUser do
         super
       else
         flash[:alert] = "Warning: You don't have enough privilege to delete"
-        render :index
+        redirect_to "admin/admin_users/"
       end
     end
   end
