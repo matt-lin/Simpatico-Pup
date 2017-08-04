@@ -121,31 +121,16 @@ currently limiting the number of ratings made by each dog owner to eight, and li
       flash.keep
       redirect_to root_path and return
     end
-
-    # if @pup.nil?
-    #   flash[:notice] = "The dog you are trying to show is not exist"
-    #   redirect_to root_path and return
-    # elsif !owner?(@pup)
-    #   flash[:notice] = "The dog you are trying to show is not yours"
-    #   redirect_to root_path and return
-    # end
     
     if @pup.comment.nil?
       @pup.update_comment("")
     end
+    session[:from] = 'dog_show'
   end
 
   def destroy
     @pup = Pup.find_by_id params[:id]
     
-    # if @pup.nil?
-    #   flash[:notice] = "Dog doesn't exist"
-    # elsif !owner?(@pup)
-    #   flash[:notice] = "The dog you are trying to destroy is not yours"
-    # else  
-    #   @pup.destroy
-    #   flash[:notice] = "Pup #{@pup.pup_name} has been deleted" 
-    # end
     if valid_access(@pup)
       @pup.destroy
       flash[:notice] = "Pup #{@pup.pup_name} has been deleted"
@@ -161,14 +146,6 @@ currently limiting the number of ratings made by each dog owner to eight, and li
       flash.keep
       redirect_to root_path and return
     end
-
-    # if @pup.nil?
-    #   flash[:notice] = "The dog you are trying to edit is not exist"
-    #   redirect_to root_path and return
-    # elsif !owner?(@pup)
-    #   flash[:notice] = "The dog you are trying to edit is not yours"
-    #   redirect_to root_path and return
-    # end
     
     @breed = @pup.breed.name
     breeder = @pup.breeder
@@ -344,17 +321,9 @@ with you for a minimum of six months. Thank you."
   end
 
   def start_over
-    [:step1, :step2, :step3, :pup_name, :breed, :years, :months, :breed_id, :pup_id].each do |key|
+    [:step1, :step2, :step3, :pup_name, :breed, :years, :months, :breed_id, :pup_id, :from].each do |key|
       session.delete(key)
     end
-    # session[:step1] = false
-    # session[:step2] = false
-    # session[:step3] = false
-    # session[:pup_name] = nil
-    # session[:breed] = nil
-    # session[:years] = nil
-    # session[:months] = nil
-    # session[:breeder_id] = nil
   end
 end
   
