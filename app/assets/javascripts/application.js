@@ -14,6 +14,5 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require thredded
-//= require bootstrap.min
+//= require bootstrap
 //= require_tree .
-

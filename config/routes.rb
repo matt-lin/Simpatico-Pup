@@ -14,6 +14,7 @@ Ratemypup::Application.routes.draw do
   get '/users/pups' => 'users#pups', :as => :user_pups
   devise_scope :user do
     get '/users/unsubscribe' => 'users/registrations#unsubscribe_newsletter', :as => :unsubscribe_newsletter
+    post '/users/update_subscription' => 'users/registrations#update_subscription', :as => :update_subscription
   end
 
   root :to => 'pups#main'

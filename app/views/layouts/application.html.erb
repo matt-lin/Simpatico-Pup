@@ -14,6 +14,9 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   
+  <!--This line of code is to resolve issue with current bootstrap set up to cause not be able to dispaly icon-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  
 </head>
 
 
@@ -52,24 +55,26 @@
               </li>
               
               <% if user_signed_in? %>
-
-                  <li class="navbar-text">
-
-                    <%= "Logged in as " + current_user.username %>
-                    
-                  </li>
+              
+             <li class="dropdown" id='dropdown_menu'>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <span class="glyphicon glyphicon-user"></span>
+                      <%=" " + current_user.username.upcase %></a>
+                    <ul class="dropdown-menu">
+                      
+                      <%= link_to user_pups_path, class: "btn", style: "color: black;" do %>
+                        <i class="glyphicon glyphicon-th-list"></i> My Pups
+                      <% end %>
+          
+                      </li>
+                      <%= link_to edit_user_registration_path, class: "btn", style: "color: black;" do %>
+                        <i class="glyphicon glyphicon-cog"></i> Settings
+                      <% end %>
+                      
+                      <%= link_to destroy_user_session_path, :method => :delete, class: "btn", style: "color: black;" do %>
+                        <i class="glyphicon glyphicon-log-out"></i> Logout
+                      <% end %>
                   
-                  <li>
-                    <%= link_to "My Pups", user_pups_path %>
-                  </li>  
-                    
-                  <li>
-                    <%= link_to "Edit Profile", edit_user_registration_path %>
-                  </li>
-
-                  <li>
-                    <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
-                  </li>
               <% else %>
                   <li><button type="button" class="btn btn-default navbar-btn"><%= link_to "Signup", new_user_registration_path %></button></li>
                   <li><%= link_to "Login", new_user_session_path, :id => 'Login' %></li>

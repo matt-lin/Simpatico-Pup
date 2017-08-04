@@ -58,8 +58,8 @@ helper_method :subscribed?
   # Iter 1-2
   def update
     super
-    user = User.find_by_email(params[:user][:email])
-    
+    # user = User.find_by_email(params[:user][:email])
+    user = User.find_by_email(current_user.email)
     if params[:subscribe_newsletter].present? and user.valid_password?(params[:user][:current_password])
       NewsletterUser.find_or_create_by(email: resource.email)
     elsif params[:unsubscribe_newsletter].present? and user.valid_password?(params[:user][:current_password])
@@ -75,6 +75,18 @@ helper_method :subscribed?
     redirect_to root_path and return
   end
   #End for Iter3-2.
+  
+  def update_subscription
+    if params[:to_subscribe] == "true"
+      NewsletterUser.create(:email => current_user.email)
+      flash[:notice] = 'You are subscribing newsletter now!'
+    else
+      NewsletterUser.where(:email => current_user.email).destroy_all
+      flash[:notice] = 'You have unsubscribed newsletter!'
+    end
+    
+    redirect_to edit_user_registration_path
+  end
 
   # DELETE /resource
   def destroy

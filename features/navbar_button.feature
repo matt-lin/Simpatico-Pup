@@ -13,23 +13,23 @@ Background: User already login
     | gilbert        | gilbert@berkeley.edu| 12345678       | 12345678             | true      |
 
   Given I log in as "gilbert"
+  When I click the nav bar dropdown button
   
-  Scenario: User click the 'My Account' drop down button
-    When I click "My Account"
+  Scenario: User click the 'My Account' drop down button should see the dropdown list
     Then I should see "My Pups"
-    And I should see "Edit Profile"
+    And I should see "Settings"
+    And I should see "Logout"
     
   Scenario: User use the 'My Account' drop down button to go to My pups page
-    When I click "My Account"
     And I follow "My Pups"
     Then I should be on the "Pups Ratings" page
     And I should see "My Pups"
     
   Scenario: User use the 'My Account' drop down button to go to edit profile
-    When I click "My Account"
-    And I follow "Edit Profile"
+    And I follow "Settings"
     Then I should be on the "Edit Profile" page
-    And I should see "Change Password"
-    And I should see "Delete Account"
+    And I should see "Change password"
+    And I should see "Newsletter subscription"
+    And I should see "Delete account"
 # End iter 4-1  
   
