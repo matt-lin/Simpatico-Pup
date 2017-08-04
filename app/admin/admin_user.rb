@@ -3,7 +3,7 @@ ActiveAdmin.register AdminUser do
   filter :email
   
   index do            
-    selectable_column
+    selectable_column if AdminUser.true_admin? current_admin_user.id 
     column :email
     column :owner do |a|
       AdminUser.true_admin? a.id
