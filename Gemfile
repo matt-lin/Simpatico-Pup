@@ -43,7 +43,7 @@ gem 'ransack'
 
 gem 'protected_attributes'
 
-
+gem 'rich', github: 'jpros/rich', :branch => 'icons'
 
 group :development, :test do
   gem 'sqlite3'

@@ -7,6 +7,7 @@ ActiveAdmin.register Breeder do
   actions :all
 
   index do
+    selectable_column
     column :id
     column :name do |p|
       auto_link p
