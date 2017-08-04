@@ -44,7 +44,7 @@ ActiveAdmin.register AdminUser do
     end
     
     def show
-      if AdminUser.true_admin? current_admin_user.email 
+      if AdminUser.true_admin? current_admin_user.email or current_admin_user.id.to_s == params[:id].to_s
         super
       else
         flash[:alert] = "Warning: You don't have enough privilege to view other admin"
