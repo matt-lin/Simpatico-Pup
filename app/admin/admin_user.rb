@@ -28,7 +28,8 @@ ActiveAdmin.register AdminUser do
       if AdminUser.true_admin? current_admin_user.email 
         super
       else
-        render :index, alert: "Warning: You don't have enough privilege to delete"
+        flash[:alert] = "Warning: You don't have enough privilege to delete"
+        render :index
       end
     end
   end
