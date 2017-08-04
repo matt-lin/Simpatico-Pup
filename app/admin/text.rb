@@ -10,7 +10,7 @@ ActiveAdmin.register Text do
     form do |f|
         f.inputs "Content editor" do
             f.input :title
-            f.input :body, :as => :rich, :config => { :width => '76%', :height => '400px' }
+            f.input :body, :as => :rich, :config => { :width => '100%', :height => '400px' }
         end
         f.actions
     end
@@ -25,8 +25,7 @@ ActiveAdmin.register Text do
             li "How you can help"
         end
            
-        text_node "Assign the title to the page that you would like to edit. "         
-        "If mutiple same title exist, the texts will be assign to the earliest version"
+        text_node "Tips: The text editor can edit page accepts HTML"         
     end
     
     
