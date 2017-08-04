@@ -11,7 +11,7 @@ ActiveAdmin.register AdminUser do
     column :current_sign_in_at        
     column :last_sign_in_at           
     column :sign_in_count   
-    actions if AdminUser.true_admin? current_admin_user.email
+    actions if AdminUser.true_admin? current_admin_user.email 
   end
 
 
@@ -30,7 +30,7 @@ ActiveAdmin.register AdminUser do
         super
       else
         flash[:alert] = "Warning: You don't have enough privilege to delete"
-        render :index
+        redirect_to "admin/admin_users/"
       end
     end
     
@@ -39,7 +39,7 @@ ActiveAdmin.register AdminUser do
         super
       else
         flash[:alert] = "Warning: You don't have enough privilege to create another admin"
-        render :index
+        redirect_to "/admin/admin_users/"
       end
     end
     
@@ -47,8 +47,8 @@ ActiveAdmin.register AdminUser do
       if AdminUser.true_admin? current_admin_user.email or current_admin_user.id.to_s == params[:id].to_s
         super
       else
-        flash[:alert] = "Warning: You don't have enough privilege to view other admin"
-        render :index
+        flash[:alert] = "Warning: You don't have enough privilege to view other admins"
+        redirect_to "/admin/admin_users/"
       end
     end
     
@@ -57,7 +57,7 @@ ActiveAdmin.register AdminUser do
         super
       else
         flash[:alert] = "Warning: You don't have enough privilege to update this page"
-        render :index
+        redirect_to "/admin/admin_users/"
       end
     end
     
@@ -66,7 +66,7 @@ ActiveAdmin.register AdminUser do
         super
       else
         flash[:alert] = "Warning: You don't have enough privilege to edit another admin"
-        render :index
+        redirect_to "/admin/admin_users/"
       end
     end
   end
