@@ -6,10 +6,10 @@ Feature: Only owner can delete other admin
   
   Background:
     Given the following admin exist:
-      | email                    | password |
-      | owner@berkeley.edu       | 12345678 |
-      | non_owner1@berkeley.edu  | 12345678 |
-      | non_owner2@berkeley.edu  | 12345678 |
+      | id | email                    | password |
+      | 1  | owner@berkeley.edu       | 12345678 |
+      | 2  | non_owner1@berkeley.edu  | 12345678 |
+      | 3  | non_owner2@berkeley.edu  | 12345678 |
 
   Scenario: the website ownder should be able to edit other admins
     Given I login as admin "owner@berkeley.edu" with password "12345678"
