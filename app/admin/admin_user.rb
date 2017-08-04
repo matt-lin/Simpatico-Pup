@@ -27,10 +27,15 @@ ActiveAdmin.register AdminUser do
   controller do
     def destroy
       if AdminUser.true_admin? current_admin_user.id 
-        super
+        if current_admin_user.id.to_s == params[:id].to_s
+          flash[:alert] = "Warning: Site owner can not be deleted"
+          redirect_to "/admin/admin_users/"
+        else
+          super
+        end
       else
         flash[:alert] = "Warning: You don't have enough privilege to delete"
-        redirect_to "admin/admin_users/"
+        redirect_to "/admin/admin_users/"
       end
     end
     
