@@ -25,10 +25,11 @@ ActiveAdmin.register AdminUser do
   
   controller do
     def destroy
-      if true_admin 
-        redirect_to admin_admin_user_path, notice: "The selected admin has been deleted"
+      if AdminUser.true_admin? current_admin_user.email 
+        super
+      else
+        redirect_to admin_admin_user_path, alert: "Warning: You don't have enough privilege to delete"
       end
-      redirect_to admin_admin_user_path, alert: "Warning: You don't have enough privilege to delete"
     end
   end
   
