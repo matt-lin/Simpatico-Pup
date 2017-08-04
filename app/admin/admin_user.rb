@@ -6,7 +6,7 @@ ActiveAdmin.register AdminUser do
     selectable_column
     column :email
     column :owner do |a|
-      AdminUser.true_admin? a.email
+      AdminUser.true_admin? a.id
     end
     column :current_sign_in_at        
     column :last_sign_in_at           

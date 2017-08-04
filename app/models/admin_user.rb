@@ -13,9 +13,4 @@ class AdminUser < ActiveRecord::Base
   def AdminUser.true_admin? id
     id == @@owner_id
   end
-  
-  def AdminUser.change_owner id
-    @@owner_id = id
-  end
-  
 end
