@@ -1,10 +1,15 @@
-ActiveAdmin.register AdminUser do  
+ActiveAdmin.register AdminUser do
+  
   index do                 
     selectable_column
-    column :email                     
+    column :email
+    column :owner do |a|
+      a.true_admin a.email
+    end
     column :current_sign_in_at        
     column :last_sign_in_at           
-    column :sign_in_count             
+    column :sign_in_count   
+    actions
   end
 
   filter :email                       
