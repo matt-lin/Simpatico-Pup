@@ -5,28 +5,40 @@ Feature: Admin edit the text in nevgation
     I want to be able to change the word style (font, bullet point) of text in navigation bar,
     So that I can make the content nicer and more readable.
     
-Background: Admin already login
-    Given I login as an admin
+    Background: Admin already login
+      Given the default layout exist
+      And I login as an admin
+      And the following texts exist:
+        | id  | title            | body                                           |
+        | 1   | Mission          | designed to help dog lovers                    |
+        | 2   | Background       | the first species to be domesticated by humans |
+        | 3   | Goals            | improve how companion puppies are produced     |
+        | 4   | How you can help | contribute to our website                      |
         
-    Scenario: admins inspect who are subscribing when there are subscriber
-      When admin go to text
-      Then I should see "How you can help"
-      Then I should see "Chances are good that there is a dog at your feet as you read this"
+    Scenario: admins inspect the current content of navigation text
+      When admin go to texts
+      Then I should see "Mission"
+      Then I should see "designed to help dog lovers"
       
-    Scenario: admins can change the content
-      When admin go to text
-      And I follow "edit"
-      Then I should see "If you have a purebred dog"
-      Then I fill in "•" with "text_body"
-      When I go to the homepage
-      And I follow "How you can help"
-      Then I should see "•"
+    Scenario: admins can change the title of nevgation text
+      When admin go to texts
+      And admin go to texts/1/edit
+      Then I should see "designed to help dog lovers"
+      Then I fill in "text_title" with "Testing title"
+      And I press "Update Text"
+      When I go to the RateMyPup home page
+      And I follow "Mission"
+      Then I should see "Testing title"
       
-    Scenario: admins can change the title of nevgation bar
-      When admin go to text
-      And I follow "edit"
-      Then I should see "How you can help"
-      Then I fill in "testing titile" with "text_title"
-      When I go to the homepage
-      Then I should see "testing title"
+    Scenario: admins can change the content of nevgation text
+      When admin go to texts
+      And admin go to texts/1/edit
+      Then I should see "designed to help dog lovers"
+      Then I fill in "text_body" with "Testing body"
+      And I press "Update Text"
+      When I go to the RateMyPup home page
+      And I follow "Mission"
+      Then I should see "Testing body"
+      
+
       

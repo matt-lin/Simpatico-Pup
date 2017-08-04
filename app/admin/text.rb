@@ -32,6 +32,7 @@ ActiveAdmin.register Text do
     controller do
         def update
             super do
+                flash[:notice] = "The text has been updated."
                 redirect_to collection_url and return if resource.valid?
             end
         end
