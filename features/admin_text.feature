@@ -34,11 +34,11 @@ Feature: Admin edit the text in nevgation
       When admin go to texts
       And admin go to texts/1/edit
       Then I should see "designed to help dog lovers"
-      Then I fill in "text_body" with "Testing body"
+      Then I fill in "text_body" with "• Testing body"
       And I press "Update Text"
       When I go to the RateMyPup home page
       And I follow "Mission"
-      Then I should see "Testing body"
+      Then I should see "• Testing body"
       
 
       
