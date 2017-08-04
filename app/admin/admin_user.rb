@@ -21,29 +21,16 @@ ActiveAdmin.register AdminUser do
       f.input :password_confirmation  
     end                               
     f.actions                         
-  end
+  end        
   
   controller do
-    def update
-      attrs = permitted_params[:attachment]
-      @attachment = Attachment.where(id: params[:id]).first!
-      @attachment[:document_file_name] = attrs[:attachment].original_filename
-      if @attachment.save
-        redirect_to admin_attachment_path(@attachment)
+    def destroy
+      if AdminUser.true_admin? current_admin_user.email 
+        super
       else
-        render :edit
+        redirect_to admin_admin_user_path, alert: "Warning: You don't have enough privilege to delete"
       end
     end
-    
-    def destory
-      if AdminUser.true_admin? current_admin_user.email
-        flash[:notice] = "fa"
-      else
-        flash[:notice] = "no permission"
-        redirect_to admin_admin_user_path()
-      end
-    end
-    
   end
   
 end                                   
