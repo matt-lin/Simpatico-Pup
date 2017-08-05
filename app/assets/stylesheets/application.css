@@ -11,10 +11,11 @@
  *= require_self
  *= require_tree ./non_active_admin
  *= require thredded
- *= require bootstrap.min
  *= require font-awesome
  *= require jquery-ui
  */
+ 
+ /*bootstrap using online cdn provided*/
 
 #background {
     background-size: cover;
@@ -96,16 +97,18 @@ body {
 }
 
 .find_pup{
+    margin-top: 0;
     position: relative;
-    height: 600px;
+    height: 720px;
     text-align: center;
 }
+
+
 .box-move {
     margin-top: -100px;
 }
 .featured-comment{
-    background-color: white;
-    opacity: 0.6;
+    opacity: 1;
     width: 100%;
     text-align: center;
     color: black;
@@ -130,20 +133,88 @@ body {
     color: #4b5c66;
     text-align: center;
 }
-.main-button {
+
+.button-large-text {
+    font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+    font-size: 24px;
+    margin-bottom: 10px;
+    line-height: 1.1;
+    color: inherit;
+}
+
+.button-small-text {
     color: #337ab7;
-    background-color: #fff;
-    border: 1px solid #ccc;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0 0 10px;
+}
+.main-button1 {
+    color: #337ab7;
+    background-image: url("/assets/icon1.png");
+    background-size: 100px;
+
     margin-top: 8px;
     margin-bottom: 8px;
     display: inline-block;
-    width: 150px;
+    width: 100px;
     height: 100px;
     line-height: 1.42857143;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
     border-radius: 25px;
+
+}
+
+.main-button2 {
+    color: #337ab7;
+    background-image: url("/assets/icon2.png");
+    margin-top: 8px;
+    margin-bottom: 8px;
+    display: inline-block;
+    width: 100px;
+    background-size: 100px;
+    height: 100px;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-radius: 25px;
+
+}
+
+.main-button3 {
+    color: #337ab7;
+    background-image: url("/assets/icon3.png");
+    margin-top: 8px;
+    margin-bottom: 8px;
+    display: inline-block;
+    width: 100px;
+    background-size: 100px;
+    height: 100px;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-radius: 25px;
+
+}
+
+.main-button4 {
+    color: #337ab7;
+    background-image: url("/assets/icon4.png");
+    margin-top: 8px;
+    margin-bottom: 8px;
+    display: inline-block;
+    width: 100px;
+    background-size: 100px;
+    height: 100px;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-radius: 25px;
+
 }
 .ad-box-a {
     background-image: url(/assets/Amazon_Prime_logo.jpg); 
@@ -190,11 +261,6 @@ body {
     float: right; 
 }
 
-.main-button:hover {
-    color: #333;
-    border: 1px solid #888;
-    cursor: pointer;
-}
 
 .main-button-small-text {
     font-size: 16px;
@@ -207,12 +273,297 @@ body {
 
 #titleline {
     margin: 50px;
+    margin-top: 100px;
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+#titleline_comment {
+    margin-top: 200px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    
+}
+
+#comment_title {
+    margin-top: 0;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    
+}
+
+
+#tagline-text {
+    text-align:center;
+    font-size: 25px;
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: normal;
+}
+
+#tagline-text_comment {
+    text-align:center;
+    font-size: 25px;
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 300;
+    font-style: italic;
+    
+}
+
+#tagline-text_breed {
+    margin: 50px;
+    text-align:right;
+    font-size: 18px;
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 300;
+    
+}
+
+#to_goal {
+    background-color: #5ba2de;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    padding: 15px, 30px;
+    border-radius: 300px;
+    margin-top: 30px;
+}
+
+#button1_large_text {
+    left: -5px;
+    width: 178px;
+    position: absolute;
+    margin-top: 0;
+    
+}
+
+#text_button {
+    padding-left: 10%;
+    font-size: 16px;
+    font-weight: 200;
+}
+
+#container-fluid2 {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.row_tagline {
+    display: none;
+}
+
+.slider {
+    display: none;
+}
+
+.row_top {
+    background: url("/assets/pup3b.jpeg");
+    background-size: cover;
+    height: 720px;
+    width: 100%;
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 1600px;
+  width: auto;
+  margin-bottom: 100px;
+  padding: 16px;
+  color: grey;
+  font-weight: bold;
+  font-size: 50px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+}
+
+.prev {
+    margin-left: 50px;
+}
+
+.next {
+  right: 50px;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+.dot {
+  cursor:pointer;
+  height: 13px;
+  width: 13px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+  margin-top: 0;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+.page_container {
+    margin-top: 50px;
+}
+
+#main_page_buttons {
+    margin-top: 50px;
+    height: 200px;
+}
+
+#to_goal #link_goal {
+    color: #f5f5f5;
+}
+
+.page_divider1 {
+    height: 400px;
+    background-color: #5ba2de;
+    padding: 100px;
+}
+
+.page_divider2 {
+    height: 350px;
+    background-color: white;
+}
+
+.page_divider3 {
+    height: 200px;
+    background-color: white;
+}
+
+
+#icon1 {
+    background: url("/assets/impages/icon1.png");
+    width: 100px;
+    height: 100px;
+    display:inline-block;
+    background-repeat:no-repeat;
+}
+
+#inline_text_header {
+    font-size: 30px;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+    color: white;
+    
+}
+
+#inline_button {
+    background-color: white;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    padding: 15px, 30px;
+    border-radius: 300px;
+    margin-top: 10px;
+}
+
+.light {
+    border-color: white;
+    border-width: 3px;
+    max-width: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.text_faded {
+    color: white;
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    margin: 0 0 10px;
+    font-family: Merriweather,'Helvetica Neue',Arial,sans-serif;
+    opacity: 0.8;
+}
+
+/*.divider1 {*/
+/*    border-left: 1px solid rgba(205, 205, 205, 1);*/
+/*    margin-left: 10%;*/
+/*    margin-top: 450px;*/
+/*    width: 0;*/
+/*    min-width: 0 ;*/
+/*    left: 224px;*/
+/*    position: absolute;*/
+/*    top: 93px;*/
+/*    height: 130px;*/
+/*}*/
+
+/*.divider2 {*/
+/*    border-left: 1px solid rgba(205, 205, 205, 1);*/
+/*    margin-left: 34%;*/
+/*    margin-top: 450px;*/
+/*    width: 0;*/
+/*    min-width: 0 ;*/
+/*    left: 224px;*/
+/*    position: absolute;*/
+/*    top: 93px;*/
+/*    height: 130px;*/
+/*}*/
+
+/*.divider3 {*/
+/*    border-left: 1px solid rgba(205, 205, 205, 1);*/
+/*    margin-left: 60%;*/
+/*    margin-top: 450px;*/
+/*    width: 0;*/
+/*    min-width: 0 ;*/
+/*    left: 224px;*/
+/*    position: absolute;*/
+/*    top: 93px;*/
+/*    height: 130px;*/
+/*}*/
+
+.section-heading {
+    margin-top: 50px;
+    font-size : 30px;
+    font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+    font-weight: 500;
+    line-height: 1.1;
+    color: black;
     text-align: center;
 }
-#tagline-text {
-    margin: 50px;
-    text-align:center;
+
+
+.comments {
+    margin-top: 350px;
 }
+
 .tagline {
     margin: 40px 100px 100px 100px;
     text-align: center;
@@ -319,45 +670,7 @@ h3.mission-text {
     font-size: 16px;
 }
 
-/*CONTACT INFO CSS*/
 
-.contact {
-    background: #337ab7;
-    opacity: 1.0;
-    width: 100%;
-    padding-bottom: 10px;
-    padding-top: 10px;
-}
-
-#contact-link {
-    color: white;
-    text-decoration: underline;
-}
-
-.contact-link {
-    color: #f5f5f5;
-}
-
-.contact-text-sm {
-    color: white;
-    font-size: 12px;
-    text-align: center;
-    padding-bottom: 10px;
-}
-
-.contact-text-lg {
-    color: white;
-    text-align: center;
-    font-size: 28px;
-}
-
-.text-container {
-    margin-bottom: 50px;
-}
-
-.container-main {
-    margin-top: 80px;
-}
 
 
 /* Terms of Service and Privacy Policy  */
@@ -418,6 +731,8 @@ h3.mission-text {
 }
 
 
+
+
 /*Iter 1-2*/
 /**************************************full img background**********/
 html,
@@ -425,18 +740,6 @@ body,
 .view {
     height: 100%;
 }
-
-
-.view {
-    background: url("/assets/Refresh every 4s.gif")no-repeat center center fixed;
-   
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-
-    
 
 /************************************/
 
@@ -459,6 +762,7 @@ body,
         font-size: 135%;
     }
     
+
 }
     
 /* For iPhone 6 size mobile phone */
@@ -498,7 +802,6 @@ body,
     }
     
    .featured-comment {
-        background-color: white;
         opacity: 0.6;
         width: 100%;
         font-size: 20px;
@@ -571,3 +874,275 @@ body,
 }
 
 /*End for Iter 1-2*/
+
+
+/*CONTACT INFO CSS*/
+
+.contact {
+    background: #337ab7;
+    opacity: 1.0;
+    width: 100%;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+#contact-link {
+    color: white;
+    text-decoration: underline;
+}
+
+.contact-link {
+    color: #f5f5f5;
+}
+
+.contact-text-sm {
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.contact-text-lg {
+    color: white;
+    text-align: center;
+    font-size: 28px;
+}
+
+.text-container {
+    margin-bottom: 50px;
+}
+
+
+.container-main {
+    margin-top: 80px;
+}
+
+.container_inline {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 970;
+    position: relative;
+    text-align: center;
+}
+
+/***********************log in and singup***********************/
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.content:before {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  display: block;
+  background-color: black;
+  background-image: url("/assets/pup6d2.jpeg");
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -o-filter: blur(2px);
+  -ms-filter: blur(2px);
+  filter: blur(2px);
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 540px;
+  height: 440px;
+  background-color: rgba(10, 10, 10, 0.4);
+  margin: auto auto;
+  padding: 40px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -moz-box-shadow: 0 0 10px black;
+  -webkit-box-shadow: 0 0 10px black;
+  box-shadow: 0 0 10px black;
+}
+#singup{
+    height: 640px;
+}
+.content .title {
+  text-align: center;
+  font-size: 35px;
+  color: white;
+  font-weight: 600;
+  padding-bottom: 30px;
+}
+.content input {
+  width: 100%;
+  font-size: 1.2rem;
+  font-family: "Open Sans";
+  margin: 10px 0px;
+  border: none;
+  padding: 10px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+.content input[type=checkbox] {
+  display: none;
+}
+.content label {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  position: relative;
+  margin-left: 5px;
+  margin-right: 10px;
+  top: 5px;
+}
+.content label:before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  position: absolute;
+  left: 0;
+  bottom: 1px;
+  background-color: white;
+  -moz-box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.8);
+  -webkit-box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.8);
+  box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.8);
+}
+.content input[type=checkbox]:checked + label:before {
+  content: "\2713";
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  font-size: 20px;
+  color: Black;
+  text-align: center;
+  line-height: 20px;
+}
+.content span {
+  font-size: 1.7rem;
+  color: white;
+}
+.content button {
+  width: 100%;
+  font-size: 1.1rem;
+  padding: 10px;
+  margin: 20px 0px;
+  background-color: #66A756;
+  color: White;
+  border: none;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+#login_login {
+    background-color: blue;
+}
+.content .social {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.content .social span {
+  display: inline-block;
+  vertical-align: baseline;
+  padding: 0 20px;
+}
+.content .social span:before, .content .social span:after {
+  content: '';
+  display: block;
+  width: 500px;
+  position: absolute;
+  top: 0.9em;
+  border-top: 1px solid White;
+}
+.content .social span:before {
+  right: 75%;
+}
+.content .social span:after {
+  left: 75%;
+}
+.content .buttons {
+  width: 100%;
+  margin: 30px 0px;
+  
+}
+.content .buttons button {
+  float: left;
+  width: 30%;
+  margin: 0px 1.5%;
+}
+
+
+.content .buttons:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.content .already {
+  text-align: center;
+  font-size: 0.9rem;
+}
+#buttons_link {
+    color: white;
+}
+
+.edit_account .title {
+  text-align: center;
+  font-size: 35px;
+  color: black;
+  font-weight: 600;
+  padding-bottom: 10px;
+  margin-top: 10px;
+}
+
+.edit_account {
+  margin-left: 150px;
+  margin-right: 150px;
+  margin-bottom: 30px;
+}
+
+.edit_account h3 {
+  display: block;
+  font-size: 1.5em;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+  margin-top: 0;
+  border-bottom: 1px #e1e4e8 solid;
+}
+
+.edit_account .button {
+  margin-right: 8px;
+  border: 1px solid #d1d5da;
+  border-radius: 0.25em;
+  padding: 6px 12px;
+  background-color: white;
+  font-weight: 500;
+}
+
+.edit_account .sub_part h3 {
+  padding: 30px 0 10px 0;
+}
+
+.field .password_input {
+    width: 60%;
+    margin: 5px 0 5px 0;
+    border: 1px solid #d1d5da;
+    padding: 5px;
+    border-radius: 4px;
+    background-color: #fafbfc;
+}
+
+/*****************************************************************************/

@@ -21,4 +21,7 @@
       = submit_tag 'Add Breeder', :id => 'Add_Breeder', :class => "form-control"
     .col-sm-1
     .col-sm-5
-      = link_to 'Cancel', dog_breeder_path, :class => "form-control cancel"
+      - if session[:pup_id]
+        = link_to 'Cancel', edit_pup_path(session[:pup_id]), :class => "form-control cancel"
+      - else
+        = link_to 'Cancel', dog_breeder_path, :class => "form-control cancel"
