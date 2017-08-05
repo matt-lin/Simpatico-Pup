@@ -26,6 +26,7 @@ RSpec.describe ApplicationHelper, :type => :helper do
         standards listed above are being met. Buying a dog from an irresponsible breeder supports the largely unseen and unregulated industry of 
         puppy mills and profit-motivated breeding.')
       FactoryGirl.create(:customize, :name => 'Transition_Button', :content => 'Get Started')
+      FactoryGirl.create(:customize, :name => 'Function_Title', :content => 'What We Provide')
       
       FactoryGirl.create(:customize, :name => 'Function_leftmost_Top', :content => 'Rate_Dog_Top')    
       FactoryGirl.create(:customize, :name => 'Function_leftmost_Bottom', :content => 'Rate_Dog_Bottom')
@@ -122,6 +123,52 @@ RSpec.describe ApplicationHelper, :type => :helper do
     
     it "for bot_right" do
       expect(bot_right).to eq 'Blue_Bar_Bottom_Right'
-    end     
+    end
+    
+    it 'for nav bar button 1' do
+      expect(nav_bar_1).to eq 'Mission'
+    end
+    
+    it 'for nav bar button 2' do
+      expect(nav_bar_2).to eq 'Background'
+    end
+    
+    it 'for nav bar button 3' do
+      expect(nav_bar_3).to eq 'Goals'
+    end
+    
+    it 'for nav bar button 4' do
+      expect(nav_bar_4).to eq 'How You Can Help'
+    end
+    
+    it 'for nav bar button 5' do
+      expect(nav_bar_5).to eq 'Community Forum'
+    end
+    
+    it 'for title button' do
+      expect(title_button).to eq 'Find out more'
+    end
+    
+    it 'for transition title' do
+      expect(transition_title).to eq 'Why are we doing this?'
+    end
+    
+    it 'for transition body' do
+      expect(transition_body).to eq 'At SimpaticoPup.com, we believe that no one should EVER pay money for a puppy unless they verify that the breeder 
+        standards listed above are being met. Buying a dog from an irresponsible breeder supports the largely unseen and unregulated industry of 
+        puppy mills and profit-motivated breeding.'
+    end
+    
+    it 'for transition button' do
+      expect(transition_button).to eq 'Get Started'
+    end
+    
+    it 'for function title' do
+      expect(function_title).to eq 'What We Provide'
+    end
+    
+    it 'for title button' do
+      expect(nav_bar_5).to eq 'Community Forum'
+    end
   end
 end
