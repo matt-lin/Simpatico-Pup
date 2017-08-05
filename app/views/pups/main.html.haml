@@ -5,19 +5,19 @@
             %h1{:id => "titleline_comment"} #{primary_title}
             %h2{:id => "tagline-text"} #{secondary_title}
             %div{:id => "to_goal"} 
-                = link_to "Find out more", root_url, :style => "color: white;", :id => "to_goal_button"
+                = link_to title_button, root_url, :style => "color: white;", :id => "to_goal_button"
             
     %div{:class => "page_divider1", :id => "jump1"}
         %div{:class => "container_inline"}
-            %h5{:id => "inline_text_header"}Why are we doing this?
+            %h5{:id => "inline_text_header"} #{transition_title}
             %hr{:class => "light"}
-            %p{:class => "text_faded"}At SimpaticoPup.com, we believe that no one should EVER pay money for a puppy unless they verify that the breeder standards listed above are being met. Buying a dog from an irresponsible breeder supports the largely unseen and unregulated industry of puppy mills and profit-motivated breeding. 
+            %p{:class => "text_faded"} #{transition_body}
             %div{:id => "inline_button"} 
-                = link_to "Get Started", root_url(:anchor => "jump2"), :style => "color: #5ba2de; font-size: 16px", :id => "to_inline_button_button"
+                = link_to transition_button, root_url(:anchor => "jump2"), :style => "color: #5ba2de; font-size: 16px", :id => "to_inline_button_button"
     
 
     %div{:class => "page_divider2", :id => "jump2"}
-        %h2{:class => "section-heading"}What We Provide
+        %h2{:class => "section-heading"} #{function_title}
         %hr{:class => "light", :style => "border-color: #337ab7;"}
         %div{:class => "page_container"}
             %div{:id => "main_page_buttons"}
