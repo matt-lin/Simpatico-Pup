@@ -1,8 +1,11 @@
 # Iter3-2 Improving File manager - catagorize the file (By Gung Hiu Ho, Licong Wang)
 ActiveAdmin.register Attachment do
-  permit_params :attachment
   
+  menu :priority => 7
+  
+  permit_params :attachment
   menu :label => 'File Manager'
+  
   actions :all, except: [:edit]
   
   scope :all, :default => true

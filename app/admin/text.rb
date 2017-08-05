@@ -1,4 +1,8 @@
 ActiveAdmin.register Text do
+    
+    menu :priority => 10
+    menu :label => 'Nav Manager'
+    
     config.batch_actions = false
     config.filters = false
     actions :index, :edit, :update

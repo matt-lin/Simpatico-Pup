@@ -1,5 +1,7 @@
 ActiveAdmin.register AdminUser do
   
+  menu :priority => 13
+  
   filter :email
   
   index do            

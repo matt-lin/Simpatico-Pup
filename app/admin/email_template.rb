@@ -1,5 +1,8 @@
 #Iter3-2 email_template (by Zipei, Jack)
 ActiveAdmin.register EmailTemplate do
+  
+  menu :priority => 8
+  
   permit_params :title, :body
   batch_action :send do |id|
     if id.length == 1
