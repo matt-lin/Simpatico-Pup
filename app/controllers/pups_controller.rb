@@ -21,8 +21,7 @@ class PupsController < ApplicationController
   end
   
   def random_comment
-    selected_comment = SelectedComment.find_randomly
-    render :json => selected_comment
+    render :json => SelectedComment.find_randomly
   end
 
   # The true rating page
@@ -58,7 +57,7 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
 
   # Rails default methods
   def index
-    @pups = Pup.all
+    redirect_to root_path
   end
 
   def create
@@ -319,10 +318,11 @@ with you for a minimum of six months. Thank you."
   end
 
   def is_num?(str)
-    Integer(str)
-    return true
-  rescue ArgumentError, TypeError
-    return false
+    str.to_s == str.to_i.to_s
+  #   Integer(str)
+  #   return true
+  # rescue ArgumentError, TypeError
+  #   return false
   end
 
   def start_over

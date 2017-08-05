@@ -57,9 +57,8 @@ describe PupsController do
   
   describe "looking at all pups" do
     it "should get all of the dogs" do
-      Pup.should_receive(:all)
       get :index
-      response.should render_template 'index'
+      response.should redirect_to root_path
     end
   end
   
