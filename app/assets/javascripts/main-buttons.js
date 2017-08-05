@@ -21,32 +21,40 @@ var MainButtons = {
             $('.box-c').toggleClass("hidden");
         });
 
-
+        $('#to_goal_button').click( function() {
+            $('html,body').animate({
+              scrollTop: $(".page_divider1").offset().top-50},
+            'slow');
+        });
+        
+        $('#to_inline_button_button').click( function() {
+            $('html,body').animate({
+              scrollTop: $(".page_divider2").offset().top-100},
+            'slow');
+        });
     },
     slider: function() {
         var slideIndex = 1;
         showSlides(slideIndex);
         
         function plusSlides(n) {
-            if (slideIndex != 1){
-                $.ajax({
-                    type: 'GET',
-                    url: '/pups/random_comment',
-                    data: {},
-                    contentType: 'application/json',
-                    dataType: 'json',
-                    timeout: 5000,
-                    success: function(data) {
-                        console.log(data["content"])
-                        console.log($("#tagline-text").text())
-                        $("#tagline-text_comment").text('"' + data["content"] + '"')
-                        $("#tagline-text_breed").text('---- '+data["breed"])
-                    },
-                    error: function() {
-                        console.log("fail");
-                    }
-                })
-            }
+            $.ajax({
+                type: 'GET',
+                url: '/pups/random_comment',
+                data: {},
+                contentType: 'application/json',
+                dataType: 'json',
+                timeout: 5000,
+                success: function(data) {
+                    console.log(data["content"])
+                    console.log($("#tagline-text").text())
+                    $("#tagline-text_comment").text('"' + data["content"] + '"')
+                    $("#tagline-text_breed").text('---- '+data["breed"])
+                },
+                error: function() {
+                    console.log("fail");
+                }
+            })
           slideIndex += n;
           showSlides(slideIndex);
         }
@@ -60,12 +68,12 @@ var MainButtons = {
         });
         
         $('#arrow_right').click(function(){
-            plusSlides(1);
+            plusSlides(-1);
         });        
         
         function showSlides(n) {
           var i;
-          var slides = document.getElementsByClassName("row_tagline");
+          var slides = document.getElementsByClassName("slider");
           if (n > slides.length) {slideIndex = 1} 
           if (n < 1) {slideIndex = 2}
           for (i = 0; i < slides.length; i++) {
