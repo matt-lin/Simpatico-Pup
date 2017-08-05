@@ -125,6 +125,7 @@ class BreedersController < ApplicationController
       if pup
         pup.breeder = breeder
         pup.save
+        flash[:notice] = "Breeder has been updated!"
         redirect_to edit_pup_path(pup) and return
       end
     end

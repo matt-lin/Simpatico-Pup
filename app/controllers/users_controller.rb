@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   
   def pups
     @pups = Pup.where("user_id = ?", current_user.id)
+    session[:from] = 'my_pups'
   end
 end
 # End Iter3-2

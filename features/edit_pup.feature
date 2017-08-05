@@ -36,7 +36,8 @@ Background: User already login
   And   I should not see "My Pups"
   
   Given I log in as "jeff"
-  When  I follow "My Pups"
+  When I click the nav bar dropdown button
+  And I follow "My Pups"
   Then  I should be on the "Pups Ratings" page
   
   Scenario: users can see pups ratings
@@ -48,7 +49,7 @@ Background: User already login
     When  I follow "Delete" for dog1
     Then  I should be on the RateMyPup home page
     And   I should see "Pup dog1 has been deleted"
-    When  I follow "My Pups"
+    When  I am on the "Pups Ratings" page
     Then  I should not see "dog1"'s basic info
     And   I should see "dog2"'s basic info
     
@@ -80,7 +81,7 @@ Background: User already login
     Then  I should be on the "Add breeder" page
     When  I finish adding a new breeder 
     Then  I should be on the "Edit Pup Rating" page
-    And   I should see "Jeff Yu"
+    And   I should see "Breeder has been updated!"
   
   Scenario: users can go to details page and delete pup
     When  I follow "More" for dog1
@@ -89,7 +90,7 @@ Background: User already login
     When  I press "Delete pup"
     Then  I should be on the RateMyPup home page
     And   I should see "Pup dog1 has been deleted"
-    When  I follow "My Pups"
+    When  I am on the "Pups Ratings" page
     Then  I should not see "dog1"
     And   I should see "dog2"'s rating    
     

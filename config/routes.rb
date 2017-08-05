@@ -14,6 +14,7 @@ Ratemypup::Application.routes.draw do
   get '/users/pups' => 'users#pups', :as => :user_pups
   devise_scope :user do
     get '/users/unsubscribe' => 'users/registrations#unsubscribe_newsletter', :as => :unsubscribe_newsletter
+    post '/users/update_subscription' => 'users/registrations#update_subscription', :as => :update_subscription
   end
 
   root :to => 'pups#main'
@@ -33,6 +34,7 @@ Ratemypup::Application.routes.draw do
   get 'pups/dog_breeder' => 'pups#dog_breeder', :as => :dog_breeder
   
   get 'pups/hashtags' => 'pups#hashtags', :as => :dog_hashtags
+  get 'pups/random_comment' => 'pups#random_comment', :as => :dog_random_comment
   get 'pups/ratings' => 'pups#ratings', :as => :dog_ratings
 
   resources :pups
