@@ -19,21 +19,37 @@ RSpec.describe ApplicationHelper, :type => :helper do
       FactoryGirl.create(:customize, :name => 'Site_Name', :content => 'Site_name')
       FactoryGirl.create(:customize, :name => 'Primary_Title', :content => 'Primary_Title')
       FactoryGirl.create(:customize, :name => 'Secondary_Title', :content => 'Secondary_Title')
-      FactoryGirl.create(:customize, :name => 'Rate_Dog_Top', :content => 'Rate_Dog_Top')    
-      FactoryGirl.create(:customize, :name => 'Rate_Dog_Bottom', :content => 'Rate_Dog_Bottom')
-      FactoryGirl.create(:customize, :name => 'Find_Breed_Top', :content => 'Find_Breed_Top')
-      FactoryGirl.create(:customize, :name => 'Find_Breed_Bottom', :content => 'Find_Breed_Bottom')
-      FactoryGirl.create(:customize, :name => 'Find_Breeder_Top', :content => 'Find_Breeder_Top')
-      FactoryGirl.create(:customize, :name => 'Find_Breeder_Bottom', :content => 'Find_Breeder_Bottom')
-      FactoryGirl.create(:customize, :name => 'Search_Breeder_Top', :content => 'Search_Breeder_Top') 
-      FactoryGirl.create(:customize, :name => 'Search_Breeder_Bottom', :content => 'Search_Breeder_Bottom')
+      FactoryGirl.create(:customize, :name => 'Title_Button', :content => 'Find out more')
+      
+      FactoryGirl.create(:customize, :name => 'Transition_Title', :content => 'Why are we doing this?')
+      FactoryGirl.create(:customize, :name => 'Transition_Body', :content => 'At SimpaticoPup.com, we believe that no one should EVER pay money for a puppy unless they verify that the breeder 
+        standards listed above are being met. Buying a dog from an irresponsible breeder supports the largely unseen and unregulated industry of 
+        puppy mills and profit-motivated breeding.')
+      FactoryGirl.create(:customize, :name => 'Transition_Button', :content => 'Get Started')
+      
+      FactoryGirl.create(:customize, :name => 'Function_leftmost_Top', :content => 'Rate_Dog_Top')    
+      FactoryGirl.create(:customize, :name => 'Function_leftmost_Bottom', :content => 'Rate_Dog_Bottom')
+      FactoryGirl.create(:customize, :name => 'Function_left_mid_Top', :content => 'Find_Breed_Top')
+      FactoryGirl.create(:customize, :name => 'Function_left_mid_Bottom', :content => 'Find_Breed_Bottom')
+      FactoryGirl.create(:customize, :name => 'Function_right_mid_Top', :content => 'Find_Breeder_Top')
+      FactoryGirl.create(:customize, :name => 'Function_right_mid_Bottom', :content => 'Find_Breeder_Bottom')
+      FactoryGirl.create(:customize, :name => 'Function_rightmost_Top', :content => 'Search_Breeder_Top') 
+      FactoryGirl.create(:customize, :name => 'Function_rightmost_Bottom', :content => 'Search_Breeder_Bottom')
+      
       FactoryGirl.create(:customize, :name => 'Comment_Title', :content => 'Comment_Title')
+      
       FactoryGirl.create(:customize, :name => 'Blue_Bar_Top_Left', :content => 'Blue_Bar_Top_Left')
       FactoryGirl.create(:customize, :name => 'Blue_Bar_Top_Middle', :content => 'Blue_Bar_Top_Middle')   
       FactoryGirl.create(:customize, :name => 'Blue_Bar_Top_Right', :content => 'Blue_Bar_Top_Right')    
       FactoryGirl.create(:customize, :name => 'Blue_Bar_Bottom_Left', :content => 'Blue_Bar_Bottom_Left')
       FactoryGirl.create(:customize, :name => 'Blue_Bar_Bottom_Middle', :content => 'Blue_Bar_Bottom_Middle')
       FactoryGirl.create(:customize, :name => 'Blue_Bar_Bottom_Right', :content => 'Blue_Bar_Bottom_Right')
+      
+      FactoryGirl.create(:customize, :name => 'Nav_Bar_1', :content => 'Mission')
+      FactoryGirl.create(:customize, :name => 'Nav_Bar_2', :content => 'Background')   
+      FactoryGirl.create(:customize, :name => 'Nav_Bar_3', :content => 'Goals')    
+      FactoryGirl.create(:customize, :name => 'Nav_Bar_4', :content => 'How You Can Help')
+      FactoryGirl.create(:customize, :name => 'Nav_Bar_5', :content => 'Community Forum')
     end
     
     it "for Site Name" do
