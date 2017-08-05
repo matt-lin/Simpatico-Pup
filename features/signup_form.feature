@@ -13,10 +13,10 @@ Background: The user is on signup page
   Given I am on the Signup page
 	
   Scenario: What user should see in the signup process
-    Then I should see "Username"
-    And I should see "Email"
-    And I should see "Password confirmation"
-    And I should see "Password"
+    Then I should see a "text" input with placeholder "username"
+    And I should see a "email" input with placeholder "email"
+    And I should see a "password" input with placeholder "password(8 characters minimum)"
+    And I should see a "password" input with placeholder "password confirmation"
     And I should see "Terms of Service"
     And I should see "Privacy Policy"
     
