@@ -369,7 +369,7 @@ body {
 }
 
 .row_top {
-    background: url("/assets/pup3b.jpeg");
+    background: url("/assets/pup3b.jpeg")right center;
     background-size: cover;
     height: 720px;
     width: 100%;
