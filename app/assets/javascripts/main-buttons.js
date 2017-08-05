@@ -29,7 +29,7 @@ var MainButtons = {
         
         $('#to_inline_button_button').click( function() {
             $('html,body').animate({
-              scrollTop: $(".page_divider2").offset().top},
+              scrollTop: $(".page_divider2").offset().top-100},
             'slow');
         });
     },
@@ -68,7 +68,7 @@ var MainButtons = {
         });
         
         $('#arrow_right').click(function(){
-            plusSlides(1);
+            plusSlides(-1);
         });        
         
         function showSlides(n) {
