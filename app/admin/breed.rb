@@ -7,9 +7,7 @@ ActiveAdmin.register Breed do
   index do
     selectable_column
     column :id
-    column :name do |b|
-      link_to b.name, admin_breed_path(b)
-    end
+    column :name
     actions
   end
 end
