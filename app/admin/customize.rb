@@ -12,6 +12,9 @@ ActiveAdmin.register Customize do
   scope :'Site Title' do |a|
     a.where(:location => "site_title")
   end
+  scope :'Main Page Navigation Bar Layout' do |a|
+    a.where(:location => "navigation_bar")
+  end
   scope :'Main page cover Layout' do |a|
     a.where(:location => "main_title")
   end
@@ -21,9 +24,13 @@ ActiveAdmin.register Customize do
   scope :'Main Page service Layout' do |a|
     a.where(:location => "fuction")
   end
-  scope :'Main Page Navigation Bar Layout' do |a|
-    a.where(:location => "navigation_bar")
+  scope :'Main Page Message display' do |a|
+    a.where(:location => "message")
   end
+  scope :'Main Page Blur Bar' do |a|
+    a.where(:location => "main_bar")
+  end
+
   scope :Others do |a|
     a.where(:location => "Others")
   end
@@ -31,7 +38,6 @@ ActiveAdmin.register Customize do
   index do
     column :name 
     column :content
-    column :location
     actions
   end
   
