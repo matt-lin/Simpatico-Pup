@@ -15,5 +15,18 @@ class AccountActivationsController < ApplicationController
       redirect_to root_url
     end
   end
+
+  def send_mail
+    user = User.find_by_email(params[:email])
+    
+    if user == nil
+      redirect_to root_url
+      return
+    end
+    
+    user.create_activation_digest
+    user.send_activation_email
+    redirect_to new_user_session_path
+  end
 end
 #End for Iter 2-2

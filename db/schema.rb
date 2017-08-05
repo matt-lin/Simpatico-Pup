@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170728025649) do
+ActiveRecord::Schema.define(version: 20170731000016) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "resource_id",   null: false
@@ -77,7 +77,6 @@ ActiveRecord::Schema.define(version: 20170728025649) do
     t.integer  "pup_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "breed"
   end
 
   create_table "customizes", force: :cascade do |t|
@@ -382,6 +381,7 @@ ActiveRecord::Schema.define(version: 20170728025649) do
     t.datetime "activated_at"
     t.string   "reset_password_token"
     t.string   "remember_token"
+    t.string   "activation_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
