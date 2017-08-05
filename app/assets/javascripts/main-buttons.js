@@ -21,7 +21,17 @@ var MainButtons = {
             $('.box-c').toggleClass("hidden");
         });
 
-
+        $('#to_goal_button').click( function() {
+            $('html,body').animate({
+              scrollTop: $(".page_divider1").offset().top-50},
+            'slow');
+        });
+        
+        $('#to_inline_button_button').click( function() {
+            $('html,body').animate({
+              scrollTop: $(".page_divider2").offset().top},
+            'slow');
+        });
     },
     slider: function() {
         var slideIndex = 1;

@@ -21,7 +21,6 @@ class PupsController < ApplicationController
   end
   
   def random_comment
-    puts '*'*80
     selected_comment = SelectedComment.find_randomly
     render :json => selected_comment
   end

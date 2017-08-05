@@ -5,7 +5,7 @@
             %h1{:id => "titleline_comment"} #{primary_title}
             %h2{:id => "tagline-text"} The SimpaticoPup website was created to help improve how companion puppies are produced, and how they find their way to their forever homes.
             %div{:id => "to_goal"} 
-                = link_to "Find out more", root_url(:anchor => "jump1"), :style => "color: white;"
+                = link_to "Find out more", root_url(:anchor => "jump1"), :style => "color: white;", :id => "to_goal_button"
             
     %div{:class => "page_divider1", :id => "jump1"}
         %div{:class => "container_inline"}
@@ -13,7 +13,7 @@
             %hr{:class => "light"}
             %p{:class => "text_faded"}At SimpaticoPup.com, we believe that no one should EVER pay money for a puppy unless they verify that the breeder standards listed above are being met. Buying a dog from an irresponsible breeder supports the largely unseen and unregulated industry of puppy mills and profit-motivated breeding. 
             %div{:id => "inline_button"} 
-                = link_to "Get Started", root_url(:anchor => "jump2"), :style => "color: #5ba2de; font-size: 16px"
+                = link_to "Get Started", root_url(:anchor => "jump2"), :style => "color: #5ba2de; font-size: 16px", :id => "to_inline_button_button"
     
     %div{:class => "page_divider2", :id => "jump2"}
         %h2{:class => "section-heading"}What We Provide
