@@ -1,5 +1,3 @@
-#Iter 4-1 Test for editing format on text page (By Gung Hiu Ho, Licong Wang)
-
 Feature: Admin edit the text in nevgation 
     As an administrator,
     I want to be able to change the word style (font, bullet point) of text in navigation bar,
@@ -39,6 +37,4 @@ Feature: Admin edit the text in nevgation
       When I go to the RateMyPup home page
       And I follow "Mission"
       Then I should see "• Testing body"
-      
-
-      
+    

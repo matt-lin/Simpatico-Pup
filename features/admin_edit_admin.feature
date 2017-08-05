@@ -1,4 +1,3 @@
-# Iter 4-1 Only owner can delete other admin (By Gung Hiu Ho, Licong Wang)
 Feature: Only owner can delete other admin 
   As the owner of this website, 
   I want to be able to add or delete administrator accounts 
@@ -33,4 +32,3 @@ Feature: Only owner can delete other admin
     When admin go to /admin_users/1/edit
     Then I should see "Warning: You don't have enough privilege to edit another admin"
     
-# End for Iter 4-1

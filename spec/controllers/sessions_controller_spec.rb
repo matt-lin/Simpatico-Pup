@@ -19,8 +19,8 @@ describe SessionsController do
         end
         it "should not sign in if not activated" do
           post :create, {:user => {:email => 'user2@berkeley.edu',:password => '12345678'}}
-          expect(flash[:notice]).to start_with("Account not activated. A new account activation has been send.")
-          response.should redirect_to root_url
+          expect(flash[:notice]).to start_with("Account hasn't been activated.")
+          response.should redirect_to new_user_session_path
         end
         it "should not get activated notice if incorrect password" do
           post :create, {:user => {:email => 'user2@berkeley.edu',:password => '123456789'}}
