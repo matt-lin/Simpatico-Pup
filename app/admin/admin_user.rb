@@ -36,7 +36,7 @@ ActiveAdmin.register AdminUser do
           super
         end
       else
-        flash[:alert] = "Warning: You don't have enough privilege to delete"
+        flash[:alert] = selget_warning + " delete"
         redirect_to "/admin/admin_users/"
       end
     end
@@ -45,7 +45,7 @@ ActiveAdmin.register AdminUser do
       if AdminUser.true_admin? current_admin_user.id 
         super
       else
-        flash[:alert] = "Warning: You don't have enough privilege to create another admin"
+        flash[:alert] = AdminUser.get_warning + " create"
         redirect_to "/admin/admin_users/"
       end
     end
@@ -54,7 +54,7 @@ ActiveAdmin.register AdminUser do
       if AdminUser.true_admin? current_admin_user.id or current_admin_user.id.to_s == params[:id].to_s
         super
       else
-        flash[:alert] = "Warning: You don't have enough privilege to view other admins"
+        flash[:alert] = AdminUser.get_warning + " view"
         redirect_to "/admin/admin_users/"
       end
     end
@@ -63,7 +63,7 @@ ActiveAdmin.register AdminUser do
       if AdminUser.true_admin? current_admin_user.id or current_admin_user.id.to_s == params[:id].to_s
         super
       else
-        flash[:alert] = "Warning: You don't have enough privilege to update this page"
+        flash[:alert] = AdminUser.get_warning + " update"
         redirect_to "/admin/admin_users/"
       end
     end
@@ -72,10 +72,14 @@ ActiveAdmin.register AdminUser do
       if AdminUser.true_admin? current_admin_user.id or current_admin_user.id.to_s == params[:id].to_s
         super
       else
-        flash[:alert] = "Warning: You don't have enough privilege to edit another admin"
+        flash[:alert] = AdminUser.get_warning + " edit"
         redirect_to "/admin/admin_users/"
       end
     end
+  end
+  
+  def AdminUser.get_warning 
+    "Warning: You don't have enough privilege to perform operation:"
   end
   
 end                                   

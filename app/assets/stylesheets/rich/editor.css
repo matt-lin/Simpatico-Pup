@@ -2,19 +2,19 @@
 	This file defines the default set of CSS styles available in the Rich editor
 */
 
-p.caption {
+.caption {
 	font-style: italic;
 	color: grey;
 }
 
-span.highlight {
+.highlight {
 	background: yellow;
 }
 
-img.left {
+.left {
 	float: left;
 }
 
-img.right {
+.right {
 	float: right;
 }
