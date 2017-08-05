@@ -51,7 +51,7 @@ ActiveAdmin.register AdminUser do
     end
     
     def show
-      if AdminUser.true_admin? current_admin_user.id or current_admin_user.id.to_s == params[:id].to_s
+      if AdminUser.has_permission?(current_admin_user.id, params[:id])
         super
       else
         flash[:alert] = AdminUser.get_warning + " view"
@@ -60,7 +60,7 @@ ActiveAdmin.register AdminUser do
     end
     
     def update
-      if AdminUser.true_admin? current_admin_user.id or current_admin_user.id.to_s == params[:id].to_s
+      if AdminUser.has_permission?(current_admin_user.id, params[:id])
         super
       else
         flash[:alert] = AdminUser.get_warning + " update"
@@ -69,7 +69,7 @@ ActiveAdmin.register AdminUser do
     end
     
     def edit
-      if AdminUser.true_admin? current_admin_user.id or current_admin_user.id.to_s == params[:id].to_s
+      if AdminUser.has_permission?(current_admin_user.id, params[:id])
         super
       else
         flash[:alert] = AdminUser.get_warning + " edit"
@@ -80,6 +80,10 @@ ActiveAdmin.register AdminUser do
   
   def AdminUser.get_warning 
     "Warning: You don't have enough privilege to perform operation:"
+  end
+  
+  def AdminUser.has_permission?(curr, prev)
+    AdminUser.true_admin? curr or curr.to_s == prev.to_s
   end
   
 end                                   
