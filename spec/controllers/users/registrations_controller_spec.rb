@@ -7,6 +7,7 @@ describe Users::RegistrationsController do
     FactoryGirl.create(:newsletter_user, :email => @user1.email)
     @user2 = FactoryGirl.create(:user, :email => "user2@example.com")
     @total_user = User.count
+    @subscriber_count = NewsletterUser.count
   end
     
   describe 'return status of user subscribed' do
@@ -56,18 +57,23 @@ describe Users::RegistrationsController do
   # end
   
   describe 'update user' do
-    it 'allow user to unsubscribe' do
+    it 'allow user to change password' do
       sign_in @user1
-      put :update, {:user => {:email => @user1.email, :current_password => @user1.password}, :unsubscribe_newsletter => true}
-      user2_subscribe = NewsletterUser.where("email = ?", @user1.email)
-      expect(user2_subscribe.length).to eq 0
+      put :update, {:user => {:current_password => @user1.password, :password => "password", :password_confirmation => "password"}}
+      expect(flash[:notice]).to eq 'Your account has been updated successfully.'
+      expect(response).to redirect_to root_path
     end
     
-    it 'allow user to subscribe' do
+    it "stay in edit page if current password doesn't match" do
       sign_in @user2
-      put :update, {:user => {:email => @user2.email, :current_password => @user2.password}, :subscribe_newsletter => true}
-      user2_subscribe = NewsletterUser.where("email = ?", @user2.email)
-      expect(user2_subscribe.length).to eq 1
+      put :update, {:user => {:current_password => "qwewiofherig", :password => "password", :password_confirmation => "password"}}
+      expect(response).to render_template 'devise/registrations/edit'
+    end
+    
+    it "stay in edit page if new password and password_confirmation doesn't match" do
+      sign_in @user1
+      put :update, {:user => {:current_password => @user1.password, :password => "password", :password_confirmation => "password1"}}
+      expect(response).to render_template 'devise/registrations/edit'
     end
   end
   
@@ -98,6 +104,24 @@ describe Users::RegistrationsController do
       expect(new_user_subscribe.length).to eq 0
       expect(flash[:notice]).to eq 'You have unsubscribed newsletter!'
       expect(response).to redirect_to root_path
+    end
+  end
+  
+  describe 'update subscription status' do
+    it 'allow user to unsubscribe' do
+      sign_in @user1
+      expect {
+        post :update_subscription, {:to_subscribe => "false"}
+      }.to change{NewsletterUser.count}.from(@subscriber_count).to(@subscriber_count - 1)
+      expect(flash[:notice]).to eq 'You have unsubscribed newsletter!'
+    end
+    
+    it 'allow user to subscribe' do
+      sign_in @user2
+      expect {
+        post :update_subscription, {:to_subscribe => "true"}
+      }.to change{NewsletterUser.count}.from(@subscriber_count).to(@subscriber_count + 1)
+      expect(flash[:notice]).to eq 'You are subscribing newsletter now!'
     end
   end
   
