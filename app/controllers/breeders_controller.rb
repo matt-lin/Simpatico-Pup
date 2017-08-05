@@ -28,7 +28,7 @@ class BreedersController < ApplicationController
       end
       @avg_ratings = @breeder.avg_pup_rating
       @pups = @breeder.all_pups
-
+      @show_text = @breeder.name + ' - ' + @breeder.address
     elsif params[:id].present?
 
       @breeder = Breeder.find_by_id(params[:id])
@@ -125,6 +125,7 @@ class BreedersController < ApplicationController
       if pup
         pup.breeder = breeder
         pup.save
+        flash[:notice] = "Breeder has been updated!"
         redirect_to edit_pup_path(pup) and return
       end
     end

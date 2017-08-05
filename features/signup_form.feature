@@ -23,7 +23,7 @@ Background: The user is on signup page
   Scenario: Activated account should log in successfully
     Given I am on the RateMyPup home page
     Given I log in as "gilbert"
-    And I should see "Logged in as gilbert"
+    And I should see "GILBERT"
 
   Scenario: Sign up and open the mailbox to activate the account 
     Then I fill in "user_username" with "example"
@@ -35,7 +35,7 @@ Background: The user is on signup page
     Then I should see "Welcome! You have signed up successfully. Please check your email to activate your account."
     Given I enter "example"'s mailbox and click on the activate in sent email
     Then I should see "Congratulations! Your account has been activated!"
-    And I should see "Logged in as example"
+    And I should see "EXAMPLE"
     
   
     # ####################################sad path#####################################################
@@ -69,14 +69,16 @@ Background: The user is on signup page
   Scenario: Inactivated acccount should not be able to log in
     Given I am on the RateMyPup home page
     Given I log in as "jeff"
-    Then I should see "Account not activated. A new account activation has been send."
+    Then I should see "Account hasn't been activated. Please verify your email before continue. Click here to resend email."
+    And I follow "here"
     And I enter "jeff"'s mailbox and click on the activate in sent email
     Then I should see "Congratulations! Your account has been activated!"
-    And I should see "Logged in as jeff"
+    And I should see "JEFF"
     
   Scenario: Activated account should not be activated again
     Given I am on the RateMyPup home page
     Given I log in as "jeff"
+    And I follow "here"
     And I enter "jeff"'s mailbox and click on the activate in sent email twice
     And I should see "Invalid activation link"
   

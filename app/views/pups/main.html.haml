@@ -1,19 +1,34 @@
-// Iter3-2 replace texts with variables  (By Gung Hiu Ho, Licong Wang)
 %body{:id=>"background"}
     %section{:class => "find_pup"}
         //TOP PART (Tagline, Buttons)
-        %div{:class => "row top", :style => "position: absolute; width: 100%"}
-            %div{:class => "row tagline"}
-                %h1{:id => "titleline"} #{primary_title}
-                %h2{:id => "tagline-text"} #{secondary_title}
-            %div{:class => "row col-lg-12 page-links"}
-                %div{:class => "col-sm-3 box-a text-center"}
+        %div{:class => "row_top", :style => "position: absolute; width: 100%"}
+            %h1{:id => "titleline_comment"} #{primary_title}
+            %h2{:id => "tagline-text"} The SimpaticoPup website was created to help improve how companion puppies are produced, and how they find their way to their forever homes.
+            %div{:id => "to_goal"} 
+                = link_to "Find out more", root_url, :style => "color: white;", :id => "to_goal_button"
+            
+    %div{:class => "page_divider1", :id => "jump1"}
+        %div{:class => "container_inline"}
+            %h5{:id => "inline_text_header"}Why are we doing this?
+            %hr{:class => "light"}
+            %p{:class => "text_faded"}At SimpaticoPup.com, we believe that no one should EVER pay money for a puppy unless they verify that the breeder standards listed above are being met. Buying a dog from an irresponsible breeder supports the largely unseen and unregulated industry of puppy mills and profit-motivated breeding. 
+            %div{:id => "inline_button"} 
+                = link_to "Get Started", root_url(:anchor => "jump2"), :style => "color: #5ba2de; font-size: 16px", :id => "to_inline_button_button"
+    
+
+    %div{:class => "page_divider2", :id => "jump2"}
+        %h2{:class => "section-heading"}What We Provide
+        %hr{:class => "light", :style => "border-color: #337ab7;"}
+        %div{:class => "page_container"}
+            %div{:id => "main_page_buttons"}
+                %div{:class => "col-sm-3 box-a text-center", :id => "button1_main"}
                     %a{:class => "main-button-link button-a", :href => "pups/dog_name"}
-                        %div{:class => "main-button"}
-                            %div{:class => "main-button-small-text"} #{rate_dog_top}
-                            %div{:class => "main-button-large-text"} #{rate_Dog_bottom}
+                        %div{:class => "main-button1"}
+                        %div{:class => "button-small-text", :style => "color: black; opacity: 0.6"} #{rate_dog_top} 
+                        %div{:class => "button-large-text", :style => "color: black"} #{rate_Dog_bottom}
+                %div{:class => "divider1"}
                 %div{:class => "col-sm-3 box-b box-move hidden"}
-                    %div{:class => "panel panel-default"}
+                    %div{:class => "panel panel-default", :style => "margin-top: 100px;"}
                         %div{:class => "panel-heading"}
                             %h3{:class => "panel-title"}
                                 Search for ratings by breed:
@@ -27,13 +42,14 @@
                                 %div{:id => 'breed_autofills', :class => "form-group col-md-12"}
                                 %div{:class => "form-group", :class => "button-positioning"}
                                     = submit_tag 'Find ratings for this breed', :id => 'Find Breed', :class => "form-control"
-                %div{:class => "col-sm-3 box-b text-center"}
-                    %a{:class => "main-button-link button-b"}
-                        %div{:class => "main-button"}
-                            %div{:class => "main-button-small-text"} #{find_breed_top}
-                            %div{:class => "main-button-large-text"} #{find_breed_bottom}
+                %div{:class => "col-sm-3 box-b text-center", :id => "button2_main"}
+                    %a{:class => "main-button-link button-b", :style => "cursor:pointer" }
+                        %div{:class => "main-button2"}
+                        %div{:class => "button-small-text", :style => "color: black; opacity: 0.6"} #{find_breed_top} 
+                        %div{:class => "button-large-text", :style => "color: black;"} #{find_breed_bottom}
+                %div{:class => "divider2"}
                 %div{:class => "col-sm-3 box-c box-move hidden"}
-                    %div{:class => "panel panel-default"}
+                    %div{:class => "panel panel-default", :style => "margin-top: 100px;"}
                         %div{:class => "panel-heading"}
                             %h3{:class => "panel-title"}
                                 Find a breeder or kennel by name:
@@ -46,25 +62,37 @@
                                     %div{:id => 'breeder_find_autofills', :class => "list-group"}
                                     %div{:class => "form-group", :class => "button-positioning"}
                                         = submit_tag 'Find ratings for this breeder', :id => 'Find Breeder', :class => "form-control"
-                %div{:class => "col-sm-3 box-c text-center"}
-                    %a{:class => "main-button-link button-c"}
-                        %div{:class => "main-button"}
-                            %div{:class => "main-button-small-text"} #{find_breeder_top}
-                            %div{:class => "main-button-large-text"} #{find_breeder_bottom}
-                %div{:class => "col-sm-3 box-d text-center"}
+                %div{:class => "col-sm-3 box-c text-center", :id => "button3_main"}
+                    %a{:class => "main-button-link button-c", :style => "cursor:pointer"}
+                        %div{:class => "main-button3"}
+                        %div{:class => "button-small-text", :style => "color: black; opacity: 0.6"} #{find_breeder_top} #{find_breeder_bottom}
+                        %div{:class => "button-large-text", :style => "color: black;"} #{find_breeder_bottom}
+                %div{:class => "divider3"}
+                %div{:class => "col-sm-3 box-d text-center", :id => "button4_main"}
                     %a{:class => "main-button-link button-d", :href => "/search_nearer_breeders"}
-                        %div{:class => "main-button"}
-                            %div{:class => "main-button-small-text"} #{search_breeder_top}
-                            %div{:class => "main-button-large-text"} #{search_breeder_bottom}
-        // Iter 1-2
-        %div{:class => "bg-page row view "}
+                        %div{:class => "main-button4"}
+                        %div{:class => "button-small-text", :style => "color: black; opacity: 0.6"} #{search_breeder_top} 
+                        %div{:class => "button-large-text", :style => "color: black;"} #{search_breeder_bottom}
+        
+    %div{:class => "page_divider3"}
+        %div{:class => "slider"}
+            %h1{:id => "comment_title"} #{comment_title}
+            %h2{:id => "tagline-text_comment"} 
+                = "\"#{@comment_content}\""
+            %h3{:id => "tagline-text_breed"}
+                = "---- #{@comment_breed}"
+        %div{:class => "slider"}
+            %h1{:id => "comment_title"} #{comment_title}
+            %h2{:id => "tagline-text_comment"} 
+                = "\"#{@comment_content}\""
+            %h3{:id => "tagline-text_breed"}
+                = "---- #{@comment_breed}"
+        %a.prev{:id => "arrow_left"} ❮
+        %a.next{:id => "arrow_right"} ❯
+        
+        
+        %br
+        %br
 
-    //Second Row
-    // Iter3-2 Customized featured title (By Gung Hiu Ho, Licong Wang)
-    %div{:class => "row"}
-        %section{:class => "featured-comment"}
-            %header{:class => "span12"}
-                %h2 #{comment_title}
-                %h3= "\"#{@comment_content}\""
-                %h3= "---- #{@comment_breed}"
+
 // End of Iter3-2

@@ -18,8 +18,13 @@ Given (/^the default layout exist$/) do
     Blue_Bar_Bottom_Left: ['Canine Health Information Center', 'main_bar'],
     Blue_Bar_Bottom_Middle: ['Terms of Service', 'main_bar'],
     Blue_Bar_Bottom_Right: ['LSandersDVM@gmail.com', 'main_bar'],
-    Comment_Title: ['Featured Comment', 'main_title', 'main_title']
-  }
+    Comment_Title: ['Featured Comment', 'main_title'],
+    Nav_Bar_1: ['Mission', 'navigation_bar'],
+    Nav_Bar_2: ['Background', 'navigation_bar'],
+    Nav_Bar_3: ['Goals', 'navigation_bar'],
+    Nav_Bar_4: ['How You Can Help', 'navigation_bar'],
+    Nav_Bar_5: ['Community Forum', 'navigation_bar']}
+    
   layouts.keys.each do |key|
     Customize.create!(name: key, content: layouts[key][0], location: layouts[key][1])
   end
