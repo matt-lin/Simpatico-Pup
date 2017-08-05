@@ -24,6 +24,16 @@ describe AccountActivationsController do
             expect(flash[:danger]).to eq "Invalid activation link"
             response.should redirect_to root_url
         end
+        
+        it "should return to root if try to activate invalid account" do
+            get :send_mail, {:email => 'user3@berkeley.edu'}
+            response.should redirect_to root_url
+        end
+        
+        it "should send out email if user haven't activated" do 
+            get :send_mail, {:email => 'user1@berkeley.edu'}
+            response.should redirect_to new_user_session_path
+        end
     end
 end
 # End for Iter 2-2
