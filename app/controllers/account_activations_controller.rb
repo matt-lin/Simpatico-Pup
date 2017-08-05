@@ -30,3 +30,4 @@ class AccountActivationsController < ApplicationController
   end
 end
 #End for Iter 2-2
+
