@@ -19,7 +19,7 @@ Feature: edit the content for the main page
       | main_bar        |
       | Better Way to Find a Great Dog  |
       | Find a pup from a reliable source |
-    When I follow "Main Page Welcome Title"
+    When I follow "Main Page Cover Layout"
     Then I should see "Find a pup from a reliable source"
     And I should not see "For more information on Breed Health"
 

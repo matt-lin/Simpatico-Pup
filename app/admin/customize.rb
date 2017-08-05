@@ -1,27 +1,36 @@
 # Iter3-2 Site preference  (By Gung Hiu Ho, Licong Wang)
 ActiveAdmin.register Customize do
   
-  config.clear_sidebar_sections!
-  actions :index, :edit
   menu :label => 'Site preference'
-  menu :priority => 11
+  config.clear_sidebar_sections!
+  config.batch_actions = false
+
+  actions :index, :edit
+  #menu :priority => 11
   
   scope :all, :default => true
   scope :'Site Title' do |a|
     a.where(:location => "site_title")
   end
-  scope :'Main Page Welcome Title' do |a|
-    a.where(:location => "main_title")
-  end
-  scope :'Main Page Buttons' do |a|
-    a.where(:location => "main_button")
-  end
-  scope :'Main Page Blue Bar' do |a|
-    a.where(:location => "main_bar")
-  end
-  scope :'Navigation Bar' do |a|
+  scope :'Main Page Navigation Bar Layout' do |a|
     a.where(:location => "navigation_bar")
   end
+  scope :'Main page cover Layout' do |a|
+    a.where(:location => "main_title")
+  end
+  scope :'Main Page transition Layout' do |a|
+    a.where(:location => "transition")
+  end
+  scope :'Main Page service Layout' do |a|
+    a.where(:location => "fuction")
+  end
+  scope :'Main Page Message display' do |a|
+    a.where(:location => "message")
+  end
+  scope :'Main Page Blur Bar' do |a|
+    a.where(:location => "main_bar")
+  end
+
   scope :Others do |a|
     a.where(:location => "Others")
   end
@@ -29,7 +38,6 @@ ActiveAdmin.register Customize do
   index do
     column :name 
     column :content
-    column :location
     actions
   end
   
