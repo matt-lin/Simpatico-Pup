@@ -30,5 +30,5 @@ Feature: Only owner can delete other admin
   Scenario: non website owner shouldn't be able to access edit page by changing url
     Given I login as admin "non_owner@berkeley.edu" with password "password"
     When admin go to /admin_users/1/edit
-    Then I should see "Warning: You don't have enough privilege to edit another admin"
+    Then I should see "Warning: You don't have enough privilege to perform operation: edit"
     
