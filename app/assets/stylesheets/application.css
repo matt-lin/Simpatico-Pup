@@ -1,22 +1,3 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
- *= require_self
- *= require_tree ./non_active_admin
- *= require thredded
- *= require font-awesome
- *= require jquery-ui
- */
- 
- /*bootstrap using online cdn provided*/
-
 #background {
     background-size: cover;
 }
@@ -99,7 +80,7 @@ body {
 .find_pup{
     margin-top: 0;
     position: relative;
-    height: 450px;
+    height: 720px;
     text-align: center;
 }
 
@@ -133,21 +114,88 @@ body {
     color: #4b5c66;
     text-align: center;
 }
-.main-button {
+
+.button-large-text {
+    font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+    font-size: 24px;
+    margin-bottom: 10px;
+    line-height: 1.1;
+    color: inherit;
+}
+
+.button-small-text {
     color: #337ab7;
-    background-color: #fff;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0 0 10px;
+}
+.main-button1 {
+    color: #337ab7;
+    background-image: url("/assets/icon1.png");
+    background-size: 100px;
+
     margin-top: 8px;
     margin-bottom: 8px;
     display: inline-block;
-    width: 200px;
+    width: 100px;
     height: 100px;
     line-height: 1.42857143;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
     border-radius: 25px;
-    border: 1px solid #ccc;
-    
+
+}
+
+.main-button2 {
+    color: #337ab7;
+    background-image: url("/assets/icon2.png");
+    margin-top: 8px;
+    margin-bottom: 8px;
+    display: inline-block;
+    width: 100px;
+    background-size: 100px;
+    height: 100px;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-radius: 25px;
+
+}
+
+.main-button3 {
+    color: #337ab7;
+    background-image: url("/assets/icon3.png");
+    margin-top: 8px;
+    margin-bottom: 8px;
+    display: inline-block;
+    width: 100px;
+    background-size: 100px;
+    height: 100px;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-radius: 25px;
+
+}
+
+.main-button4 {
+    color: #337ab7;
+    background-image: url("/assets/icon4.png");
+    margin-top: 8px;
+    margin-bottom: 8px;
+    display: inline-block;
+    width: 100px;
+    background-size: 100px;
+    height: 100px;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-radius: 25px;
+
 }
 .ad-box-a {
     background-image: url(/assets/Amazon_Prime_logo.jpg); 
@@ -213,7 +261,15 @@ body {
 }
 
 #titleline_comment {
-    margin-top: 100px;
+    margin-top: 200px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    
+}
+
+#comment_title {
+    margin-top: 0;
     text-align: center;
     font-size: 40px;
     font-weight: bold;
@@ -227,7 +283,7 @@ body {
     max-width: 50%;
     margin-left: auto;
     margin-right: auto;
-    font-weight: 300;
+    font-weight: normal;
 }
 
 #tagline-text_comment {
@@ -255,7 +311,7 @@ body {
 #to_goal {
     background-color: #5ba2de;
     border: none;
-    color: #f5f5f5;
+    color: white;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -280,28 +336,34 @@ body {
     font-weight: 200;
 }
 
+#container-fluid2 {
+    margin-right: auto;
+    margin-left: auto;
+}
 
 .row_tagline {
-    margin-top: 0;
+    display: none;
+}
+
+.slider {
     display: none;
 }
 
 .row_top {
-    /*background: url("/assets/pup3b.jpeg");*/
-    /*background-size: cover;*/
-    height: 500px;
+    background: url("/assets/pup3b.jpeg");
+    background-size: cover;
+    height: 720px;
     width: 100%;
-    margin-top: 10px;
 }
 
 .prev, .next {
   cursor: pointer;
   position: absolute;
-  top: 50%;
+  top: 1600px;
   width: auto;
-  margin-top: -10px;
+  margin-bottom: 100px;
   padding: 16px;
-  color: #a0c3e0;
+  color: grey;
   font-weight: bold;
   font-size: 50px;
   transition: 0.6s ease;
@@ -309,11 +371,11 @@ body {
 }
 
 .prev {
-    left: 30px;
+    margin-left: 50px;
 }
 
 .next {
-  right: 0;
+  right: 50px;
 }
 
 .prev:hover, .next:hover {
@@ -358,12 +420,78 @@ body {
 }
 
 #main_page_buttons {
-    margin-top: 400px;
+    margin-top: 50px;
     height: 200px;
 }
 
 #to_goal #link_goal {
     color: #f5f5f5;
+}
+
+.page_divider1 {
+    height: 400px;
+    background-color: #5ba2de;
+    padding: 100px;
+}
+
+.page_divider2 {
+    height: 350px;
+    background-color: white;
+}
+
+.page_divider3 {
+    height: 200px;
+    background-color: white;
+}
+
+
+#icon1 {
+    background: url("/assets/impages/icon1.png");
+    width: 100px;
+    height: 100px;
+    display:inline-block;
+    background-repeat:no-repeat;
+}
+
+#inline_text_header {
+    font-size: 30px;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+    color: white;
+    
+}
+
+#inline_button {
+    background-color: white;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    padding: 15px, 30px;
+    border-radius: 300px;
+    margin-top: 10px;
+}
+
+.light {
+    border-color: white;
+    border-width: 3px;
+    max-width: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.text_faded {
+    color: white;
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    margin: 0 0 10px;
+    font-family: Merriweather,'Helvetica Neue',Arial,sans-serif;
+    opacity: 0.8;
 }
 
 /*.divider1 {*/
@@ -401,6 +529,16 @@ body {
 /*    top: 93px;*/
 /*    height: 130px;*/
 /*}*/
+
+.section-heading {
+    margin-top: 50px;
+    font-size : 30px;
+    font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+    font-weight: 500;
+    line-height: 1.1;
+    color: black;
+    text-align: center;
+}
 
 
 .comments {
@@ -582,13 +720,6 @@ html,
 body,
 .view {
     height: 100%;
-    background: url("/assets/pup3b.jpeg")no-repeat center center fixed;
-   
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-
 }
 
 /************************************/
@@ -766,6 +897,17 @@ body,
 .container-main {
     margin-top: 80px;
 }
+
+.container_inline {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 970;
+    position: relative;
+    text-align: center;
+}
+
 /***********************log in and singup***********************/
 * {
   -moz-box-sizing: border-box;
@@ -985,4 +1127,3 @@ body,
 }
 
 /*****************************************************************************/
-
