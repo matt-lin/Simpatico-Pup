@@ -41,6 +41,8 @@ Ratemypup::Application.routes.draw do
   resources :passwordresets
   # activate account
   resources :account_activations, only: [:edit]
+  
+  get '/activate/:email' => 'account_activations#send_mail', :as => :activate, :constraints => { :email => /.+@.+\..*/ }
 
   get '/breed' => 'pups#breed', :as => :breed
   get '/breed/match' => 'pups#search_breed', :as => :breed_search
