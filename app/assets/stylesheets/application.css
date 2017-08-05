@@ -976,6 +976,10 @@ body,
   -webkit-box-shadow: 0 0 10px black;
   box-shadow: 0 0 10px black;
 }
+#log_in {
+      margin-top: 10%;
+      /*margin-bottom: %;*/
+}
 #singup{
     height: 640px;
 }
@@ -997,6 +1001,7 @@ body,
   -webkit-border-radius: 4px;
   border-radius: 4px;
 }
+
 .content input[type=checkbox] {
   display: none;
 }
@@ -1038,12 +1043,13 @@ body,
   font-size: 1.7rem;
   color: white;
 }
+
 .content button {
   width: 100%;
   font-size: 1.1rem;
   padding: 10px;
   margin: 20px 0px;
-  background-color: #66A756;
+  background-color: #5ba2de;
   color: White;
   border: none;
   -moz-border-radius: 4px;
@@ -1080,8 +1086,10 @@ body,
 }
 .content .buttons {
   width: 100%;
-  margin: 30px 0px;
-  
+  margin: 0px 0px;
+}
+.contact .action{
+    background-color: red;
 }
 .content .buttons button {
   float: left;

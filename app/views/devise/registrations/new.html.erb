@@ -2,10 +2,10 @@
 <div class="content" id = "singup">
   
 <br>
-
+  <%= devise_error_messages! %>
   <div class="title">Create account</div>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= devise_error_messages! %>
+    
     
     <div class="field">
       <%= f.text_field :username, placeholder: "username", autofocus: true %>
@@ -27,12 +27,13 @@
     <div>
         <span> By clicking “I agree” below you agree to SimpaticoPup’s <%= link_to "Terms of Service", terms_of_service_path %> and our <%= link_to "Privacy Policy", privacy_policy_path %>, which describes how we process your information.</span>
     </div>
+    
     <div>
         <input type="checkbox" id="user_agreement" required/>
         <label for="user_agreement"></label><span> I agree (required)
     </div>
     
-    
+    <br>
     
     <div>
         <input type="checkbox" id="subscribe_newsletter" 'subscribe_newsletter', 'yes'/>
@@ -40,16 +41,11 @@
     </div>
     
 
-  
-    <div class="action" >
-      <%= f.submit "Submit" %>
-    </div>
+   <button>Create Account</button>
+
 
     
   <% end %>
-    <div class="buttons">
-      <%= render "devise/shared/links" %>
-    </div>
-  
+
 
 </div>
