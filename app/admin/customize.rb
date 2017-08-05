@@ -1,8 +1,10 @@
 # Iter3-2 Site preference  (By Gung Hiu Ho, Licong Wang)
 ActiveAdmin.register Customize do
+  
   config.clear_sidebar_sections!
   actions :index, :edit
   menu :label => 'Site preference'
+  menu :priority => 11
   
   scope :all, :default => true
   scope :'Site Title' do |a|
@@ -16,6 +18,9 @@ ActiveAdmin.register Customize do
   end
   scope :'Main Page Blue Bar' do |a|
     a.where(:location => "main_bar")
+  end
+  scope :'Navigation Bar' do |a|
+    a.where(:location => "navigation_bar")
   end
   scope :Others do |a|
     a.where(:location => "Others")

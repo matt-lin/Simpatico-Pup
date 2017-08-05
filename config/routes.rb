@@ -1,5 +1,6 @@
 Ratemypup::Application.routes.draw do
 
+  mount Rich::Engine => '/rich', :as => 'rich'
   # get 'password_resets/new'
 
   # get 'password_resets/edit'

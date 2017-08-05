@@ -1,9 +1,11 @@
 #Iter 2-2 redeign the functionality of newsletter_user page (By Gung Hiu Ho, Licong Wang) [originally created by: Gilbert Lo]
 ActiveAdmin.register NewsletterUser do
+  
   filter :email
   filter :created_at
   filter :id
   menu :label => 'Newsletter Subscribers'
+  menu :priority => 9
   
   sidebar :"How to use" do
     h6 "Batch Actions"

@@ -7,6 +7,19 @@ GIT
       omniauth-oauth (~> 1.1)
 
 GIT
+  remote: git://github.com/jpros/rich.git
+  revision: 1670365eabed4d80b2c76da7689e1227e06e7e3c
+  branch: icons
+  specs:
+    rich (1.4.8)
+      jquery-rails
+      kaminari
+      mime-types
+      rack-raw-upload
+      rails (>= 3.2.0)
+      sass-rails
+
+GIT
   remote: git://github.com/mkdynamic/omniauth-facebook.git
   revision: 3b084957c0e8fd8a59dd9c44293a02d4ca77835a
   specs:
@@ -287,6 +300,8 @@ GEM
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     rack (1.6.4)
+    rack-raw-upload (1.1.1)
+      multi_json
     rack-test (0.6.3)
       rack (>= 1.0)
     rack_session_access (0.1.1)
@@ -475,6 +490,7 @@ DEPENDENCIES
   rake
   ransack
   reek
+  rich!
   rspec-rails (~> 2.14.0)
   sass-rails
   simplecov

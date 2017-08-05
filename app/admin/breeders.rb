@@ -1,10 +1,15 @@
 ActiveAdmin.register Breeder do
+  
+  menu :priority => 4
 
   filter :name
   filter :city
   filter :state
+  
+  actions :all
 
   index do
+    selectable_column
     column :id
     column :name do |p|
       auto_link p
@@ -12,6 +17,7 @@ ActiveAdmin.register Breeder do
     column :city
     column :state
     column :removed_reviews
+    actions
   end
 
   form do |f|

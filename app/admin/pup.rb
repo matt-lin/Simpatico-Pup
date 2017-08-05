@@ -1,5 +1,8 @@
 #Iter 2-2 Redesign dog page (By Gung Hiu Ho, Licong Wang)
 ActiveAdmin.register Pup, as: "Dogs" do
+  
+  menu :priority => 2
+  
   filter :user
   filter :breeder
   filter :breed

@@ -1,30 +1,34 @@
-# Iter 4-1 
 Feature: Only owner can delete other admin 
   As the owner of this website, 
   I want to be able to add or delete administrator accounts 
   So that I can decide exactly who should be the administrator
   
-  Background: Logged in as an admin
+  Background:
     Given the following admin exist:
-      | name    | password     |
-      | Mary    | password1    |
-      | Tom     | password2    |
+      | email                   | password |
+      | owner@berkeley.edu      | password |
+      | non_owner@berkeley.edu  | password |
 
-  Scenario: try delete Mary as owner
-    Given I login as an admin
+  Scenario: the website ownder should be able to edit other admins
+    Given I login as the website owner
     When admin go to admin_users
     Then I should see all of:
-      | Mary |
-      | Tom  |
-    When owner delete "Tom"
-    Then I should see "Admin has been deleted"
+      | owner@berkeley.edu |
+      | non_owner@berkeley.edu |
+    When the current admin change the rank "2" admin email to "test@berkeley.edu"
+    Then I should see "test@berkeley.edu"
   
-  Scenario: Mary shouldn't able to delete other admin
-    Given I login as admin "Mary"
+  Scenario: non website owner shouldn't be able to edit other admins
+    Given I login as admin "non_owner@berkeley.edu" with password "password"
     When admin go to admin_users
     Then I should see all of:
-      | Mary |
-      | Tom  |
-    And I should not see "Delete"
+      | owner@berkeley.edu |
+      | non_owner@berkeley.edu |
+    And I should not see "edit"
+    And I should not see "delete"
     
-# End Iter 4-1
+  Scenario: non website owner shouldn't be able to access edit page by changing url
+    Given I login as admin "non_owner@berkeley.edu" with password "password"
+    When admin go to /admin_users/1/edit
+    Then I should see "Warning: You don't have enough privilege to perform operation: edit"
+    

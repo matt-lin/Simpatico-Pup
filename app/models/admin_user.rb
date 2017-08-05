@@ -7,4 +7,10 @@ class AdminUser < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
+  
+  @@owner_id = 1
+  
+  def AdminUser.true_admin? id
+    id == @@owner_id
+  end
 end
