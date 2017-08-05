@@ -1,4 +1,8 @@
+
 <div class="content" id = "singup">
+  
+<br>
+
   <div class="title">Create account</div>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
@@ -29,22 +33,23 @@
     </div>
     
     
-    <br>
+    
     <div>
         <input type="checkbox" id="subscribe_newsletter" 'subscribe_newsletter', 'yes'/>
         <label for="subscribe_newsletter" 'subscribe_newsletter', 'yes'></label><span> Click here if we may add you to our mailing list to receive occasional updates on the progress of our website.
     </div>
-    <br>
+    
 
   
     <div class="action" >
       <%= f.submit "Submit" %>
     </div>
+
     
   <% end %>
+    <div class="buttons">
+      <%= render "devise/shared/links" %>
+    </div>
   
-  
-  <div class="buttons">
-    <%= render "devise/shared/links" %>
-  </div>
+
 </div>
