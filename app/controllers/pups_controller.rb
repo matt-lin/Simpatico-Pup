@@ -85,8 +85,6 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     else
       @pup.save
       @Comment.pup_id = @pup.id
-      # @Comment.breed = @pup.breed.name
-      # @Comment.breeder = @pup.breeder.name
       @Comment.save
 
       # Successfully save pup & comment
@@ -126,9 +124,9 @@ currently limiting the number of ratings made by each dog owner to eight, and li
       redirect_to root_path and return
     end
     
-    if @pup.comment.nil?
-      @pup.update_comment("")
-    end
+    # if @pup.comment.nil?
+    #   @pup.update_comment("")
+    # end
     session[:from] = 'dog_show'
   end
 
@@ -171,6 +169,11 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     end
   end
   #End Iter3-2
+  
+  def breed_avg_ratings
+    pup = Pup.find_by_id params[:pup_id]
+    render :json => Pup.avg_ratings_by_breeds(pup.breed.name)
+  end
   
   #################### Start Questionnaire ####################
 
@@ -222,10 +225,8 @@ currently limiting the number of ratings made by each dog owner to eight, and li
       return
     else
       flash[:modal] = "To keep our database as accurate as possible,
-we are collecting information only for dogs that have been residing 
-in their current home for six months or more. Please come back to our 
-site and rate your dog after s/he has lived 
-with you for a minimum of six months. Thank you."
+we are collecting information only for dogs that have been residing in their current home for six months or more. Please come back to our 
+site and rate your dog after s/he has lived with you for a minimum of six months. Thank you."
     end
     session[:step2] = false
     redirect_to dog_how_long_path(:pup => {:name => session[:pup_name]})
@@ -286,10 +287,6 @@ with you for a minimum of six months. Thank you."
     !input.empty? && !is_num?(input)
   end
   
-  # def check_time_filled?(years, months)
-  #   years.nil? || months.nil? || (years.empty? && months.empty?)
-  # end
-  
   # Iter3-2 (Gilbert Lo and Jeff Yu)
   def valid_access(pup)
     if pup.nil?
@@ -319,10 +316,6 @@ with you for a minimum of six months. Thank you."
 
   def is_num?(str)
     str.to_s == str.to_i.to_s
-  #   Integer(str)
-  #   return true
-  # rescue ArgumentError, TypeError
-  #   return false
   end
 
   def start_over
