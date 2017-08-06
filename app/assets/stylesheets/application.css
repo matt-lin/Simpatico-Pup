@@ -369,7 +369,7 @@ body {
 }
 
 .row_top {
-    background: url("/assets/pup3b.jpeg");
+    background: url("/assets/pup3b.jpeg")center center;
     background-size: cover;
     height: 720px;
     width: 100%;
@@ -398,7 +398,7 @@ body {
 }
 
 .prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
+  background-color: rgba(0,0,0,0.3);
 }
 
 .dot {
@@ -753,125 +753,173 @@ body,
         font-size: 6px;
         text-align: center;
     }
-    
+    .row_top {
+    background: url("/assets/pup3b.jpeg")right center;
+    }
+    #titleline_comment{
+        font-size: 220%;
+    }
     #titleline{
         font-size: 150%;
+    }
+    #inline_text_header{
+        font-size: 140%;
     }
     
     #tagline-text {
         font-size: 135%;
+        opacity: 0.8;   
+        max-width: 120%;
+        font-family:Georgia,sans-serif;
     }
-    
+    .page_divider1 {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .col-sm-3 {
+        width: 100%;
+    }
+    #button1_main {
+        max-width: 400px;
+        margin: 50px auto 0;
+    }
+    .text_faded {
+        margin-left: 0px;
+        margin-right: 0px;
+        font-size: 100%
+    }
+    .prev {
+        margin-top: 580px;
+        margin-left: 0px;
+    }
+
+    .next {
+        margin-top: 580px;
+        right: 0px;
+    }
+    #comment_title{
+        font-size: 200%;
+    }
+    #tagline-text_comment {
+        font-size: 120%;
+        max-width: 70%;
+    }
+    #tagline-text_breed {
+        font-size: 120%;
+        max-width: 70%;
+        margin-top: 10px;
+    }
+
 
 }
     
 /* For iPhone 6 size mobile phone */
-@media only screen
-    and (max-device-height: 700px)
-    and (max-device-width: 500px)
-    and (min-device-height: 570px){
+/*@media only screen*/
+/*    and (max-device-height: 700px)*/
+/*    and (max-device-width: 500px)*/
+/*    and (min-device-height: 570px){*/
         
-    .navbar .navbar-text {
-    margin-left: 15px;
-    }
+/*    .navbar .navbar-text {*/
+/*    margin-left: 15px;*/
+/*    }*/
     
-    .main-button {
-        color: #337ab7;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        text-align: center;
-        white-space: nowrap;
-        vertical-align: middle;
-        border-radius: 15px;
-        width:100px;
-        height:60px;
-        margin-left: 30px
-    }
+/*    .main-button {*/
+/*        color: #337ab7;*/
+/*        background-color: #fff;*/
+/*        border: 1px solid #ccc;*/
+/*        text-align: center;*/
+/*        white-space: nowrap;*/
+/*        vertical-align: middle;*/
+/*        border-radius: 15px;*/
+/*        width:100px;*/
+/*        height:60px;*/
+/*        margin-left: 30px*/
+/*    }*/
     
-    .main-button-small-text {
-        font-size: 10px;
-    }
+/*    .main-button-small-text {*/
+/*        font-size: 10px;*/
+/*    }*/
 
-    .main-button-large-text {
-        font-size: 20px;
-    }
+/*    .main-button-large-text {*/
+/*        font-size: 20px;*/
+/*    }*/
     
-    .tagline {
-        margin:40px 0 -90px 0;
-        text-align: center;
-    }
+/*    .tagline {*/
+/*        margin:40px 0 -90px 0;*/
+/*        text-align: center;*/
+/*    }*/
     
-   .featured-comment {
-        opacity: 0.6;
-        width: 100%;
-        font-size: 20px;
-        text-align: center;
-        color: black;
-    }
-}
+/*   .featured-comment {*/
+/*        opacity: 0.6;*/
+/*        width: 100%;*/
+/*        font-size: 20px;*/
+/*        text-align: center;*/
+/*        color: black;*/
+/*    }*/
+/*}*/
     
 /* For iPhone 6P size mobile phone */
-@media only screen
-    and (max-device-height: 736px )
-    and (max-device-width: 414px)
-    and (min-device-height: 680px){
+/*@media only screen*/
+/*    and (max-device-height: 736px )*/
+/*    and (max-device-width: 414px)*/
+/*    and (min-device-height: 680px){*/
         
-    .tagline {
-        margin:40px 0 -20px 0;
-        text-align: center;
-    }
+/*    .tagline {*/
+/*        margin:40px 0 -20px 0;*/
+/*        text-align: center;*/
+/*    }*/
     
-    .main-button {
-        margin-left: 10px
-    }
-}
+/*    .main-button {*/
+/*        margin-left: 10px*/
+/*    }*/
+/*}*/
 
 
 /* For iPhone 5 size mobile */
-@media only screen
-    and (max-device-height:570px)
-    and (max-device-width: 320px) {
+/*@media only screen*/
+/*    and (max-device-height:570px)*/
+/*    and (max-device-width: 320px) {*/
         
-    .navbar .navbar-text {
-    margin-left: 15px;
-    }
+/*    .navbar .navbar-text {*/
+/*    margin-left: 15px;*/
+/*    }*/
     
-    .main-button {
-        color: #337ab7;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        text-align: center;
-        white-space: nowrap;
-        vertical-align: middle;
-        border-radius: 15px;
-        width:100px;
-        height:50px;
-        margin-left: 15px
-    }
+/*    .main-button {*/
+/*        color: #337ab7;*/
+/*        background-color: #fff;*/
+/*        border: 1px solid #ccc;*/
+/*        text-align: center;*/
+/*        white-space: nowrap;*/
+/*        vertical-align: middle;*/
+/*        border-radius: 15px;*/
+/*        width:100px;*/
+/*        height:50px;*/
+/*        margin-left: 15px*/
+/*    }*/
     
-    .main-button-small-text {
-        font-size: 10px;
-    }
+/*    .main-button-small-text {*/
+/*        font-size: 10px;*/
+/*    }*/
 
-    .main-button-large-text {
-        font-size: 20px;
-    }
+/*    .main-button-large-text {*/
+/*        font-size: 20px;*/
+/*    }*/
     
-    .tagline {
-        margin:20px 0 -90px 0;
-        text-align: center;
-    }
+/*    .tagline {*/
+/*        margin:20px 0 -90px 0;*/
+/*        text-align: center;*/
+/*    }*/
     
-   .featured-comment {
-        background-color: white;
-        opacity: 0.6;
-        width: 100%;
-        font-size: 20px;
-        text-align: center;
-        color: black;
-    }
+/*   .featured-comment {*/
+/*        background-color: white;*/
+/*        opacity: 0.6;*/
+/*        width: 100%;*/
+/*        font-size: 20px;*/
+/*        text-align: center;*/
+/*        color: black;*/
+/*    }*/
         
-}
+/*}*/
 
 /*End for Iter 1-2*/
 
@@ -920,9 +968,9 @@ body,
 .container_inline {
     padding-right: 15px;
     padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-    width: 970;
+    margin-right: 0px;
+    margin-left: 0px;
+    width: 100%;
     position: relative;
     text-align: center;
 }
@@ -955,15 +1003,19 @@ body,
 }
 
 .content {
-  position: absolute;
-  top: 0;
+  /*position: absolute;*/
+  margin-top: 2%;
+  margin-bottom: 2%;
+  margin-left: auto;
+  margin-right: auto;
+  top: 10px;
   bottom: 0;
   left: 0;
   right: 0;
   width: 540px;
   height: 440px;
-  background-color: rgba(10, 10, 10, 0.4);
-  margin: auto auto;
+  background-color: rgba(10, 10, 10, 0.3);
+  /*margin: auto auto;*/
   padding: 40px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -972,12 +1024,16 @@ body,
   -webkit-box-shadow: 0 0 10px black;
   box-shadow: 0 0 10px black;
 }
+#log_in {
+      margin-top: 10%;
+      /*margin-bottom: %;*/
+}
 #singup{
     height: 640px;
 }
 .content .title {
   text-align: center;
-  font-size: 35px;
+  font-size: 30px;
   color: white;
   font-weight: 600;
   padding-bottom: 30px;
@@ -993,6 +1049,7 @@ body,
   -webkit-border-radius: 4px;
   border-radius: 4px;
 }
+
 .content input[type=checkbox] {
   display: none;
 }
@@ -1034,12 +1091,13 @@ body,
   font-size: 1.7rem;
   color: white;
 }
+
 .content button {
   width: 100%;
   font-size: 1.1rem;
   padding: 10px;
   margin: 20px 0px;
-  background-color: #66A756;
+  background-color: #5ba2de;
   color: White;
   border: none;
   -moz-border-radius: 4px;
@@ -1076,8 +1134,10 @@ body,
 }
 .content .buttons {
   width: 100%;
-  margin: 30px 0px;
-  
+  margin: 0px 0px;
+}
+.contact .action{
+    background-color: red;
 }
 .content .buttons button {
   float: left;
