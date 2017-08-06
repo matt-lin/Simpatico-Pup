@@ -124,9 +124,6 @@ currently limiting the number of ratings made by each dog owner to eight, and li
       redirect_to root_path and return
     end
     
-    # if @pup.comment.nil?
-    #   @pup.update_comment("")
-    # end
     session[:from] = 'dog_show'
   end
 
