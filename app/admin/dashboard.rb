@@ -31,9 +31,13 @@ ActiveAdmin.register_page "Dashboard" do
             line_chart  Pup.group_by_day(:created_at).count, 
             width: "500px", height: "300px", xtitle: "Date", ytitle: "Population", title: "Pup Creation", animation: "true"
           end
-                    column do
+          column do
             line_chart  Breeder.group_by_day(:id).count, 
             width: "500px", height: "300px", xtitle: "Date", ytitle: "Population", title: "Breeder Creation", animation: "true"
+          end
+          column do
+            geo_chart Breeder.group(:state).count,  library: {region: 'US', resolution: 'provinces'},
+            width: "500px", height: "300px", animation: "true", title: "Concentration"
           end
         end
       end
