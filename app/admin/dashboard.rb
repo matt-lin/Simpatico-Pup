@@ -24,21 +24,35 @@ ActiveAdmin.register_page "Dashboard" do
       panel "Site Statistic" do
       columns do
           column do
-            line_chart  User.group_by_day(:created_at).count, 
+            line_chart User.group_by_day(:created_at).count, library: {animation: { easing: 'easeOutQuad' }},
             width: "500px", height: "300px", xtitle: "Date", ytitle: "Population", title: "User", animation: "true"
           end
           column do
-            line_chart  Pup.group_by_day(:created_at).count, 
+            line_chart Pup.group_by_day(:created_at).count, library: {animation: { easing: 'easeOutQuad' }},
             width: "500px", height: "300px", xtitle: "Date", ytitle: "Population", title: "Pup Creation", animation: "true"
           end
           column do
-            line_chart  Breeder.group_by_day(:id).count, 
+            line_chart Breeder.group_by_day(:id).count, library: {animation: { easing: 'easeOutQuad' }},
+            width: "500px", height: "300px", xtitle: "Date", ytitle: "Population", title: "Breeder Creation", animation: "true"
+          end
+          column do
+            line_chart NewsletterUser.group_by_day(:id).count, library: {animation: { easing: 'easeOutQuad' }},
             width: "500px", height: "300px", xtitle: "Date", ytitle: "Population", title: "Breeder Creation", animation: "true"
           end
           column do
             geo_chart Breeder.group(:state).count,  library: {region: 'US', resolution: 'provinces'},
             width: "500px", height: "300px", animation: "true", title: "Concentration"
           end
+          column do
+            pie_chart (
+              {
+              "Leftmost button hit rate" => Impression.where(controller_name: "pups").where(action_name: "create").where(created_at: Time.current.all_week).length,
+              "Left mid button hit rate" => Impression.where(controller_name: "pups").where(action_name: "breed").where(created_at: Time.current.all_week).length,
+              "Right mid button hit rate" => Impression.where(controller_name: "pups").where(action_name: "dog_breeder").where(created_at: Time.current.all_week).length,
+              "Rightmost button hit rate" => Impression.where(controller_name: "breeders").where(action_name: "nearer_breeders").where(created_at: Time.current.all_week).length
+              }), width: "500px", height: "300px", xtitle: "Date", ytitle: "Population", title: "Request distribution", animation: "true"
+          end
+           #{Impression.where(controller_name: "pups").where(action_name: "create").length}
         end
       end
       end

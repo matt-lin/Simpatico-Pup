@@ -1,6 +1,8 @@
 class Breeder < ActiveRecord::Base
+  is_impressionable :counter_cache => true
   
   has_many :pups, dependent: :destroy
+  
   attr_accessible :name, :city, :state, :website, :removed_reviews
 
   before_destroy { |breeder| breeder.dismentle_pups }

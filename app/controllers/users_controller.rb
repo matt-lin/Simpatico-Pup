@@ -1,6 +1,6 @@
 # Iter3-2 (Gilbert Lo, Jeff Yu)
 class UsersController < ApplicationController
-  
+
   before_filter :authenticate_user!
   
   def pups

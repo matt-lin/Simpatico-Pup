@@ -49,6 +49,7 @@ gem 'rich', github: 'jpros/rich', :branch => 'icons'
 gem 'cohort_me'
 gem 'groupdate'
 gem "chartkick"
+gem 'impressionist'
 
 group :development, :test do
   gem 'sqlite3'

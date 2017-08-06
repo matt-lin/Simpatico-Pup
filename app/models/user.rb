@@ -1,8 +1,6 @@
 require 'bcrypt'
 
 class User < ActiveRecord::Base
-  
-  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -17,6 +15,7 @@ class User < ActiveRecord::Base
   before_create :create_activation_digest
   
   has_many :pups
+  has_one :widget
   
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :

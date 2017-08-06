@@ -1,7 +1,9 @@
 class Breed < ActiveRecord::Base
   has_many :pups
+  
+  has_one :widget
+  
   attr_accessible :name
-
 
   def Breed.is_valid_breed(breed)
     Breed.all_breeds.include? breed
