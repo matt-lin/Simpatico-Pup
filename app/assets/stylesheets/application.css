@@ -809,7 +809,19 @@ body,
         max-width: 70%;
         margin-top: 10px;
     }
-
+    
+    .col-sm-4 {
+        font-size: 12px;
+        color: red;
+    }
+    .contact-text-sm {
+        font-size: 12px;
+        color: red;
+    }
+    .contact-link{
+        font-size: 12px;
+        color: red;
+    }
 
 }
     
