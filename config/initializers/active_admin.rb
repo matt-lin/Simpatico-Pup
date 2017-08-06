@@ -144,6 +144,7 @@ ActiveAdmin.setup do |config|
   #
   # To load a javascript file:
   config.register_javascript 'https://www.google.com/jsapi'
+  config.register_javascript 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js'
   config.register_javascript 'countup.js'
 
 

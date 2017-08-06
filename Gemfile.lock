@@ -48,6 +48,7 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    active_admin_theme (1.0.3)
     active_record_union (1.2.0)
       activerecord (>= 4.0)
     activeadmin (1.0.0.pre1)
@@ -463,6 +464,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_admin_theme
   activeadmin (= 1.0.0.pre1)
   activeadmin_addons
   byebug (= 5.0.0)

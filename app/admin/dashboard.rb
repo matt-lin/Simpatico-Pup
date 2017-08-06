@@ -37,19 +37,19 @@ ActiveAdmin.register_page "Dashboard" do
       panel "Site Statistic" do
       columns do
           column do
-            line_chart User.group_by_day(:created_at).count, library: {animation: {"startup": true, duration: 1000, easing: "out"}},
+            line_chart User.group_by_day(:created_at).count, library: {animation: {duration: 1000, easing: 'easeOutQuad' }},
             width: "500px", height: "300px", xtitle: "Date", ytitle: "Population", title: "User"
           end
           column do
-            line_chart Pup.group_by_day(:created_at).count, library: {animation: {"startup": true, duration: 1000, easing: "out"}},
+            line_chart Pup.group_by_day(:created_at).count, library: {animation: {duration: 1050, easing: 'easeOutQuad' }},
             width: "500px", height: "300px", xtitle: "Date", ytitle: "Population", title: "Pup Creation", animation: "true"
           end
           column do
-            line_chart Breeder.group_by_day(:id).count, library: {animation: {"startup": true, duration: 1000, easing: "out"}},
+            line_chart Breeder.group_by_day(:id).count, library: {animation: {duration: 1100, easing: 'easeOutQuad' }},
             width: "500px", height: "300px", xtitle: "Date", ytitle: "Population", title: "Breeder Creation", animation: "true"
           end
           column do
-            line_chart NewsletterUser.group_by_day(:id).count, library: {animation: {"startup": true, duration: 1000, easing: "out"}},
+            line_chart NewsletterUser.group_by_day(:id).count, library: {animation: {duration: 1150, easing: 'easeOutQuad' }},
             width: "500px", height: "300px", xtitle: "Date", ytitle: "Population", title: "Breeder Creation", animation: "true"
           end
           column do
@@ -65,10 +65,23 @@ ActiveAdmin.register_page "Dashboard" do
               "Left mid button hit rate" => Impression.where(controller_name: "pups").where(action_name: "breed").where(created_at: Time.current.all_week).length,
               "Right mid button hit rate" => Impression.where(controller_name: "pups").where(action_name: "dog_breeder").where(created_at: Time.current.all_week).length,
               "Rightmost button hit rate" => Impression.where(controller_name: "breeders").where(action_name: "nearer_breeders").where(created_at: Time.current.all_week).length
-              }), library: {animation: {"startup": true, duration: 5000, easing: "out"}},width: "500px", height: "300px", xtitle: "Date", ytitle: "Population", title: "Request distribution", animation: "true"
+              }),library: {animation: {duration: 500, easing: 'easeOutQuad' }}, donut: true, width: "500px", height: "300px", xtitle: "Date", ytitle: "Population", title: "Request distribution", animation: "true"
           end
           column do
-            text_node "Request Handled: #{Impression.where(controller_name: "pups").count + Impression.where(controller_name: "breeders").count}"
+            area_chart (
+              {
+              0.day.ago => Impression.where(created_at: 0.day.ago.all_day).length,
+              1.day.ago => Impression.where(created_at: 1.day.ago.all_day).length,
+              2.day.ago => Impression.where(created_at: 2.day.ago.all_day).length,
+              3.day.ago => Impression.where(created_at: 3.day.ago.all_day).length,
+              4.day.ago => Impression.where(created_at: 4.day.ago.all_day).length,
+              5.day.ago => Impression.where(created_at: 5.day.ago.all_day).length,
+              6.day.ago => Impression.where(created_at: 6.day.ago.all_day).length,
+              7.day.ago => Impression.where(created_at: 7.day.ago.all_day).length,
+              }),  library: {animation: {duration: 1000, easing: 'easeOutQuad' }},
+            width: "500px", height: "300px", xtitle: "Date", 
+            ytitle: "Population", title: "Request Handled", animation: "true"
+            
           end
           column do
             text_node "Failed rate on leftmostpage: #{(Impression.where(controller_name: "pups").count - Impression.where(controller_name: "pups").where(action_name: "create").where(created_at: Time.current.all_week).length*6) / Impression.where(controller_name: "pups").count}%"

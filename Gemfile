@@ -51,6 +51,9 @@ gem 'groupdate'
 gem "chartkick"
 gem 'impressionist'
 
+#Iter 4-2 activeadmin layout
+gem 'active_admin_theme'
+
 group :development, :test do
   gem 'sqlite3'
   gem 'byebug', '5.0.0'
