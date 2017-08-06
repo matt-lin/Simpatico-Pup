@@ -44,7 +44,7 @@ ActiveAdmin.register EmailTemplate do
   form do |f|
     f.inputs "New Email Template" do
       f.input :title
-      f.input :body, :as => :rich, :config => { :width => '100%', :height => '400px' , :allow_embeds => true}
+      f.input :body
     end
     f.actions
   end
