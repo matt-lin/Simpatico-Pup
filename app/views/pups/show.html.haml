@@ -1,7 +1,10 @@
 // Iter3-2 (Gilbert Lo, Jeff Yu)
-%div{:class => "container"}
+%div{:class => "container", :id => "dog_detail"}
   %div{:class => "header"}
     %h1= @pup.pup_name
+  
+  %div{:class => 'chart'}
+    %canvas{:id => 'myChart', :width=> '400', :height=> '400'}
         
   %div{:class => "row"}
     %div{:class => "col-sm-6"}
