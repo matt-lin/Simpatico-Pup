@@ -31,7 +31,7 @@ Background: The user is on signup page
     And I fill in "user_password" with "password"
     And I fill in "user_password_confirmation" with "password"
     And I check "user_agreement"
-    And I press "Submit"
+    And I press "Create Account"
     Then I should see "Welcome! You have signed up successfully. Please check your email to activate your account."
     Given I enter "example"'s mailbox and click on the activate in sent email
     Then I should see "Congratulations! Your account has been activated!"
@@ -45,7 +45,7 @@ Background: The user is on signup page
     And I fill in "user_password" with "12345678"
     And I fill in "user_password_confirmation" with "12345678"
     And I check "user_agreement"
-    And I press "Submit"
+    And I press "Create Account"
     Then I should see "Email has already been taken"
     
   Scenario: Password less than 8 (sad path)
@@ -54,7 +54,7 @@ Background: The user is on signup page
     And I fill in "user_password" with "12"
     And I fill in "user_password_confirmation" with "12"
     And I check "user_agreement"
-    And I press "Submit"
+    And I press "Create Account"
     Then I should see "Password is too short (minimum is 8 characters)"
     
   Scenario: Password not same as password_confirmation(sad path)
@@ -63,7 +63,7 @@ Background: The user is on signup page
     And I fill in "user_password" with "12345678"
     And I fill in "user_password_confirmation" with "87654321"
     And I check "user_agreement"
-    And I press "Submit"
+    And I press "Create Account"
     Then I should see "Password confirmation doesn't match Password"
     
   Scenario: Inactivated acccount should not be able to log in

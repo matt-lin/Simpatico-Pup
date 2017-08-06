@@ -286,11 +286,7 @@ describe PupsController do
       session[:pup_name] = "Doggie"
       get :dog_breed, {:pup=>{:years=>"",:months=>"3"}}
       expect(response).to redirect_to dog_how_long_path(:pup=>{:name=>"Doggie"})
-      expect(flash[:modal]).to eq("To keep our database as accurate as possible,
-we are collecting information only for dogs that have been residing 
-in their current home for six months or more. Please come back to our 
-site and rate your dog after s/he has lived 
-with you for a minimum of six months. Thank you.")
+      expect(flash[:modal]).not_to be_empty
       expect(session[:step2]).to be_false
     end
     
@@ -613,5 +609,39 @@ with you for a minimum of six months. Thank you.")
       sign_in :user, @user1  
       get :main
       expect(response).to render_template 'main'
+  end
+  
+  describe 'displaying a random comment' do
+    it 'should find a random comment' do
+      expect(SelectedComment).to receive(:find_randomly)
+      get :random_comment
+    end
+    
+    it 'should return a json random comment' do
+      expect = FactoryGirl.create(:selected_comment).to_json
+      get :random_comment
+      expect(response.body).to eq(expect)
+    end
+  end
+  
+  describe 'displaying a breed average rating' do
+    before :each do
+      @user1 = FactoryGirl.create(:user)
+      sign_in :user, @user1
+      @dog1 = FactoryGirl.create(:pup, :user_id => @user1.id)
+      @breed = FactoryGirl.create(:breed)
+    end
+    
+    it 'should find the average rating' do
+      expect(Pup).to receive(:avg_ratings_by_breeds).with(@dog1.breed.name)
+      expect(Pup).to receive(:find_by_id).with("#{@dog1.id}").and_return(@dog1)
+      get :breed_avg_ratings, {:pup_id => @dog1.id} 
+    end
+    
+    it 'should return a json avg rating' do
+      expect = Pup.avg_ratings_by_breeds(@breed.name).to_json
+      get :breed_avg_ratings, {:pup_id => @dog1.id}
+      expect(response.body).to eq(expect)
+    end
   end
 end
