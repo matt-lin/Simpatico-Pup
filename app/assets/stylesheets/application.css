@@ -784,18 +784,18 @@ body,
         margin: 50px auto 0;
     }
     .text_faded {
-        margin-left: 0px;
-        margin-right: 0px;
+        margin-left: 0;
+        margin-right: 0;
         font-size: 100%
     }
     .prev {
         margin-top: 580px;
-        margin-left: 0px;
+        margin-left: 0;
     }
 
     .next {
         margin-top: 580px;
-        right: 0px;
+        right: 0;
     }
     #comment_title{
         font-size: 200%;
@@ -968,8 +968,8 @@ body,
 .container_inline {
     padding-right: 15px;
     padding-left: 15px;
-    margin-right: 0px;
-    margin-left: 0px;
+    margin-right: 0;
+    margin-left: 0;
     width: 100%;
     position: relative;
     text-align: center;
@@ -1075,9 +1075,9 @@ body,
   left: 0;
   bottom: 1px;
   background-color: white;
-  -moz-box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.8);
-  -webkit-box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.8);
-  box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.8);
+  -moz-box-shadow: inset 0 2px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 0 0 rgba(255, 255, 255, 0.8);
+  -webkit-box-shadow: inset 0 2px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 0 0 rgba(255, 255, 255, 0.8);
+  box-shadow: inset 0 2px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 0 0 rgba(255, 255, 255, 0.8);
 }
 .content input[type=checkbox]:checked + label:before {
   content: "\2713";
@@ -1096,7 +1096,7 @@ body,
   width: 100%;
   font-size: 1.1rem;
   padding: 10px;
-  margin: 20px 0px;
+  margin: 20px 0;
   background-color: #5ba2de;
   color: White;
   border: none;
@@ -1134,7 +1134,7 @@ body,
 }
 .content .buttons {
   width: 100%;
-  margin: 0px 0px;
+  margin: 0 0;
 }
 .contact .action{
     background-color: red;
@@ -1142,7 +1142,7 @@ body,
 .content .buttons button {
   float: left;
   width: 30%;
-  margin: 0px 1.5%;
+  margin: 0 1.5%;
 }
 
 
@@ -1192,7 +1192,7 @@ body,
   font-weight: 500;
 }
 
-.edit_account .sub_part h3 {
+.edit_account .sub_part {
   padding: 30px 0 10px 0;
 }
 
