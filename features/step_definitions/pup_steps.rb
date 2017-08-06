@@ -212,12 +212,6 @@ When /^I should see correct info updated/ do
     And  I should see "#HardToObedienceTrain"
     And  I should see "#VeryQuiet"
   }
-  page.find('#breeder_score')['innerHTML'].should == "5"
-  page.find('#health_score')['innerHTML'].should == "5"
-  page.find('#train_score')['innerHTML'].should == "5"
-  page.find('#social_score')['innerHTML'].should == "5"
-  page.find('#energy_score')['innerHTML'].should == "5"
-  page.find('#simpatico_score')['innerHTML'].should == "N/A"
 end
 
 When /^I should see correct info of dog1/ do

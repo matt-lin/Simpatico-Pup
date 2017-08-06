@@ -54,6 +54,7 @@ gem "activerecord-tableless", "~> 1.0"
 
 #Iter 4-2 activeadmin layout
 gem 'active_admin_theme'
+gem 'chart-js-rails'
 
 group :development, :test do
   gem 'sqlite3'

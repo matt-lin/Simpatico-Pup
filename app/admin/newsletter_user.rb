@@ -23,7 +23,7 @@ ActiveAdmin.register NewsletterUser do
   
   batch_action :email, form: {
       subject: :text,
-      message: :textarea ,
+      message: :textarea,
       "Include Attachment" => :checkbox,
       "Include Email Template" => :checkbox
     }, confirm: "Please enter the subject and the message below" do |ids, inputs|

@@ -121,7 +121,12 @@ GEM
     capybara-email (2.5.0)
       capybara (~> 2.4)
       mail
+
     chartkick (2.2.4)
+
+    chart-js-rails (0.1.3)
+      railties (> 3.1)
+
     city-state (0.0.13)
       rubyzip (~> 1.1)
     climate_control (0.2.0)
@@ -473,6 +478,7 @@ DEPENDENCIES
   byebug (= 5.0.0)
   capybara-email
   chartkick
+  chart-js-rails
   city-state
   codeclimate-test-reporter
   coffee-rails

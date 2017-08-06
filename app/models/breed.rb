@@ -11,7 +11,9 @@ class Breed < ActiveRecord::Base
   end
 
   def Breed.find_breed_by_substr(s)
-    Breed.all_breeds.select { |b| (Breed.contain? b.downcase, s.downcase) }
+    first = Breed.all_breeds.select { |b| b.downcase.starts_with? s.downcase }
+    second = Breed.all_breeds.select { |b| (Breed.contain? b.downcase, s.downcase) && (!b.downcase.starts_with? s.downcase) }
+    first.concat(second)
   end
 
   def Breed.find_by_name(breed_name)
