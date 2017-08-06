@@ -1,4 +1,5 @@
 class Breeder < ActiveRecord::Base
+  
   has_many :pups, dependent: :destroy
   attr_accessible :name, :city, :state, :website, :removed_reviews
 

@@ -45,6 +45,11 @@ gem 'protected_attributes'
 
 gem 'rich', github: 'jpros/rich', :branch => 'icons'
 
+#Iter 4-2 Growth management 
+gem 'cohort_me'
+gem 'groupdate'
+gem "chartkick"
+
 group :development, :test do
   gem 'sqlite3'
   gem 'byebug', '5.0.0'

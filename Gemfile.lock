@@ -118,6 +118,7 @@ GEM
     capybara-email (2.5.0)
       capybara (~> 2.4)
       mail
+    chartkick (2.2.4)
     city-state (0.0.13)
       rubyzip (~> 1.1)
     climate_control (0.2.0)
@@ -137,6 +138,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
+    cohort_me (0.0.3)
     columnize (0.9.0)
     concurrent-ruby (1.0.2)
     crass (1.0.2)
@@ -197,6 +199,8 @@ GEM
     github-markdown (0.6.9)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    groupdate (3.2.0)
+      activesupport (>= 3)
     haml (4.0.7)
       tilt
     has_scope (0.7.1)
@@ -461,9 +465,11 @@ DEPENDENCIES
   activeadmin_addons
   byebug (= 5.0.0)
   capybara-email
+  chartkick
   city-state
   codeclimate-test-reporter
   coffee-rails
+  cohort_me
   cucumber-rails
   database_cleaner
   devise (~> 3.2)
@@ -473,6 +479,7 @@ DEPENDENCIES
   font-awesome-rails
   formtastic (~> 3.0)
   geocoder
+  groupdate
   haml
   jasmine
   jquery-rails

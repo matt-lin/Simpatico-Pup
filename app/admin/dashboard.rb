@@ -2,6 +2,9 @@
 ActiveAdmin.register_page "Dashboard" do
 
   menu :priority => 1, :label => proc{ I18n.t("active_admin.dashboard") }
+  
+  index as: :grid do
+  end
 
   content :title => proc{ I18n.t("active_admin.dashboard") } do
     columns do
@@ -11,19 +14,32 @@ ActiveAdmin.register_page "Dashboard" do
             column :dog_name do |p|
               p.pup_name
             end
-            column :breeder_responsibility
-            column :overall_health
-            column :trainability
-            column :social_behavior
-            column :dog_behavior
-            column :energy_level
-            column :simpatico_rating
-            column :hashtag_1
-            column :hashtag_2
-            column :hashtag_3
-            column :created_at
           end
         end
+        panel "Today's User" do
+          table_for User.where(created_at: Date.today..Date.today.next) do
+            column :user_name do |p|
+              p.username
+            end
+          end
+        end
+        
+      panel "Site Statistic" do
+      columns do
+          column do
+            line_chart  User.group_by_day(:created_at).count, 
+            width: "500px", height: "300px", xtitle: "Date", ytitle: "Population", title: "User", animation: "true"
+          end
+          column do
+            line_chart  Pup.group_by_day(:created_at).count, 
+            width: "500px", height: "300px", xtitle: "Date", ytitle: "Population", title: "Pup Creation", animation: "true"
+          end
+                    column do
+            line_chart  Breeder.group_by_day(:id).count, 
+            width: "500px", height: "300px", xtitle: "Date", ytitle: "Population", title: "Breeder Creation", animation: "true"
+          end
+        end
+      end
       end
     end
   end

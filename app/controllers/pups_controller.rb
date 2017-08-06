@@ -88,7 +88,7 @@ currently limiting the number of ratings made by each dog owner to eight, and li
       # @Comment.breed = @pup.breed.name
       # @Comment.breeder = @pup.breeder.name
       @Comment.save
-
+      
       # Successfully save pup & comment
       flash[:notice] = "Thank You! #{@pup.pup_name} was successfully added to our database."
     end

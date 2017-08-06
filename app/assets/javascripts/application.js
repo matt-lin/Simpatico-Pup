@@ -16,3 +16,4 @@
 //= require thredded
 //= require bootstrap
 //= require_tree .
+//= require chartkick
