@@ -1205,4 +1205,58 @@ body,
     background-color: #fafbfc;
 }
 
+/* Dog detail page style  */
+#dog_detail .text_detail {
+    text-align: center;
+}
+
+#dog_detail .chart {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+}
+
+#dog_detail .action {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+#dog_detail .action .button {
+    display:inline-block;
+    width: 48%;
+}
+
+#dog_detail input {
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 75%;
+    padding: 6px 12px;
+}
+
+#dog_detail p {
+    font-size: 15px;
+}
+
+#dog_detail .hashtag_results {
+    background: #308ef2;
+}
+
+#dog_detail table {
+    width: 100%;
+}
+
+#dog_detail td {
+    padding: 10px 5px;
+    text-align:center;
+}
+
+#dog_detail .subsection {
+    margin: 40px 0;
+}
+/* End Dog detail page style*/
+
 /*****************************************************************************/
