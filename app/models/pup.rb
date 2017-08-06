@@ -1,5 +1,5 @@
 class Pup < ActiveRecord::Base
-  
+  is_impressionable :counter_cache => true
   #Iter3-2 include strong params to deal with mass assignment issue (By Gung Hiu Ho)
   #include ActiveModel::ForbiddenAttributesProtection
   
@@ -9,7 +9,7 @@ class Pup < ActiveRecord::Base
   belongs_to :breed
   
   has_one :comment, dependent: :destroy
-
+  
   validates :pup_name, :presence => true
   # validates :user_id, :presence => true
   validates :breeder_id, :presence => true

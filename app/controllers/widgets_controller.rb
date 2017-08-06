@@ -1,0 +1,3 @@
+ WidgetsController < ApplicationController
+   impressionist
+ end

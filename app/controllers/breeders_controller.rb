@@ -1,4 +1,5 @@
 class BreedersController < ApplicationController
+  impressionist
   skip_before_filter :delete_pup_from_session, :except => [:index, :substring_match, :search_name]
   before_filter :set_states, only: [:search_nearer_breeders, :new]
 
