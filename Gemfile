@@ -45,6 +45,8 @@ gem 'protected_attributes'
 
 gem 'rich', github: 'jpros/rich', :branch => 'icons'
 
+gem 'chart-js-rails'
+
 group :development, :test do
   gem 'sqlite3'
   gem 'byebug', '5.0.0'

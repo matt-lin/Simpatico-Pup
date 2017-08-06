@@ -73,9 +73,9 @@ class Pup < ActiveRecord::Base
 
   def Pup.avg_ratings_by_breeds(breed1, breed2='None')
     pups_by_breed = Pup.find_by_breeds(breed1, breed2)
-    results_hash = {:overall_health => 0, :trainability => 0, :social_behavior => 0,
+    results_hash = {:breeder_responsibility => 0, :overall_health => 0, :trainability => 0, :social_behavior => 0,
                     :dog_behavior => 0, :energy_level => 0, :simpatico_rating => 0}
-    results_num = {:overall_health => 0, :trainability => 0, :social_behavior => 0,
+    results_num = {:breeder_responsibility => 0, :overall_health => 0, :trainability => 0, :social_behavior => 0,
                    :dog_behavior => 0, :energy_level => 0, :simpatico_rating => 0}
     count = 0.0
     pups_by_breed.each do |pup|
