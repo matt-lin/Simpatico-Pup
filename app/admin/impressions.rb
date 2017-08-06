@@ -17,6 +17,16 @@ ActiveAdmin.register Impression do
                     width: "500px", height: "300px", xtitle: "Date", ytitle: "Population", title: "Subscriber Trending", animation: "true"
                 end
             end
+            columns do
+                column do
+                    pie_chart ({ 
+                    "Active User" => User.where(last_sign_in_at: (Time.now.midnight - 30.day)..Time.now).length,
+                    "Inactive User (Inactive for more than 30 Days)" => User.count - User.where(last_sign_in_at: (Time.now.midnight - 30.day)..Time.now).length
+                    }), library: {animation: {duration: 500, easing: 'easeOutQuad' }}, 
+                    donut: true, width: "500px", height: "300px", xtitle: "Date", ytitle: "Population", 
+                    title: "User Activity"
+                end
+            end
         end
         panel "Pup Statistics" do
             columns do
@@ -92,7 +102,7 @@ ActiveAdmin.register Impression do
                     "Rightmost button hit rate" => Impression.where(controller_name: "breeders").where(action_name: "nearer_breeders").where(created_at: Time.current.all_week).length
                     }), library: {animation: {duration: 500, easing: 'easeOutQuad' }}, 
                     donut: true, width: "500px", height: "300px", xtitle: "Date", ytitle: "Population", 
-                    title: "Request distribution", animation: "true"
+                    title: "Request distribution"
                 end
                 column do
                     area_chart ({
@@ -108,6 +118,15 @@ ActiveAdmin.register Impression do
                     library: {animation: {duration: 1000, easing: 'easeOutQuad' }}, 
                     width: "500px", height: "300px", xtitle: "Date", 
                     ytitle: "Population", title: "Request Handled", animation: "true"
+                end
+            end 
+        end
+        panel "Storage Statistics" do
+            columns do
+                column do
+                    pie_chart (Attachment.group(:document_content_type).sum(:document_file_size)), library: {animation: {duration: 500, easing: 'easeOutQuad' }}, 
+                    donut: true, width: "500px", height: "300px", xtitle: "Date", ytitle: "Population", 
+                    title: "Storage Space distribution"
                 end
             end 
         end
