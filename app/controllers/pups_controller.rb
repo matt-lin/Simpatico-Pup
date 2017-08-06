@@ -224,9 +224,7 @@ currently limiting the number of ratings made by each dog owner to eight, and li
       session[:step2] = true
       return
     else
-      flash[:modal] = "To keep our database as accurate as possible,
-we are collecting information only for dogs that have been residing in their current home for six months or more. Please come back to our 
-site and rate your dog after s/he has lived with you for a minimum of six months. Thank you."
+      flash[:modal] = "Less than 6 months"
     end
     session[:step2] = false
     redirect_to dog_how_long_path(:pup => {:name => session[:pup_name]})

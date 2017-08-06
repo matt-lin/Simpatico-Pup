@@ -1184,6 +1184,19 @@ body,
 #dog_detail .hashtag_results {
     background: #308ef2;
 }
+
+#dog_detail table {
+    width: 100%;
+}
+
+#dog_detail td {
+    padding: 10px 5px;
+    text-align:center;
+}
+
+#dog_detail .subsection {
+    margin: 40px 0;
+}
 /* End Dog detail page style*/
 
 /*****************************************************************************/

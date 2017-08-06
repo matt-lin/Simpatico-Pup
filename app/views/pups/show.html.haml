@@ -5,43 +5,72 @@
     
   %div{:class => "col-sm-6"}
     %div{:class => "text_detail"}
-      %h4= "Pup name: " 
-      %p= @pup.pup_name
-      %h4= "Breed: "
-      %p= @pup.breed.name
+      %table
+        %tbody
+          %tr
+            %td
+              %h4= "Pup name: " 
+              %p= @pup.pup_name
+            %td
+              %h4= "Breed: "
+              %p= @pup.breed.name
+          %tr
+            %td
+              %h4= "Breeder: " 
+              -if @pup.breeder.name == 'Unknown'
+                %p= @pup.breeder.name
+              -else
+                %p= @pup.breeder.name + " - " + @pup.breeder.address
+            %td
+              %h4= "Owned For: " 
+              %p= @pup.year.to_s + " year(s) and " + @pup.month.to_s + " month(s)"
+          %tr
+            %td
+              %h4= "Created at: "
+              %p= @pup.created_at.to_date.to_s
+            %td
+              %h4= "Updated at: " 
+              %p= @pup.updated_at.to_date.to_s
+    
+      // %h4= "Pup name: " 
+      // %p= @pup.pup_name
+      // %h4= "Breed: "
+      // %p= @pup.breed.name
       
-      %h4= "Breeder: " 
-      -if @pup.breeder.name == 'Unknown'
-        %p= @pup.breeder.name
-      -else
-        %p= @pup.breeder.name + " - " + @pup.breeder.address
+      // %h4= "Breeder: " 
+      // -if @pup.breeder.name == 'Unknown'
+      //   %p= @pup.breeder.name
+      // -else
+      //   %p= @pup.breeder.name + " - " + @pup.breeder.address
       
-      %h4= "Owned For: " 
-      %p= @pup.year.to_s + " year(s) and " + @pup.month.to_s + " month(s)"
+      // %h4= "Owned For: " 
+      // %p= @pup.year.to_s + " year(s) and " + @pup.month.to_s + " month(s)"
       
-      %h4= "Created at: "
-      %p= @pup.created_at.to_date.to_s
-      %h4= "Updated at: " 
-      %p= @pup.updated_at.to_date.to_s
+      // %h4= "Created at: "
+      // %p= @pup.created_at.to_date.to_s
+      // %h4= "Updated at: " 
+      // %p= @pup.updated_at.to_date.to_s
       
-      %h4= "Comment:"
-      -if @pup.comment
-        %p= @pup.comment.content
-      -else
-        %p No Comment
-        
-      %h4= "Hashtags:"
-      - if @pup.safe_hashtag_string.size() < 1
-        %p{:class => "no-hashtags"} This pup has no attribute tags
-      -else
-        - @pup.safe_hashtag_string.each do |hashtag|
-          - if hashtag != ""
-            %p{:class => "hashtag_results"}=hashtag
+      %div{:class => 'subsection'}
+        %h4= "Comment:"
+        -if @pup.comment
+          %p= @pup.comment.content
+        -else
+          %p No Comment
+      
+      %div{:class => 'subsection'}  
+        %h4= "Hashtags:"
+        - if @pup.safe_hashtag_string.size() < 1
+          %p{:class => "no-hashtags"} This pup has no attribute tags
+        -else
+          - @pup.safe_hashtag_string.each do |hashtag|
+            - if hashtag != ""
+              %p{:class => "hashtag_results"}=hashtag
 
   
   %div{:class => "col-sm-6"}
     %div{:class => 'chart'}
-      %canvas{:id => 'radar_chart', :width=> '400', :height=> '400'}
+      %canvas{:id => 'radar_chart', :width=> '380', :height=> '380'}
     
   %div{:class => "action"}
     %div{:class => 'button'}
