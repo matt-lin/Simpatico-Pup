@@ -16,4 +16,5 @@
 //= require thredded
 //= require bootstrap
 //= require_tree .
+//= require Chart.bundle
 //= require chartkick
