@@ -56,6 +56,8 @@ ActiveAdmin.register_page "Dashboard" do
             geo_chart Breeder.group(:state).count,  library: {region: 'US', resolution: 'provinces'},
             width: "500px", height: "300px", animation: "true", title: "Concentration"
           end
+        end
+        columns do
           column do
             pie_chart (
               {
@@ -65,7 +67,12 @@ ActiveAdmin.register_page "Dashboard" do
               "Rightmost button hit rate" => Impression.where(controller_name: "breeders").where(action_name: "nearer_breeders").where(created_at: Time.current.all_week).length
               }), width: "500px", height: "300px", xtitle: "Date", ytitle: "Population", title: "Request distribution", animation: "true"
           end
-           #{Impression.where(controller_name: "pups").where(action_name: "create").length}
+          column do
+            text_node "Request Handled: #{Impression.where(controller_name: "pups").count + Impression.where(controller_name: "breeders").count}"
+          end
+          column do
+            text_node "Failed rate on leftmostpage: #{(Impression.where(controller_name: "pups").count - Impression.where(controller_name: "pups").where(action_name: "create").where(created_at: Time.current.all_week).length*6) / Impression.where(controller_name: "pups").count}%"
+          end
         end
       end
       end

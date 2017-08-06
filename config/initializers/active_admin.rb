@@ -144,6 +144,7 @@ ActiveAdmin.setup do |config|
   #
   # To load a javascript file:
   config.register_javascript 'https://www.google.com/jsapi'
+  config.register_javascript 'countup.js'
 
 
   # == CSV options
