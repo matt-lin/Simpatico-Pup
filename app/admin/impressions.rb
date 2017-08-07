@@ -1,4 +1,4 @@
-ActiveAdmin.register Impression do
+ActiveAdmin.register Impression, as: "Site Analysi" do
     menu :label => 'Site Analysis'
     actions :index
     config.batch_actions = false
@@ -96,10 +96,10 @@ ActiveAdmin.register Impression do
             columns do
                 column do
                     pie_chart ({ 
-                    "Leftmost button hit rate" => Impression.where(controller_name: "pups").where(action_name: "create").where(created_at: Time.current.all_week).length,
-                    "Left mid button hit rate" => Impression.where(controller_name: "pups").where(action_name: "breed").where(created_at: Time.current.all_week).length,
-                    "Right mid button hit rate" => Impression.where(controller_name: "pups").where(action_name: "dog_breeder").where(created_at: Time.current.all_week).length,
-                    "Rightmost button hit rate" => Impression.where(controller_name: "breeders").where(action_name: "nearer_breeders").where(created_at: Time.current.all_week).length
+                    rate_dog_top + " " + rate_Dog_bottom => Impression.where(controller_name: "pups").where(action_name: "create").where(created_at: Time.current.all_week).length,
+                    find_breed_top + " " + find_breed_bottom => Impression.where(controller_name: "pups").where(action_name: "breed").where(created_at: Time.current.all_week).length,
+                    find_breeder_top + " " + find_breeder_bottom => Impression.where(controller_name: "pups").where(action_name: "dog_breeder").where(created_at: Time.current.all_week).length,
+                    search_breeder_top + " " + search_breeder_bottom => Impression.where(controller_name: "breeders").where(action_name: "nearer_breeders").where(created_at: Time.current.all_week).length
                     }), library: {animation: {duration: 500, easing: 'easeOutQuad' }}, 
                     donut: true, width: "500px", height: "300px", xtitle: "Date", ytitle: "Population", 
                     title: "Request distribution"
