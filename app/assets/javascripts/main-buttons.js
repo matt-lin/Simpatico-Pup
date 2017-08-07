@@ -56,8 +56,6 @@ var MainButtons = {
                 dataType: 'json',
                 timeout: 5000,
                 success: function(data) {
-                    console.log(data["content"])
-                    console.log($("#tagline-text").text())
                     $("#tagline-text_comment").text('"' + data["content"] + '"')
                     $("#tagline-text_breed").text('---- '+data["breed"])
                 },
@@ -65,7 +63,6 @@ var MainButtons = {
                     console.log("fail");
                 }
             })
-          slideIndex += n;
           showSlides(slideIndex);
         }
         
