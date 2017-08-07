@@ -1,10 +1,13 @@
 ActiveAdmin.register User do
   
-  menu :priority => 12
+  menu :priority => 13
   
   filter :username
   filter :created_at
   filter :last_sign_in_at
+  
+  actions :all, except: [:update, :edit, :new]
+  config.batch_actions = false
 
   index do
     column :id
