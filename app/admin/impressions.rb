@@ -22,7 +22,7 @@ ActiveAdmin.register Impression, as: "Site Analysi" do
 		def pie(data, title)
 			pie_chart (data), library: {animation: {duration: 500, easing: 'easeOutQuad' }}, 
 				donut: true, width: "500px", height: "300px", xtitle: "Date", ytitle: "Population", 
-				title: "title"
+				title: title
 		end
 		
 		panel "User Statistics" do
