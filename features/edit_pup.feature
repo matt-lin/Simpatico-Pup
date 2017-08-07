@@ -78,6 +78,7 @@ Background: User already login
     Then  I should be on the "Edit Pup Rating" page
     And   I should see "The breeder you enter is not in our database" 
     When  I follow "Add Breeder"
+    And I wait for 1 seconds
     Then  I should be on the "Add breeder" page
     When  I finish adding a new breeder 
     Then  I should be on the "Edit Pup Rating" page
@@ -88,6 +89,7 @@ Background: User already login
     Then  I should be on the "Pup Rating Detail" page
     And   I should see correct info of dog1
     When  I press "Delete pup"
+    And I wait for 1 seconds
     Then  I should be on the RateMyPup home page
     And   I should see "Pup dog1 has been deleted"
     When  I am on the "Pups Ratings" page
@@ -97,5 +99,6 @@ Background: User already login
   Scenario: users can go to details page and edit pup
     When  I follow "More" for dog1
     When  I press "Edit pup"
+    And I wait for 1 seconds
     Then  I should be on the "Edit Pup Rating" page
 #End iter 3-1
