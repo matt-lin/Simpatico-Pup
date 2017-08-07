@@ -44,7 +44,7 @@ helper_method :subscribed?
       temp << 'Email has already been taken'
     end
     
-    if temp
+    if temp.length != 0
       flash[:notice] = "#{temp.length} errors prohibited this user from being saved:<br/>"
       temp.each_with_index do |msg, id|
         flash[:notice] += "&emsp;&#8226; " + msg 
