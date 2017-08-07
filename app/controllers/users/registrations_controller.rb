@@ -40,6 +40,9 @@ helper_method :subscribed?
     if params[:user][:password] =~ /^\s*$/
       temp << 'Password can not contain whitespace'
     end
+    if User.find_by_email(params[:user][:email])
+      temp << 'Email has already been taken'
+    end
     
     if temp
       flash[:notice] = "#{temp.length} errors prohibited this user from being saved:<br/>"

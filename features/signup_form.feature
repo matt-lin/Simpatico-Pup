@@ -55,7 +55,7 @@ Background: The user is on signup page
     And I fill in "user_password_confirmation" with "12"
     And I check "user_agreement"
     And I press "Create Account"
-    Then I should see "Password is too short (minimum is 8 characters)"
+    Then I should see "Password must contain more than 8 characters"
     
   Scenario: Password not same as password_confirmation(sad path)
     Then I fill in "user_username" with "example4"
@@ -64,7 +64,7 @@ Background: The user is on signup page
     And I fill in "user_password_confirmation" with "87654321"
     And I check "user_agreement"
     And I press "Create Account"
-    Then I should see "Password confirmation doesn't match Password"
+    Then I should see "Password not same as Confirmation"
     
   Scenario: Inactivated acccount should not be able to log in
     Given I am on the RateMyPup home page
