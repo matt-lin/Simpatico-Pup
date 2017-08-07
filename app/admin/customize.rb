@@ -1,12 +1,12 @@
 # Iter3-2 Site preference  (By Gung Hiu Ho, Licong Wang)
 ActiveAdmin.register Customize do
   
-  menu :label => 'Site preference'
+  menu :priority => 11
+  menu :label => 'Site Preference'
   config.clear_sidebar_sections!
   config.batch_actions = false
 
   actions :index, :edit
-  #menu :priority => 11
   
   scope :all, :default => true
   scope :'Site Title' do |a|
