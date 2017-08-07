@@ -7,13 +7,16 @@ ActiveAdmin.register Pup, as: "Dogs" do
   filter :breeder
   filter :breed
   filter :pup_name
-  actions :all, except: [:update, :show, :new, :edit]
+  actions :all, except: [:update, :new, :edit]
   
 index do
   
     selectable_column
     column :name do |p|
-      p.pup_name
+     link_to p.pup_name, admin_dog_path(p)
+    end
+    column :age do |p|
+      p.year.to_s + " year(s) and " + p.month.to_s + " month(s)"
     end
     column :breed do |p|
       p.breed.name
@@ -23,21 +26,10 @@ index do
     end
     column :user
     column :comment do |p|
-      if p.comment
-        p.comment.content
-      else
-        ""
-      end
+      !p.comment.nil? ? p.comment.content : ""
     end
     column :created_at
     column :updated_at
-    column :breeder_responsibility
-    column :overall_health
-    column :trainability
-    column :social_behavior
-    column :dog_behavior
-    column :energy_level
-    column :simpatico_rating
     actions
 end
 
@@ -47,15 +39,7 @@ end
   }
 
   action_item :only => :show do
-    link_to "Edit Dog" , edit_admin_dog_path
-  end
-
-  action_item :only => :show do
     link_to "Delete Dog" , admin_dog_path, method: :delete, data: { confirm: 'Are you sure you want to delete ?'}
-  end
-
-  action_item only: :show do
-    link_to 'Delete Dog At Breeder Request', admin_dog_path(type: :user), method: :delete, data: { confirm: 'Are you sure you want to delete ?'}
   end
 
   controller do

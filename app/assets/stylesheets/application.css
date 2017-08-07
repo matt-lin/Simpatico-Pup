@@ -783,6 +783,20 @@ h3.mission-text {
     text-align: center;
 }
 
+
+
+/*Iter 1-2*/
+/**************************************full img background**********/
+html,
+body,
+.view {
+    height: 100%;
+}
+
+/************************************/
+
+
+
 /***********************log in and singup***********************/
 * {
   -moz-box-sizing: border-box;
@@ -1081,6 +1095,7 @@ h3.mission-text {
     }
     .row_top {
     background: url("/assets/pup3b.jpeg")right center;
+
     }
     #titleline_comment{
         font-size: 220%;
@@ -1135,7 +1150,6 @@ h3.mission-text {
         max-width: 70%;
         margin-top: 10px;
     }
-
 
 }
 /*End for Iter 1-2*/

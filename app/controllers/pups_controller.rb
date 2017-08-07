@@ -1,4 +1,5 @@
 class PupsController < ApplicationController
+  impressionist
   before_filter :check_sign_in, :only => [:new, :dog_name, :dog_how_long, :dog_breed, :dog_breeder]
 
   # Devise. Methods not in the list below will require a user to be logged in.
@@ -86,7 +87,6 @@ currently limiting the number of ratings made by each dog owner to eight, and li
       @pup.save
       @Comment.pup_id = @pup.id
       @Comment.save
-
       # Successfully save pup & comment
       flash[:notice] = "Thank You! #{@pup.pup_name} was successfully added to our database."
     end

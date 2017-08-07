@@ -48,6 +48,7 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    active_admin_theme (1.0.3)
     active_record_union (1.2.0)
       activerecord (>= 4.0)
     activeadmin (1.0.0.pre1)
@@ -77,6 +78,8 @@ GEM
       activemodel (= 4.2.7.1)
       activesupport (= 4.2.7.1)
       arel (~> 6.0)
+    activerecord-tableless (1.3.4)
+      activerecord (>= 2.3.0)
     activesupport (4.2.7.1)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
@@ -118,8 +121,12 @@ GEM
     capybara-email (2.5.0)
       capybara (~> 2.4)
       mail
+
+    chartkick (2.2.4)
+
     chart-js-rails (0.1.3)
       railties (> 3.1)
+
     city-state (0.0.13)
       rubyzip (~> 1.1)
     climate_control (0.2.0)
@@ -139,6 +146,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
+    cohort_me (0.0.3)
     columnize (0.9.0)
     concurrent-ruby (1.0.2)
     crass (1.0.2)
@@ -199,6 +207,8 @@ GEM
     github-markdown (0.6.9)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    groupdate (3.2.0)
+      activesupport (>= 3)
     haml (4.0.7)
       tilt
     has_scope (0.7.1)
@@ -215,6 +225,8 @@ GEM
     htmlentities (4.3.4)
     i18n (0.7.0)
     ice_nine (0.11.2)
+    impressionist (1.6.0)
+      nokogiri (~> 1)
     inherited_resources (1.7.2)
       actionpack (>= 3.2, < 5.2.x)
       has_scope (~> 0.6)
@@ -459,14 +471,18 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_admin_theme
   activeadmin (= 1.0.0.pre1)
   activeadmin_addons
+  activerecord-tableless (~> 1.0)
   byebug (= 5.0.0)
   capybara-email
+  chartkick
   chart-js-rails
   city-state
   codeclimate-test-reporter
   coffee-rails
+  cohort_me
   cucumber-rails
   database_cleaner
   devise (~> 3.2)
@@ -476,7 +492,9 @@ DEPENDENCIES
   font-awesome-rails
   formtastic (~> 3.0)
   geocoder
+  groupdate
   haml
+  impressionist
   jasmine
   jquery-rails
   jquery-ui-rails

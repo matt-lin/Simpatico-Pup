@@ -41,7 +41,7 @@ ActiveAdmin.register Breeder do
       panel "Dogs" do
         table_for breeder.pups do
           column :dog_name do |p|
-            p.pup_name
+            link_to p.pup_name, admin_dog_path(p)
           end
           column :comment do |p|
             p.comment.content
