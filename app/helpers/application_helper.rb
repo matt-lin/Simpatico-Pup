@@ -67,7 +67,6 @@ module ApplicationHelper
     return Customize.find_by_name("Function_rightmost_Bottom").content
   end
   
-  
   #Message UI
   def comment_title
     return Customize.find_by_name("Comment_Title").content
