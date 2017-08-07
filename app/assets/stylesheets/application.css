@@ -846,6 +846,7 @@ body,
   -webkit-box-shadow: 0 0 10px black;
   box-shadow: 0 0 10px black;
 }
+
 #log_in {
       margin-top: 10%;
       /*margin-bottom: %;*/
@@ -1094,7 +1095,9 @@ body,
         margin-left: 15px;
     }
     .row_top {
-    background: url("/assets/pup3b.jpeg")right center;
+
+        /*linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),*/
+        background: url("/assets/pup3b.jpg")right center;
 
     }
     #titleline_comment{
@@ -1150,6 +1153,10 @@ body,
         max-width: 70%;
         margin-top: 10px;
     }
-
+    
+    .edit_account {
+        margin-right: 0px;
+        margin-left: 20px;
+    }
 }
 /*End for Iter 1-2*/
