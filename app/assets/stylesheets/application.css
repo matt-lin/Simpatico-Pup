@@ -1153,6 +1153,10 @@ body,
         max-width: 70%;
         margin-top: 10px;
     }
-
+    
+    .edit_account {
+        margin-right: 0px;
+        margin-left: 20px;
+    }
 }
 /*End for Iter 1-2*/
