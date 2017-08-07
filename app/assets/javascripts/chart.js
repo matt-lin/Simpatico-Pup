@@ -15,6 +15,10 @@ var chart = {
                 fontSize: 16,
                 display: true,
                 text: 'Your pup vs. Breed average'
+            },
+            animation: {
+                duration: 1000,
+                easing: 'easeOutQuart',
             }
     },
     

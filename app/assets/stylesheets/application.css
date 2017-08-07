@@ -671,8 +671,6 @@ h3.mission-text {
 }
 
 
-
-
 /* Terms of Service and Privacy Policy  */
 
 .para {
@@ -730,6 +728,10 @@ h3.mission-text {
     text-align: center;
 }
 
+
+/*Iter 1-2*/
+
+/************************************/
 /*CONTACT INFO CSS*/
 
 .contact {
@@ -965,7 +967,6 @@ body,
   margin: 0 1.5%;
 }
 
-
 .content .buttons:after {
   content: "";
   display: block;
@@ -1084,15 +1085,17 @@ body,
 /*Mobile friendly */
 
 @media only screen 
-    and (max-device-width: 767px) {
+    and (max-device-width: 536px) {
       
     .contact-text-sm {
         color: white;
-        font-size: 3px;
+        font-size: 6px;
         text-align: center;
+        margin-left: 15px;
     }
     .row_top {
-        background: url("/assets/pup3b.jpeg")right center;
+    background: url("/assets/pup3b.jpeg")right center;
+
     }
     #titleline_comment{
         font-size: 220%;
@@ -1147,23 +1150,6 @@ body,
         max-width: 70%;
         margin-top: 10px;
     }
-    
-    
-    /**************************************************/
-
-    .edit_account{
-        margin-left: 20px;
-        margin-right: 0px;
-    }
-    
-    /**************************************************/
-
 
 }
-
-
 /*End for Iter 1-2*/
-
-
-
-
