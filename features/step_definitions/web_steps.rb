@@ -234,3 +234,7 @@ end
 Then /^I should see a "(.*)" input with placeholder "(.*)"/ do |type, val|
   expect(page).to have_selector("input[type='" + type + "'][placeholder='" + val + "']")
 end
+
+When /^I wait for (\d+) seconds$/ do |n|
+  sleep(n.to_i)
+end
