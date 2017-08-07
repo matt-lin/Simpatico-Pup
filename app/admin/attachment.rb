@@ -39,7 +39,6 @@ ActiveAdmin.register Attachment do
     link_to "Upload File" , "/admin/attachments/new" 
   end
 
-  
   sidebar :"How to use" do
     h6 "Batch Actions"
     ul do
