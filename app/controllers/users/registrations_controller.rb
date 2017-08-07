@@ -17,7 +17,41 @@ helper_method :subscribed?
 
   # POST /resource
   def create
-
+    
+    temp = []
+    if params[:user][:password].empty?                 
+      temp << 'Password can not be empty'
+    end
+    if params[:user][:password_confirmation].empty? 
+      temp << 'Password confirmation can not be empty'
+    end
+    if params[:user][:password] != params[:user][:password_confirmation]
+      temp << "Password not same as Confirmation"
+    end
+    if params[:user][:password].length<8
+      temp << 'Password must contain more than 8 characters'
+    end
+    if params[:user][:email].empty?
+      temp << 'Email can not be empty'
+    end
+    if params[:user][:username].empty?
+      temp << "Username can not be empty"
+    end
+    if params[:user][:password] =~ /^\s*$/
+      temp << 'Password can not contain whitespace'
+    end
+    
+    if temp
+      flash[:notice] = "#{temp.length} errors prohibited this user from being saved:<br/>"
+      temp.each_with_index do |msg, id|
+        flash[:notice] += "&emsp;&#8226; " + msg 
+      end
+    end
+    
+    puts '*'*80
+    puts temp
+    puts '*'*80
+    
     build_resource(sign_up_params)
     resource.save
 
@@ -28,11 +62,6 @@ helper_method :subscribed?
         UserMailer.account_activation(@user).deliver_now
         flash[:success] += " Please check your email to activate your account."
         respond_with resource, location: after_sign_up_path_for(resource)
-        
-      # else
-      #   set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
-      #   expire_data_after_sign_in!
-      #   respond_with resource, location: after_inactive_sign_up_path_for(resource)
       
       end
       
