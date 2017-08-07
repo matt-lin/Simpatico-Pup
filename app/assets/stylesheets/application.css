@@ -844,6 +844,7 @@ body,
   -webkit-box-shadow: 0 0 10px black;
   box-shadow: 0 0 10px black;
 }
+
 #log_in {
       margin-top: 10%;
       /*margin-bottom: %;*/
@@ -1092,7 +1093,8 @@ body,
         text-align: center;
     }
     .row_top {
-        background: url("/assets/pup3b.jpeg")right center;
+        /*linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),*/
+        background: url("/assets/pup3b.jpg")right center;
     }
     #titleline_comment{
         font-size: 220%;
