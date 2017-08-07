@@ -65,6 +65,15 @@ ActiveAdmin.register Attachment do
     .SCT, .SHB, .SYS, .VB, .VBE, .VBS, .VXD, .WSC, .WSF, .WSH"
   end
   
+  sidebar "Storage Status" do
+    columns do
+      column do
+        pie_chart (Attachment.group(:catagory).sum(:document_file_size)), library: {animation: {duration: 500, easing: 'easeOutQuad' }}, 
+          donut: true, width: "200px", height: "200px", xtitle: "Date", ytitle: "Population"
+      end
+    end 
+  end
+  
   batch_action :mark do |ids|
     batch_action_collection.find(ids).each do |a|
       a.marked = true
