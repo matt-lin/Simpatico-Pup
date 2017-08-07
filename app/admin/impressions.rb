@@ -35,7 +35,7 @@ ActiveAdmin.register Impression do
                     width: "500px", height: "300px", xtitle: "Date", ytitle: "Population", title: "Pup Creation", animation: "true"
                 end
                 column do
-                    bar_chart Pup.group(:year).count, library: {animation: {duration: 1050, easing: 'easeOutQuad' }},
+                    column_chart Pup.group(:year).count, library: { animation: {duration: 1050, easing: 'easeOutQuad' }}, discrete: true,
                     width: "500px", height: "300px", xtitle: "Population", ytitle: "Year", title: "Age saturation", animation: "true"
                 end
             end
