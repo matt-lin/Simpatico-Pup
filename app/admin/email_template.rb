@@ -17,7 +17,7 @@ ActiveAdmin.register EmailTemplate do
       end
       redirect_to admin_newsletter_users_path
     else
-      redirect_to collection_path, notice: "A email can only includ one Email Template"
+      redirect_to collection_path, notice: "An email can only include one Email Template"
     end
   end
   
