@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe BreedersController do
-  describe "looking for all the breeders" do
-    it "should retrieve all the breeders" do
-      Breeder.should_receive(:all)
-      get :index
-      response.should render_template "index"
-    end
-  end
+  # describe "looking for all the breeders" do
+  #   it "should retrieve all the breeders" do
+  #     Breeder.should_receive(:all)
+  #     get :index
+  #     response.should render_template "index"
+  #   end
+  # end
   
   describe "search for breeder" do
     it "should only redirect to root if invalid params" do
