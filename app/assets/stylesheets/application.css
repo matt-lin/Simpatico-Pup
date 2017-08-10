@@ -368,9 +368,8 @@ body {
     display: none;
 }
 
-/* homepage background */
 .row_top {
-    background: url("/system/attachments/development/7595bc13dcaf4476eb146c3fb096b5ea/12/original/testbac.png")center center;
+    background: url("/assets/pup5.jpeg")center center;
     background-size: cover;
     height: 720px;
     width: 100%;
