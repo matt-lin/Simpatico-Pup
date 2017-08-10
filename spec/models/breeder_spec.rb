@@ -19,6 +19,7 @@ describe Breeder do
   
   describe "find all matching breeders" do
     before :each do
+      unknown_breeder = FactoryGirl.create(:breeder, :name => "Unknown")
       @breeders = (1..10).map { |i| FactoryGirl.create(:breeder) }
       @other_breeders = (1..5).map { |i| FactoryGirl.create(:breeder, :name => "Tedus") }
       @pups = (1..10).map {|i| FactoryGirl.create(:pup, :breeder_id => @breeders[i-1].id)}
@@ -80,6 +81,7 @@ describe Breeder do
   end
   describe "validate a breeder" do
     before :each do
+      unknown_breeder = FactoryGirl.create(:breeder, :name => "Unknown")
       breeder = FactoryGirl.create(:breeder, :name=>"John")
     end
     it "should return true if breeder name is valid" do

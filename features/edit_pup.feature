@@ -47,7 +47,7 @@ Background: User already login
   
   Scenario: users can delete ratings 
     When  I follow "Delete" for dog1
-    Then  I should be on the RateMyPup home page
+    Then  I should be on the "Pups Ratings" page
     And   I should see "Pup dog1 has been deleted"
     When  I am on the "Pups Ratings" page
     Then  I should not see "dog1"'s basic info
@@ -90,7 +90,7 @@ Background: User already login
     And   I should see correct info of dog1
     When  I press "Delete pup"
     And I wait for 1 seconds
-    Then  I should be on the RateMyPup home page
+    Then  I should be on the "Pups Ratings" page
     And   I should see "Pup dog1 has been deleted"
     When  I am on the "Pups Ratings" page
     Then  I should not see "dog1"

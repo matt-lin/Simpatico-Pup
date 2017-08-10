@@ -121,7 +121,7 @@ class Breeder < ActiveRecord::Base
   end
 
   def Breeder.skip_one
-    Breeder.where("id >= 1")
+    Breeder.where("id > 1")
   end
 
 end

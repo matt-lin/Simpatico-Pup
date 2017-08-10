@@ -9,6 +9,7 @@ Feature: Filter autofill response by breeder city and state
     Given the default layout exist
     Given the following breeders exist:
       | name            | city     | state  |
+      | Unknown         | Berkeley | CA     |
       | Carl            | Berkeley | CA     |
       | Chris           | Berkeley | CA     |
       | Alex            | Richmond | CA     |

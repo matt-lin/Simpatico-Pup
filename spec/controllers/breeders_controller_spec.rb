@@ -22,6 +22,7 @@ describe BreedersController do
     end
     
     it "should display breeder info" do
+      unknown_breeder = FactoryGirl.create(:breeder, :name => 'Unknown')
       @breeder = FactoryGirl.create(:breeder)
       @user = FactoryGirl.create(:user)
       sign_in :user, @user
