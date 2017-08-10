@@ -80,7 +80,7 @@ class Pup < ActiveRecord::Base
     count = 0.0
     pups_by_breed.each do |pup|
       results_hash.each do |rating, _value|
-        unless pup.send(rating) == nil
+        unless pup.send(rating) == 0
           results_hash[rating] += pup.send(rating)
           results_num[rating] += 1
         end

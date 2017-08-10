@@ -8,8 +8,9 @@ Feature: autofill breeder name into breeder forms
     Given the default layout exist
     Given the following breeders exist:
       | name            | city     | state |
-      | Chris            | Berkeley | CA    |
-      | Alex           | Berkeley | CA    |
+      | Unknown         | Berkeley | CA    |
+      | Chris           | Berkeley | CA    |
+      | Alex            | Berkeley | CA    |
       | Carl            | Berkeley | CA    |
       | Alexander       | Berkeley | CA    |
       | Michael Jackson | Berkeley | CA    |

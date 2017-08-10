@@ -119,6 +119,7 @@ describe PupsController do
   
   describe "creating a pup review" do
     before :each do
+      unknown_breeder = FactoryGirl.create(:breeder, :name => "Unknown")
       @user = FactoryGirl.create(:user)
       sign_in :user, @user
       @temp_pup = Pup.new()
@@ -468,7 +469,7 @@ describe PupsController do
       delete :destroy, :id => 1
       
       expect(flash[:notice]).to end_with 'has been deleted'
-      response.should redirect_to root_path
+      response.should redirect_to user_pups_path
     end
     
     it "should not destroy the dog if pup doesn't exist" do
@@ -476,7 +477,7 @@ describe PupsController do
         delete :destroy, :id => 2
       }.to_not change(Pup, :count) 
       expect(flash[:notice]).to_not be_empty
-      response.should redirect_to root_path
+      response.should redirect_to user_pups_path
     end
     
     it "should not delete the dog if user is not the owner" do
@@ -486,7 +487,7 @@ describe PupsController do
         delete :destroy, :id => @dog1.id
       }.to_not change(Pup, :count) 
       expect(flash[:notice]).to_not be_empty
-      response.should redirect_to root_path
+      response.should redirect_to user_pups_path
     end
   end
   describe "searching a dog by breed" do

@@ -134,7 +134,7 @@ currently limiting the number of ratings made by each dog owner to eight, and li
       @pup.destroy
       flash[:notice] = "Pup #{@pup.pup_name} has been deleted"
     end
-    redirect_to root_path
+    redirect_to user_pups_path
   end
   
   def edit

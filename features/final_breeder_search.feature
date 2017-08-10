@@ -9,6 +9,7 @@ Feature: Allow searching by only city, state, or breed
     Given the default layout exist
     Given the following breeders exist:
       | name            | city     | state  |
+      | Unknown         | Berkeley | CA     |
       | George W. Bush  | Waco     | TX     |
       | Carl            | Berkeley | CA     |
       | Chris           | Berkeley | CA     |
