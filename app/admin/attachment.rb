@@ -90,6 +90,17 @@ ActiveAdmin.register Attachment do
     redirect_to collection_path, notice: "The selected attachments have been unmarked and will not be attached in email."
   end
   
+  batch_action :background do |id|
+    if id.length == 1
+      batch_action_collection.find(id).each do |a|
+        Attachment.set_background a.document.url
+      end
+      redirect_to admin_attachments_path, notice: "The selected image has been set as the homepage background."
+    else
+      redirect_to collection_path, notice: "Only one image should be selected."
+    end
+  end
+  
   index do
     selectable_column
     column :document_file_name

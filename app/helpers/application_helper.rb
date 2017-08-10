@@ -118,6 +118,10 @@ module ApplicationHelper
     return Customize.find_by_name("Nav_Bar_5").content
   end
   
+  def background
+    return Attachment.background
+  end
+  
   def bootstrap_class_for flash_type
       case flash_type.to_s
       when "success"

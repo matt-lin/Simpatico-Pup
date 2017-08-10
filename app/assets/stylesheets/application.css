@@ -368,13 +368,6 @@ body {
     display: none;
 }
 
-.row_top {
-    background: url("/assets/pup6.jpeg")center center;
-    background-size: cover;
-    height: 720px;
-    width: 100%;
-}
-
 .alert_r{
     padding: 15px;
     border: 1px solid transparent;

@@ -6,13 +6,19 @@ class Attachment < ActiveRecord::Base
     
     FILE_CATAGORIES = ["Newsletter", "Document", "Image", "Music", "Video", "Administive", "Others"]
     
-    attachment_virtual_path1 = "/system/attachments/:rails_env/:hashed_path/:id/:style/:basename.:extension"
-    attachment_real_path1 = ":rails_root/public" + attachment_virtual_path1
-    
-    # background picture should be saved here
-    attachment_virtual_path2 = "/app/assets/images/:basename.:extension"
-    attachment_real_path2 = ":rails_root/" + attachment_virtual_path2
+    attachment_virtual_path = "/system/attachments/:rails_env/:hashed_path/:id/:style/:basename.:extension"
+    attachment_real_path = ":rails_root/public" + attachment_virtual_path
 
-    has_attached_file :document, :path => attachment_real_path1, :url => attachment_virtual_path1
+    has_attached_file :document, :path => attachment_real_path, :url => attachment_virtual_path
     do_not_validate_attachment_file_type :document
+    
+    @@background = ""
+    
+    def Attachment.set_background url
+        @@background = url
+    end
+    
+    def Attachment.background
+        return @@background
+    end
 end
