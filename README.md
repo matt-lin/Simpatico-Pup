@@ -28,12 +28,12 @@ temperament of the pet dogs being produced.
   2. Ruby: 2.2.2
 
 ###Setup
-<br/>*after cloning run rake db:setup to set up environment*
-<br/>*Run bundle install --without production*
-<br/>*If using a slow environment(e.g. Cloud9), run rake cucumber might fail on features that involve Javascript, especially edit_pup.feature and admin_upload.feature(these files involve heavy Javscript)*
-<br/>*Travis CI should always be passing*
-<br/>*If failed, try either re-run or only run individuals feature files, all the features files should be passing*
-<br/>*Heroku site need to run rake db:migrate and rake db:seed*
+<br/>after cloning run rake db:setup to set up environment
+<br/>Run bundle install --without production
+<br/>If using a slow environment(e.g. Cloud9), run rake cucumber might fail on features that involve Javascript, especially edit_pup.feature and admin_upload.feature(these files involve heavy Javscript)
+<br/>Travis CI should always be passing
+<br/>If failed, try either re-run or only run individuals feature files, all the features files should be passing
+<br/>Heroku site need to run rake db:migrate and rake db:seed
 
 
 ####Current Contributors (in no particular order)
