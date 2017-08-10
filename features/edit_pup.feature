@@ -55,6 +55,7 @@ Background: User already login
     
   Scenario: users can edit ratings
     When  I follow "Edit" for dog1
+    And I wait for 2 seconds
     Then  I should be on the "Edit Pup Rating" page
     When  I fill in new info
     And   I press "Update"
