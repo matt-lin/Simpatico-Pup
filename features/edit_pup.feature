@@ -61,7 +61,7 @@ Background: User already login
     And I wait for 2 seconds
     Then  I should be on the "Pups Ratings" page
     And   I should see "Pup has been updated"
-    When  I follow "More" for dog1
+    When  I follow "View" for dog1
     Then  I should see correct info updated
     
   Scenario: users can cancel the edit before saving
@@ -70,7 +70,7 @@ Background: User already login
     And   I follow "Cancel"
     And I wait for 2 seconds
     Then  I should be on the "Pups Ratings" page
-    When  I follow "More" for dog1
+    When  I follow "View" for dog1
     Then  I should see correct info of dog1
     
   Scenario: users can add breeder if he wants
@@ -87,7 +87,7 @@ Background: User already login
     And   I should see "Breeder has been updated!"
   
   Scenario: users can go to details page and delete pup
-    When  I follow "More" for dog1
+    When  I follow "View" for dog1
     Then  I should be on the "Pup Rating Detail" page
     And   I should see correct info of dog1
     When  I press "Delete pup"
@@ -99,7 +99,7 @@ Background: User already login
     And   I should see "dog2"'s rating    
     
   Scenario: users can go to details page and edit pup
-    When  I follow "More" for dog1
+    When  I follow "View" for dog1
     When  I press "Edit pup"
     And I wait for 2 seconds
     Then  I should be on the "Edit Pup Rating" page
