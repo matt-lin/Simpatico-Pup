@@ -73,7 +73,8 @@ class User < ActiveRecord::Base
   def create_activation_digest
     self.activation_token  = User.new_token
     self.activation_digest = User.digest(activation_token)
-    # update_attribute(:activation_digest, self.activation_token)
+    update_attribute(:activation_digest, self.activation_token)
+    self.save!
   end
   #End for Iter 2-2
 
