@@ -1,8 +1,9 @@
 class PupsController < ApplicationController
+  impressionist
   before_filter :check_sign_in, :only => [:new, :dog_name, :dog_how_long, :dog_breed, :dog_breeder]
 
   # Devise. Methods not in the list below will require a user to be logged in.
-  before_filter :authenticate_user!, except: [:index, :new, :main, :breed, :search_breed]
+  before_filter :authenticate_user!, except: [:index, :new, :main, :breed, :search_breed, :random_comment]
 
   # The Root Path
   def main
@@ -18,6 +19,10 @@ class PupsController < ApplicationController
       @comment_breed = selected_comment.breed
     end
     # END of Iter 2
+  end
+  
+  def random_comment
+    render :json => SelectedComment.find_randomly
   end
 
   # The true rating page
@@ -53,7 +58,7 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
 
   # Rails default methods
   def index
-    @pups = Pup.all
+    redirect_to root_path
   end
 
   def create
@@ -81,16 +86,14 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     else
       @pup.save
       @Comment.pup_id = @pup.id
-      # @Comment.breed = @pup.breed.name
-      # @Comment.breeder = @pup.breeder.name
       @Comment.save
-
       # Successfully save pup & comment
       flash[:notice] = "Thank You! #{@pup.pup_name} was successfully added to our database."
     end
       redirect_to root_path
   end
   
+  # Iter3-2 (Jeff Yu, Gilbert Lo)
   # Still need check if it is owner and check if dog exist
   # pup_name, year, month updated directly using update_attributes
   # Update comment, breed, breeder cannot be done directly
@@ -120,36 +123,18 @@ currently limiting the number of ratings made by each dog owner to eight, and li
       flash.keep
       redirect_to root_path and return
     end
-
-    # if @pup.nil?
-    #   flash[:notice] = "The dog you are trying to show is not exist"
-    #   redirect_to root_path and return
-    # elsif !owner?(@pup)
-    #   flash[:notice] = "The dog you are trying to show is not yours"
-    #   redirect_to root_path and return
-    # end
     
-    if @pup.comment.nil?
-      @pup.update_comment("")
-    end
+    session[:from] = 'dog_show'
   end
 
   def destroy
     @pup = Pup.find_by_id params[:id]
     
-    # if @pup.nil?
-    #   flash[:notice] = "Dog doesn't exist"
-    # elsif !owner?(@pup)
-    #   flash[:notice] = "The dog you are trying to destroy is not yours"
-    # else  
-    #   @pup.destroy
-    #   flash[:notice] = "Pup #{@pup.pup_name} has been deleted" 
-    # end
     if valid_access(@pup)
       @pup.destroy
       flash[:notice] = "Pup #{@pup.pup_name} has been deleted"
     end
-    redirect_to root_path
+    redirect_to user_pups_path
   end
   
   def edit
@@ -160,14 +145,6 @@ currently limiting the number of ratings made by each dog owner to eight, and li
       flash.keep
       redirect_to root_path and return
     end
-
-    # if @pup.nil?
-    #   flash[:notice] = "The dog you are trying to edit is not exist"
-    #   redirect_to root_path and return
-    # elsif !owner?(@pup)
-    #   flash[:notice] = "The dog you are trying to edit is not yours"
-    #   redirect_to root_path and return
-    # end
     
     @breed = @pup.breed.name
     breeder = @pup.breeder
@@ -187,6 +164,12 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     if pup
       render :json => pup.ratings
     end
+  end
+  #End Iter3-2
+  
+  def breed_avg_ratings
+    pup = Pup.find_by_id params[:pup_id]
+    render :json => Pup.avg_ratings_by_breeds(pup.breed.name)
   end
   
   #################### Start Questionnaire ####################
@@ -238,11 +221,7 @@ currently limiting the number of ratings made by each dog owner to eight, and li
       session[:step2] = true
       return
     else
-      flash[:modal] = "To keep our database as accurate as possible,
-we are collecting information only for dogs that have been residing 
-in their current home for six months or more. Please come back to our 
-site and rate your dog after s/he has lived 
-with you for a minimum of six months. Thank you."
+      flash[:modal] = "Less than 6 months"
     end
     session[:step2] = false
     redirect_to dog_how_long_path(:pup => {:name => session[:pup_name]})
@@ -303,10 +282,7 @@ with you for a minimum of six months. Thank you."
     !input.empty? && !is_num?(input)
   end
   
-  # def check_time_filled?(years, months)
-  #   years.nil? || months.nil? || (years.empty? && months.empty?)
-  # end
-  
+  # Iter3-2 (Gilbert Lo and Jeff Yu)
   def valid_access(pup)
     if pup.nil?
       flash[:notice] = "The dog you are trying to access does not exist"
@@ -321,6 +297,7 @@ with you for a minimum of six months. Thank you."
   def owner?(pup)
     return pup.user_id == current_user.id
   end
+  # End 3-2
   
   def check_sign_in
     unless user_signed_in?
@@ -333,24 +310,13 @@ with you for a minimum of six months. Thank you."
   end
 
   def is_num?(str)
-    Integer(str)
-    return true
-  rescue ArgumentError, TypeError
-    return false
+    str.to_s == str.to_i.to_s
   end
 
   def start_over
-    [:step1, :step2, :step3, :pup_name, :breed, :years, :months, :breed_id, :pup_id].each do |key|
+    [:step1, :step2, :step3, :pup_name, :breed, :years, :months, :breed_id, :pup_id, :from].each do |key|
       session.delete(key)
     end
-    # session[:step1] = false
-    # session[:step2] = false
-    # session[:step3] = false
-    # session[:pup_name] = nil
-    # session[:breed] = nil
-    # session[:years] = nil
-    # session[:months] = nil
-    # session[:breeder_id] = nil
   end
 end
   

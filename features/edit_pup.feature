@@ -36,7 +36,8 @@ Background: User already login
   And   I should not see "My Pups"
   
   Given I log in as "jeff"
-  When  I follow "My Pups"
+  When I click the nav bar dropdown button
+  And I follow "My Pups"
   Then  I should be on the "Pups Ratings" page
   
   Scenario: users can see pups ratings
@@ -46,9 +47,9 @@ Background: User already login
   
   Scenario: users can delete ratings 
     When  I follow "Delete" for dog1
-    Then  I should be on the RateMyPup home page
+    Then  I should be on the "Pups Ratings" page
     And   I should see "Pup dog1 has been deleted"
-    When  I follow "My Pups"
+    When  I am on the "Pups Ratings" page
     Then  I should not see "dog1"'s basic info
     And   I should see "dog2"'s basic info
     
@@ -57,6 +58,7 @@ Background: User already login
     Then  I should be on the "Edit Pup Rating" page
     When  I fill in new info
     And   I press "Update"
+    And I wait for 2 seconds
     Then  I should be on the "Pups Ratings" page
     And   I should see "Pup has been updated"
     When  I follow "More" for dog1
@@ -66,6 +68,7 @@ Background: User already login
     When  I follow "Edit" for dog1
     And   I fill in new info
     And   I follow "Cancel"
+    And I wait for 2 seconds
     Then  I should be on the "Pups Ratings" page
     When  I follow "More" for dog1
     Then  I should see correct info of dog1
@@ -77,24 +80,27 @@ Background: User already login
     Then  I should be on the "Edit Pup Rating" page
     And   I should see "The breeder you enter is not in our database" 
     When  I follow "Add Breeder"
+    And I wait for 2 seconds
     Then  I should be on the "Add breeder" page
     When  I finish adding a new breeder 
     Then  I should be on the "Edit Pup Rating" page
-    And   I should see "Jeff Yu"
+    And   I should see "Breeder has been updated!"
   
   Scenario: users can go to details page and delete pup
     When  I follow "More" for dog1
     Then  I should be on the "Pup Rating Detail" page
     And   I should see correct info of dog1
     When  I press "Delete pup"
-    Then  I should be on the RateMyPup home page
+    And I wait for 2 seconds
+    Then  I should be on the "Pups Ratings" page
     And   I should see "Pup dog1 has been deleted"
-    When  I follow "My Pups"
+    When  I am on the "Pups Ratings" page
     Then  I should not see "dog1"
     And   I should see "dog2"'s rating    
     
   Scenario: users can go to details page and edit pup
     When  I follow "More" for dog1
     When  I press "Edit pup"
+    And I wait for 2 seconds
     Then  I should be on the "Edit Pup Rating" page
 #End iter 3-1

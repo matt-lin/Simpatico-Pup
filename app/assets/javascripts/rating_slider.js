@@ -8,15 +8,21 @@ var RatingPaws = {
         for (var i = 0; i < RatingPaws.pos.length; i++) {
             $('#'+label).val("N/A");
             $("#" + label + "-sixth").css("color", RatingPaws.naColor);
-            $("#"+label+"-"+RatingPaws.pos[i]).on(
-                "mouseover", RatingPaws.changeColors(label, RatingPaws.pos[i])
-            );
-            $("#"+label+"-"+RatingPaws.pos[i]).on(
-                "mouseout", RatingPaws.revertColors(label, RatingPaws.pos[i])
-            );
-            $("#"+label+"-"+RatingPaws.pos[i]).on(
-                "click", RatingPaws.setValue(label, RatingPaws.pos[i])
-            );
+            // $("#"+label+"-"+RatingPaws.pos[i]).on(
+            //     "mouseover", RatingPaws.changeColors(label, RatingPaws.pos[i])
+            // );
+            // $("#"+label+"-"+RatingPaws.pos[i]).on(
+            //     "mouseout", RatingPaws.revertColors(label, RatingPaws.pos[i])
+            // );
+            // $("#"+label+"-"+RatingPaws.pos[i]).on(
+            //     "click", RatingPaws.setValue(label, RatingPaws.pos[i])
+            // );
+            
+            $("#"+label+"-"+RatingPaws.pos[i]).on({
+                mouseover: RatingPaws.changeColors(label, RatingPaws.pos[i]),
+                mouseout: RatingPaws.revertColors(label, RatingPaws.pos[i]),
+                click: RatingPaws.setValue(label, RatingPaws.pos[i])
+            });
         }
     },
     setValue: function(label, loc) {
@@ -30,6 +36,11 @@ var RatingPaws = {
                 $('#'+label).val(RatingPaws.pos.indexOf(loc) + 1);
                 RatingPaws.changeColors(label, loc, RatingPaws.selectedColor, true)();
             }
+        }
+    }, 
+    setUnselectColor: function(label, i) {
+        for (; i < RatingPaws.pos.length; i++) {
+            $("#" + label + "-" + RatingPaws.pos[i]).css("color", RatingPaws.unselectedColor);
         }
     },
     changeColors: function(label, loc) {
@@ -45,9 +56,10 @@ var RatingPaws = {
                 for (var i = 0; RatingPaws.pos.indexOf(loc) >= i; i++) {
                     $("#" + label + "-" + RatingPaws.pos[i]).css("color", RatingPaws.selectedColor);
                 }
-                for (; i < RatingPaws.pos.length; i++) {
-                    $("#" + label + "-" + RatingPaws.pos[i]).css("color", RatingPaws.unselectedColor);
-                }
+                // for (; i < RatingPaws.pos.length; i++) {
+                //     $("#" + label + "-" + RatingPaws.pos[i]).css("color", RatingPaws.unselectedColor);
+                // }
+                RatingPaws.setUnselectColor(label, i);
             }
         };
     },
@@ -63,9 +75,10 @@ var RatingPaws = {
                 for (var i = 0; current_val > i; i++) {
                     $("#" + label + "-" + RatingPaws.pos[i]).css("color", RatingPaws.selectedColor);
                 }
-                for (; i < RatingPaws.pos.length; i++) {
-                    $("#" + label + "-" + RatingPaws.pos[i]).css("color", RatingPaws.unselectedColor);
-                }
+                // for (; i < RatingPaws.pos.length; i++) {
+                //     $("#" + label + "-" + RatingPaws.pos[i]).css("color", RatingPaws.unselectedColor);
+                // }
+                RatingPaws.setUnselectColor(label, i);
             }
         };
     },
@@ -74,6 +87,7 @@ var RatingPaws = {
             RatingPaws.setupCategory(RatingPaws.categories[i]);
         }
     },
+    // Iter3-2 (Gilbert Lo, Jeff Yu)
     preRate: function() {
         var pathArray = window.location.pathname.substring(1).split('/');
         if (pathArray.length == 3 && pathArray[2] === 'edit') {
@@ -101,6 +115,7 @@ var RatingPaws = {
             })
         }
     }
+    // End Iter3-2
 }
 
 // $(document).ready(RatingPaws.setup);

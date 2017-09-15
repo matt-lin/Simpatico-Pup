@@ -1,6 +1,6 @@
 class Pup < ActiveRecord::Base
-  
-  #Iter 3-2 include strong params to deal with mass assignment issue (By Gung Hiu Ho)
+  is_impressionable :counter_cache => true
+  #Iter3-2 include strong params to deal with mass assignment issue (By Gung Hiu Ho)
   #include ActiveModel::ForbiddenAttributesProtection
   
   belongs_to :user
@@ -9,7 +9,7 @@ class Pup < ActiveRecord::Base
   belongs_to :breed
   
   has_one :comment, dependent: :destroy
-
+  
   validates :pup_name, :presence => true
   # validates :user_id, :presence => true
   validates :breeder_id, :presence => true
@@ -73,14 +73,14 @@ class Pup < ActiveRecord::Base
 
   def Pup.avg_ratings_by_breeds(breed1, breed2='None')
     pups_by_breed = Pup.find_by_breeds(breed1, breed2)
-    results_hash = {:overall_health => 0, :trainability => 0, :social_behavior => 0,
+    results_hash = {:breeder_responsibility => 0, :overall_health => 0, :trainability => 0, :social_behavior => 0,
                     :dog_behavior => 0, :energy_level => 0, :simpatico_rating => 0}
-    results_num = {:overall_health => 0, :trainability => 0, :social_behavior => 0,
+    results_num = {:breeder_responsibility => 0, :overall_health => 0, :trainability => 0, :social_behavior => 0,
                    :dog_behavior => 0, :energy_level => 0, :simpatico_rating => 0}
     count = 0.0
     pups_by_breed.each do |pup|
       results_hash.each do |rating, _value|
-        unless pup.send(rating) == nil
+        unless pup.send(rating) == 0
           results_hash[rating] += pup.send(rating)
           results_num[rating] += 1
         end
@@ -100,6 +100,7 @@ class Pup < ActiveRecord::Base
     not Breed.find_by_name(breed_name) == nil
   end
   
+  # Iter3-2 (Gilbert Lo, Jeff Yu)
   def update_comment(content)
     if self.comment
       self.comment.content = content
@@ -156,6 +157,8 @@ class Pup < ActiveRecord::Base
      :simpatico => self.simpatico_rating 
     }
   end
+  
+  # End Iter3-2
   
   private
   def limit_ratings

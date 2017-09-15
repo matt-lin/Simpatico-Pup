@@ -21,39 +21,37 @@ Background: User already login
     Scenario: users subscribing newsletters
       Given I log in as "gilbert"
       And I am on the "Edit Profile" page
-      Then I should see "Click here if we may add you to our mailing list to receive occasional updates on the progress of our website. We will not share your email address with anyone else"
-      When I check "subscribe_newsletter"
-      And I fill in "user_current_password" with "12345678"
-      And I press "update_button"
-      Then I should be on the RateMyPup home page
+      Then I should see "You are currently not subscribing newsletter, click the button below to subscribe newsletter"
+      When I press "subscribe_button"
+      Then I should be on the "Edit Profile" page
+      And I should see "You are subscribing newsletter now!"
       And "gilbert" is in the subscribing group
       
     Scenario: users unsubscribing newsletters
       Given I log in as "jeff"
       And I am on the "Edit Profile" page
-      Then I should see "Click here to unsubscribe newsletter :("
-      When I check "unsubscribe_newsletter"
-      And I fill in "user_current_password" with "12345678"
-      And I press "update_button"
-      Then I should be on the RateMyPup home page
+      Then I should see "You are currently subscribing newsletter, click the button below to unsubscrib newsletter"
+      When I press "unsubscribe_button"
+      Then I should be on the "Edit Profile" page
+      And I should see "You have unsubscribed newsletter!"
       And "jeff" is not in the subscribing group
       
     # Iter 1-2
-    Scenario: users can not subscribe with wrong password
-      Given I log in as "gilbert"
-      And I am on the "Edit Profile" page
-      Then I check "subscribe_newsletter"
-      And I fill in "user_current_password" with "incorrect"
-      And I press "update_button"
-      Then I should be on the "Correct Back" page
-      And I should see "Current password is invalid"
+    # Scenario: users can not subscribe with wrong password
+    #   Given I log in as "gilbert"
+    #   And I am on the "Edit Profile" page
+    #   Then I check "subscribe_newsletter"
+    #   And I fill in "user_current_password" with "incorrect"
+    #   And I press "update_button"
+    #   Then I should be on the "Correct Back" page
+    #   And I should see "Current password is invalid"
       
-    Scenario: users can not unsubscribe with wrong password
-      Given I log in as "jeff"
-      And I am on the "Edit Profile" page
-      Then I check "unsubscribe_newsletter"
-      And I fill in "user_current_password" with "incorrect"
-      And I press "update_button"
-      Then I should be on the "Correct Back" page
-      And I should see "Current password is invalid"
+    # Scenario: users can not unsubscribe with wrong password
+    #   Given I log in as "jeff"
+    #   And I am on the "Edit Profile" page
+    #   Then I check "unsubscribe_newsletter"
+    #   And I fill in "user_current_password" with "incorrect"
+    #   And I press "update_button"
+    #   Then I should be on the "Correct Back" page
+    #   And I should see "Current password is invalid"
     # End for Iter 1-2

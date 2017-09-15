@@ -1,10 +1,15 @@
 ActiveAdmin.register Breeder do
+  
+  menu :priority => 4
 
   filter :name
   filter :city
   filter :state
+  
+  actions :all
 
   index do
+    selectable_column
     column :id
     column :name do |p|
       auto_link p
@@ -12,6 +17,7 @@ ActiveAdmin.register Breeder do
     column :city
     column :state
     column :removed_reviews
+    actions
   end
 
   form do |f|
@@ -35,7 +41,7 @@ ActiveAdmin.register Breeder do
       panel "Dogs" do
         table_for breeder.pups do
           column :dog_name do |p|
-            p.pup_name
+            link_to p.pup_name, admin_dog_path(p)
           end
           column :comment do |p|
             p.comment.content

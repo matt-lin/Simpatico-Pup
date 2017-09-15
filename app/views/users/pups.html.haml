@@ -1,3 +1,4 @@
+// Iter3-2 (Gilbert Lo, Jeff Yu)
 %div{:class => "container text-container"}
   %div{:class => "header"}
     %h1 My Pups
@@ -26,5 +27,6 @@
             = link_to "Delete", pup_path(:id => pup.id), :method => :delete, :id => "delete_#{pup.pup_name}", |
             :data => {:confirm => "Are you sure you want to delete #{pup.pup_name}?"} 
             = link_to "Edit", edit_pup_path(pup), :id => "edit_#{pup.pup_name}"
-          %td= link_to "More", pup_path(pup) , :id => "more_#{pup.pup_name}"
+          %td= link_to "View", pup_path(pup) , :id => "more_#{pup.pup_name}"
           
+// End Iter3-2 

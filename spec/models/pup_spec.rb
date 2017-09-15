@@ -66,7 +66,7 @@ describe Pup do
     end
     it "should find the correct average ratings for a single breed dog" do
       ratings_hash = Pup.avg_ratings_by_breeds('Afghan Hound')
-      correct_hash = {:overall_health => 2, :trainability => 5.0/3.0, :social_behavior => 1,
+      correct_hash = {:breeder_responsibility => 1, :overall_health => 2, :trainability => 5.0/3.0, :social_behavior => 1,
                       :dog_behavior => 1, :energy_level => 1, :simpatico_rating => 1}
                       
       assert(correct_hash == ratings_hash)

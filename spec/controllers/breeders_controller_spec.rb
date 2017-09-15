@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe BreedersController do
-  describe "looking for all the breeders" do
-    it "should retrieve all the breeders" do
-      Breeder.should_receive(:all)
-      get :index
-      response.should render_template "index"
-    end
-  end
+  # describe "looking for all the breeders" do
+  #   it "should retrieve all the breeders" do
+  #     Breeder.should_receive(:all)
+  #     get :index
+  #     response.should render_template "index"
+  #   end
+  # end
   
   describe "search for breeder" do
     it "should only redirect to root if invalid params" do
@@ -22,6 +22,7 @@ describe BreedersController do
     end
     
     it "should display breeder info" do
+      unknown_breeder = FactoryGirl.create(:breeder, :name => 'Unknown')
       @breeder = FactoryGirl.create(:breeder)
       @user = FactoryGirl.create(:user)
       sign_in :user, @user
@@ -176,11 +177,11 @@ describe BreedersController do
       end
     end
 
-    it "should send all breeders in a json array" do
-      Breeder.should_receive(:all).and_return(@breeders)
-      xhr :get, :index
-      response.body.should == @breeders.to_json
-    end
+    # it "should send all breeders in a json array" do
+    #   Breeder.should_receive(:all).and_return(@breeders)
+    #   xhr :get, :index
+    #   response.body.should == @breeders.to_json
+    # end
 
     it "should send a limited number of breeders starting with given string" do
       Breeder.should_receive(:find_by_substring).with("Teddy - Berkeley, CA", 0).and_return(@breeders)

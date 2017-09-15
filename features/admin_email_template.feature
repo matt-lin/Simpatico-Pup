@@ -1,4 +1,4 @@
-# Iter 3-1
+# Iter 3-1 (by Jack, Zipei)
 Feature: Admin should be able to send email templates, so user do not need type in every time
     I want to be able to send an email templatewith that already save in admin
     

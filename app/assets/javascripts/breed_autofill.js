@@ -38,6 +38,7 @@ var BreedAutofill = {
     ,breeds_add_find: function (data, requestStatus, xhrObject) {
         
         $('#breed_autofills').empty();
+        // Iter3-2 (by Zipei, Jack)
         var datasize = (data.length > 5)? 5: data.length;
         for (var i = 0; i < datasize; i++) {
             var name = data[i];
@@ -51,6 +52,7 @@ var BreedAutofill = {
                 $('#breed_autofills').empty();
             });
         }
+        // End for Iter3-2
     }
 };
 

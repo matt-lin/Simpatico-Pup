@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require thredded
-//= require bootstrap.min
+//= require bootstrap
 //= require_tree .
-
+//= require Chart.bundle
+//= require chartkick
+//= require Chart.min

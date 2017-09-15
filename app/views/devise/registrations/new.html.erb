@@ -1,47 +1,50 @@
-<h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<div class="content" id = "singup">
   
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
 <br>
-
-  <div>
-    <span>By clicking “I agree” below you agree to SimpaticoPup’s <%= link_to "Terms of Service", terms_of_service_path %> and our <%= link_to "Privacy Policy", privacy_policy_path %>, which describes how we process your information.</span>
-  </div>
-  <div>
-    <%= f.check_box :agreement, :required => true %> I agree
-  </div>
+  <div class="title">Create account</div>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    
+    
+    <div class="field">
+      <%= f.text_field :username, placeholder: "username", autofocus: true %>
+    </div>
+  
+    <div class="field">
+      <%= f.email_field :email, placeholder: "email", autofocus: true %>
+    </div>
+  
+    <div class="field">
+      <%= f.password_field :password, placeholder: "password(8 characters minimum)",autocomplete: "off" %>
+    </div>
+  
+    <div class="field">
+      <%= f.password_field :password_confirmation, placeholder: "password confirmation",autocomplete: "off" %>
+    </div>
   <br>
-  <div>
-    <%= check_box_tag 'subscribe_newsletter', 'yes' %> Click here if we may add you to our mailing list to receive occasional updates on the progress of our website. We will not share your email address with anyone else
-  </div>
-  <br>
+  
+    <div>
+        <span> By clicking “I agree” below you agree to SimpaticoPup’s <%= link_to "Terms of Service", terms_of_service_path %> and our <%= link_to "Privacy Policy", privacy_policy_path %>, which describes how we process your information.</span>
+    </div>
+    
+    <div>
+        <input type="checkbox" id="user_agreement" required/>
+        <label for="user_agreement"></label><span> I agree (required)
+    </div>
+    
+    <br>
+    
+    <div>
+        <input type="checkbox" id="subscribe_newsletter" 'subscribe_newsletter', 'yes'/>
+        <label for="subscribe_newsletter" 'subscribe_newsletter', 'yes'></label><span> Click here if we may add you to our mailing list to receive occasional updates on the progress of our website.
+    </div>
+    
 
-  <div class="actions" >
-    <%= f.submit "Submit" %>
-  </div>
-<% end %>
+   <button>Create Account</button>
 
-<%= render "devise/shared/links" %>
+
+    
+  <% end %>
+
+
+</div>

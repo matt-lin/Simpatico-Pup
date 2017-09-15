@@ -19,7 +19,7 @@ Feature: edit the content for the main page
       | main_bar        |
       | Better Way to Find a Great Dog  |
       | Find a pup from a reliable source |
-    When I follow "Main Page Welcome Title"
+    When I follow "Main Page Cover Layout"
     Then I should see "Find a pup from a reliable source"
     And I should not see "For more information on Breed Health"
 
@@ -30,7 +30,6 @@ Feature: edit the content for the main page
     And I should see "The content has been modified"
     When I go to the RateMyPup home page
     Then I should see "PupSimpatico"
-    And I should not see "SimpaticoPup"
 
   Scenario: Change the primary title message and apply the change on the main page
     When admin go to customizes/2/edit

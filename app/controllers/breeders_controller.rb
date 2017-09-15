@@ -1,4 +1,5 @@
 class BreedersController < ApplicationController
+  impressionist
   skip_before_filter :delete_pup_from_session, :except => [:index, :substring_match, :search_name]
   before_filter :set_states, only: [:search_nearer_breeders, :new]
 
@@ -28,7 +29,7 @@ class BreedersController < ApplicationController
       end
       @avg_ratings = @breeder.avg_pup_rating
       @pups = @breeder.all_pups
-
+      @show_text = @breeder.name + ' - ' + @breeder.address
     elsif params[:id].present?
 
       @breeder = Breeder.find_by_id(params[:id])
@@ -116,6 +117,7 @@ class BreedersController < ApplicationController
     end
     flash[:notice] = "Breeder #{name} has been added to our database!"
     
+    # Iter3-2 (Gilbert Lo and Jeff Yu)
     # Possible session didn't get delete, if not found dog, then not from edit page
     # do nothing and delete the session
     if session[:pup_id]
@@ -124,28 +126,16 @@ class BreedersController < ApplicationController
       if pup
         pup.breeder = breeder
         pup.save
+        flash[:notice] = "Breeder has been updated!"
         redirect_to edit_pup_path(pup) and return
       end
     end
+    # End Iter3-2
     
     redirect_to new_pup_path(:breeder => {:name => (name+' - '+city+', '+state)})
   end
 
   private
-  
-  def evaluate_input(breed_name, city)
-    
-    if breed_name.present? && city.present?
-      3
-    elsif breed_name.present?
-      1
-    elsif city.present?
-      2
-    else
-      0
-    end
-      
-  end
 
   def set_states
 

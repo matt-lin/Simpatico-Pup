@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170728025649) do
+ActiveRecord::Schema.define(version: 20170806102429) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "resource_id",   null: false
@@ -51,9 +51,12 @@ ActiveRecord::Schema.define(version: 20170728025649) do
     t.string   "document_content_type"
     t.integer  "document_file_size"
     t.datetime "document_updated_at"
-    t.boolean  "marked",                default: false
-    t.string   "catagory",              default: "Others"
+    t.integer  "selected_attachment_id"
+    t.boolean  "marked",                 default: false
+    t.string   "catagory",               default: "Others"
   end
+
+  add_index "attachments", ["selected_attachment_id"], name: "index_attachments_on_selected_attachment_id"
 
   create_table "breeders", force: :cascade do |t|
     t.string  "name"
@@ -63,7 +66,8 @@ ActiveRecord::Schema.define(version: 20170728025649) do
     t.string  "state"
     t.float   "latitude"
     t.float   "longitude"
-    t.integer "removed_reviews", default: 0
+    t.integer "removed_reviews",   default: 0
+    t.integer "impressions_count"
   end
 
   create_table "breeds", force: :cascade do |t|
@@ -77,7 +81,6 @@ ActiveRecord::Schema.define(version: 20170728025649) do
     t.integer  "pup_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "breed"
   end
 
   create_table "customizes", force: :cascade do |t|
@@ -107,6 +110,33 @@ ActiveRecord::Schema.define(version: 20170728025649) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
 
+  create_table "impressions", force: :cascade do |t|
+    t.string   "impressionable_type"
+    t.integer  "impressionable_id"
+    t.integer  "user_id"
+    t.string   "controller_name"
+    t.string   "action_name"
+    t.string   "view_name"
+    t.string   "request_hash"
+    t.string   "ip_address"
+    t.string   "session_hash"
+    t.text     "message"
+    t.text     "referrer"
+    t.text     "params"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "impressions", ["controller_name", "action_name", "ip_address"], name: "controlleraction_ip_index"
+  add_index "impressions", ["controller_name", "action_name", "request_hash"], name: "controlleraction_request_index"
+  add_index "impressions", ["controller_name", "action_name", "session_hash"], name: "controlleraction_session_index"
+  add_index "impressions", ["impressionable_type", "impressionable_id", "ip_address"], name: "poly_ip_index"
+  add_index "impressions", ["impressionable_type", "impressionable_id", "params"], name: "poly_params_request_index"
+  add_index "impressions", ["impressionable_type", "impressionable_id", "request_hash"], name: "poly_request_index"
+  add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index"
+  add_index "impressions", ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index"
+  add_index "impressions", ["user_id"], name: "index_impressions_on_user_id"
+
   create_table "newsletter_users", force: :cascade do |t|
     t.string   "email"
     t.datetime "created_at", null: false
@@ -135,6 +165,20 @@ ActiveRecord::Schema.define(version: 20170728025649) do
     t.string   "owner_name"
     t.integer  "breed_1"
     t.integer  "breed_2"
+    t.integer  "impressions_count"
+  end
+
+  create_table "rich_rich_files", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "rich_file_file_name"
+    t.string   "rich_file_content_type"
+    t.integer  "rich_file_file_size"
+    t.datetime "rich_file_updated_at"
+    t.string   "owner_type"
+    t.integer  "owner_id"
+    t.text     "uri_cache"
+    t.string   "simplified_type",        default: "file"
   end
 
   create_table "selected_comments", force: :cascade do |t|

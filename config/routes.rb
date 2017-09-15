@@ -1,5 +1,6 @@
 Ratemypup::Application.routes.draw do
 
+  mount Rich::Engine => '/rich', :as => 'rich'
   # get 'password_resets/new'
 
   # get 'password_resets/edit'
@@ -14,6 +15,7 @@ Ratemypup::Application.routes.draw do
   get '/users/pups' => 'users#pups', :as => :user_pups
   devise_scope :user do
     get '/users/unsubscribe' => 'users/registrations#unsubscribe_newsletter', :as => :unsubscribe_newsletter
+    post '/users/update_subscription' => 'users/registrations#update_subscription', :as => :update_subscription
   end
 
   root :to => 'pups#main'
@@ -33,7 +35,9 @@ Ratemypup::Application.routes.draw do
   get 'pups/dog_breeder' => 'pups#dog_breeder', :as => :dog_breeder
   
   get 'pups/hashtags' => 'pups#hashtags', :as => :dog_hashtags
+  get 'pups/random_comment' => 'pups#random_comment', :as => :dog_random_comment
   get 'pups/ratings' => 'pups#ratings', :as => :dog_ratings
+  get 'pups/breed_avg_ratings' => 'pups#breed_avg_ratings', :as => :breed_avg_ratings
 
   resources :pups
   resources :breeders
@@ -41,6 +45,8 @@ Ratemypup::Application.routes.draw do
   resources :passwordresets
   # activate account
   resources :account_activations, only: [:edit]
+  
+  get '/activate/:email' => 'account_activations#send_mail', :as => :activate, :constraints => { :email => /.+@.+\..*/ }
 
   get '/breed' => 'pups#breed', :as => :breed
   get '/breed/match' => 'pups#search_breed', :as => :breed_search

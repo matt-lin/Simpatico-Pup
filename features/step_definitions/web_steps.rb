@@ -227,3 +227,14 @@ When (/^I follow "([^"]*)" for dog1$/) do |link|
   end
 end
 
+When /^I click the nav bar dropdown button/ do
+  find('#dropdown_menu').click
+end
+
+Then /^I should see a "(.*)" input with placeholder "(.*)"/ do |type, val|
+  expect(page).to have_selector("input[type='" + type + "'][placeholder='" + val + "']")
+end
+
+When /^I wait for (\d+) seconds$/ do |n|
+  sleep(n.to_i)
+end

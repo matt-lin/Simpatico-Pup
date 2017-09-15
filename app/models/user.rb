@@ -10,11 +10,12 @@ class User < ActiveRecord::Base
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :agreement
   # attr_accessible :title, :body
   
-  attr_accessor :reset_token, :remember_token, :activation_token, :activation_digest
+  attr_accessor :reset_token, :remember_token, :activation_token
   before_save   :downcase_email
   before_create :create_activation_digest
   
   has_many :pups
+  has_one :widget
   
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -72,8 +73,12 @@ class User < ActiveRecord::Base
   def create_activation_digest
     self.activation_token  = User.new_token
     self.activation_digest = User.digest(activation_token)
+    # update_attribute(:activation_digest, self.activation_token)
   end
   #End for Iter 2-2
+
+    
+  
   
 # Returns a random token.
   def self.new_token
@@ -85,7 +90,6 @@ class User < ActiveRecord::Base
     false
   end
 
-  def to_s
-    email
-  end
+
 end
+

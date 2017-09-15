@@ -13,17 +13,17 @@ Background: The user is on signup page
   Given I am on the Signup page
 	
   Scenario: What user should see in the signup process
-    Then I should see "Username"
-    And I should see "Email"
-    And I should see "Password confirmation"
-    And I should see "Password"
+    Then I should see a "text" input with placeholder "username"
+    And I should see a "email" input with placeholder "email"
+    And I should see a "password" input with placeholder "password(8 characters minimum)"
+    And I should see a "password" input with placeholder "password confirmation"
     And I should see "Terms of Service"
     And I should see "Privacy Policy"
     
   Scenario: Activated account should log in successfully
     Given I am on the RateMyPup home page
     Given I log in as "gilbert"
-    And I should see "Logged in as gilbert"
+    And I should see "GILBERT"
 
   Scenario: Sign up and open the mailbox to activate the account 
     Then I fill in "user_username" with "example"
@@ -31,11 +31,11 @@ Background: The user is on signup page
     And I fill in "user_password" with "password"
     And I fill in "user_password_confirmation" with "password"
     And I check "user_agreement"
-    And I press "Submit"
+    And I press "Create Account"
     Then I should see "Welcome! You have signed up successfully. Please check your email to activate your account."
     Given I enter "example"'s mailbox and click on the activate in sent email
     Then I should see "Congratulations! Your account has been activated!"
-    And I should see "Logged in as example"
+    And I should see "EXAMPLE"
     
   
     # ####################################sad path#####################################################
@@ -45,7 +45,7 @@ Background: The user is on signup page
     And I fill in "user_password" with "12345678"
     And I fill in "user_password_confirmation" with "12345678"
     And I check "user_agreement"
-    And I press "Submit"
+    And I press "Create Account"
     Then I should see "Email has already been taken"
     
   Scenario: Password less than 8 (sad path)
@@ -54,8 +54,8 @@ Background: The user is on signup page
     And I fill in "user_password" with "12"
     And I fill in "user_password_confirmation" with "12"
     And I check "user_agreement"
-    And I press "Submit"
-    Then I should see "Password is too short (minimum is 8 characters)"
+    And I press "Create Account"
+    Then I should see "Password must contain more than 8 characters"
     
   Scenario: Password not same as password_confirmation(sad path)
     Then I fill in "user_username" with "example4"
@@ -63,20 +63,22 @@ Background: The user is on signup page
     And I fill in "user_password" with "12345678"
     And I fill in "user_password_confirmation" with "87654321"
     And I check "user_agreement"
-    And I press "Submit"
-    Then I should see "Password confirmation doesn't match Password"
+    And I press "Create Account"
+    Then I should see "Password not same as Confirmation"
     
   Scenario: Inactivated acccount should not be able to log in
     Given I am on the RateMyPup home page
     Given I log in as "jeff"
-    Then I should see "Account not activated. A new account activation has been send."
+    Then I should see "Account hasn't been activated. Please verify your email before continue. Click here to resend email."
+    And I follow "here"
     And I enter "jeff"'s mailbox and click on the activate in sent email
     Then I should see "Congratulations! Your account has been activated!"
-    And I should see "Logged in as jeff"
+    And I should see "JEFF"
     
   Scenario: Activated account should not be activated again
     Given I am on the RateMyPup home page
     Given I log in as "jeff"
+    And I follow "here"
     And I enter "jeff"'s mailbox and click on the activate in sent email twice
     And I should see "Invalid activation link"
   

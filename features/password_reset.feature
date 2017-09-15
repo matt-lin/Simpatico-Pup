@@ -55,8 +55,9 @@ Feature: Users should be able to reset password
     Scenario: user can reset password even if he's logged in
       Given I am on the RateMyPup home page
       And   I log in as "jeff"
-      When  I follow "Edit Profile"
-      And   I follow "(forgot password)"
+      When I click the nav bar dropdown button
+      When  I follow "Settings"
+      And   I follow "I forget my password"
       Then  I should be on the RateMyPup home page
       And   I should see "Email sent with password reset instructions"
       

@@ -1,8 +1,11 @@
-#Iter 3-2 Improving File manager - catagorize the file (By Gung Hiu Ho, Licong Wang)
+# Iter3-2 Improving File manager - catagorize the file (By Gung Hiu Ho, Licong Wang)
 ActiveAdmin.register Attachment do
-  permit_params :attachment
   
+  menu :priority => 7
+  
+  permit_params :attachment
   menu :label => 'File Manager'
+  
   actions :all, except: [:edit]
   
   scope :all, :default => true
@@ -36,7 +39,6 @@ ActiveAdmin.register Attachment do
     link_to "Upload File" , "/admin/attachments/new" 
   end
 
-  
   sidebar :"How to use" do
     h6 "Batch Actions"
     ul do
@@ -61,6 +63,15 @@ ActiveAdmin.register Attachment do
     .ADE, .ADP, .BAT, .CHM, .CMD, .COM, .CPL, .EXE, .HTA, .INS, .ISP, .JAR, 
     .JS (NEW), .JSE, .LIB, .LNK, .MDE, .MSC, .MSI, .MSP, .MST, .NSH .PIF, .SCR, 
     .SCT, .SHB, .SYS, .VB, .VBE, .VBS, .VXD, .WSC, .WSF, .WSH"
+  end
+  
+  sidebar "Storage Status" do
+    columns do
+      column do
+        pie_chart (Attachment.group(:catagory).sum(:document_file_size)), library: {animation: {duration: 500, easing: 'easeOutQuad' }}, 
+          donut: true, width: "200px", height: "200px", xtitle: "Date", ytitle: "Population"
+      end
+    end 
   end
   
   batch_action :mark do |ids|
@@ -140,4 +151,4 @@ ActiveAdmin.register Attachment do
     end
   end
 end
-#End of Iter 3-2
+# End of Iter3-2

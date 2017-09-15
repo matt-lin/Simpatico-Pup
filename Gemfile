@@ -43,7 +43,18 @@ gem 'ransack'
 
 gem 'protected_attributes'
 
+gem 'rich', github: 'jpros/rich', :branch => 'icons'
 
+#Iter 4-2 Growth management 
+gem 'cohort_me'
+gem 'groupdate'
+gem "chartkick"
+gem 'impressionist'
+gem "activerecord-tableless", "~> 1.0"
+
+#Iter 4-2 activeadmin layout
+gem 'active_admin_theme'
+gem 'chart-js-rails'
 
 group :development, :test do
   gem 'sqlite3'
