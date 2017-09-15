@@ -18,12 +18,11 @@
 
     %div{:class => "page_divider2", :id => "jump2"}
         %h2{:class => "section-heading"} #{function_title}
-        %hr{:class => "light", :style => "border-color: #337ab7;"}
         %div{:class => "page_container"}
             %div{:id => "main_page_buttons"}
                 %div{:class => "col-sm-3 box-a text-center", :id => "button1_main"}
                     %a{:class => "main-button-link button-a", :href => "pups/dog_name"}
-                        %div{:class => "main-button1"}
+                        
                         %div{:class => "button-small-text", :style => "color: black; opacity: 0.6"} #{rate_dog_top} 
                         %div{:class => "button-large-text", :style => "color: black"} #{rate_Dog_bottom}
                 %div{:class => "divider1"}
@@ -44,7 +43,7 @@
                                     = submit_tag 'Find ratings for this breed', :id => 'Find Breed', :class => "form-control"
                 %div{:class => "col-sm-3 box-b text-center", :id => "button2_main"}
                     %a{:class => "main-button-link button-b", :style => "cursor:pointer" }
-                        %div{:class => "main-button2"}
+                        
                         %div{:class => "button-small-text", :style => "color: black; opacity: 0.6"} #{find_breed_top} 
                         %div{:class => "button-large-text", :style => "color: black;"} #{find_breed_bottom}
                 %div{:class => "divider2"}
@@ -64,13 +63,13 @@
                                         = submit_tag 'Find ratings for this breeder', :id => 'Find Breeder', :class => "form-control"
                 %div{:class => "col-sm-3 box-c text-center", :id => "button3_main"}
                     %a{:class => "main-button-link button-c", :style => "cursor:pointer"}
-                        %div{:class => "main-button3"}
+                       
                         %div{:class => "button-small-text", :style => "color: black; opacity: 0.6"} #{find_breeder_top}
                         %div{:class => "button-large-text", :style => "color: black;"} #{find_breeder_bottom}
                 %div{:class => "divider3"}
                 %div{:class => "col-sm-3 box-d text-center", :id => "button4_main"}
                     %a{:class => "main-button-link button-d", :href => "/search_nearer_breeders"}
-                        %div{:class => "main-button4"}
+        
                         %div{:class => "button-small-text", :style => "color: black; opacity: 0.6"} #{search_breeder_top} 
                         %div{:class => "button-large-text", :style => "color: black;"} #{search_breeder_bottom}
         
