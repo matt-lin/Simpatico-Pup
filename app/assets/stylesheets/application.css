@@ -333,7 +333,7 @@ body {
 .prev, .next {
   cursor: pointer;
   position: absolute;
-  top: 1600px;
+  top: 900px;
   width: auto;
   margin-bottom: 100px;
   padding: 16px;
@@ -390,7 +390,7 @@ body {
 }
 
 .page_container {
-    margin-top: 50px;
+    margin-top: 0;
 }
 
 #main_page_buttons {
@@ -415,8 +415,7 @@ body {
 }
 
 .page_divider3 {
-    height: 200px;
-    background-color: white;
+    margin-top: 5%;
 }
 
 
@@ -434,7 +433,7 @@ body {
     margin-top: 0;
     margin-bottom: 10px;
     font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
-    color: white;
+    color: black;
     
 }
 
@@ -452,7 +451,7 @@ body {
 }
 
 .light {
-    border-color: white;
+    border-color: black;
     border-width: 3px;
     max-width: 50px;
     margin-top: 20px;
@@ -460,7 +459,7 @@ body {
 }
 
 .text_faded {
-    color: white;
+    color: black;
     font-size: 18px;
     line-height: 1.5;
     margin-bottom: 20px;
@@ -737,6 +736,13 @@ h3.mission-text {
     width: 100%;
     position: relative;
     text-align: center;
+}
+
+#jackSB {
+    margin-top: 10%;
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
 }
 
 
@@ -1043,7 +1049,7 @@ body,
     margin-top: 8px;
     margin-bottom: 8px;
     display: inline-block;
-    margin-left: 50px;
+    margin-left: 20px;
     width: 300px;
     height: 100px;
     line-height: 1.42857143;
@@ -1059,7 +1065,7 @@ body,
     margin-top: 8px;
     margin-bottom: 8px;
     display: inline-block;
-    margin-left: 80px;
+    margin-left: 5%;
     width: 300px;
     height: 100px;
     line-height: 1.42857143;
@@ -1074,7 +1080,7 @@ body,
     border: 1px solid #ccc;
     margin-top: 8px;
     margin-bottom: 8px;
-    margin-left: 50px;
+    margin-left: 20px;
     display: inline-block;
     width: 300px;
     height: 100px;
@@ -1090,7 +1096,8 @@ body,
     border: 1px solid #ccc;
     margin-top: 8px;
     margin-bottom: 8px;
-    margin-left: 50px;
+    margin-left: 20px;
+    margin-right: 5%;
     display: inline-block;
     width: 300px;
     height: 100px;
