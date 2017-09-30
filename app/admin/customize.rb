@@ -36,7 +36,8 @@ ActiveAdmin.register Customize do
   end
   
   index do
-    column :name 
+    Customize.delete
+    column :name
     column :content
     actions
   end
