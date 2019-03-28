@@ -3,18 +3,21 @@ class AccountActivationsController < ApplicationController
 
   def edit
     user = User.find_by(email: params[:email])
-    auth = BCrypt::Password.new(user.activation_digest)
-    if user && !user.activated? && auth == params[:id]
-      user.activate
-      user.save!
-      sign_in(user,scope:user)
-      flash[:success] = "Congratulations! Your account has been activated!"
-      UserMailer.welcome(user).deliver_now
-      redirect_to root_url
-    else
-      flash[:danger] = "Invalid activation link"
-      redirect_to root_url
+    if user
+      auth = BCrypt::Password.new(user.activation_digest)
+
+      if !user.activated? && auth == params[:id]
+        user.activate
+        user.save!
+        sign_in(user,scope:user)
+        flash[:success] = "Congratulations! Your account has been activated!"
+        UserMailer.welcome(user).deliver_now
+        redirect_to root_url
+        return
+      end
     end
+    flash[:danger] = "Invalid activation link"
+    redirect_to root_url
   end
 
   def send_mail
