@@ -1,0 +1,1 @@
+Geocoder.configure(lookup: :bing, api_key: "AuEglA2iCrPkzz5Px3-qAU73jiVf0Fl5GAH5JaH3EYkwAY3UYPAGdCmwbdC6XAZm")
