@@ -1,14 +1,14 @@
-# Iter 3-1 Validate the functionality of site preference page in admin page (by Gung Hiu Ho, Licong Wang) 
+# Iter 3-1 Validate the functionality of site preference page in admin page (by Gung Hiu Ho, Licong Wang)
 Feature: edit the content for the main page
-  As an administrator 
+  As an administrator
   I want to change and edit the text in site preference pageW
   So that I can edit content in main the page on admin page
-  
+
   Background: Given I login as an admin
-  
+
   Given the default layout exist
   And I login as an admin
-   
+
 
   Scenario: login and expect to see a user comments
     When admin go to customizes
@@ -20,7 +20,8 @@ Feature: edit the content for the main page
       | Better Way to Find a Great Dog  |
       | Find a pup from a reliable source |
     When I follow "Main Page Cover Layout"
-    Then I should see "Find a pup from a reliable source"
+    Then I should see "Better Way to Find a Great Dog"
+    And I should not see "Find a pup from a reliable source"
     And I should not see "For more information on Breed Health"
 
   Scenario: Change the website title and apply the change on the main page
