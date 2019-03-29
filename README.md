@@ -9,7 +9,7 @@ Pivotal Tracker
 https://www.pivotaltracker.com/n/projects/2068531
 
 Heroku
-https://simpatico-pup.herokuapp.com/
+https://simpatico-pup-19.herokuapp.com/
 
 Customer's website
 http://www.simpaticopup.com/
