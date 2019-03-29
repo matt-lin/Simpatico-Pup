@@ -5,15 +5,32 @@ rvm:
 - 2.2.2
 bundler_args: --without production
 
+env:
+  global:
+    # in TravisCI settings, set CCKEY to your CodeClimate Test Reporter ID:
+    - CC_TEST_REPORTER_ID=$CCKEY
+    - CCTR=./cc-test-reporter
+
+# steps to run BEFORE the test run
+before_script:
+  # install CodeClimate test reporter and tell it we are starting a test run
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > $CCTR
+  - chmod +x $CCTR
+  - $CCTR before-build
+
 script:
-  - RAILS_ENV=test bundle exec rake db:migrate --trace
-  - CODECLIMATE_REPO_TOKEN=9d91d9a943aa8336c7a4c0bf8401f01938b9e88235b807ce85d7d7d189f65a58 bundle exec rake
+  # setup the test database, including any seed data
+  - bundle exec rake db:migrate --trace
+  # run RSpec tests, and capture coverage
+  - bundle exec rspec
+  - $CCTR format-coverage --output coverage/codeclimate.$SUITE.json
+  # run Cucumber scenarios, and capture coverage. --strict means undefined steps result in a failure.
+  - bundle exec cucumber --strict
+  - $CCTR format-coverage --output coverage/codeclimate.$SUITE.json
 
-# after_script:
-#   - gem install codeclimate-test-reporter
-#   - bundle exec codeclimate-test-reporter
-
-addons:
-  code_climate:
-    repo_token: 9d91d9a943aa8336c7a4c0bf8401f01938b9e88235b807ce85d7d7d189f65a58
-
+after_script:
+  # combine coverage from all suites, and upload to CodeClimate
+  - $CCTR sum-coverage coverage/codeclimate.*.json | $CCTR upload-coverage
+  - $CCTR after-build --exit-code $TRAVIS_TEST_RESULT
+  # just in case, be paranoid and remove sensitive config info file
+  - rm -f config/application.yml
