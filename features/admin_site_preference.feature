@@ -37,7 +37,6 @@ Feature: edit the content for the main page
     When I fill in "customize_content" with "Greatest Way to Find the Greatest Dog"
     And  I press "Submit"
     Then I should see "The content has been modified"
-    When I go to the RateMyPup home page
     Then I should see "Greatest Way to Find the Greatest Dog"
     And I should not see "Better Way to Find a Great Dog"
 
