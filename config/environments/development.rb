@@ -41,15 +41,15 @@ require "#{Rails.root}/lib/smtp_tls"
 
   config.action_mailer.default_url_options = { :host => 'proj-zipei.c9users.io' }
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.perform_deliveries = true 
+  config.action_mailer.perform_deliveries = true
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
     :address => "smtp.gmail.com",
     :port => 587,
     :domain => "gmail.com",
     :authentication => :plain,
-    :user_name => "simpaticopup@gmail.com",
-    :password => "simpaticopup1",
+    :user_name => "simpatico.pup1@gmail.com",
+    :password => "incoming-plunder-jarful",
     :enable_starttls_auto => false
   }
 
