@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/hyu596/Simpatico-Pup.svg?branch=master)](https://travis-ci.org/hyu596/Simpatico-Pup) 
-[![Code Climate](https://codeclimate.com/github/hyu596/simpatico-pup2/badges/gpa.svg)](https://codeclimate.com/github/hyu596/simpatico-pup2) 
-[![Test Coverage](https://codeclimate.com/github/hyu596/simpatico-pup2/badges/coverage.svg)](https://codeclimate.com/github/hyu596/simpatico-pup2/coverage)
+[![Build Status](https://travis-ci.org/matt-lin/Simpatico-Pup.svg?branch=master)](https://travis-ci.org/matt-lin/Simpatico-Pup) 
+[![Code Climate](https://codeclimate.com/github/matt-lin/Simpatico-Pup/badges/gpa.svg)](https://codeclimate.com/github/matt-lin/Simpatico-Pup) 
+[![Test Coverage](https://codeclimate.com/github/matt-lin/Simpatico-Pup/badges/coverage.svg)](https://codeclimate.com/github/matt-lin/Simpatico-Pup/coverage)
 
 
 ===================Team Info============================
@@ -9,7 +9,7 @@ Pivotal Tracker
 https://www.pivotaltracker.com/n/projects/2068531
 
 Heroku
-https://simpatico-pup.herokuapp.com/
+https://simpatico-pup-19.herokuapp.com/
 
 Customer's website
 http://www.simpaticopup.com/
