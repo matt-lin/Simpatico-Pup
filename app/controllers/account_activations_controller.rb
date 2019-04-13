@@ -3,7 +3,7 @@ class AccountActivationsController < ApplicationController
 
   def edit
     user = User.find_by(email: params[:email])
-    if user && !user.activated? 
+    if user && !user.activated? && params[:id] == user.activation_digest
       user.activate
       user.save!
       sign_in(user,scope:user)
@@ -23,8 +23,10 @@ class AccountActivationsController < ApplicationController
       redirect_to root_url
       return
     end
-    
+    p "*"*80
+    p "did create_activation_digest"
     user.create_activation_digest
+    user.save!
     user.send_activation_email
     redirect_to new_user_session_path
   end
