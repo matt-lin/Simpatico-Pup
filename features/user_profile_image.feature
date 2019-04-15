@@ -14,19 +14,15 @@ Background: User already login
 Scenario: user sets profile image correctly
   Given I log in as "jeff"
   And I am on the "Edit Profile" page
-  When I press "Add Profile Picture"
-  Then I should see "Choose a file"
-  When I attach the file "./attachment/profile_image.jpg" to "image_link"
-  And I press "Set Profile Picture"
+  When I attach the file "./features/attachment/profile_image.jpg" to "profile_image"
+  And I press "Set Profile Image"
   Then I should see "You have successfully set your profile image!"
-  And I should see the image "test.jpg"
+  And I should see "profile_image.jpg"
 
 Scenario: user sets profile image incorrectly
   Given I log in as "jeff"
   And I am on the "Edit Profile" page
-  When I press "Add Profile Picture"
-  Then I should see "Choose a file"
-  When I attach the file "./attachment/profile_image.txt" to "image_link"
-  And I press "Set Profile Picture"
+  When I attach the file "./features/attachment/profile_image.txt" to "profile_image"
+  And I press "Set Profile Image"
   Then I should see "Please submit a jpg or png file"
 

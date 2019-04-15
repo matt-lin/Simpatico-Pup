@@ -8,6 +8,8 @@ Ratemypup::Application.routes.draw do
   mount Thredded::Engine => '/forum'
   devise_for :users, controllers: {sessions: "sessions", registrations: 'users/registrations'}
   
+  post '/users/profile/edit' => 'users/profile#edit_image', :as => :edit_profile_image
+
   # namespace :users do
   #   get '/pups' => 'users#pups', :as => :user_pups
   # end

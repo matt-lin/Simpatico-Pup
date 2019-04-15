@@ -14,6 +14,9 @@ class User < ActiveRecord::Base
   before_save   :downcase_email
   before_create :create_activation_digest
 
+  has_attached_file :profile_image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/assets/images/default_profile_image.jpg"
+  validates_attachment_content_type :profile_image, content_type: /\Aimage\/.*\z/
+
   has_many :pups
   has_one :widget
 

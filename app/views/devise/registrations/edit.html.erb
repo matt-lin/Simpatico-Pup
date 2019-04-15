@@ -2,7 +2,16 @@
   <div class='title'>Edit Profile</div>
 
   <div id="profile_picture">
-    <h3 class="sub_title">Profile Picture</h3>
+    <h3 class="sub_title">Profile Image</h3>
+
+    <%= image_tag @user.profile_image.url %>    
+
+    <%= form_for @user, url: edit_profile_image_path, method: :post, html: { multipart: true} do |form| %>
+      <%= form.file_field :profile_image %>
+      <%= form.submit %>
+    <% end %>
+    
+  </div>
   
   <div id="change_password">
     <h3 class="sub_title">Change password</h3>

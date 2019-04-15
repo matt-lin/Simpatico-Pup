@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170806102429) do
+ActiveRecord::Schema.define(version: 20190415094129) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "resource_id",   null: false
@@ -51,12 +51,9 @@ ActiveRecord::Schema.define(version: 20170806102429) do
     t.string   "document_content_type"
     t.integer  "document_file_size"
     t.datetime "document_updated_at"
-    t.integer  "selected_attachment_id"
-    t.boolean  "marked",                 default: false
-    t.string   "catagory",               default: "Others"
+    t.boolean  "marked",                default: false
+    t.string   "catagory",              default: "Others"
   end
-
-  add_index "attachments", ["selected_attachment_id"], name: "index_attachments_on_selected_attachment_id"
 
   create_table "breeders", force: :cascade do |t|
     t.string  "name"
@@ -408,24 +405,28 @@ ActiveRecord::Schema.define(version: 20170806102429) do
   add_index "thredded_user_topic_read_states", ["user_id", "postable_id"], name: "thredded_user_topic_read_states_user_postable", unique: true
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "email",                      default: "",    null: false
+    t.string   "encrypted_password",         default: "",    null: false
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",              default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "username",               default: "",    null: false
+    t.string   "username",                   default: "",    null: false
     t.boolean  "agreement"
     t.string   "activation_digest"
-    t.boolean  "activated",              default: false
+    t.boolean  "activated",                  default: false
     t.datetime "activated_at"
     t.string   "reset_password_token"
     t.string   "remember_token"
+    t.string   "profile_image_file_name"
+    t.string   "profile_image_content_type"
+    t.integer  "profile_image_file_size"
+    t.datetime "profile_image_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
