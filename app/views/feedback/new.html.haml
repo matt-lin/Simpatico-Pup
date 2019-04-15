@@ -1,0 +1,26 @@
+%div{:class => "container"}
+
+  %div{:class => "header"}
+    %h1 Feedback
+
+  // - flash.each do |key, value|
+  //   %p= value
+
+  = form_tag create_feedback_path, :class => "form-horizontal", :autocomplete => "off" do
+    %div{:class => "btn-group"}
+      = label "I can easily rate my dog"
+      %div
+      = label{:class => "radio-inline"}
+      = input{:type => "radio", :name => "ratedog" :value => 1, :class => "required form-control", :title => "*"}
+
+      = label{:class => "radio-inline"}
+      = input{:type => "radio", :name => "ratedog" :value => 2, :class => "required form-control", :title => "*"}
+
+      = label{:class => "radio-inline"}
+      = input{:type => "radio", :name => "ratedog" :value => 3, :class => "required form-control", :title => "*"}
+
+      = label{:class => "radio-inline"}
+      = input{:type => "radio", :name => "ratedog" :value => 4, :class => "required form-control", :title => "*"}
+
+      = label{:class => "radio-inline"}
+      = input{:type => "radio", :name => "ratedog" :value => 5, :class => "required form-control", :title => "*"}
