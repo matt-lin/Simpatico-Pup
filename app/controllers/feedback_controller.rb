@@ -1,5 +1,13 @@
 class FeedbackController < ApplicationController
 
+  def index
+
+  end
+
+  def show
+
+  end
+
   def new
     # Auto renders 'new' template
   end
