@@ -2,7 +2,7 @@
     .col-sm-12
         .row
             .col-sm-5
-                %h4{:class => "great"}=label :pup, var, title
+                %h4{:class => "great"}=label :feedback, var, title
                 %br
                 %span #{description}
             %div{:class =>"col-sm-4", :style => "padding-left: 50px;"}
@@ -25,17 +25,9 @@
                             #{des1}
                         %div{:class => "col-sm-2", :style => "float: right; width: 20%; font-size: 12px; margin-right: 20px;"}
                             #{des5}
-            .col-sm-2
-                %br
-                %br
-                %br
-                %div{:class => "row"}
-                    %div{:class => "col-sm-12", :style => "padding-left: 80px"}
-                        %i{:class => "fa fa-paw fa-2x", :id => "#{id}-sixth", :style => "padding-bottom: 10px;"}
-                        %p{:style => "font-size: 12px; margin-left: -10px;"} Unknown
 
             %div{:class=>"col-sm-1"}
                 %br
                 %br
                 %br
-                = text_field :pup, var, :class => "read", :id => id, :value => "0", :readonly => true
+                = text_field :feedback, var, :class => "read", :id => id, :value => "0", :readonly => true

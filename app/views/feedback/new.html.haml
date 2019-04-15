@@ -9,11 +9,11 @@
   %br
   
   / http://bootsnipp.com/user/snippets/0M39d
-  = form_tag pups_path, :class => "form-horizontal", :autocomplete => 'off' do
+  = form_tag feedback_path, :class => "form-horizontal", :autocomplete => 'off' do
 
     /ATTRIBUTES GROUP/
     %div{:class => "sub-header"}
-      %h3 How would you rate your pup?
+      %h3 How would you rate us?
     %h4{:class => "explanation"}
       (1 = Poor, 5 = Excellent)
     = render 'slider_rating', title: "Rate Your Dog", slider: "slider-rateyourdog", id: "rateyourdog-label",
@@ -35,11 +35,10 @@
     %h4{:class => "explanation"} How can we improve? (1000 chars limit)
     %br
     %div{:class => "form-group col-sm-12"}
-      = text_field :pup, 'comments', :maxlength => 1000, :class => "form-control", :placeholder => "Comments"
+      = text_field :feedback, 'comments', :maxlength => 1000, :class => "form-control", :placeholder => "Comments"
     
     %br
 
-    // Iter2 (by Eric, Emiko)
     %div{:class => "form-group col-sm-5"}
       = submit_tag 'Submit Feedback', :id => 'Add_Feedback', :class => "form-control", :style => "margin-bottom: 10%"
     %script{:src=>"https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"}
