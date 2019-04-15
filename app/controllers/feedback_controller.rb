@@ -5,6 +5,7 @@ class FeedbackController < ApplicationController
   end
 
   def create
+    puts(params)
     if !params.has_key?('feedback')
       redirect_to feedback_path and return
     end
@@ -12,10 +13,11 @@ class FeedbackController < ApplicationController
     rate_dog = params[:feedback][:rate_dog]
     breed_rating = params[:feedback][:breed_rating]
     breeder_rating = params[:feedback][:breeder_rating]
+    search_breeder = params[:feedback][:search_breeder]
     forum = params[:feedback][:forum]
 
     # All scale ratings mandatory
-    if rate_dog.empty? || breed_rating.empty? || breeder_rating.empty? || forum.empty?
+    if rate_dog == '0' || breed_rating == '0' || breeder_rating == '0' || forum == '0'
       flash[:notice] = "Please complete the form."
       redirect_to feedback_path and return
     end

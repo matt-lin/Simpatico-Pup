@@ -11,6 +11,7 @@ ActiveAdmin.register Feedback do
     column :rate_dog
     column :breed_rating
     column :breeder_rating
+    column :search_breeder
     column :forum
     column :open_response
     actions
