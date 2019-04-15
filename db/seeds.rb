@@ -38,7 +38,7 @@ customizes = [
   {:name => 'Nav_Bar_3', :content => 'Goals', :location => "navigation_bar" },
   {:name => 'Nav_Bar_4', :content => 'How You Can Help', :location => "navigation_bar" },
   {:name => 'Nav_Bar_5', :content => 'Community Forum', :location => "navigation_bar" }]
-  
+
 customizes.each do |customize|
   Customize.create!(customize)
 end
@@ -337,4 +337,4 @@ texts.each do |text|
   Text.create!(text)
 end
 
-# AdminUser.create!(:email => 'admin@berkeley.edu', :password => 'password', :password_confirmation => 'password')
+AdminUser.create!(:email => 'admin@berkeley.edu', :password => 'password', :password_confirmation => 'password')
