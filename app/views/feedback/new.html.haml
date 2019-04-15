@@ -4,7 +4,7 @@
 %div{:class => "container"}
 
   %div{:class => "header"}
-    %h1 Rate Us! 
+    %h1 Rate SimpaticoPup! 
 
   %br
   
@@ -28,6 +28,9 @@
     = render 'slider_rating', title: "Search for a Breeder", slider: "slider-searchbreeder", id: "searchbreeder-label",
               des1: "Very Unintuitive", des5: "Intuitive",
               description: "How intuitive is Search for a Breeder?", var: :usability_searchbreeder
+    = render 'slider_rating', title: "Community Forum", slider: "slider-forum", id: "forum-label",
+              des1: "Very Unintuitive", des5: "Intuitive",
+              description: "How intuitive is Search for a Breeder?", var: :usability_forum
 
     /COMMENTS GROUPING/
     %div{:class => "sub-header"}
