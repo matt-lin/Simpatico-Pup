@@ -37,7 +37,8 @@ customizes = [
   {:name => 'Nav_Bar_2', :content => 'Background', :location => "navigation_bar" },
   {:name => 'Nav_Bar_3', :content => 'Goals', :location => "navigation_bar" },
   {:name => 'Nav_Bar_4', :content => 'How You Can Help', :location => "navigation_bar" },
-  {:name => 'Nav_Bar_5', :content => 'Community Forum', :location => "navigation_bar" }]
+  {:name => 'Nav_Bar_5', :content => 'Community Forum', :location => "navigation_bar" },
+  {:name => 'Nav_Bar_6', :content => 'Feedback', :location => "navigation_bar" }]
 
 customizes.each do |customize|
   Customize.create!(customize)
