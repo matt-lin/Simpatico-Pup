@@ -17,8 +17,11 @@
     %h4{:class => "explanation"} If you found any bugs or have any suggestions let us know below! (1000 chars limit)
     %br
     %div{:class => "form-group col-sm-12"}
-      = text_field :feedback, 'open_response', :maxlength => 1000, :class => "form-control", :placeholder => "Comments"
+      = text_field :feedback, 'open_response', :maxlength => 1000, :class => "form-control", :style => "border-color: rgb(51, 153, 255);", :placeholder => "Please leave your suggestions here!"
 
+    %br
+    %br
+    %br
 
     /ATTRIBUTES GROUP/
     %div{:class => "sub-header"}
@@ -39,7 +42,7 @@
     %br
 
     %div{:class => "form-group col-sm-5"}
-      = submit_tag 'Submit Feedback', :id => 'Add_Feedback', :class => "form-control", :style => "margin-bottom: 10%"
+      = submit_tag 'Submit Feedback', :id => 'Add_Feedback', :class => "form-control", :style => "margin-bottom: 10%; background-color: rgb(51, 153, 255); color: #fff; margin-left: 75%;"
     %script{:src=>"https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"}
 
     %br
