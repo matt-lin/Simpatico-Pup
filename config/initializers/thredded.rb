@@ -23,7 +23,7 @@ end
 Thredded.current_user_method = :"current_#{Thredded.user_class.name.underscore}"
 
 # User avatar URL. rb-gravatar gem is used by default:
-Thredded.avatar_url = ->(user) { Gravatar.src(user.email, 128, 'mm') }
+Thredded.avatar_url = ->(user) { Gravatar.src(user.email, 156, 'retro') }
 
 # ==> Permissions Configuration
 # By default, thredded uses a simple permission model, where all the users can post to all message boards,
@@ -42,13 +42,13 @@ Thredded.content_visible_while_pending_moderation = true
 
 # ==> Email Configuration
 # Email "From:" field will use the following
-# Thredded.email_from = 'no-reply@example.com'
+Thredded.email_from = 'no-reply@example.com'
 
 # Incoming email will be directed to this host
 # Thredded.email_incoming_host = 'example.com'
 
 # Emails going out will prefix the "Subject:" with the following string
-# Thredded.email_outgoing_prefix = '[My Forum] '
+Thredded.email_outgoing_prefix = '[My Forum] '
 
 # Reply to field for email notifications
 # Thredded.email_reply_to = -> postable { "#{postable.hash_id}@#{Thredded.email_incoming_host}" }
@@ -73,11 +73,12 @@ Thredded.layout = 'application'
 # By default Thredded just renders a flash alert on errors such as Topic not found, or Login required.
 # Below is an example of overriding the default behavior on LoginRequired:
 #
-# Rails.application.config.to_prepare do
-#   Thredded::ApplicationController.module_eval do
-#     rescue_from Thredded::Errors::LoginRequired do |exception|
-#       @message = exception.message
-#       render template: 'sessions/new', status: :forbidden
-#     end
-#   end
-# end
+
+Rails.application.config.to_prepare do
+  Thredded::ApplicationController.module_eval do
+    rescue_from Thredded::Errors::LoginRequired do |exception|
+      @message = exception.message
+      render template: 'sessions/new', status: :forbidden
+    end
+  end
+end
