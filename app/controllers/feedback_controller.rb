@@ -25,7 +25,7 @@ class FeedbackController < ApplicationController
     forum = params[:feedback][:usability_forum]
 
     # All scale ratings mandatory
-    if rate_dog == '0' || breed_rating == '0' || breeder_rating == '0' || search_breeder == '0' || forum == '0'
+    if rate_dog == "N/A" || breed_rating == "N/A" || breeder_rating == "N/A" || search_breeder == "N/A" || forum == "N/A"
       flash[:notice] = "Please complete the form."
       redirect_to feedback_path and return
     end
