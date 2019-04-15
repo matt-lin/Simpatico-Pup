@@ -11,6 +11,15 @@
   / http://bootsnipp.com/user/snippets/0M39d
   = form_tag create_feedback_path, :class => "form-horizontal", :autocomplete => 'off' do
 
+    /COMMENTS GROUPING/
+    %div{:class => "sub-header"}
+      %h3 Send us your feedback!
+    %h4{:class => "explanation"} If you found any bugs or have any suggestions let us know below! (1000 chars limit)
+    %br
+    %div{:class => "form-group col-sm-12"}
+      = text_field :feedback, 'open_response', :maxlength => 1000, :class => "form-control", :placeholder => "Comments"
+
+
     /ATTRIBUTES GROUP/
     %div{:class => "sub-header"}
       %h3 How would you rate us?
@@ -31,14 +40,6 @@
     = render 'slider_rating', title: "Community Forum", slider: "slider-forum", id: "forum-label",
               des1: "Very Unintuitive", des5: "Intuitive",
               description: "How intuitive is Search for a Breeder?", var: :usability_forum
-
-    /COMMENTS GROUPING/
-    %div{:class => "sub-header"}
-      %h3 Tell us more!
-    %h4{:class => "explanation"} How can we improve? (1000 chars limit)
-    %br
-    %div{:class => "form-group col-sm-12"}
-      = text_field :feedback, 'open_response', :maxlength => 1000, :class => "form-control", :placeholder => "Comments"
 
     %br
 
