@@ -1,5 +1,13 @@
 Ratemypup::Application.routes.draw do
 
+  get 'feedback/index'
+
+  get 'feedback/new'
+
+  get 'feedback/create'
+
+  get 'feedback/show'
+
   mount Rich::Engine => '/rich', :as => 'rich'
   # get 'password_resets/new'
 
@@ -39,6 +47,7 @@ Ratemypup::Application.routes.draw do
   get 'pups/ratings' => 'pups#ratings', :as => :dog_ratings
   get 'pups/breed_avg_ratings' => 'pups#breed_avg_ratings', :as => :breed_avg_ratings
 
+  resources :feedback
   resources :pups
   resources :breeders
   resources :texts
