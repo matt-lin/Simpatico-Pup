@@ -344,5 +344,6 @@ Feedback.create!(
   :rate_dog => 3,
   :breed_rating => 3,
   :breeder_rating => 4,
+  :search_breeder => 2,
   :forum => 1
 )
