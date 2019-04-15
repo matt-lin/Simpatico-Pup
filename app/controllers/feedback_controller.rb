@@ -33,11 +33,15 @@ class FeedbackController < ApplicationController
 
     if @feedback.save
       flash[:notice] = "Thanks for your feedback!"
-      redirect_to feedback_path
+      redirect_to thanks_feedback_path
     else
       flash[:notice] = "Oops, something went wrong!"
       redirect_to feedback_path
     end
+  end
+
+  def thanks
+
   end
 
 end

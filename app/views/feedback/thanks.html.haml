@@ -1,0 +1,10 @@
+%div{:class => "container"}
+  %div{:class => "header"}
+    =image_tag "feedback_dog.png"
+    %h1 Thanks for your feedback! 
+
+    %button{:class => "btn btn-primary" }
+      =link_to "Home", root_path
+    %button{:class => "btn btn-primary" }
+      =link_to "Feedback", feedback_path
+  %br
