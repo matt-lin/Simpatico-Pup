@@ -1,26 +1,48 @@
+// Iter2 (by Eric, Emiko)
+/ %body{:style => "background-color:#EBFAFF"}
+
 %div{:class => "container"}
 
   %div{:class => "header"}
-    %h1 Feedback
+    %h1 Rate Us! 
 
-  // - flash.each do |key, value|
-  //   %p= value
+  %br
+  
+  / http://bootsnipp.com/user/snippets/0M39d
+  = form_tag pups_path, :class => "form-horizontal", :autocomplete => 'off' do
 
-  = form_tag create_feedback_path, :class => "form-horizontal", :autocomplete => "off" do
-    %div{:class => "btn-group"}
-      = label "I can easily rate my dog"
-      %div
-      = label{:class => "radio-inline"}
-      = input{:type => "radio", :name => "ratedog" :value => 1, :class => "required form-control", :title => "*"}
+    /ATTRIBUTES GROUP/
+    %div{:class => "sub-header"}
+      %h3 How would you rate your pup?
+    %h4{:class => "explanation"}
+      (1 = Poor, 5 = Excellent)
+    = render 'slider_rating', title: "Rate Your Dog", slider: "slider-rateyourdog", id: "rateyourdog-label",
+              des1: "Very Unintuitive", des5: "Intuitive",
+              description: "How intuitive is Rate Your Dog?", var: :usability_rateyourdog
+    = render 'slider_rating', title: "Find Rating for Breed", slider: "slider-findratingbreed", id: "findratingbreed-label",
+              des1: "Very Unintuitive", des5: "Intuitive",
+              description: "How intuitive is Find Rating for Breed?", var: :usability_findratingbreed
+    = render 'slider_rating', title: "Find Ratings for a Breeder", slider: "slider-findratingbreeder", id: "findratingbreeder-label",
+              des1: "Very Unintuitive", des5: "Intuitive",
+              description: "How intuitive is Find Ratings for a Breeder?", var: :usability_rateyourdog
+    = render 'slider_rating', title: "Search for a Breeder", slider: "slider-searchbreeder", id: "searchbreeder-label",
+              des1: "Very Unintuitive", des5: "Intuitive",
+              description: "How intuitive is Search for a Breeder?", var: :usability_searchbreeder
 
-      = label{:class => "radio-inline"}
-      = input{:type => "radio", :name => "ratedog" :value => 2, :class => "required form-control", :title => "*"}
+    /COMMENTS GROUPING/
+    %div{:class => "sub-header"}
+      %h3 Tell us more!
+    %h4{:class => "explanation"} How can we improve? (1000 chars limit)
+    %br
+    %div{:class => "form-group col-sm-12"}
+      = text_field :pup, 'comments', :maxlength => 1000, :class => "form-control", :placeholder => "Comments"
+    
+    %br
 
-      = label{:class => "radio-inline"}
-      = input{:type => "radio", :name => "ratedog" :value => 3, :class => "required form-control", :title => "*"}
-
-      = label{:class => "radio-inline"}
-      = input{:type => "radio", :name => "ratedog" :value => 4, :class => "required form-control", :title => "*"}
-
-      = label{:class => "radio-inline"}
-      = input{:type => "radio", :name => "ratedog" :value => 5, :class => "required form-control", :title => "*"}
+    // Iter2 (by Eric, Emiko)
+    %div{:class => "form-group col-sm-5"}
+      = submit_tag 'Submit Feedback', :id => 'Add_Feedback', :class => "form-control", :style => "margin-bottom: 10%"
+    %script{:src=>"https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"}
+    
+    %br
+    
