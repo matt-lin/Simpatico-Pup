@@ -31,6 +31,18 @@ describe FeedbackController do
   #     response.should be_success
   #   end
   # end
+  describe "submitting feedback without correct paramters" do
+    it "calling with open response should redirect to feedback_path" do
+      post :create, { :feedback => { :open_response => "hello" }}
+      puts (response)
+      expect(response).to redirect_to thanks_feedback_path
+    end
+
+    it "calling with only 1 rating should redirect to feedback_path" do
+      post :create, { :feedback => { :breeder_rating => 1 }}
+      expect(response).to redirect_to thanks_feedback_path
+    end
+  end
 
   describe "GET 'show'" do
     it "returns http success" do
