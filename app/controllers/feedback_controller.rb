@@ -14,9 +14,6 @@ class FeedbackController < ApplicationController
 
   def create
     puts(params)
-    if !params.has_key?('feedback')
-      redirect_to feedback_path and return
-    end
     open_resp = params[:feedback][:open_response]
     rate_dog = params[:feedback][:usability_rateyourdog]
     breed_rating = params[:feedback][:usability_findratingbreed]
@@ -25,19 +22,12 @@ class FeedbackController < ApplicationController
     forum = params[:feedback][:usability_forum]
 
     # All scale ratings mandatory
-    if rate_dog == "N/A" || breed_rating == "N/A" || breeder_rating == "N/A" || search_breeder == "N/A" || forum == "N/A"
+    if check_params([rate_dog, breed_rating, breeder_rating, search_breeder, forum]) == false
       flash[:notice] = "Please complete the form."
       redirect_to feedback_path and return
     end
 
-    @feedback = Feedback.create!(
-      :open_response => open_resp,
-      :rate_dog => rate_dog,
-      :breed_rating => breed_rating,
-      :breeder_rating => breeder_rating,
-      :search_breeder => search_breeder,
-      :forum => forum
-    )
+    @feedback = Feedback.create!(:open_response => open_resp, :rate_dog => rate_dog, :breed_rating => breed_rating, :breeder_rating => breeder_rating, :search_breeder => search_breeder, :forum => forum)
 
     if @feedback.save
       flash[:notice] = "Thanks for your feedback!"
@@ -46,6 +36,22 @@ class FeedbackController < ApplicationController
       flash[:notice] = "Oops, something went wrong!"
       redirect_to feedback_path
     end
+  end
+
+  def check_params(list_of_params)
+    for param in list_of_params
+      if param == "N/A"
+        return false
+      end
+    end
+    return true
+  end
+
+  def check_request_params(params)
+    if params.has_key?('feedback')
+      return true
+    end
+    return false
   end
 
   def thanks

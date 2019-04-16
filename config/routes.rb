@@ -4,8 +4,6 @@ Ratemypup::Application.routes.draw do
 
   get 'feedback/new'
 
-  get 'feedback/create'
-
   get 'feedback/show'
 
   get 'feedback/thanks'
