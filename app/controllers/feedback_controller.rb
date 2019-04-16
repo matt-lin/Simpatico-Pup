@@ -14,9 +14,6 @@ class FeedbackController < ApplicationController
 
   def create
     puts(params)
-    if check_request_params(params) == false
-      redirect_to feedback_path and return
-    end
     open_resp = params[:feedback][:open_response]
     rate_dog = params[:feedback][:usability_rateyourdog]
     breed_rating = params[:feedback][:usability_findratingbreed]
