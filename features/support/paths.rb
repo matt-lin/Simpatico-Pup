@@ -12,14 +12,18 @@ module NavigationHelpers
   #
   def path_to(page_name)
     case page_name
-
+    #when /^Create a New Message$/ then '/'
     when /^the RateMyPup home page$/ then '/'
+    when /^the Community Forum page$/ then '/forum/'
     when /^the "Create New Pup Test" page$/ then new_pup_path(:potato=>{:poops=>"Alex McGourty"}, :breeder=>{:name=>"",:city=>"",:state=>""})
     when /^the "Create New Pup" page$/ then new_pup_path
     when /^the "Pups" page$/ then '/pups'
     when /^the Login page$/ then '/users/sign_in'
     when /^the Signup page$/ then '/users/sign_up'
     when /^the "Add breeder" page$/ then '/breeders/new'
+    when /^the "test" page$/ then '/forum/test'
+    when /^the "new messageboard" page$/ then '/forum/messageboards/new'
+    when /^the "new messageboard group" page$/ then '/forum/admin/messageboard_groups/new'
     when /^the Breed page$/ then '/breed'
     # Add more mappings here
     when /^the "Dog Name" page$/ then dog_name_path
