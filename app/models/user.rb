@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  # Adds uploader for profile images
+  mount_uploader :avatar, AvatarUploader
+
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :agreement
   # attr_accessible :title, :body
@@ -13,9 +16,6 @@ class User < ActiveRecord::Base
   attr_accessor :reset_token, :remember_token, :activation_token
   before_save   :downcase_email
   before_create :create_activation_digest
-
-  has_attached_file :profile_image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/assets/images/default_profile_image.jpg"
-  validates_attachment_content_type :profile_image, content_type: /\Aimage\/.*\z/
 
   has_many :pups
   has_one :widget

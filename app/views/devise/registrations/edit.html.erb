@@ -4,10 +4,10 @@
   <div id="profile_picture">
     <h3 class="sub_title">Profile Image</h3>
 
-    <%= image_tag @user.profile_image.url %>    
+    <%= image_tag @user.avatar.url %>
 
-    <%= form_for @user, url: edit_profile_image_path, method: :post, html: { multipart: true} do |form| %>
-      <%= form.file_field :profile_image %>
+    <%= form_for @user, url: edit_profile_image_path, html: { multipart: true }, method: :post do |form| %>
+      <%= form.file_field :avatar %>
       <%= form.submit %>
     <% end %>
     

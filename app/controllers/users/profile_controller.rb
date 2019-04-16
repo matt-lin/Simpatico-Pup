@@ -2,9 +2,17 @@ class Users::ProfileController < ApplicationController
 
 # /users/profile/edit
 def edit_image
-  profile_image = params[:profile_image]
+  avatar = params[:avatar]
 
-  flash[:notice] = "You have successfully set your profile image"
+#  if avatar != nil
+    flash[:notice] = "You have successfully set your profile image"
+    # app/assets/images/default_profile_image.jpg
+    current_user.avatar = avatar
+    current_user.save!
+ # else
+  #  flash[:notice] = "Profile image was not entered"
+  #end
+
   redirect_to edit_user_registration_path
 end
 
