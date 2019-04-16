@@ -683,6 +683,13 @@ h3.mission-text {
     text-align: center;
 }
 
+.btn-themed {
+    background-color: rgb(51, 153, 255);
+    color: #fff;
+    margin-top: 15%;
+    margin-bottom: 10%;
+  }
+
 
 /*Iter 1-2*/
 
@@ -1188,3 +1195,4 @@ body,
     }
 }
 /*End for Iter 1-2*/
+

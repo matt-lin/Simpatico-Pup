@@ -1,10 +1,18 @@
 %div{:class => "container"}
-  %div{:class => "header"}
-    =image_tag "feedback_dog.png"
-    %h1 Thanks for your feedback! 
+  %div{:class => "col-sm-4"}
+  %div{:class => "header col-sm-4", :id => "jetpackPup",  :style =>"text-align: center;"}
+    =image_tag "feedback_dog.png", :style => "width: 90%;text-align: center;margin: 0 auto;right: 0;left: 0;margin-top: 20%;margin-bottom: 10%;"
+  
+  %div{:class => "col-sm-4"}
 
-    %button{:class => "btn btn-primary" }
-      =link_to "Home", root_path
-    %button{:class => "btn btn-primary" }
-      =link_to "Feedback", feedback_path
+  %div{:class => "header col-sm-12"}
+    %h1 Thanks for your feedback! 
+  %div{:class => "col-sm-4"} 
+  %div{:class => "col-sm-2", :style =>"text-align: right;"}
+    %button{:class => "btn btn-themed" }
+      =link_to "Home", root_path,  :style =>"color: white;"
+  %div{:class => "col-sm-2", :style =>"text-align: left;"}
+    %button{:class => "btn btn-themed" }
+      =link_to "Feedback", feedback_path , :style =>"color: white;"
+  %div{:class => "col-sm-4"}
   %br
