@@ -14,7 +14,7 @@ class FeedbackController < ApplicationController
 
   def create
     puts(params)
-    if params.has_key?('feedback') == false
+    if check_request_params(params) == false
       redirect_to feedback_path and return
     end
     open_resp = params[:feedback][:open_response]
@@ -48,6 +48,13 @@ class FeedbackController < ApplicationController
       end
     end
     return true
+  end
+
+  def check_request_params(params)
+    if params.has_key?('feedback')
+      return true
+    end
+    return false
   end
 
   def thanks
