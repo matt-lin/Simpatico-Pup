@@ -6,17 +6,17 @@
 <head>
   <link rel="icon" href="/assets/icon.png">
   <title><%= titles %></title>
-  
+
   <!-- mobile friendly tag -->
     <meta name="viewport" content="width=device-width">
-    
+
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  
+
   <!--This line of code is to resolve issue with current bootstrap set up to cause not be able to dispaly icon-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  
+
 </head>
 
 
@@ -26,55 +26,58 @@
   <div class="container-fluid2" style="padding-top:50px; padding-bottom: 50px">
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
-        
+
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#Navbar">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-            <span class="icon-bar"></span>                        
+            <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="/" style="font-size: 24px;padding-left:25px;"><%= titles %></a>
         </div>
-                
+
         <div class="collapse navbar-collapse" id="Navbar">
             <ul class="nav navbar-nav navbar-right">
-              <li> 
+              <li>
                 <%= link_to nav_bar_1, text_mission_path %>
               </li>
-              <li> 
+              <li>
                 <%= link_to nav_bar_2, text_background_path %>
               </li>
-              <li> 
+              <li>
                 <%= link_to nav_bar_3, text_goals_path %>
               </li>
-              <li> 
+              <li>
                 <%= link_to nav_bar_4, text_how_you_can_help_path %>
               </li>
-              <li> 
+              <li>
                 <%= link_to nav_bar_5, "/forum" %>
               </li>
-              
+              <li>
+                <%= link_to nav_bar_6, feedback_path %>
+              </li>
+
               <% if user_signed_in? %>
-              
+
              <li class="dropdown" id='dropdown_menu'>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                       <span class="glyphicon glyphicon-user"></span>
                       <%=" " + current_user.username.upcase %></a>
                     <ul class="dropdown-menu">
-                      
+
                       <%= link_to user_pups_path, class: "btn", style: "color: black;" do %>
                         <i class="glyphicon glyphicon-th-list"></i> My Pups
                       <% end %>
-          
+
                       </li>
                       <%= link_to edit_user_registration_path, class: "btn", style: "color: black;" do %>
                         <i class="glyphicon glyphicon-cog"></i> Settings
                       <% end %>
-                      
+
                       <%= link_to destroy_user_session_path, :method => :delete, class: "btn", style: "color: black;" do %>
                         <i class="glyphicon glyphicon-log-out"></i> Logout
                       <% end %>
-                  
+
               <% else %>
                   <li><button type="button" class="btn btn-default navbar-btn"><%= link_to "Signup", new_user_registration_path %></button></li>
                   <li><%= link_to "Login", new_user_session_path, :id => 'Login' %></li>
@@ -95,7 +98,7 @@
 
     <%= yield %>
   </div>
-  
+
   <!--<div class="row navbar-fixed-bottom">-->
   <!--  <div class="col-md-12 contact contact-text-sm">-->
   <!--    <div class="col-sm-4">-->
@@ -104,7 +107,7 @@
   <!--      <%= link_to bot_left, 'http://www.caninehealthinfo.org/', :class => "contact-link" %>-->
         <!--End for Iter 1-2-->
   <!--    </div>-->
-    
+
   <!--    <div class="col-sm-4">-->
   <!--      <p>-->
   <!--        <%= link_to top_mid, privacy_policy_path, :class=>"contact-link" %>-->
@@ -113,15 +116,15 @@
   <!--        <%= link_to bot_mid, terms_of_service_path, :class=>"contact-link" %>-->
   <!--      </p>-->
   <!--    </div>-->
-    
+
   <!--    <div class="col-sm-4">-->
   <!--      <p><%= top_right %></p>-->
   <!--      <%= link_to link_to bot_right, 'mailto:LSandersDVM@gmail.com', :class=>"contact-link" %>-->
   <!--    </div>-->
-    
+
   <!--  </div>-->
   <!--</div>-->
-  
+
 
 </body>
 </html>
