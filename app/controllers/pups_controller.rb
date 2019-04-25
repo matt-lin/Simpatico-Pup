@@ -250,8 +250,7 @@ currently limiting the number of ratings made by each dog owner to eight, and li
 
   # search for breeds when doing auto-fill
   def search_breed
-    name = params[:name]
-    flash[:notice] = "Let us know how we're <a href='#{feedback_path}'>doing</a>!"
+    name, flash[:notice] = params[:name], "Let us know how we're <a href='#{feedback_path}'>doing</a>!"
     render :json => Breed.find_breed_by_substr(name)
   end
 
