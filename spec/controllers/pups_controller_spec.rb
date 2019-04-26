@@ -198,7 +198,7 @@ describe PupsController do
       Pup.stub(:build_pup) {stub_pup}
       post :create, @pup_hash
       response.should redirect_to root_path
-      flash[:notice].should eq("Thank You! Doggie was successfully added to our database. Let us know how we're <a href='#{feedback_path}'>doing</a>!")
+      flash[:notice].should eq("Thank You! Doggie was successfully added to our database. <a href='#{feedback_path}'>Let us know how we're doing!</a>")
     end
 
     it "should redirect to rating page if comment is too long" do
