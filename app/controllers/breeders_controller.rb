@@ -30,15 +30,15 @@ class BreedersController < ApplicationController
       @avg_ratings = @breeder.avg_pup_rating
       @pups = @breeder.all_pups
       @show_text = @breeder.name + ' - ' + @breeder.address
-      flash[:notice] = "Let us know how we're <a href='#{feedback_path}'>doing</a>!"
+      flash[:notice] = "<a href='#{feedback_path}'>#{t(:feedback_flash)}</a>"
 
     elsif params[:id].present?
 
       @breeder = Breeder.find_by_id(params[:id])
       @avg_ratings = @breeder.avg_pup_rating
       @pups = @breeder.all_pups
-      flash[:notice] = "Let us know how we're <a href='#{feedback_path}'>doing</a>!"
-      
+      flash[:notice] = "<a href='#{feedback_path}'>#{t(:feedback_flash)}</a>"
+
     else
 
       redirect_to root_path

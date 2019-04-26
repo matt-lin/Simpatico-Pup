@@ -88,7 +88,7 @@ currently limiting the number of ratings made by each dog owner to eight, and li
       @Comment.pup_id = @pup.id
       @Comment.save
       # Successfully save pup & comment
-      flash[:notice] = "Thank You! #{@pup.pup_name} was successfully added to our database. Let us know how we're <a href='#{feedback_path}'>doing</a>!"
+      flash[:notice] = "Thank You! #{@pup.pup_name} was successfully added to our database. <a href='#{feedback_path}'>#{t(:feedback_flash)}</a>"
     end
       redirect_to root_path
   end
@@ -250,7 +250,7 @@ currently limiting the number of ratings made by each dog owner to eight, and li
 
   # search for breeds when doing auto-fill
   def search_breed
-    name, flash[:notice] = params[:name], "Let us know how we're <a href='#{feedback_path}'>doing</a>!"
+    name = params[:name]
     render :json => Breed.find_breed_by_substr(name)
   end
 
@@ -262,7 +262,7 @@ currently limiting the number of ratings made by each dog owner to eight, and li
       redirect_to root_path
     else
       @pups = Pup.find_by_breed(name)
-      @avg_ratings = Pup.avg_ratings_by_breeds(name)
+      @avg_ratings, flash[:notice] = Pup.avg_ratings_by_breeds(name), "<a href='#{feedback_path}'>#{t(:feedback_flash)}</a>"
     end
   end
 
