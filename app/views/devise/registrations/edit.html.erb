@@ -4,11 +4,16 @@
   <div id="profile_picture">
     <h3 class="sub_title">Profile Image</h3>
 
-    <%= image_tag @user.avatar.url %>
+    <%= image_tag @user.avatar.thumb.url, id: "edit_profile_image" if @user.avatar? %>
 
     <%= form_for @user, url: edit_profile_image_path, html: { multipart: true }, method: :post do |form| %>
-      <%= form.file_field :avatar %>
-      <%= form.submit %>
+      <div class="actions">
+        <%= label 'hidden', 'file', class: "button" do %>
+          <%= form.file_field :avatar, id: "hidden_file" %>
+          Upload Image
+        <% end %>
+        <%= form.submit "Save", class: "button" %>
+      </div>
     <% end %>
     
   </div>

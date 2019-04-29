@@ -14,7 +14,7 @@ Background: User already login
 Scenario: user sets profile image correctly
   Given I log in as "jeff"
   And I am on the "Edit Profile" page
-  When I attach the file "./features/attachment/profile_image.jpg" to "profile_image"
+  When I attach the file "./features/attachment/profile_image.jpg" to "user_avatar"
   And I press "Set Profile Image"
   Then I should see "You have successfully set your profile image!"
   And I should see "profile_image.jpg"
@@ -22,7 +22,7 @@ Scenario: user sets profile image correctly
 Scenario: user sets profile image incorrectly
   Given I log in as "jeff"
   And I am on the "Edit Profile" page
-  When I attach the file "./features/attachment/profile_image.txt" to "profile_image"
+  When I attach the file "./features/attachment/profile_image.txt" to "user_avatar"
   And I press "Set Profile Image"
   Then I should see "Please submit a jpg or png file"
 

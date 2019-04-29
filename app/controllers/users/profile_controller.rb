@@ -5,7 +5,7 @@ def edit_image
   avatar = params[:user][:avatar]
 
   if avatar != nil
-    flash[:notice] = "You have successfully set your profile image"
+    flash[:notice] = "You have successfully set your profile image!"
     current_user.avatar = avatar
     current_user.save!
   else
