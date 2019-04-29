@@ -9,8 +9,8 @@
     <%= form_for @user, url: edit_profile_image_path, html: { multipart: true }, method: :post do |form| %>
       <div class="actions">
         <%= label 'hidden', 'file', class: "button" do %>
-          <%= form.file_field :avatar, id: "hidden_file" %>
-          Upload Image
+          <%= form.file_field :avatar, id: "hidden_file", accept: "image/*" %>
+          Choose File
         <% end %>
         <%= form.submit "Save", class: "button" %>
       </div>
