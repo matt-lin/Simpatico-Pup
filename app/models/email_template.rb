@@ -16,8 +16,14 @@ class EmailTemplate < ActiveRecord::Base
     end
 
     def EmailTemplate.find_by_email_field(field, text)
-      query = field + " = ?"
-      result = EmailTemplate.where(query, text).first
+      query_dictionary = {
+        'title' => 'title = ?',
+        'body' => 'body = ?'
+      }
+      if query_dictionary[field] == nil
+        raise 'Invalid field in query: ' + field
+      end
+      result = EmailTemplate.where(query_dictionary[field], text).first
 
       if !result
         return nil
