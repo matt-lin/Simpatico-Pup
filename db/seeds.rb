@@ -2,17 +2,17 @@
 #Iter3-2 Populate default layout into the database (By Gung Hiu Ho, Licong Wang)
 customizes = [
   {:name => 'Site_Name', :content => 'SimpaticoPup', :location => "site_title" },
-  
-  {:name => 'Primary_Title', :content => 'Better Way to Find a Great Dog', :location => "main_title" }, 
-  {:name => 'Secondary_Title', :content => 'The SimpaticoPup website was created to help improve how companion puppies are produced, 
+
+  {:name => 'Primary_Title', :content => 'Better Way to Find a Great Dog', :location => "main_title" },
+  {:name => 'Secondary_Title', :content => 'The SimpaticoPup website was created to help improve how companion puppies are produced,
   and how they find their way to their forever homes.', :location => "main_title" },
   {:name => 'Title_Button', :content => 'Find out more', :location => "main_title" },
 
-  {:name => 'Transition_Title', :content => 'Why are we doing this?', :location => "transition" }, 
-  {:name => 'Transition_Body', :content => 'Our mission is to create a database of user-generated content about companion dogs and dog breeders, 
-    which will promote responsible dog breeding and help dog lovers find simpatico puppies with whom to share their homes and lives.', :location => "transition" }, 
+  {:name => 'Transition_Title', :content => 'Why are we doing this?', :location => "transition" },
+  {:name => 'Transition_Body', :content => 'Our mission is to create a database of user-generated content about companion dogs and dog breeders,
+    which will promote responsible dog breeding and help dog lovers find simpatico puppies with whom to share their homes and lives.', :location => "transition" },
   {:name => 'Transition_Button', :content => 'Get Started', :location => "transition" },
-  
+
   {:name => 'Function_Title', :content => 'What We Provide', :location => "fuction" },
   {:name => 'Function_leftmost_Top', :content => 'Rate your', :location => "fuction" },
   {:name => 'Function_leftmost_Bottom', :content => 'Dog', :location => "fuction" },
@@ -22,22 +22,23 @@ customizes = [
   {:name => 'Function_right_mid_Bottom', :content => 'Breeder', :location => "fuction" },
   {:name => 'Function_rightmost_Top', :content => 'Search for a', :location => "fuction" },
   {:name => 'Function_rightmost_Bottom', :content => 'Breeder', :location => "fuction" },
-  
-  
+
+
   {:name => 'Blue_Bar_Top_Left', :content => 'For More Information on Breed Health', :location => "main_bar" },
   {:name => 'Blue_Bar_Top_Middle', :content => 'Privacy Policy', :location => "main_bar" },
   {:name => 'Blue_Bar_Top_Right', :content => 'Contact Info', :location => "main_bar" },
   {:name => 'Blue_Bar_Bottom_Left', :content => 'Canine Health Information Center', :location => "main_bar" },
   {:name => 'Blue_Bar_Bottom_Middle', :content => 'Terms of Service', :location => "main_bar" },
   {:name => 'Blue_Bar_Bottom_Right', :content => 'LSandersDVM@gmail.com', :location => "main_bar" },
-  
+
   {:name => 'Comment_Title', :content => 'Featured Comment', :location => "message" },
-  
+
   {:name => 'Nav_Bar_1', :content => 'Mission', :location => "navigation_bar" },
   {:name => 'Nav_Bar_2', :content => 'Background', :location => "navigation_bar" },
   {:name => 'Nav_Bar_3', :content => 'Goals', :location => "navigation_bar" },
   {:name => 'Nav_Bar_4', :content => 'How You Can Help', :location => "navigation_bar" },
-  {:name => 'Nav_Bar_5', :content => 'Community Forum', :location => "navigation_bar" }]
+  {:name => 'Nav_Bar_5', :content => 'Community Forum', :location => "navigation_bar" },
+  {:name => 'Nav_Bar_6', :content => 'Feedback', :location => "navigation_bar" }]
 
 customizes.each do |customize|
   Customize.create!(customize)
@@ -305,7 +306,7 @@ breeds = [
       { :name => 'Maltipoo (Maltese x Poodle)' },
       { :name => 'Yorkipoo (Yorkshire Terrier x Poodle)' },
       { :name => 'Shihpoo (Shih Tzu x Poodle)' }]
-      
+
 
 # newsletter_users = [
 #     {:email => 'nu1@gmail.com', :created_at => DateTime.now, :updated_at => DateTime.now},
@@ -338,3 +339,12 @@ texts.each do |text|
 end
 
 # AdminUser.create!(:email => 'admin@berkeley.edu', :password => 'password', :password_confirmation => 'password')
+
+Feedback.create!(
+  :open_response => 'I love this site!',
+  :rate_dog => 3,
+  :breed_rating => 3,
+  :breeder_rating => 4,
+  :search_breeder => 2,
+  :forum => 1
+)

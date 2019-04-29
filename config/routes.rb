@@ -1,5 +1,13 @@
 Ratemypup::Application.routes.draw do
 
+  get 'feedback/index'
+
+  get 'feedback/new'
+
+  get 'feedback/show'
+
+  get 'feedback/thanks'
+
   mount Rich::Engine => '/rich', :as => 'rich'
   # get 'password_resets/new'
 
@@ -7,7 +15,7 @@ Ratemypup::Application.routes.draw do
 
   mount Thredded::Engine => '/forum'
   devise_for :users, controllers: {sessions: "sessions", registrations: 'users/registrations'}
-  
+
   # namespace :users do
   #   get '/pups' => 'users#pups', :as => :user_pups
   # end
@@ -33,20 +41,25 @@ Ratemypup::Application.routes.draw do
   get 'pups/dog_how_long' => 'pups#dog_how_long', :as => :dog_how_long
   get 'pups/dog_breed' => 'pups#dog_breed', :as => :dog_breed
   get 'pups/dog_breeder' => 'pups#dog_breeder', :as => :dog_breeder
-  
+
   get 'pups/hashtags' => 'pups#hashtags', :as => :dog_hashtags
   get 'pups/random_comment' => 'pups#random_comment', :as => :dog_random_comment
   get 'pups/ratings' => 'pups#ratings', :as => :dog_ratings
   get 'pups/breed_avg_ratings' => 'pups#breed_avg_ratings', :as => :breed_avg_ratings
 
+  # resources :feedback
   resources :pups
   resources :breeders
   resources :texts
   resources :passwordresets
   # activate account
   resources :account_activations, only: [:edit]
-  
+
   get '/activate/:email' => 'account_activations#send_mail', :as => :activate, :constraints => { :email => /.+@.+\..*/ }
+
+  get '/feedback' => 'feedback#new', :as => :feedback
+  post '/feedback/create' => 'feedback#create', :as => :create_feedback
+  get '/feedback/thanks' => 'feedback#thanks', :as => :thanks_feedback
 
   get '/breed' => 'pups#breed', :as => :breed
   get '/breed/match' => 'pups#search_breed', :as => :breed_search
@@ -62,9 +75,9 @@ Ratemypup::Application.routes.draw do
   get '/text/privacy_policy' => 'texts#privacy_policy', :as => :privacy_policy
   get '/text/terms_of_service' => 'texts#terms_of_service', :as => :terms_of_service
   get '/welcome' => 'texts#welcome', :as => :welcome
-  
+
   get "*path" => redirect("/")
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
   # Sample of regular route:
