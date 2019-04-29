@@ -20,4 +20,12 @@ def edit_image
   redirect_to edit_user_registration_path
 end
 
+  def index
+    @user = User.find(params[:user_id])
+    if @user.bio.nil? or @user.bio.empty?
+      @bio = "No biography"
+    else
+      @bio = @user.bio
+    end
+  end
 end
