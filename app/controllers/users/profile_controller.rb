@@ -28,4 +28,15 @@ end
       @bio = @user.bio
     end
   end
+
+  def bio
+    current_user.bio = params[:user][:bio]
+    if current_user.save
+      flash[:notice] = "You have successfully updated your biography"
+    else
+      flash[:notice] = "There was an error setting you biography"
+    end
+
+    redirect_to edit_user_registration_path
+  end
 end
