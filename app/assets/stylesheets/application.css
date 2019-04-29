@@ -312,7 +312,9 @@ body {
 .row_tagline {
     display: none;
 }
-
+.spacing{
+    margin-bottom: 7px;
+}
 .slider {
     display: none;
 }
