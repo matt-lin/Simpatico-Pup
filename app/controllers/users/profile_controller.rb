@@ -21,9 +21,14 @@ def edit_image
 end
 
   def index
-    @user = User.find(params[:user_id])
+    user_id = params[:user_id]
+    if not User.exists?(user_id)
+      redirect_to "/"
+      return
+    end
+    @user = User.find(user_id)
     if @user.bio.nil? or @user.bio.empty?
-      @bio = "No biography"
+      @bio = "No biography" #TODO Add empty biography message
     else
       @bio = @user.bio
     end
