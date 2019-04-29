@@ -22,7 +22,7 @@
 
   <div id="profile_page_bio">
     <h3 class="sub_title">Profile Settings</h3>
-    <%= form_for @user, url: edit_profile_image_path, html: { method: :post}  do |form| %>
+    <%= form_for @user, url: edit_profile_bio, html: { method: :post}  do |form| %>
 
       <div class="field">
         <%= form.label :bio, "Biography" %> <br />

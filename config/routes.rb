@@ -24,7 +24,7 @@ Ratemypup::Application.routes.draw do
 
   get '/users/pups' => 'users#pups', :as => :user_pups
   get '/users/profile/:user_id' => "users/profile#index", :as => :profile_page
-  post '/users/profile/bio' => "users/profile#bio", :as => :profile_bio
+  post '/users/profile/bio' => "users/profile#bio", :as => :edit_profile_bio
 
   devise_scope :user do
     get '/users/unsubscribe' => 'users/registrations#unsubscribe_newsletter', :as => :unsubscribe_newsletter
