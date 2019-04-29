@@ -10,10 +10,8 @@ def edit_image
       current_user.avatar.recreate_versions!
       current_user.save!
       flash[:notice] = "You have successfully set your profile image!"
-    rescue ActiveRecord::RecordInvalid
+    rescue 
       flash[:notice] = "Please submit an image file"
-    rescue
-      flash[:notice] = "An unknown error has occured while uploading your image"
     end
   else
     flash[:notice] = "There was an issue setting your profile image"
