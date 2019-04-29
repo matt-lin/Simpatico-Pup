@@ -8,6 +8,18 @@ ActiveAdmin.register Pup, as: "Dogs" do
   filter :breed
   filter :pup_name
   actions :all, except: [:update, :new, :edit]
+  batch_action :destroy, confirm: "Are you sure you want to delete these pups?" do |ids|
+    ids.each do |i|
+      dog = Pup.find(i)
+      breeder = Breeder.find(dog.breeder_id)
+      if dog.destroy
+        old_value = breeder.removed_reviews
+        breeder.removed_reviews = old_value + 1
+        breeder.save
+      end
+    end
+    redirect_to admin_dogs_path
+  end
   
 index do
   
@@ -47,16 +59,10 @@ end
     def destroy
       dog = Pup.find(params["id"])
       breeder = Breeder.find(dog.breeder_id)
-      if params[:type].present?
-        if params[:type] == "user"
-          if dog.destroy
-            old_value = breeder.removed_reviews
-            breeder.removed_reviews = old_value + 1
-            breeder.save
-          end
-        end
-      else
-        dog.destroy
+      if dog.destroy
+        old_value = breeder.removed_reviews
+        breeder.removed_reviews = old_value + 1
+        breeder.save
       end
       redirect_to admin_dogs_path
     end
@@ -71,3 +77,5 @@ end
   end
 
 end
+
+
