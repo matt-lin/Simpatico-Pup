@@ -26,6 +26,7 @@ temperament of the pet dogs being produced.
 <br/>####Dependencies - 
   1. [rvm](https://rvm.io)
   2. Ruby: 2.2.2
+  3. ImageMagick
 
 ###Setup
 <br/>After cloning run bundle install --without production
@@ -34,9 +35,13 @@ temperament of the pet dogs being produced.
 <br/>Travis CI should always be passing
 <br/>If failed, try either re-run or only run individuals feature files, all the features files should be passing
 <br/>Heroku site need to run rake db:migrate and rake db:seed
+<br/>ImageMagick must be installed in order to support profile image resizing
 
 
-####Current Contributors (in no particular order)
+####Current Contributors
+<br/>*Eric Kong, Emiko Tsutsumi, Matthew Lin, Noah Poole, Raymond Gu, Shuyin Xu*
+
+####Past Contributors
 <br/>*Jeff Yu, Gilbert Lo, Licong Wang, Jack Chen, Alex Ho, Zipei Wang*
 
 
