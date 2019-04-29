@@ -15,65 +15,84 @@
         <%= form.submit "Save", class: "button" %>
       </div>
     <% end %>
-    
+
   </div>
-  
+
+  <br>
+
+  <div id="profile_page_bio">
+    <h3 class="sub_title">Profile Settings</h3>
+    <%= form_for @user, url: edit_profile_image_path, html: { method: :post}  do |form| %>
+
+      <div class="field">
+        <%= form.label :bio, "Biography" %> <br />
+        <%= form.text_area :bio, :class => "text_input", :rows => 5 %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit "Update biography", :id => "update_bio", :class => "button" %>
+      </div>
+    <% end %>
+  </div>
+
+  <br>
+
   <div id="change_password">
     <h3 class="sub_title">Change password</h3>
-    
+
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= devise_error_messages! %>
-  
+
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
-    
+
     <div class="field">
       <%= f.label :current_password, "Current password" %> <br />
       <%= f.password_field :current_password, autocomplete: "off", class: 'password_input' %>
     </div>
-    
+
     <div class="field">
       <%= f.label :password, "New password" %> <br />
       <%= f.password_field :password, autocomplete: "off", class: 'password_input' %>
     </div>
-  
+
     <div class="field">
       <%= f.label :password_confirmation, "Confirm new password" %><br />
       <%= f.password_field :password_confirmation, autocomplete: "off", class: 'password_input' %>
     </div>
-    
+
     <br>
-  
+
     <div class="actions">
       <%= f.submit "Update Password", :id => "update_button", :class => "button" %>
       <%= link_to "I forget my password", passwordresets_path(:email => resource.email) %>
     </div>
     <% end %>
   </div>
-  
+
   <div id="newsletter_subscription" class="sub_part">
     <h3 class="sub_title">Newsletter subscription</h3>
-    
+
     <% if subscribed? %>
       <p>You are currently subscribing newsletter, click the button below to unsubscrib newsletter</p>
-      <%= button_to "Unsubscribe newsletter", update_subscription_path(:to_subscribe => false), method: :post, 
+      <%= button_to "Unsubscribe newsletter", update_subscription_path(:to_subscribe => false), method: :post,
           :id => "unsubscribe_button", :class => "button" %>
     <% else %>
       <p>You are currently not subscribing newsletter, click the button below to subscribe newsletter</p>
-      <%= button_to "Subscribe newsletter", update_subscription_path(:to_subscribe => true), method: :post, 
+      <%= button_to "Subscribe newsletter", update_subscription_path(:to_subscribe => true), method: :post,
           :id => "subscribe_button", :class => "button" %>
     <% end %>
-    
+
   </div>
-  
+
   <div id="delete_account" class="sub_part">
     <h3 class="sub_title">Delete account</h3>
     <p>There is no way to recover the account after deletion. Only delete your account if you are certain to.</p>
-    <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, 
+    <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete,
         :id => "delete_button", :class => "button" %>
   </div>
-  
+
   <br>
-  
+
 </div>
