@@ -69,7 +69,7 @@ Ratemypup::Application.configure do
   
   require "#{Rails.root}/lib/smtp_tls"
 
-  config.action_mailer.default_url_options = { :host => 'www.simpaticopup.com' }
+  config.action_mailer.default_url_options = { :host => 'simpatico-pup.herokuapp.com' }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true 
   ActionMailer::Base.delivery_method = :smtp
@@ -78,8 +78,8 @@ Ratemypup::Application.configure do
     :port => 587,
     :domain => "gmail.com",
     :authentication => :plain,
-    :user_name => "simpaticopup@gmail.com",
-    :password => "simpaticopup1",
+    :user_name => "simpatico.pup1@gmail.com",
+    :password => "incoming-plunder-jarful",
     :enable_starttls_auto => false
   }
   

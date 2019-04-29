@@ -88,7 +88,7 @@ class User < ActiveRecord::Base
   end
 
   def admin
-    return true if self.email == "lhsdvm@aol.com"
+    return true if self.email == "lhsdvm@aol.com"  || self.email == "testuser@berkeley.edu"
     false
   end
 

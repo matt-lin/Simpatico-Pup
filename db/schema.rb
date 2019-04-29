@@ -94,6 +94,17 @@ ActiveRecord::Schema.define(version: 20190416001403) do
     t.boolean  "marked",     default: false
   end
 
+  create_table "feedbacks", force: :cascade do |t|
+    t.text     "open_response"
+    t.integer  "rate_dog"
+    t.integer  "breed_rating"
+    t.integer  "breeder_rating"
+    t.integer  "forum"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "search_breeder"
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",           limit: 191, null: false
     t.integer  "sluggable_id",               null: false

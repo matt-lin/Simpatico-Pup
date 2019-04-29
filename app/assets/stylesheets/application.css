@@ -1197,5 +1197,660 @@
 		margin-left: 20px;
 	    }
 
+.cancel, .cancel:hover {
+    text-decoration: none;
+}
+
+.paw {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    color: #bbb;
+}
+.paw i {
+    padding: 3px;
+}
+
+.paw .first {
+    color: #3399FF
+}
+
+.hashtag {
+    border: 1px solid gray;
+    background: gray;
+    color: white;
+    padding: 5px 5px 5px 5px;
+    border-radius: 8px;
+    margin: 3px 3px 3px 3px;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 300;
+
+}
+
+.hashtag_results {
+    border: 1px solid gray;
+    background: gray;
+    color: white;
+    padding: 4px 4px 4px 4px;
+    border-radius: 8px;
+    margin: 3px 3px 3px 3px;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 200;
+    font-size: 12px;
+
+}
+
+.hashtag:hover {
+    background: #3399FF;
+    border: 1px solid #3399FF;
+    color: white;
+    text-decoration: none;
+
+}
+
+.hashtag_selected {
+    background: #246BB2;
+    border: 1px solid #246BB2;
+    text-decoration: none;
+}
+
+/*MISSION STATEMENT CSS*/
+
+.mission {
+    background: white;
+    opacity: 0.95;
+    width: 100%;
+    padding-bottom: 50px;
+}
+
+.subsection-tagline {
+    margin: 50px 0 40px 0;
+    font-size: 28px;
+}
+
+.mission-text {
+    padding: 0 40px 0 40px;
+    margin-bottom: 100px;
+    text-align: center;
+    font-weight: normal; 
+    font-size: 25px;
+    /*color:#337ab7;*/
+}
+
+h3.mission-text {
+    text-indent: 0;
+    font-size: 16px;
+}
+
+
+/* Terms of Service and Privacy Policy  */
+
+.para {
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.para li {
+    list-style: none;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.para .sub-list li {
+    list-style: none;
+    padding-left: 40px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.para .address-div {
+    padding-left: 40px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.sub-list .sub-list-content {
+    margin-left: 80px;
+}
+
+.sub-list .sub-list-tag {
+    float: left;
+    width: 40px;
+    overflow: hidden;
+    clear: left;
+    text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.paw-custom-color i {
+    color: rgb(187, 187, 187);
+}
+
+.breeders-list .form-group {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.page-links {
+    padding-top: 80px;
+    margin: auto;
+    text-align: center;
+}
+
+.btn-themed {
+    background-color: rgb(51, 153, 255);
+    color: #fff;
+    margin-top: 15%;
+    margin-bottom: 10%;
+  }
+
+
+/*Iter 1-2*/
+
+/************************************/
+/*CONTACT INFO CSS*/
+
+.contact {
+    background: #337ab7;
+    opacity: 1.0;
+    width: 100%;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+#contact-link {
+    color: white;
+    text-decoration: underline;
+}
+
+.contact-link {
+    color: #f5f5f5;
+}
+
+.contact-text-sm {
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.contact-text-lg {
+    color: white;
+    text-align: center;
+    font-size: 28px;
+}
+
+.text-container {
+    margin-bottom: 50px;
+}
+
+
+.container-main {
+    margin-top: 80px;
+}
+
+.container_inline {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: 0;
+    margin-left: 0;
+    width: 100%;
+    position: relative;
+    text-align: center;
+}
+
+#jackSB {
+    margin-top: 10%;
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+
+
+/*Iter 1-2*/
+/**************************************full img background**********/
+html,
+body,
+.view {
+    height: 100%;
+}
+
+/************************************/
+
+
+
+/***********************log in and singup***********************/
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.content:before {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  display: block;
+  background-color: black;
+  background-image: url("/assets/pup3.jpeg");
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  /*-webkit-filter: blur(2px);*/
+  /*-moz-filter: blur(2px);*/
+  /*-o-filter: blur(2px);*/
+  /*-ms-filter: blur(2px);*/
+  /*filter: blur(2px);*/
+}
+
+.content {
+  /*position: absolute;*/
+  margin-top: 2%;
+  margin-bottom: 2%;
+  margin-left: auto;
+  margin-right: auto;
+  top: 10px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 540px;
+  height: 440px;
+  background-color: rgba(10, 10, 10, 0.3);
+  /*margin: auto auto;*/
+  padding: 40px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -moz-box-shadow: 0 0 10px black;
+  -webkit-box-shadow: 0 0 10px black;
+  box-shadow: 0 0 10px black;
+}
+
+#log_in {
+      margin-top: 10%;
+      /*margin-bottom: %;*/
+}
+#singup{
+    height: 640px;
+}
+.content .title {
+  text-align: center;
+  font-size: 30px;
+  color: white;
+  font-weight: 600;
+  padding-bottom: 30px;
+}
+.content input {
+  width: 100%;
+  font-size: 1.2rem;
+  font-family: "Open Sans";
+  margin: 10px 0px;
+  border: none;
+  padding: 10px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+
+.content input[type=checkbox] {
+  display: none;
+}
+.content label {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  position: relative;
+  margin-left: 5px;
+  margin-right: 10px;
+  top: 5px;
+}
+.content label:before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  position: absolute;
+  left: 0;
+  bottom: 1px;
+  background-color: white;
+  -moz-box-shadow: inset 0 2px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 0 0 rgba(255, 255, 255, 0.8);
+  -webkit-box-shadow: inset 0 2px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 0 0 rgba(255, 255, 255, 0.8);
+  box-shadow: inset 0 2px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 0 0 rgba(255, 255, 255, 0.8);
+}
+.content input[type=checkbox]:checked + label:before {
+  content: "\2713";
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  font-size: 20px;
+  color: Black;
+  text-align: center;
+  line-height: 20px;
+}
+.content span {
+  font-size: 1.7rem;
+  color: white;
+}
+
+.content button {
+  width: 100%;
+  font-size: 1.1rem;
+  padding: 10px;
+  margin: 20px 0;
+  background-color: #5ba2de;
+  color: White;
+  border: none;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+#login_login {
+    background-color: blue;
+}
+.content .social {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.content .social span {
+  display: inline-block;
+  vertical-align: baseline;
+  padding: 0 20px;
+}
+.content .social span:before, .content .social span:after {
+  content: '';
+  display: block;
+  width: 500px;
+  position: absolute;
+  top: 0.9em;
+  border-top: 1px solid White;
+}
+.content .social span:before {
+  right: 75%;
+}
+.content .social span:after {
+  left: 75%;
+}
+.content .buttons {
+  width: 100%;
+  margin: 0 0;
+}
+.contact .action{
+    background-color: red;
+}
+.content .buttons button {
+  float: left;
+  width: 30%;
+  margin: 0 1.5%;
+}
+
+.content .buttons:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.content .already {
+  text-align: center;
+  font-size: 0.9rem;
+}
+#buttons_link {
+    color: white;
+}
+
+.edit_account .title {
+  text-align: center;
+  font-size: 35px;
+  color: black;
+  font-weight: 600;
+  padding-bottom: 10px;
+  margin-top: 10px;
+}
+
+.edit_account {
+  margin-left: 150px;
+  margin-right: 150px;
+  margin-bottom: 30px;
+}
+
+.edit_account h3 {
+  display: block;
+  font-size: 1.5em;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+  margin-top: 0;
+  border-bottom: 1px #e1e4e8 solid;
+}
+
+.edit_account .button {
+  margin-right: 8px;
+  border: 1px solid #d1d5da;
+  border-radius: 0.25em;
+  padding: 6px 12px;
+  background-color: white;
+  font-weight: 500;
+}
+
+.edit_account .sub_part {
+  padding: 30px 0 10px 0;
+}
+
+.field .password_input {
+    width: 60%;
+    margin: 5px 0 5px 0;
+    border: 1px solid #d1d5da;
+    padding: 5px;
+    border-radius: 4px;
+    background-color: #fafbfc;
+}
+
+/* Dog detail page style  */
+#dog_detail .text_detail {
+    text-align: center;
+}
+
+#dog_detail .chart {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+}
+
+#dog_detail .action {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+#dog_detail .action .button {
+    display:inline-block;
+    width: 48%;
+}
+
+#dog_detail input {
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 75%;
+    padding: 6px 12px;
+}
+
+#dog_detail p {
+    font-size: 15px;
+}
+
+#dog_detail .hashtag_results {
+    background: #308ef2;
+}
+
+#dog_detail table {
+    width: 100%;
+}
+
+#dog_detail td {
+    padding: 10px 5px;
+    text-align:center;
+}
+
+#dog_detail .subsection {
+    margin: 40px 0;
+}
+
+#button3_main {
+    color: #337ab7;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    display: inline-block;
+    margin-left: 20px;
+    width: 300px;
+    height: 100px;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-radius: 25px;
+}
+#button1_main {
+    color: #337ab7;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    display: inline-block;
+    margin-left: 5%;
+    width: 300px;
+    height: 100px;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-radius: 25px;
+}
+#button2_main {
+    color: #337ab7;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 20px;
+    display: inline-block;
+    width: 300px;
+    height: 100px;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-radius: 25px;
+}
+#button4_main {
+    color: #337ab7;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 20px;
+    margin-right: 5%;
+    display: inline-block;
+    width: 300px;
+    height: 100px;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-radius: 25px;
+}
+/* End Dog detail page style*/
+
+/*****************************************************************************/
+
+/*Mobile friendly */
+
+@media only screen 
+    and (max-device-width: 536px) {
+      
+    .contact-text-sm {
+        color: white;
+        font-size: 6px;
+        text-align: center;
+        margin-left: 15px;
+    }
+    .row_top {
+
+        /*linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),*/
+        background: url("/assets/pup3b.jpg")right center;
+
+    }
+    #titleline_comment{
+        font-size: 220%;
+    }
+    #titleline{
+        font-size: 150%;
+    }
+    #inline_text_header{
+        font-size: 140%;
+    }
+    
+    #tagline-text {
+        font-size: 135%;
+        opacity: 0.8;   
+        max-width: 120%;
+        font-family:Georgia,sans-serif;
+    }
+    .page_divider1 {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .col-sm-3 {
+        width: 100%;
+    }
+    #button1_main {
+        max-width: 400px;
+        margin: 50px auto 0;
+    }
+    .text_faded {
+        margin-left: 0;
+        margin-right: 0;
+        font-size: 100%
+    }
+    .prev {
+        margin-top: 580px;
+        margin-left: 0;
+    }
+
+    .next {
+        margin-top: 580px;
+        right: 0;
+    }
+    #comment_title{
+        font-size: 200%;
+    }
+    #tagline-text_comment {
+        font-size: 120%;
+        max-width: 70%;
+    }
+    #tagline-text_breed {
+        font-size: 120%;
+        max-width: 70%;
+        margin-top: 10px;
+    }
+    
+    .edit_account {
+        margin-right: 0px;
+        margin-left: 20px;
+    }
 }
 /*End for Iter 1-2*/
+
