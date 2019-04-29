@@ -18,25 +18,13 @@ Background: User already logged in
         | username       | email               | password       | password_confirmation| activated |
         | jeff           | jeff@berkeley.edu   | 12345678       | 12345678             | true      |
     And I log in as "jeff"
-    And I am on the "Profile" page
 
 Scenario: User visits their own profile page
-  When I go to "jeff"\'s profile page
-  Then I should see the default profile image
-  And I should see an empty bio
-  And I should see "Add Dog"
+  When I go to the profile page for "jeff"
+  Then I should see "jeff"
+  And I should see "No biography"
+  And I should see the default profile image
 
-Scenario: User edits their own profile page
-  Given I go to "jeff"\'s profile page
-  When I press "Add Dog"
-  And I fill in "Name" with "Spot"
-  And I fill "Breed" with "Dalmatian"
-  And I press "Submit"
-  Then I should be on "jeff"\'s profile page
-  And I should see "Spot"
-  And I should see "Dalmatian"
-
-Scenario: User goes to profile page that does not existing
-  When I go to "john"\'s profile page
-  Then I should get 404
-
+Scenario: User goes to profile page that does not exist
+  When I go to the profile page for "john"
+  Then I should be on the RateMyPup home page

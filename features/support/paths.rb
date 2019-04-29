@@ -43,8 +43,10 @@ module NavigationHelpers
     when /^the Jeff's "Edit Password" page$/ then "/passwordresets/1/edit"
     when /^Jeff's reload "Edit Password" page$/ then "/passwordresets/1"
     when /^the "Pups Ratings" page$/ then user_pups_path
-    when /^the "Edit Pup Rating" page$/ then edit_pup_path(:id => 1)  
+    when /^the "Edit Pup Rating" page$/ then edit_pup_path(:id => 1)
     when /^the "Pup Rating Detail" page$/ then pup_path(:id => 1)
+    when /^my profile page$/ then profile_page_path(:user_id => 1)
+    when /^the profile page for "([a-zA-Z ]*)"$/ then profile_page_path(User.find_by_username($1) || 1000)
       # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
