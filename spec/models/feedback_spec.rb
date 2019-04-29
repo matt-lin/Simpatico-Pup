@@ -20,11 +20,11 @@ describe Feedback do
 
   describe 'find_by_rate_dog_score' do
     it 'return nil for no matching feedbacks' do
-      expect(Feedback.find_by_score('rate_dog', 5)).to eq nil
+      expect(Feedback.find_by_score('dog_rating', 5)).to eq nil
     end
 
     it 'return matched feedbacks' do
-      expect(Feedback.find_by_score('rate_dog', 1)).to eq @feedback3
+      expect(Feedback.find_by_score('dog_rating', 1)).to eq @feedback3
     end
   end
 
@@ -50,11 +50,11 @@ describe Feedback do
 
   describe 'find_by_forum_score' do
     it 'return nil for no matching feedbacks' do
-      expect(Feedback.find_by_score('forum', 2)).to eq nil
+      expect(Feedback.find_by_score('forum_rating', 2)).to eq nil
     end
 
     it 'return matched feedbacks' do
-      expect(Feedback.find_by_score('forum', 5)).to eq @feedback2
+      expect(Feedback.find_by_score('forum_rating', 5)).to eq @feedback2
     end
   end
 

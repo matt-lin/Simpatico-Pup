@@ -11,8 +11,16 @@ class Feedback < ActiveRecord::Base
   end
 
   def Feedback.find_by_score(field, score)
-    query = field + " = ?"
-    result = Feedback.where(query, score).first
+    query_dictionary = {
+      'dog_rating' => 'rate_dog = ?',
+      'breed_rating' => 'breed_rating = ?',
+      'breeder_rating' => 'breeder_rating = ?',
+      'forum_rating' => 'forum = ?'
+    }
+    if query_dictionary[field] == nil
+      raise 'Invalid field in query: ' + field
+    end
+    result = Feedback.where(query_dictionary[field], score).first
 
     if !result
       return nil
