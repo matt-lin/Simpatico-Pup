@@ -4,7 +4,7 @@
   <div id="profile_picture">
     <h3 class="sub_title">Profile Image</h3>
 
-    <%= image_tag @user.avatar.thumb.url, id: "edit_profile_image" if @user.avatar? %>
+    <%= image_tag @user.avatar.thumb.url, id: "edit_profile_image" %>
 
     <%= form_for @user, url: edit_profile_image_path, html: { multipart: true }, method: :post do |form| %>
       <div class="actions">

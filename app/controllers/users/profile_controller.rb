@@ -7,6 +7,7 @@ def edit_image
   if avatar != nil
     begin
       current_user.avatar = avatar
+      current_user.avatar.recreate_versions!
       current_user.save!
       flash[:notice] = "You have successfully set your profile image!"
     rescue ActiveRecord::RecordInvalid
