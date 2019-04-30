@@ -1,11 +1,15 @@
 # Iter 2-1 Dog page validation (By Gung Hiu Ho, Licong Wang)
+@javascript
 Feature: View detailed imformation of all dogs 
   As an administrator 
   I want to check the details of every registered dog
   So that I can find the corresponding breeder and user 
   
   Background: Logged in and dogs have been added to the database
+    Given the default layout exist
     Given I login as an admin
+    Given I am on the "Admin Dashboard" page
+    
     And the following breeders exist:
       | name    | city     | state  |
       | Carl    | Berkeley | CA     |
@@ -36,5 +40,14 @@ Feature: View detailed imformation of all dogs
       | testing@berkeley.edu  |
       | DOG NAME |
       | Thor  |
+  
+  Scenario: click delete and accept should delete dog and increment removed_reviews count
+    When admin go to dogs
+    And I follow "Delete"
+    And a confirmation box saying "Are you sure you want to delete this?" should pop up
+    And I accept confirmation dialogs
+    Then I should not see "Siberian Husky"
+    When admin go to breeders
+    And I should see "1"
     
 # End for Iter 2-1
