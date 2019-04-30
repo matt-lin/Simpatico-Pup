@@ -77,15 +77,15 @@
     %div{:class => "row navbar-fixed-bottom"}
         %div{:class => "col-md-12 contact contact-text-sm"}
             %div{:class =>"col-sm-4"}
-                %p= top_left
+                %p{:class => "no_padding"}= top_left
                 = link_to bot_left,'http://www.caninehealthinfo.org/', :class => "contact-link" 
                 
             %div{:class =>"col-sm-4"}
-                %p= link_to top_mid, privacy_policy_path, :class=>"contact-link"
-                %p= link_to bot_mid, terms_of_service_path, :class=>"contact-link"
+                %p{:class => "no_padding"}= link_to top_mid, privacy_policy_path, :class=>"contact-link"
+                %p{:class => "no_padding"}= link_to bot_mid, terms_of_service_path, :class=>"contact-link"
                 
             %div{:class =>"col-sm-4"}
-                %p= top_right
+                %p{:class => "no_padding"}= top_right
                 = link_to bot_right, 'mailto:LSandersDVM@gmail.com', :class=>"contact-link"
   
 // End of Iter3-2

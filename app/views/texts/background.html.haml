@@ -1,8 +1,12 @@
 %div{:class => "container text-container"}
   %div{:class => "header"}
     %h1= @background_text.title
-    .text-content
+    .col-md-2
+    .text-content.col-md-8
       = simple_format @background_text.body
+    .col-md-2
   %center
-    %a{:class => "btn btn-primary", :href => root_path, :style => "text-align:center"}
+    .col-md-5
+    %a{:class => "btn btn-primary col-md-2", :href => root_path, :style => "text-align:center"}
       Go Back to Home Page
+    .col-md-5

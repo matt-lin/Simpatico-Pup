@@ -312,7 +312,9 @@ body {
 .row_tagline {
     display: none;
 }
-
+.spacing{
+    margin-bottom: 7px;
+}
 .slider {
     display: none;
 }
@@ -1114,6 +1116,10 @@ body,
     vertical-align: middle;
     border-radius: 25px;
 }
+
+.no_padding{
+    margin: 0;
+}
 /* End Dog detail page style*/
 
 /*****************************************************************************/
@@ -1194,5 +1200,7 @@ body,
         margin-left: 20px;
     }
 }
+
+
 /*End for Iter 1-2*/
 

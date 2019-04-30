@@ -6,16 +6,18 @@
             %div{:class => "well well-sm"}
                 %div{:class => "col-lg-12"}
                     %p{:class => "date"}= pup.created_at ? "Created: "+pup.created_at.to_date.to_s : ""
-                .row
-                    .col-sm-2
+                .row.spacing
+                   
                     = render 'shared/rating_comments', width: responsibility, title: "Breeder Responsibility", color: 'progress-bar', id: "breeder"
                     = render 'shared/rating_comments', width: health, title: 'Pup Health', color: 'progress-bar', id: "health"
+                .row.spacing
                     = render 'shared/rating_comments', width: train, title: 'Trainability', color: 'progress-bar', id: "train"
                     = render 'shared/rating_comments', width: social, title: 'Human Social Behavior', color: 'progress-bar', id: "social"
-                .row
-                    .col-sm-2
+                .row.spacing
+                   
                     = render 'shared/rating_comments', width: dog, title: 'Dog Social Behavior', color: 'progress-bar', id: "behavior"
                     = render 'shared/rating_comments', width: energy, title: 'Energy Level', color: 'progress-bar', id: "energy"
+                .row.spacing   
                     = render 'shared/rating_comments', width: simpatico, title: 'Simpatico Rating', color: 'progress-bar', id: "simpatico"
 
                 - if pup.comment
