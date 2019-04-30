@@ -10,7 +10,7 @@ class PupsController < ApplicationController
     if current_user
       @username = current_user.username
     end
-    
+
     start_over
     selected_comment = SelectedComment.find_randomly
     # Iter 2
@@ -20,7 +20,7 @@ class PupsController < ApplicationController
     end
     # END of Iter 2
   end
-  
+
   def random_comment
     render :json => SelectedComment.find_randomly
   end
@@ -77,7 +77,7 @@ owner to rating only two dogs that come from the same dog breeder. Thank you for
       flash[:notice] = 'Please make sure the comment is less than 140 characters.'
       redirect_to new_pup_path and return
     end
-    
+
     if @pup.user.pups(:reload).size > 8
       flash[:notice] = 'SimpaticoPup is a website designed to collect information from dog lovers about their own
 companion dogs. To ensure that our rating summaries accurately reflect input from a wide variety of dog owners, we are
@@ -88,77 +88,77 @@ currently limiting the number of ratings made by each dog owner to eight, and li
       @Comment.pup_id = @pup.id
       @Comment.save
       # Successfully save pup & comment
-      flash[:notice] = "Thank You! #{@pup.pup_name} was successfully added to our database."
+      flash[:notice] = "Thank You! #{@pup.pup_name} was successfully added to our database. <a href='#{feedback_path}'>#{t(:feedback_flash)}</a>"
     end
       redirect_to root_path
   end
-  
+
   # Iter3-2 (Jeff Yu, Gilbert Lo)
   # Still need check if it is owner and check if dog exist
   # pup_name, year, month updated directly using update_attributes
   # Update comment, breed, breeder cannot be done directly
   def update
     @pup = Pup.find_by_id params[:id]
-    
+
     breeder = @pup.update_breeder(params[:breeder_str])
     if !breeder
       flash[:modal] = "Non existing breeder."
       session[:pup_id] = params[:id]
       redirect_to edit_pup_path(@pup) and return
     end
-    
+
     @pup.update_attributes(params[:pup])
     @pup.breed_id = Breed.find_by_name(params[:breed_name]).id
     @pup.update_comment(params[:comment])
     @pup.save
-    
+
     flash[:notice] = "Pup has been updated"
     redirect_to user_pups_path
   end
-  
+
   def show
     @pup = Pup.find_by_id params[:id]
-    
+
     if !valid_access(@pup)
       flash.keep
       redirect_to root_path and return
     end
-    
+
     session[:from] = 'dog_show'
   end
 
   def destroy
     @pup = Pup.find_by_id params[:id]
-    
+
     if valid_access(@pup)
       @pup.destroy
       flash[:notice] = "Pup #{@pup.pup_name} has been deleted"
     end
     redirect_to user_pups_path
   end
-  
+
   def edit
     @pup = Pup.find_by_id params[:id]
     @breeds = Breed.all
-    
+
     if !valid_access(@pup)
       flash.keep
       redirect_to root_path and return
     end
-    
+
     @breed = @pup.breed.name
     breeder = @pup.breeder
     @breeder_text = breeder.name != 'Unknown' ? breeder.name + ' - ' + breeder.address : ''
     @comment_content = @pup.comment ? @pup.comment.content : ""
   end
-  
+
   def hashtags
     pup = Pup.find_by_id params[:pup_id]
     if pup
       render :json => pup.hashtags
     end
   end
-  
+
   def ratings
     pup = Pup.find_by_id params[:pup_id]
     if pup
@@ -166,12 +166,12 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     end
   end
   #End Iter3-2
-  
+
   def breed_avg_ratings
     pup = Pup.find_by_id params[:pup_id]
     render :json => Pup.avg_ratings_by_breeds(pup.breed.name)
   end
-  
+
   #################### Start Questionnaire ####################
 
   # step 0
@@ -194,7 +194,7 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     if pup_name.nil? || pup_name.empty?
       flash[:notice] = "Please input a name"
       session[:step1] = false
-      redirect_to dog_name_path and return      
+      redirect_to dog_name_path and return
     else
       session[:pup_name] = pup_name
       session[:step1] = true
@@ -262,26 +262,26 @@ currently limiting the number of ratings made by each dog owner to eight, and li
       redirect_to root_path
     else
       @pups = Pup.find_by_breed(name)
-      @avg_ratings = Pup.avg_ratings_by_breeds(name)
+      @avg_ratings, flash[:notice] = Pup.avg_ratings_by_breeds(name), "<a href='#{feedback_path}'>#{t(:feedback_flash)}</a>"
     end
   end
 
   private
-  
+
   def not_finish_previous_steps?(step1, step2 = true, step3 = true)
     !step1 || !step2 || !step3
   end
-  
+
   def check_time_valid?(years, months)
     result1 = check_valid?(years) || check_valid?(months)
     result2 = years.nil? || months.nil? || (years.empty? && months.empty?)
     result1 || result2
   end
-  
+
   def check_valid?(input)
     !input.empty? && !is_num?(input)
   end
-  
+
   # Iter3-2 (Gilbert Lo and Jeff Yu)
   def valid_access(pup)
     if pup.nil?
@@ -293,18 +293,18 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     end
     false
   end
-  
+
   def owner?(pup)
     return pup.user_id == current_user.id
   end
   # End 3-2
-  
+
   def check_sign_in
     unless user_signed_in?
       redirect_to welcome_path
     end
   end
-  
+
   def is_valid_year_month?(years, months)
     return years.to_i * 12 + months.to_i >= 6
   end
@@ -319,4 +319,3 @@ currently limiting the number of ratings made by each dog owner to eight, and li
     end
   end
 end
-  

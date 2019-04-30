@@ -44,6 +44,20 @@ describe FeedbackController do
     end
   end
 
+  describe "submitting feedback with proper paramters" do
+    it "calling with all valid params should redirect to thanks_feedback_path" do
+      post :create, { :feedback => { :open_resp => "oops", :rate_dog => 1, :breed_rating => 1, :breeder_rating => 1, :search_breeder => 1, :forum => 1}}
+      expect(response).to redirect_to thanks_feedback_path
+    end
+  end
+
+  describe "GET 'thanks'" do
+    it "returns http success" do
+      get 'thanks'
+      response.should be_success
+    end
+  end
+
   describe "GET 'show'" do
     it "returns http success" do
       get 'show'

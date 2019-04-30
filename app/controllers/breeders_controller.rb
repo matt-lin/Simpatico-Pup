@@ -30,11 +30,14 @@ class BreedersController < ApplicationController
       @avg_ratings = @breeder.avg_pup_rating
       @pups = @breeder.all_pups
       @show_text = @breeder.name + ' - ' + @breeder.address
+      flash[:notice] = "<a href='#{feedback_path}'>#{t(:feedback_flash)}</a>"
+
     elsif params[:id].present?
 
       @breeder = Breeder.find_by_id(params[:id])
       @avg_ratings = @breeder.avg_pup_rating
       @pups = @breeder.all_pups
+      flash[:notice] = "<a href='#{feedback_path}'>#{t(:feedback_flash)}</a>"
 
     else
 
@@ -73,9 +76,9 @@ class BreedersController < ApplicationController
       @message = "Please select both city and state"
       return
     end
-  
+
     # End for Iter 2-2
-    
+
     # if params[:breeder][:breed_name].present? && params[:breeder][:city].present?
     #   @breeders = Breeder.joins(pups: :breed).where("breeds.name = ?", params[:breeder][:breed_name]).near("#{params[:breeder][:city]}, #{params[:breeder][:state]}", params[:breeder][:search_distance])
     # elsif params[:breeder][:breed_name].present?
@@ -85,8 +88,8 @@ class BreedersController < ApplicationController
     # else
     #   @breeders = Breeder.joins(pups: :breed).near("#{params[:breeder][:state]}", params[:breeder][:search_distance])
     # end
-    
-    if params[:breeder][:breed_name].present? 
+
+    if params[:breeder][:breed_name].present?
       @breeders = Breeder.joins(pups: :breed).where("breeds.name = ?", params[:breeder][:breed_name]).near("#{params[:breeder][:city]}, #{params[:breeder][:state]}", params[:breeder][:search_distance])
     else
       @breeders = Breeder.joins(pups: :breed).near("#{params[:breeder][:city]}, #{params[:breeder][:state]}", params[:breeder][:search_distance])
@@ -95,12 +98,12 @@ class BreedersController < ApplicationController
   end
 
   def new
-    
+
   end
 
   def create
     name, city, state = params[:breeder][:name], params[:breeder][:city], params[:breeder][:state]
-    
+
     # Iter 2-2 Breeder location validation (By Gilbert Lo, Jeff Yu)
     cities = CS.cities(state.downcase, :us).map(&:downcase)
     if state.empty?
@@ -116,7 +119,7 @@ class BreedersController < ApplicationController
       flash[:message] = message
     end
     flash[:notice] = "Breeder #{name} has been added to our database!"
-    
+
     # Iter3-2 (Gilbert Lo and Jeff Yu)
     # Possible session didn't get delete, if not found dog, then not from edit page
     # do nothing and delete the session
@@ -131,7 +134,7 @@ class BreedersController < ApplicationController
       end
     end
     # End Iter3-2
-    
+
     redirect_to new_pup_path(:breeder => {:name => (name+' - '+city+', '+state)})
   end
 
