@@ -17,6 +17,14 @@
  
  /*bootstrap using online cdn provided*/
 
+#hidden_file {
+  display: none;
+}
+
+#edit_profile_image {
+  margin-bottom: 15px
+}
+
 #background {
     background-size: cover;
 }

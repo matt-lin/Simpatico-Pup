@@ -212,6 +212,10 @@ Then /^I should see a div with class "([^"]*)"$/ do |dom_class|
   expect(page).to have_css ".#{dom_class}"   
 end
 
+Then /^I should see the image "([^"]*)"$/ do |f|
+  expect(page).to have_css("img[src*='#{f}']")
+end
+
 Given /^a confirmation box saying "(.*)" should pop up$/ do |message|
   @expected_message = message
 end
