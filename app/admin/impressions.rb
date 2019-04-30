@@ -44,10 +44,15 @@ ActiveAdmin.register Impression, as: "Site Analysi" do
 			end
 		end
 		panel "Pup Statistics" do
+			repeated_params = {library: {animation: {duration: 1050, easing: 'easeOutQuad' }},
+			width: "500px", height: "300px", animation: true}
 			columns do
 				column do
-					line_chart Pup.group_by_day(:created_at).count, library: {animation: {duration: 1050, easing: 'easeOutQuad' }},
-					width: "500px", height: "300px", xtitle: "Date", ytitle: "Number", title: "Pup Creation", animation: "true", id: "pup_creation"
+					repeated_params[:xtitle] = "Date"
+					repeated_params[:ytitle] = "Number"
+					repeated_params[:title] = "Pup Creation"
+					repeated_params[:id] = "pup_creation"
+					line_chart Pup.group_by_day(:created_at).count, repeated_params
 				end
 				column do
 					column_chart Pup.group(:year).count, library: { animation: {duration: 1050, easing: 'easeOutQuad' }}, discrete: true,
