@@ -22,7 +22,7 @@ class FeedbackController < ApplicationController
     forum = params[:feedback][:usability_forum]
 
     # All scale ratings mandatory
-    if check_params([rate_dog, breed_rating, breeder_rating, search_breeder, forum]) == false
+    if FeedbackController.check_params([rate_dog, breed_rating, breeder_rating, search_breeder, forum]) == false
       flash[:notice] = "Please complete the form."
       redirect_to feedback_path and return
     end
@@ -38,7 +38,7 @@ class FeedbackController < ApplicationController
     end
   end
 
-  def check_params(list_of_params)
+  def FeedbackController.check_params(list_of_params)
     for param in list_of_params
       if param == "N/A"
         return false
@@ -47,7 +47,7 @@ class FeedbackController < ApplicationController
     return true
   end
 
-  def check_request_params(params)
+  def FeedbackController.check_request_params(params)
     if params.has_key?('feedback')
       return true
     end
