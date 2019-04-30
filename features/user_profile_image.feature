@@ -11,17 +11,16 @@ Background: User already login
         | username       | email               | password       | password_confirmation| activated |
         | jeff           | jeff@berkeley.edu   | 12345678       | 12345678             | true      |
 
+    Given I log in as "jeff"
+    And I am on the "Edit Profile" page
+
 Scenario: user sets profile image correctly
-  Given I log in as "jeff"
-  And I am on the "Edit Profile" page
   When I attach the file "./features/attachment/profile_image.jpg" to "Choose File"
   And I press "Save"
   Then I should see "You have successfully set your profile image!"
   And I should see the image "thumb_profile_image.jpg"
 
 Scenario: user sets profile image incorrectly
-  Given I log in as "jeff"
-  And I am on the "Edit Profile" page
   When I attach the file "./features/attachment/profile_image.txt" to "Choose File"
   And I press "Save"
   Then I should see "Please submit an image file"
