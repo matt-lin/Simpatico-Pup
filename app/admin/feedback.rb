@@ -1,4 +1,4 @@
-ActiveAdmin.register Feedback do
+ActiveAdmin.register Feedback, as: "Site Feedback"  do
 
   menu :priority => 15
 

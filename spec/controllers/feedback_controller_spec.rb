@@ -42,13 +42,11 @@ describe FeedbackController do
       }
     end
 
-    it 'returns false if params does not have feedback key' do
+    it 'returns true or false if request paramaters have valid key' do
       expect(FeedbackController.check_request_params(@params2)).to eq false
-    end
-
-    it 'returns true if params does contain feedback key' do
       expect(FeedbackController.check_request_params(@params1)).to eq true
     end
+
   end
 
   describe "check_params" do

@@ -12,6 +12,6 @@ Feature: View feedback of Simpatico Pup
       | 1  | 1        | 2            | 3              | 4              | 4     | great!        |
 
   Scenario: Login and look at site feedback page
-    When admin go to feedbacks
-    Then I should see the page title "Feedbacks"
-    Then I should see a table with id "index_table_feedbacks"
+    When admin go to site_feedbacks
+    Then I should see the page title "Site Feedbacks"
+    Then I should see a table with id "index_table_site_feedbacks"
