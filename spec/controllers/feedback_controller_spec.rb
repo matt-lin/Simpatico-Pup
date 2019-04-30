@@ -31,6 +31,39 @@ describe FeedbackController do
   #     response.should be_success
   #   end
   # end
+
+  describe "check_request_params" do
+    before :each do
+      @params1 = {
+        'feedback' => 'stuff here'
+      }
+      @params2 = {
+        'random' => 'no feedback'
+      }
+    end
+
+    it 'returns true or false if request paramaters have valid key' do
+      expect(FeedbackController.check_request_params(@params2)).to eq false
+      expect(FeedbackController.check_request_params(@params1)).to eq true
+    end
+
+  end
+
+  describe "check_params" do
+    before :each do
+      @list_of_params1 = ['test', 1, 2, 3, 4, 5]
+      @list_of_params2 = ['tester', 1, 2, 3, 4, 'N/A']
+    end
+
+    it 'returns true if valid params' do
+      expect(FeedbackController.check_params(@list_of_params1)).to eq true
+    end
+
+    it 'returns false if invalid params' do
+      expect(FeedbackController.check_params(@list_of_params2)).to eq false
+    end
+  end
+
   describe "submitting feedback without correct paramters" do
     it "calling with open response should redirect to feedback_path" do
       post :create, { :feedback => { :open_response => "hello" }}
