@@ -1,4 +1,13 @@
 #Iter 2-2 Redesign dog page (By Gung Hiu Ho, Licong Wang)
+def destroy_and_increment_removed(id)
+  dog = Pup.find(id)
+  breeder = Breeder.find(dog.breeder_id)
+  if dog.destroy
+    old_value = breeder.removed_reviews
+    breeder.removed_reviews = old_value + 1
+    breeder.save
+  end
+end
 ActiveAdmin.register Pup, as: "Dogs" do
   
   menu :priority => 2
@@ -8,6 +17,13 @@ ActiveAdmin.register Pup, as: "Dogs" do
   filter :breed
   filter :pup_name
   actions :all, except: [:update, :new, :edit]
+  
+  batch_action :destroy, confirm: "Are you sure you want to delete these pups?" do |ids|
+    ids.each do |i|
+      destroy_and_increment_removed(i)
+    end
+    redirect_to admin_dogs_path
+  end
   
 index do
   
@@ -45,19 +61,7 @@ end
   controller do
 
     def destroy
-      dog = Pup.find(params["id"])
-      breeder = Breeder.find(dog.breeder_id)
-      if params[:type].present?
-        if params[:type] == "user"
-          if dog.destroy
-            old_value = breeder.removed_reviews
-            breeder.removed_reviews = old_value + 1
-            breeder.save
-          end
-        end
-      else
-        dog.destroy
-      end
+      destroy_and_increment_removed(params["id"])
       redirect_to admin_dogs_path
     end
 
@@ -71,3 +75,5 @@ end
   end
 
 end
+
+
