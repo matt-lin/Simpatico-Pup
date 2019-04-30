@@ -61,5 +61,9 @@ module Ratemypup
 
     # Devise setup
     config.assets.initialize_on_precompile = false
+
+    # Paperclip settings
+    # config.paperclip_defaults = { storage: :}  
+
   end
 end

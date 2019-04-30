@@ -202,6 +202,10 @@ Then /^I should see a table with id "([^"]*)"$/ do |dom_id|
   page.find("table##{dom_id}")
 end
 
+Then /^I should see the image "([^"]*)"$/ do |f|
+  expect(page).to have_css("img[src*='#{f}']")
+end
+
 Given /^a confirmation box saying "(.*)" should pop up$/ do |message|
   @expected_message = message
 end
