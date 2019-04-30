@@ -55,8 +55,11 @@ ActiveAdmin.register Impression, as: "Site Analysi" do
 					line_chart Pup.group_by_day(:created_at).count, repeated_params
 				end
 				column do
-					column_chart Pup.group(:year).count, library: { animation: {duration: 1050, easing: 'easeOutQuad' }}, discrete: true,
-					width: "500px", height: "300px", xtitle: "Year", ytitle: "Number", title: "Age saturation", animation: "true", id: "age_saturation"
+					repeated_params[:xtitle] = "Year"
+					repeated_params[:ytitle] = "Number"
+					repeated_params[:title] = "Age saturation"
+					repeated_params[:id] = "age_saturation"
+					column_chart Pup.group(:year).count, repeated_params
 				end
 			end
 			columns do
@@ -81,8 +84,11 @@ ActiveAdmin.register Impression, as: "Site Analysi" do
 				end
 				column do
 					dog_score(:simpatico_rating, "Overall rating", 1050, "overall_rating")
-					scatter_chart Pup.group(:simpatico_rating).count, library: {animation: {duration: 1050, easing: 'easeOutQuad' }},
-					width: "500px", height: "300px", xtitle: "Score", ytitle: "Number", title: "Overall rating", animation: "true", id: "overall_rating"
+					repeated_params[:xtitle] = "Score"
+					repeated_params[:ytitle] = "Number"
+					repeated_params[:title] = "Overall rating"
+					repeated_params[:id] = "overall_rating"
+					scatter_chart Pup.group(:simpatico_rating).count, repeated_params
 				end
 			end
 		end
