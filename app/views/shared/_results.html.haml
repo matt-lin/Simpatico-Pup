@@ -5,19 +5,19 @@
       %i="This breeder has asked for #{@breeder.removed_reviews} ratings to be taken down" if @breeder
 
   %div{:class=>"row"}
-    %div{:class=>"col-sm-6"}
-      %h4 Average Ratings 
+    %div{:class=>"col-sm-7"}
+      %h1 Average Ratings 
       - if @avg_ratings[:breeder_responsibility]
-        = render 'shared/avg_rating', rating: @avg_ratings[:breeder_responsibility].round(2), width: @avg_ratings[:breeder_responsibility].round(2) * 20, title: "BREEDER RESPONSIBILITY", color: 'progress-bar-success', description: "Responsible dog breeders screen their breeder dogs for breed-related genetic problems, begin early training and socialization of the puppies they produce, provide a health guarantee and ongoing support for the puppies they sell, and provide excellent lifelong health care and quality of life for their breeding dogs. Please rate the breeder of your dog for the level of responsibility they demonstrated."
-      = render 'shared/avg_rating', rating: @avg_ratings[:overall_health].round(2),  width: @avg_ratings[:overall_health].round(2) * 20, title: 'PUP HEALTH', color: 'progress-bar', description: "Please rate your dog's overall health in the time that you have had him/her. Please do not consider health problems that were the result of accidental injuries."
-      = render 'shared/avg_rating', rating: @avg_ratings[:trainability].round(2), width: @avg_ratings[:trainability].round(2) * 20, title: 'TRAINABILITY', color: 'progress-bar', description: "Please rate how easy your dog has been to train: consider housetraining, obedience training, and basic manners."
-      = render 'shared/avg_rating', rating: @avg_ratings[:social_behavior].round(2), width: @avg_ratings[:social_behavior].round(2) * 20, title: 'SOCIAL BEHAVIOR TOWARDS HUMANS', color: 'progress-bar', description: "Please rate your dog's social response to others, including family members, strangers, adults and children."
-      = render 'shared/avg_rating', rating: @avg_ratings[:dog_behavior].round(2), width: @avg_ratings[:dog_behavior].round(2) * 20, title: 'BEHAVIOR TOWARDS OTHER DOGS', color: 'progress-bar', description: "Please rate your dog's overall reaction toward other dogs, both familiar and unfamiliar."
-      = render 'shared/avg_rating', rating: @avg_ratings[:energy_level].round(2), width: @avg_ratings[:energy_level].round(2) * 20, title: 'ENERGY LEVEL', color: 'progress-bar', description: "Please rate your dog's overall energy level and exercise requirement at maturity (1--7 years of age)."
-      = render 'shared/avg_rating', rating: @avg_ratings[:simpatico_rating].round(2), width: @avg_ratings[:simpatico_rating].round(2) * 20, title: 'SIMPATICO RATING', color: 'progress-bar', description: "Some dogs just seem to have what it takes to be the ultimate companion. Please give your dog an overall Simpatico rating, based on the overall compatibility that your dog has and the depth of the relationship you share."
+        = render 'shared/avg_rating', rating: @avg_ratings[:breeder_responsibility].round(2), width: @avg_ratings[:breeder_responsibility].round(2) * 20, title: "Breeder Responsibility", color: 'progress-bar-success', description: "Responsible dog breeders screen their breeder dogs for breed-related genetic problems, begin early training and socialization of the puppies they produce, provide a health guarantee and ongoing support for the puppies they sell, and provide excellent lifelong health care and quality of life for their breeding dogs. Please rate the breeder of your dog for the level of responsibility they demonstrated."
+      = render 'shared/avg_rating', rating: @avg_ratings[:overall_health].round(2),  width: @avg_ratings[:overall_health].round(2) * 20, title: 'Pup Health', color: 'progress-bar', description: "Please rate your dog's overall health in the time that you have had him/her. Please do not consider health problems that were the result of accidental injuries."
+      = render 'shared/avg_rating', rating: @avg_ratings[:trainability].round(2), width: @avg_ratings[:trainability].round(2) * 20, title: 'Trainability', color: 'progress-bar', description: "Please rate how easy your dog has been to train: consider housetraining, obedience training, and basic manners."
+      = render 'shared/avg_rating', rating: @avg_ratings[:social_behavior].round(2), width: @avg_ratings[:social_behavior].round(2) * 20, title: 'Social Behavior Towards Humans', color: 'progress-bar', description: "Please rate your dog's social response to others, including family members, strangers, adults and children."
+      = render 'shared/avg_rating', rating: @avg_ratings[:dog_behavior].round(2), width: @avg_ratings[:dog_behavior].round(2) * 20, title: 'Behavior Towards Other Dogs', color: 'progress-bar', description: "Please rate your dog's overall reaction toward other dogs, both familiar and unfamiliar."
+      = render 'shared/avg_rating', rating: @avg_ratings[:energy_level].round(2), width: @avg_ratings[:energy_level].round(2) * 20, title: 'Energy Level', color: 'progress-bar', description: "Please rate your dog's overall energy level and exercise requirement at maturity (1--7 years of age)."
+      = render 'shared/avg_rating', rating: @avg_ratings[:simpatico_rating].round(2), width: @avg_ratings[:simpatico_rating].round(2) * 20, title: 'Simpatico Rating', color: 'progress-bar', description: "Some dogs just seem to have what it takes to be the ultimate companion. Please give your dog an overall Simpatico rating, based on the overall compatibility that your dog has and the depth of the relationship you share."
 
-    %div{:class=>"col-sm-6"}
-      %h4 There are #{@pups.length} ratings for #{query} pups:
+    %div{:class=>"col-sm-5"}
+      %h3 There are #{@pups.length} ratings for #{query} pups:
       - @pups.each do |pup|
         = render 'shared/comment', pup: pup, responsibility: pup.breeder_responsibility , health: pup.overall_health , train: pup.trainability , social: pup.social_behavior, dog: pup.dog_behavior, simpatico: pup.simpatico_rating, energy: pup.energy_level
 
