@@ -146,6 +146,7 @@ Then /^I should see all of:/ do |names|
   names.hashes.each do |name|
     page.has_content?(name['name'])
   end
+  save_and_open_page
 end
 
 Then /^(?:admin )should( not)? see( the element)? "([^"]*)"$/ do |negate, is_css, text|
@@ -200,6 +201,15 @@ end
 
 Then /^I should see a table with id "([^"]*)"$/ do |dom_id|
   page.find("table##{dom_id}")
+  
+end
+
+Then /^I should see a div with id "([^"]*)"$/ do |dom_id|
+  expect(page).to have_css "##{dom_id}" 
+end
+
+Then /^I should see a div with class "([^"]*)"$/ do |dom_class|
+  expect(page).to have_css ".#{dom_class}"   
 end
 
 Given /^a confirmation box saying "(.*)" should pop up$/ do |message|
