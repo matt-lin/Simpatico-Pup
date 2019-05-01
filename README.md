@@ -28,7 +28,7 @@ temperament of the pet dogs being produced.
   3. ImageMagick
 
 ### Setup
-<br/>After cloning run bundle install --without production
+After cloning run bundle install --without production
 <br/>Run rake db:setup to set up environment
 <br/>If using a slow environment(e.g. Cloud9), run rake cucumber might fail on features that involve Javascript, especially edit_pup.feature and admin_upload.feature(these files involve heavy Javscript)
 <br/>Travis CI should always be passing
@@ -38,10 +38,10 @@ temperament of the pet dogs being produced.
 
 
 #### Current Contributors
-<br/>*Eric Kong, Emiko Tsutsumi, Matthew Lin, Noah Poole, Raymond Gu, Shuyin Xu*
+*Eric Kong, Emiko Tsutsumi, Matthew Lin, Noah Poole, Raymond Gu, Shuyin Xu*
 
 #### Past Contributors
-<br/>*Jeff Yu, Gilbert Lo, Licong Wang, Jack Chen, Alex Ho, Zipei Wang*
+*Jeff Yu, Gilbert Lo, Licong Wang, Jack Chen, Alex Ho, Zipei Wang*
 
 
 
