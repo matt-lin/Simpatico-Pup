@@ -168,9 +168,15 @@ end
 Then /^I should see a table header with "([^"]*)"$/ do |content|
   expect(page).to have_xpath '//th', text: content
 end
-Then /^I should see a table row with "([^"]*)"$/ do |content|
-  expect(page).to have_xpath '//tr', text: content
+
+Then /^I should see a table row with id "([^"]*)" and name "([^"]*)"$/ do |id, name|
+  expect(page).to have_xpath '//tr', text: id, text: name
 end
+
+Then /^I should see a table row with id "([^"]*)"$/ do |dom_id|
+  page.find("tr##{dom_id}")
+end
+
 Then /^I should not see a table header with "([^"]*)"$/ do |content|
   expect(page).to_not have_xpath '//th', text: content
 end
