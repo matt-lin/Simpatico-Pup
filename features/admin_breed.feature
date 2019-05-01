@@ -18,7 +18,8 @@ Feature: View breeds of Simpatico Pup
     Then I should see a table with id "index_table_breeds"
     And I should see a table header with "Id"
     And I should see a table header with "Name"
-    And I should see a table row with "1"
-    And I should see a table row with "Puggle"
-    And I should see a table row with "2"
-    And I should see a table row with "Poodle"
+    Then there should be 3 "tr" tags
+    And I should see a table row with id "breed_1"
+    And I should see a table row with id "breed_2"
+    And I should see a table row with id "1" and name "Puggle"
+    And I should see a table row with id "2" and name "Poodle"
