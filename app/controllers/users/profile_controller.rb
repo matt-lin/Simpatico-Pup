@@ -10,7 +10,7 @@ def edit_image
       current_user.avatar.recreate_versions!
       current_user.save!
       flash[:notice] = "You have successfully set your profile image!"
-    rescue 
+    rescue
       flash[:notice] = "Please submit an image file"
     end
   else
@@ -32,6 +32,8 @@ end
     else
       @bio = @user.bio
     end
+    @pups = Pup.where("user_id = ?", user_id)
+    @is_current_user = !current_user.nil? and user_id.to_i == current_user.id
   end
 
   def bio
