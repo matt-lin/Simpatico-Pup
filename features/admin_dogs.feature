@@ -1,5 +1,4 @@
 # Iter 2-1 Dog page validation (By Gung Hiu Ho, Licong Wang)
-@javascript
 Feature: View detailed imformation of all dogs 
   As an administrator 
   I want to check the details of every registered dog
@@ -41,13 +40,22 @@ Feature: View detailed imformation of all dogs
       | DOG NAME |
       | Thor  |
   
+  @javascript
   Scenario: click delete and accept should delete dog and increment removed_reviews count
     When admin go to dogs
     And I follow "Delete"
     And a confirmation box saying "Are you sure you want to delete this?" should pop up
     And I accept confirmation dialogs
-    Then I should not see "Siberian Husky"
+    Then I should not see a table row with id "pup_2"
     When admin go to breeders
     And I should see "1"
+  
+  Scenario: delete through batch action
+    When admin go to dogs
+    When I check "batch_action_item_1"
+    When I check "batch_action_item_2"
+    Then I submit the batch action form with "destroy"
+    Then I should not see a table row with id "pup_1"
+    Then I should not see a table row with id "pup_2"
     
 # End for Iter 2-1
