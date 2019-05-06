@@ -68,4 +68,14 @@ Feature: Only owner can delete other admin
     Given I login as admin "non_owner@berkeley.edu" with password "password"
     When admin go to /admin_users/1/edit
     Then I should see "Warning: You don't have enough privilege to perform operation: edit"
-    
+  
+  Scenario: non website owner shouldn't be able to access view page by changing url
+    Given I login as admin "non_owner@berkeley.edu" with password "password"
+    When admin go to /admin_users/1
+    Then I should see "Warning: You don't have enough privilege to perform operation: view"
+
+  Scenario: non website owner shouldn't be able to create new admin by changing url
+    Given I login as admin "non_owner@berkeley.edu" with password "password"
+    When admin go to /admin_users/new
+    Then I should see "Warning: You don't have enough privilege to perform operation: create"
+   
