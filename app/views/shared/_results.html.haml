@@ -1,12 +1,10 @@
 %div{:class=>"container"}
   %div{:class=>"row"}
     %h1 #{@show_text}
-    %p
-      %i="This breeder has asked for #{@breeder.removed_reviews} ratings to be taken down" if @breeder
 
   %div{:class=>"row"}
     %div{:class=>"col-sm-7"}
-      %h1 Average Ratings 
+      %h1 Average Ratings
       - if @avg_ratings[:breeder_responsibility]
         = render 'shared/avg_rating', rating: @avg_ratings[:breeder_responsibility].round(2), width: @avg_ratings[:breeder_responsibility].round(2) * 20, title: "Breeder Responsibility", color: 'progress-bar-success', description: "Responsible dog breeders screen their breeder dogs for breed-related genetic problems, begin early training and socialization of the puppies they produce, provide a health guarantee and ongoing support for the puppies they sell, and provide excellent lifelong health care and quality of life for their breeding dogs. Please rate the breeder of your dog for the level of responsibility they demonstrated."
       = render 'shared/avg_rating', rating: @avg_ratings[:overall_health].round(2),  width: @avg_ratings[:overall_health].round(2) * 20, title: 'Pup Health', color: 'progress-bar', description: "Please rate your dog's overall health in the time that you have had him/her. Please do not consider health problems that were the result of accidental injuries."
@@ -21,3 +19,6 @@
       - @pups.each do |pup|
         = render 'shared/comment', pup: pup, responsibility: pup.breeder_responsibility , health: pup.overall_health , train: pup.trainability , social: pup.social_behavior, dog: pup.dog_behavior, simpatico: pup.simpatico_rating, energy: pup.energy_level
 
+  %div{:class=>"row"}
+    %p
+      %i="This breeder has asked for #{@breeder.removed_reviews} ratings to be taken down" if @breeder
