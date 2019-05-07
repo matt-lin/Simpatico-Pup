@@ -26,6 +26,11 @@ class User < ActiveRecord::Base
     BCrypt::Password.create(string, cost: cost)
   end
 
+  # Override to_s method for community forum
+  def to_s
+    username
+  end
+
 
   # Iter 2-2 account actication (by Zipei Wang and Jack Chen)
   # Returns true if the given token matches the digest.
@@ -94,4 +99,3 @@ class User < ActiveRecord::Base
 
 
 end
-
