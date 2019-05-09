@@ -30,6 +30,10 @@ Then /^I should see that the batch action button is disabled$/ do
   expect(page).to have_css ".batch_actions_selector .dropdown_menu_button.disabled"
 end
 
+Then /^I should see that the batch action button is enabled$/ do
+  expect(page).to have_css ".batch_actions_selector .dropdown_menu_button"
+end
+
 Then /^I (should|should not) see the batch action (button|selector)$/ do |maybe, type|
   selector = "div.table_tools .batch_actions_selector"
   selector << ' .dropdown_menu_button' if maybe == 'should' && type == 'button'
@@ -61,7 +65,7 @@ When /^I click "(.*?)" and accept confirmation$/ do |link|
   # page.driver.accept_modal(:confirm) { click_link(link) }
 
   click_link(link)
-  expect(page).to have_content("Are you sure you want to delete these posts?")
+  expect(page).to have_content("Are you sure you want to delete these users?")
   click_button("OK")
 end
 

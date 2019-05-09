@@ -1,8 +1,27 @@
+def destroy_user(id)
+  if AdminUser.true_admin? current_admin_user.id 
+    if current_admin_user.id.to_s == id.to_s
+      flash[:alert] = "Warning: Site owner can not be deleted"
+    else
+      adm = AdminUser.find(id)
+      adm.destroy
+    end
+  else
+    flash[:alert] = selget_warning + " delete"
+  end
+end
 ActiveAdmin.register AdminUser do
   
   menu :priority => 14
   
   filter :email
+
+  batch_action :destroy, confirm: "Are you sure you want to delete these users?" do |ids|
+    ids.each do |i|
+      destroy_user(i)
+    end
+    redirect_to admin_dogs_path
+  end
   
   index do            
     selectable_column if AdminUser.true_admin? current_admin_user.id 
@@ -28,17 +47,8 @@ ActiveAdmin.register AdminUser do
   
   controller do
     def destroy
-      if AdminUser.true_admin? current_admin_user.id 
-        if current_admin_user.id.to_s == params[:id].to_s
-          flash[:alert] = "Warning: Site owner can not be deleted"
-          redirect_to "/admin/admin_users/"
-        else
-          super
-        end
-      else
-        flash[:alert] = selget_warning + " delete"
-        redirect_to "/admin/admin_users/"
-      end
+      destroy_user(params[:id])
+      redirect_to admin_users_path
     end
     
     def new
@@ -46,7 +56,7 @@ ActiveAdmin.register AdminUser do
         super
       else
         flash[:alert] = AdminUser.get_warning + " create"
-        redirect_to "/admin/admin_users/"
+        redirect_to admin_users_path
       end
     end
     
@@ -55,7 +65,7 @@ ActiveAdmin.register AdminUser do
         super
       else
         flash[:alert] = AdminUser.get_warning + " view"
-        redirect_to "/admin/admin_users/"
+        redirect_to admin_users_path
       end
     end
     
@@ -64,7 +74,7 @@ ActiveAdmin.register AdminUser do
         super
       else
         flash[:alert] = AdminUser.get_warning + " update"
-        redirect_to "/admin/admin_users/"
+        redirect_to admin_users_path
       end
     end
     
@@ -73,7 +83,7 @@ ActiveAdmin.register AdminUser do
         super
       else
         flash[:alert] = AdminUser.get_warning + " edit"
-        redirect_to "/admin/admin_users/"
+        redirect_to admin_users_path
       end
     end
   end

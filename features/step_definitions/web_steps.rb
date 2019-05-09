@@ -169,12 +169,21 @@ Then /^I should see a table header with "([^"]*)"$/ do |content|
   expect(page).to have_xpath '//th', text: content
 end
 
-Then /^I should see a table row with id "([^"]*)" and name "([^"]*)"$/ do |id, name|
-  expect(page).to have_xpath '//tr', text: id, text: name
+Then /^I should( not)? see a table row with id "([^"]*)" and name "([^"]*)"$/ do |negatory, id, name|
+  if negatory != nil
+    expect(page).to_not have_xpath '//tr', text: id, text: name
+  else
+    expect(page).to have_xpath '//tr', text: id, text: name
+  end
 end
 
-Then /^I should see a table row with id "([^"]*)"$/ do |dom_id|
-  page.find("tr##{dom_id}")
+Then /^I should( not)? see a table row with id "([^"]*)"$/ do |negatory, dom_id|
+  
+  if negatory != nil
+    expect(page).to_not have_css "tr##{dom_id}"
+  else
+    page.find("tr##{dom_id}")
+  end
 end
 
 Then /^I should not see a table header with "([^"]*)"$/ do |content|
@@ -246,6 +255,13 @@ end
 
 When (/^I follow "([^"]*)" for dog1$/) do |link|
   within (".dog1") do
+    first(:link, link).click
+  end
+end
+
+When (/^I follow "([^"]*)" for "([^"]*)"$/) do |link, row|
+  # save_and_open_page
+  within ("tr##{row}") do
     first(:link, link).click
   end
 end
