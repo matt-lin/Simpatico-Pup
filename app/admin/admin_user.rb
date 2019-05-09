@@ -48,7 +48,7 @@ ActiveAdmin.register AdminUser do
   controller do
     def destroy
       destroy_user(params[:id])
-      redirect_to "/admin/admin_users/"
+      redirect_to admin_users_path
     end
     
     def new
@@ -56,7 +56,7 @@ ActiveAdmin.register AdminUser do
         super
       else
         flash[:alert] = AdminUser.get_warning + " create"
-        redirect_to "/admin/admin_users/"
+        redirect_to admin_users_path
       end
     end
     
@@ -65,7 +65,7 @@ ActiveAdmin.register AdminUser do
         super
       else
         flash[:alert] = AdminUser.get_warning + " view"
-        redirect_to "/admin/admin_users/"
+        redirect_to admin_users_path
       end
     end
     
@@ -74,7 +74,7 @@ ActiveAdmin.register AdminUser do
         super
       else
         flash[:alert] = AdminUser.get_warning + " update"
-        redirect_to "/admin/admin_users/"
+        redirect_to admin_users_path
       end
     end
     
@@ -83,7 +83,7 @@ ActiveAdmin.register AdminUser do
         super
       else
         flash[:alert] = AdminUser.get_warning + " edit"
-        redirect_to "/admin/admin_users/"
+        redirect_to admin_users_path
       end
     end
   end
