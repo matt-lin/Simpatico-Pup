@@ -19,15 +19,15 @@
     %h4{:class => "explanation"}
       (1 = Poor, 5 = Excellent)
     = render 'slider_rating', title: "Rate Your Dog", slider: "slider-rateyourdog", id: "rateyourdog-label",
-              des1: "Very Unintuitive", des5: "Intuitive", var: :usability_rateyourdog
+              des1: "#{t(:feedback_scale_low)}", des5: "#{t(:feedback_scale_high)}", var: :usability_rateyourdog
     = render 'slider_rating', title: "Find Rating for Breed", slider: "slider-findratingbreed", id: "findratingbreed-label",
-              des1: "Very Unintuitive", des5: "Intuitive", var: :usability_findratingbreed
+              des1: "#{t(:feedback_scale_low)}", des5: "#{t(:feedback_scale_high)}", var: :usability_findratingbreed
     = render 'slider_rating', title: "Find Ratings for a Breeder", slider: "slider-findratingbreeder", id: "findratingbreeder-label",
-              des1: "Very Unintuitive", des5: "Intuitive", var: :usability_findratingbreeder
+              des1: "#{t(:feedback_scale_low)}", des5: "#{t(:feedback_scale_high)}", var: :usability_findratingbreeder
     = render 'slider_rating', title: "Search for a Breeder", slider: "slider-searchbreeder", id: "searchbreeder-label",
-              des1: "Very Unintuitive", des5: "Intuitive", var: :usability_searchbreeder
+              des1: "#{t(:feedback_scale_low)}", des5: "#{t(:feedback_scale_high)}", var: :usability_searchbreeder
     = render 'slider_rating', title: "Community Forum", slider: "slider-forum", id: "forum-label",
-              des1: "Very Unintuitive", des5: "Intuitive", var: :usability_forum
+              des1: "#{t(:feedback_scale_low)}", des5: "#{t(:feedback_scale_high)}", var: :usability_forum
 
     %br
     %br

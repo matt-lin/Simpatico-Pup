@@ -5,7 +5,10 @@ Feature: View detailed imformation of all dogs
   So that I can find the corresponding breeder and user 
   
   Background: Logged in and dogs have been added to the database
+    Given the default layout exist
     Given I login as an admin
+    Given I am on the "Admin Dashboard" page
+    
     And the following breeders exist:
       | name    | city     | state  |
       | Carl    | Berkeley | CA     |
@@ -36,5 +39,23 @@ Feature: View detailed imformation of all dogs
       | testing@berkeley.edu  |
       | DOG NAME |
       | Thor  |
+  
+  @javascript
+  Scenario: click delete and accept should delete dog and increment removed_reviews count
+    When admin go to dogs
+    And I follow "Delete"
+    And a confirmation box saying "Are you sure you want to delete this?" should pop up
+    And I accept confirmation dialogs
+    Then I should not see a table row with id "pup_2"
+    When admin go to breeders
+    And I should see "1"
+  
+  Scenario: delete through batch action
+    When admin go to dogs
+    When I check "batch_action_item_1"
+    When I check "batch_action_item_2"
+    Then I submit the batch action form with "destroy"
+    Then I should not see a table row with id "pup_1"
+    Then I should not see a table row with id "pup_2"
     
 # End for Iter 2-1

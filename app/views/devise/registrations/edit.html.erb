@@ -1,5 +1,22 @@
 <div class="edit_account">
   <div class='title'>Edit Profile</div>
+
+  <div id="profile_picture">
+    <h3 class="sub_title">Profile Image</h3>
+
+    <%= image_tag @user.avatar.thumb.url, id: "edit_profile_image" %>
+
+    <%= form_for @user, url: edit_profile_image_path, html: { multipart: true }, method: :post do |form| %>
+      <div class="actions">
+        <%= label 'hidden', 'file', class: "button" do %>
+          <%= form.file_field :avatar, id: "hidden_file", accept: "image/*" %>
+          Choose File
+        <% end %>
+        <%= form.submit "Save", class: "button" %>
+      </div>
+    <% end %>
+    
+  </div>
   
   <div id="change_password">
     <h3 class="sub_title">Change password</h3>

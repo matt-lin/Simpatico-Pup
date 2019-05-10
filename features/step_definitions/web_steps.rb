@@ -117,7 +117,7 @@ Then /^I should( not)? see "(.*)"/ do |not_see, text|
 		assert_no_text(text)
   else
 		assert_text(text)
-	end	
+	end
 end
 
 # Iter 2 - 2 selected comment validation (By Gung Hiu Ho, Licong Wang)
@@ -126,7 +126,7 @@ Then /^I will( not)? see "(.*)" or "(.*)"/ do |not_see, text1, text2|
 		expect(page.has_no_content?(text1) && page.has_no_content?(text2)).to be (true)
   else
 	  expect(page.has_content?(text1) || page.has_content?(text2)).to be (true)
-	end	
+	end
 end
 # End for Iter 1-2
 
@@ -139,13 +139,14 @@ Then /^I should( not)? see twice "(.*)"/ do |not_see, text|
 		assert_no_text(text, count: 2)
   else
 		assert_text(text, count: 2)
-	end	
+	end
 end
 
 Then /^I should see all of:/ do |names|
   names.hashes.each do |name|
     page.has_content?(name['name'])
   end
+  save_and_open_page
 end
 
 Then /^(?:admin )should( not)? see( the element)? "([^"]*)"$/ do |negate, is_css, text|
@@ -167,6 +168,24 @@ end
 Then /^I should see a table header with "([^"]*)"$/ do |content|
   expect(page).to have_xpath '//th', text: content
 end
+
+Then /^I should( not)? see a table row with id "([^"]*)" and name "([^"]*)"$/ do |negatory, id, name|
+  if negatory != nil
+    expect(page).to_not have_xpath '//tr', text: id, text: name
+  else
+    expect(page).to have_xpath '//tr', text: id, text: name
+  end
+end
+
+Then /^I should( not)? see a table row with id "([^"]*)"$/ do |negatory, dom_id|
+  
+  if negatory != nil
+    expect(page).to_not have_css "tr##{dom_id}"
+  else
+    page.find("tr##{dom_id}")
+  end
+end
+
 Then /^I should not see a table header with "([^"]*)"$/ do |content|
   expect(page).to_not have_xpath '//th', text: content
 end
@@ -200,6 +219,19 @@ end
 
 Then /^I should see a table with id "([^"]*)"$/ do |dom_id|
   page.find("table##{dom_id}")
+
+end
+
+Then /^I should see a div with id "([^"]*)"$/ do |dom_id|
+  expect(page).to have_css "##{dom_id}"
+end
+
+Then /^I should see a div with class "([^"]*)"$/ do |dom_class|
+  expect(page).to have_css ".#{dom_class}"
+end
+
+Then /^I should see the image "([^"]*)"$/ do |f|
+  expect(page).to have_css("img[src*='#{f}']")
 end
 
 Given /^a confirmation box saying "(.*)" should pop up$/ do |message|
@@ -223,6 +255,13 @@ end
 
 When (/^I follow "([^"]*)" for dog1$/) do |link|
   within (".dog1") do
+    first(:link, link).click
+  end
+end
+
+When (/^I follow "([^"]*)" for "([^"]*)"$/) do |link, row|
+  # save_and_open_page
+  within ("tr##{row}") do
     first(:link, link).click
   end
 end

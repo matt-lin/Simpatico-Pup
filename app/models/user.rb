@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  # Adds uploader for profile images
+  mount_uploader :avatar, AvatarUploader
+
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :agreement
   # attr_accessible :title, :body
@@ -21,6 +24,11 @@ class User < ActiveRecord::Base
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
+  end
+
+  # Override to_s method for community forum
+  def to_s
+    username
   end
 
 
@@ -85,10 +93,9 @@ class User < ActiveRecord::Base
   end
 
   def admin
-    return true if self.email == "lhsdvm@aol.com"  || self.email == "testuser@berkeley.edu"  || self.email == "xshuyin@berkeley.edu"
+    return true if self.email == "lhsdvm@aol.com"  || self.email == "testuser@berkeley.edu"
     false
   end
 
 
 end
-
