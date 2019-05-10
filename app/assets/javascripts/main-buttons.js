@@ -28,18 +28,10 @@ var MainButtons = {
         }
 
         $('#to_goal_button').click( function(e) {
-            // e.preventDefault();
-            // $('html,body').animate({
-            //   scrollTop: $(".page_divider1").offset().top-50},
-            // 'slow');
             pageSlide(e, $(".page_divider1").offset().top-50);
         });
         
         $('#to_inline_button_button').click( function(e) {
-            // e.preventDefault();
-            // $('html,body').animate({
-            //   scrollTop: $(".page_divider2").offset().top-100},
-            // 'slow');
             pageSlide(e, $(".page_divider2").offset().top-100);
         });
     },

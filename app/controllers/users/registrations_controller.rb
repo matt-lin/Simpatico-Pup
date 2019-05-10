@@ -15,49 +15,72 @@ helper_method :subscribed?
     super
   end
 
-  # POST /resource
-  def create
-    
-    temp = []
+  def password_errors(temp)
     if params[:user][:password].empty?                 
       temp << 'Password can not be empty'
     end
     if params[:user][:password_confirmation].empty? 
       temp << 'Password confirmation can not be empty'
+    end  
+    if params[:user][:password].length<8
+      temp << 'Password must contain more than 8 characters'
     end
     if params[:user][:password] != params[:user][:password_confirmation]
       temp << "Password not same as Confirmation"
     end
-    if params[:user][:password].length<8
-      temp << 'Password must contain more than 8 characters'
-    end
-    if params[:user][:email].empty?
-      temp << 'Email can not be empty'
-    end
-    if params[:user][:username].empty?
-      temp << "Username can not be empty"
-    end
     if params[:user][:password] =~ /^\s*$/
       temp << 'Password can not contain whitespace'
+    end
+  end
+
+  def email_errors(temp)
+    if params[:user][:email].empty?
+      temp << 'Email can not be empty'
     end
     if User.find_by_email(params[:user][:email])
       temp << 'Email has already been taken'
     end
-    
+  end
+
+  def username_errors(temp)
+    if params[:user][:username].empty?
+      temp << "Username can not be empty"
+    end
+  end
+
+  def set_error_message()
+    temp = []
+
+    password_errors(temp)
+    email_errors(temp)
+    username_errors(temp)
+
     if temp.length != 0
       flash[:notice] = "#{temp.length} errors prohibited this user from being saved:<br/>"
       temp.each_with_index do |msg, id|
         flash[:notice] += "&emsp;&#8226; " + msg 
       end
     end
-    
-    puts '*'*80
-    puts temp
-    puts '*'*80
-    
-    build_resource(sign_up_params)
-    resource.save
 
+    puts temp
+  end
+
+  def is_subscriber
+    if params[:subscribe_newsletter].present?
+      NewsletterUser.find_or_create_by(email: resource.email)
+    end
+  end
+
+  # POST /resource
+  def create
+    set_error_message()
+
+    puts '*'*80
+    
+    puts '*'*80
+    build_resource(sign_up_params)
+
+    resource.save
     yield resource if block_given?
     if resource.persisted?
       if resource.active_for_authentication?
@@ -65,12 +88,8 @@ helper_method :subscribed?
         UserMailer.account_activation(@user).deliver_now
         flash[:success] += " Please check your email to activate your account."
         respond_with resource, location: after_sign_up_path_for(resource)
-      
-      end
-      
-      if params[:subscribe_newsletter].present?
-        NewsletterUser.find_or_create_by(email: resource.email)
-      end
+      end 
+      is_subscriber()
     else
       clean_up_passwords resource
       set_minimum_password_length
@@ -90,13 +109,6 @@ helper_method :subscribed?
   # Iter 1-2
   def update
     super
-    # user = User.find_by_email(params[:user][:email])
-    # user = User.find_by_email(current_user.email)
-    # if params[:subscribe_newsletter].present? and user.valid_password?(params[:user][:current_password])
-    #   NewsletterUser.find_or_create_by(email: resource.email)
-    # elsif params[:unsubscribe_newsletter].present? and user.valid_password?(params[:user][:current_password])
-    #   NewsletterUser.where(email: resource.email).destroy_all
-    # end
   end
   # End for Iter 1-2
   
