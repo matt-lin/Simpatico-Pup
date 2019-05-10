@@ -4,3 +4,5 @@
 en:
   hello: "Hello world"
   feedback_flash: "Let us know how we're doing!"
+  feedback_scale_low: "Poor"
+  feedback_scale_high: "Great!"
