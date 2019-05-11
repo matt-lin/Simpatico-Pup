@@ -5,42 +5,24 @@ var MainButtons = {
     // setup sets a callback for #breeder_find keyup   
     setup: function() {
 
-        $('.button-b').click( function() {
-            $('.box-b').toggleClass("hidden");
-        });
-        
-        $('#cancel-b').click( function() {
-            $('.box-b').toggleClass("hidden");
-        });
-
-        $('.button-c').click( function() {
-            $('.box-c').toggleClass("hidden");
-        });
-
-        $('#cancel-c').click( function() {
-            $('.box-c').toggleClass("hidden");
-        });
+        make_buttons_hidden();
         
         function pageSlide(event, dest) {
             event.preventDefault();
             $('html,body').animate({
               scrollTop: dest},'slow');
         }
+        
+        function dest_assigner(class_name, offset_amount){
+            return $(class_name).offset().top-offset_amount;
+        }
 
         $('#to_goal_button').click( function(e) {
-            // e.preventDefault();
-            // $('html,body').animate({
-            //   scrollTop: $(".page_divider1").offset().top-50},
-            // 'slow');
-            pageSlide(e, $(".page_divider1").offset().top-50);
+            pageSlide(e, dest_assigner(".page_divider1",50));
         });
         
         $('#to_inline_button_button').click( function(e) {
-            // e.preventDefault();
-            // $('html,body').animate({
-            //   scrollTop: $(".page_divider2").offset().top-100},
-            // 'slow');
-            pageSlide(e, $(".page_divider2").offset().top-100);
+            pageSlide(e, dest_assigner(".page_divider2", 100));
         });
     },
     slider: function() {
@@ -90,6 +72,24 @@ var MainButtons = {
         }
     }
 };
+
+function make_buttons_hidden() {
+    $('.button-b').click( function() {
+        $('.box-b').toggleClass("hidden");
+    });
+    
+    $('#cancel-b').click( function() {
+        $('.box-b').toggleClass("hidden");
+    });
+
+    $('.button-c').click( function() {
+        $('.box-c').toggleClass("hidden");
+    });
+
+    $('#cancel-c').click( function() {
+        $('.box-c').toggleClass("hidden");
+    });
+}
 
 
 $(document).ready(function () {
