@@ -27,8 +27,6 @@ gem 'capybara-email'
 
 #Iter 2-2 Implementing image upload features (By Gung Hiu Ho, Licong Wang)
 gem 'paperclip', '~> 5.0.0'
-gem 'carrierwave', '~> 1.0'
-gem 'mini_magick', '~> 4.9.3'
 
 #Iter 2-2 Improve form layout in activeadmin (By Gung Hiu Ho, Licong Wang)
 gem 'formtastic', '~> 3.0'
